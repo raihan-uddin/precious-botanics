@@ -28,6 +28,12 @@
                         <input type="text" id="search" placeholder="Search..." class="border rounded px-3 py-2 w-full" />
                     </div>
 
+                    <div class="mb-4">
+                        <a href="{{ route('settings.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+                            {{ __('Create Setting') }}
+                        </a>
+                    </div>
+
                     <table class="min-w-full divide-y divide-gray-200" id="settings-table">
                         <thead class="bg-gray-50">
                             <tr>
