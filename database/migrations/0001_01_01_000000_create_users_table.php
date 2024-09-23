@@ -18,6 +18,18 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('is_admin')->default(false);
+            $table->enum('status', ['active', 'inactive', 'pending', 'blocked', 'deleted', 'banned', 'suspended'])->default('pending');
+            $table->string('timezone')->default('UTC');
+            $table->string('locale')->default('en');
+            $table->string('currency')->default('USD');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
         });
 

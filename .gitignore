@@ -19,3 +19,47 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+
+# ignore packaged files
+*.zip
+*.gz
+*.tar
+*.rar
+*.7z
+*.dmg
+*.gz
+*.iso
+
+# ignore logs
+*.bak
+
+# ignore database
+*.sql
+*.csv
+
+# ignore OS generated files
+ehthumbs.db
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Ignore cache
+.cache/
+
+# Ignore meilisearch data
+data.ms
+
+# Ignore meilisearch logs
+logs.ms
+
+# Ignore meilisearch dumps
+dumps.ms
+
+# Ignore meilisearch pid
+pid.ms
+
+# Ignore meilisearch schema
+schema.ms
