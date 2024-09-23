@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -19,9 +20,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('/admin')->middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/profile', function () {
-        // Your profile logic here
-    });
+    Route::resource('settings', SettingsController::class);
 });
 
 require __DIR__.'/auth.php';
