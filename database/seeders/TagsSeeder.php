@@ -79,7 +79,6 @@ class TagsSeeder extends Seeder
             'Face Products',
             'Aroma',
             'Fragrance Oils',
-            'Essential Oils',
             'African Shea Butter',
             'African Raw Black Soap',
             'Bath Salt',
