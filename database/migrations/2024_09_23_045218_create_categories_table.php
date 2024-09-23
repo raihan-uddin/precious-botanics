@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->integer('order_column')->default(0);
             $table->boolean('is_menu')->default(true);  // This will help distinguish between menu and submenu
             $table->boolean('is_active')->default(true);
