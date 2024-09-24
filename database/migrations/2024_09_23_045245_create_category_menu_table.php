@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('category_menus', function (Blueprint $table) {
             $table->foreignId('menu_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('submenu_id')->constrained('categories')->onDelete('cascade');
+
+            // Add unique constraint
+            $table->unique(['menu_id', 'submenu_id']);
         });
     }
 
