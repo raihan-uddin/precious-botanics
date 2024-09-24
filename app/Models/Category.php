@@ -42,6 +42,12 @@ class Category extends Model
         return $this->belongsToMany(Category::class, 'category_menus', 'submenu_id', 'menu_id');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_categories');
+    }
+
+
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');

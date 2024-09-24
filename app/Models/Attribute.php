@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Attribute extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'product_id',
+        'key',
+        'value',
+    ];
+
+
+    // Relationship with Product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -9,6 +9,22 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'sku',
+        'price',
+        'discount_price',
+        'stock_quantity',
+        'in_stock',
+        'is_active',
+        'is_featured',
+        'meta_title',
+        'meta_description',
+        'image',
+    ];
+
 
     public function variations()
     {
@@ -22,7 +38,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'product_categories');
     }
 
     public function tags()
@@ -36,6 +52,7 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    
     public function getFeaturedImageAttribute()
     {
         return $this->images->where('is_featured', true)->first();

@@ -32,6 +32,7 @@
             <div x-show="open" @click.outside="open = false" x-transition class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <!-- Dropdown Links -->
+                    <a href="{{ route('products.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Products</a>
                     <a href="{{ route('tags.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Tags</a>
                 </div>
             </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -25,6 +26,7 @@ Route::prefix('/admin')->middleware(['auth', AdminMiddleware::class])->group(fun
     Route::resource('settings', SettingsController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagController::class);
+    Route::resource('products', ProductController::class);
 
 });
 

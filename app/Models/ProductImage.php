@@ -12,6 +12,9 @@ class ProductImage extends Model
     protected $fillable = [
         'product_id',
         'image_path',
+        'caption',
+        'is_featured',
+        'order',
     ];
 
     // Relationship with Product
