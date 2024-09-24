@@ -81,8 +81,10 @@ class CategoryController extends Controller
         // Attach the selected menus to the category
         $category->menus()->attach($validated['menus']);
 
-        // Clear the cache after storing a new category
-        Cache::forget('active_menu_categories');
+        // Clear and refresh the cache after storing a new category
+        Cache::forget('menu_categories');
+        getMenuCategories();
+
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
@@ -111,7 +113,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-     public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
 
@@ -161,8 +163,9 @@ class CategoryController extends Controller
         $category->menus()->sync($request->menus);
 
 
-        // Clear the cache after updating a category
-        Cache::forget('active_menu_categories');
+        // Clear and refresh the cache after storing a new category
+        Cache::forget('menu_categories');
+        getMenuCategories();
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
@@ -178,8 +181,10 @@ class CategoryController extends Controller
         }
         $category->delete();
 
-        // Clear the cache after deleting a category
-        Cache::forget('active_menu_categories');
+        // Clear and refresh the cache after storing a new category
+        Cache::forget('menu_categories');
+        getMenuCategories();
+        
         
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }

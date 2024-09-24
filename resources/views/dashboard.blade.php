@@ -13,6 +13,23 @@
                 </div>
 
                 <div class="p-6 bg-white border-b border-gray-200">
+                    @php
+                        $menuCategories = getMenuCategories();
+                    @endphp
+                    <ul>
+                        @foreach ($menuCategories as $menu)
+                            <li>
+                                {{ $menu->name }}
+                                @if ($menu->submenus->isNotEmpty())
+                                    <ul>
+                                        @foreach ($menu->submenus as $submenu)
+                                            <li>----{{ $submenu->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
