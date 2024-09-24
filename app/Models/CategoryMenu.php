@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryMenu extends Model
 {
     use HasFactory;
-    public $incrementing = true; // If your pivot table has an id column
-    public $timestamps = true; // Enable timestamps
 
     public function menu()
     {

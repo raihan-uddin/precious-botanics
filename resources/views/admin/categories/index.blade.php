@@ -65,6 +65,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Menu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Menus</th> 
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Active</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show on Home</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show on Menu</th>
@@ -81,6 +82,17 @@
                                             <span class="text-green-500">&#10003;</span>  <!-- Check mark -->
                                         @else
                                             <span class="text-red-500">&#10007;</span>   <!-- Cross mark -->
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if($category->menus->isNotEmpty())
+                                            <div class="flex flex-wrap space-x-1">
+                                                @foreach($category->menus as $menu)
+                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                                                        {{ $menu->name }} <!-- Adjust to show the desired menu attribute -->
+                                                    </span>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">

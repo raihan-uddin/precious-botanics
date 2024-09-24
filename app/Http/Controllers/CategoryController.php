@@ -33,7 +33,7 @@ class CategoryController extends Controller
     public function create()
     {
          // Fetch all menus
-        $menus = Category::where('is_menu', true)->orderBy('name')->get(); // Fetch all menus
+        $menus = Category::where('is_menu', true)->orderBy('name')->get(); 
     
         return view('admin.categories.create', compact('menus'));
     }
@@ -94,49 +94,64 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        // Fetch all menus
+        $menus = Category::where('is_menu', true)->orderBy('name')->get();
+        return view('admin.categories.edit', compact('category', 'menus'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $category = Category::findOrFail($id);
+
+        $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:categories,slug,' . $category->id . '|max:255',
+            'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
             'order_column' => 'required|integer',
+            'menus' => 'array',
+            'is_active' => 'boolean',
+            'is_menu' => 'boolean',
+            'show_on_home' => 'boolean',
+            'show_on_nav_menu' => 'boolean',
+            'show_on_footer' => 'boolean',
+            'show_on_sidebar' => 'boolean',
+            'show_on_slider' => 'boolean',
+            'show_on_top' => 'boolean',
+            'show_on_bottom' => 'boolean',
             'icon' => 'nullable|string',
-            'image' => 'nullable|file|image|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Handle the image upload if a new image is provided
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->order_column = $request->order_column;
+        $category->is_active = $request->is_active ?? 0;
+        $category->is_menu = $request->is_menu ?? 0;
+        $category->show_on_home = $request->show_on_home ?? 0;
+        $category->show_on_nav_menu = $request->show_on_nav_menu ?? 0;
+        $category->show_on_footer = $request->show_on_footer ?? 0;
+        $category->show_on_sidebar = $request->show_on_sidebar ?? 0;
+        $category->show_on_slider = $request->show_on_slider ?? 0;
+        $category->show_on_top = $request->show_on_top ?? 0;
+        $category->show_on_bottom = $request->show_on_bottom ?? 0;
+        $category->icon = $request->icon;
+
         if ($request->hasFile('image')) {
-            // Optionally delete the old image if you want
+            // Store the new image
             if ($category->image) {
-                Storage::disk('public')->delete($category->image);
+                Storage::delete($category->image); // Delete old image if exists
             }
-            $validated['image'] = $request->file('image')->store('categories', 'public');
+            $category->image = $request->file('image')->store('categories');
         }
 
-        // Update the category attributes
-        $category->name = $validated['name'];
-        $category->slug = $validated['slug'];
-        $category->order_column = $validated['order_column'];
-        $category->icon = $validated['icon'] ?? null; // Handle nullable icon
-        $category->image = $validated['image'] ?? $category->image; // Keep old image if not updated
-        $category->is_menu = $request->boolean('is_menu');
-        $category->is_active = $request->boolean('is_active');
-        $category->show_on_home = $request->boolean('show_on_home');
-        $category->show_on_nav_menu = $request->boolean('show_on_nav_menu');
-        $category->show_on_footer = $request->boolean('show_on_footer');
-        $category->show_on_sidebar = $request->boolean('show_on_sidebar');
-        $category->show_on_slider = $request->boolean('show_on_slider');
-        $category->show_on_top = $request->boolean('show_on_top');
-        $category->show_on_bottom = $request->boolean('show_on_bottom');
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
+        // Sync menus
+        $category->menus()->sync($request->menus);
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
 

@@ -440,43 +440,43 @@ class CategorySeeder extends Seeder
         // Menu-Submenu relationship
 
         DB::table('category_menus')->insert([
-            ['menu_id' => $menu1, 'submenu_id' => $submenu1, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu1, 'submenu_id' => $submenu2, 'created_at' => now(), 'updated_at' => now(),],
+            ['menu_id' => $menu1, 'submenu_id' => $submenu1,],
+            ['menu_id' => $menu1, 'submenu_id' => $submenu2,],
 
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu3, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu4, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu5, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu6, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu7, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu8, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu9, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu10, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu11, 'created_at' => now(), 'updated_at' => now(),],
-
-
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu12, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu13, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu14, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu15, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu16, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu17, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu18, 'created_at' => now(), 'updated_at' => now(),],
-
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu8, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu19, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu20, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu21, 'created_at' => now(), 'updated_at' => now(),],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu3,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu4,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu5,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu6,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu7,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu8,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu9,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu10,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu11,],
 
 
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu22, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu23, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu24, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu25, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu27, 'created_at' => now(), 'updated_at' => now(),],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu12,],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu13,],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu14,],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu15,],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu16,],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu17,],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu18,],
+
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu8,],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu19,],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu20,],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu21,],
 
 
-            ['menu_id' => $menu6, 'sub_menu_id' => $submenu28, 'created_at' => now(), 'updated_at' => now(),],
-            ['menu_id' => $menu6, 'sub_menu_id' => $submenu29, 'created_at' => now(), 'updated_at' => now(),],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu22,],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu23,],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu24,],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu25,],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu27,],
+
+
+            ['menu_id' => $menu6, 'sub_menu_id' => $submenu28,],
+            ['menu_id' => $menu6, 'sub_menu_id' => $submenu29,],
 
         ]);
     }
