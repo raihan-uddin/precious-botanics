@@ -20,7 +20,7 @@
                         {{ __('Settings') }}
                     </x-nav-link>                    
 
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*') || request()->routeIs('tags.*')">
                         {{ __('Products') }}
                     </x-nav-link> 
                 </div>
