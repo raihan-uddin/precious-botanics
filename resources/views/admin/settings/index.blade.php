@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Settings') }}
+            <!-- {{ __('Settings') }} -->
+            <a href="{{ route('settings.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+                {{ __('Create Setting') }}
+            </a>
             {{-- <h1>{{ \App\Helpers\SettingsHelper::get('site_email', 'Default Site Name') }}</h1> --}}
 
         </h2>
@@ -28,11 +31,11 @@
                         <input type="text" id="search" placeholder="Search..." class="border rounded px-3 py-2 w-full" />
                     </div>
 
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <a href="{{ route('settings.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
                             {{ __('Create Setting') }}
                         </a>
-                    </div>
+                    </div> -->
 
                     <table class="min-w-full divide-y divide-gray-200" id="settings-table">
                         <thead class="bg-gray-50">

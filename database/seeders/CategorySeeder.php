@@ -439,7 +439,7 @@ class CategorySeeder extends Seeder
 
         // Menu-Submenu relationship
 
-        DB::table('category_menu')->insert([
+        DB::table('category_menus')->insert([
             ['menu_id' => $menu1, 'submenu_id' => $submenu1, 'created_at' => now(), 'updated_at' => now(),],
             ['menu_id' => $menu1, 'submenu_id' => $submenu2, 'created_at' => now(), 'updated_at' => now(),],
 

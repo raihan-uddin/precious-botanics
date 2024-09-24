@@ -63,7 +63,6 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Slug</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Menu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Active</th>
@@ -76,7 +75,6 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $category->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $category->slug }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $category->order_column }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if ($category->is_menu)
@@ -100,7 +98,7 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($category->show_on_menu)
+                                        @if ($category->show_on_nav_menu)
                                             <span class="text-green-500">&#10003;</span>
                                         @else
                                             <span class="text-red-500">&#10007;</span>

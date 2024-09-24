@@ -15,7 +15,7 @@
                         @csrf
 
                         <!-- Name -->
-                        <div>   
+                        <div>
                             <x-input-label for="name" :value="__('Name')" />
                             <x-input id="name" x-model="name" @input="generateSlug" class="block mt-1 w-full" type="text" required autofocus />
                             <span x-show="errors.name" class="text-red-600 text-sm" x-text="errors.name"></span>
@@ -35,6 +35,16 @@
                             <span x-show="errors.order_column" class="text-red-600 text-sm" x-text="errors.order_column"></span>
                         </div>
 
+                        <!-- Assign to Menus -->
+                        <div>
+                            <x-input-label for="menus" :value="__('Assign to Menus')" />
+                            <select x-model="menus" id="menus" class="block mt-1 w-full" multiple>
+                                @foreach($menus as $menu)
+                                    <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                                @endforeach
+                            </select>
+                            <span x-show="errors.menus" class="text-red-600 text-sm" x-text="errors.menus"></span>
+                        </div>
 
                         <!-- Show on sections -->
                         <div class="grid grid-cols-4 gap-4 mt-4">
@@ -47,8 +57,8 @@
                                 <span class="ml-2 text-sm text-gray-600">{{ __('Is Menu') }}</span>
                             </label>
                             <label>
-                                <input type="checkbox" x-model="show_on_menu" class="form-checkbox h-5 w-5 text-indigo-600">
-                                <span class="ml-2 text-sm text-gray-600">{{ __('Show on Menu') }}</span>
+                                <input type="checkbox" x-model="show_on_nav_menu" class="form-checkbox h-5 w-5 text-indigo-600">
+                                <span class="ml-2 text-sm text-gray-600">{{ __('Show on Nav Menu') }}</span>
                             </label>
                             <label>
                                 <input type="checkbox" x-model="show_on_home" class="form-checkbox h-5 w-5 text-indigo-600">
@@ -61,10 +71,6 @@
                             <label>
                                 <input type="checkbox" x-model="show_on_sidebar" class="form-checkbox h-5 w-5 text-indigo-600">
                                 <span class="ml-2 text-sm text-gray-600">{{ __('Show on Sidebar') }}</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" x-model="show_on_header" class="form-checkbox h-5 w-5 text-indigo-600">
-                                <span class="ml-2 text-sm text-gray-600">{{ __('Show on Header') }}</span>
                             </label>
                             <label>
                                 <input type="checkbox" x-model="show_on_slider" class="form-checkbox h-5 w-5 text-indigo-600">
@@ -113,13 +119,13 @@
                 name: '',
                 slug: '',
                 order_column: 0,
+                menus: [],
                 is_menu: true,
                 is_active: true,
                 show_on_home: false,
-                show_on_menu: true,
+                show_on_nav_menu: true,
                 show_on_footer: false,
                 show_on_sidebar: false,
-                show_on_header: false,
                 show_on_slider: false,
                 show_on_top: false,
                 show_on_bottom: false,
@@ -140,13 +146,15 @@
                     formData.append('name', this.name);
                     formData.append('slug', this.slug);
                     formData.append('order_column', this.order_column);
+                    // Directly append menus as an array
+                    this.menus.forEach(menu => formData.append('menus[]', menu));
+
                     formData.append('is_menu', this.is_menu ? 1 : 0);
                     formData.append('is_active', this.is_active ? 1 : 0);
                     formData.append('show_on_home', this.show_on_home ? 1 : 0);
-                    formData.append('show_on_menu', this.show_on_menu ? 1 : 0);
+                    formData.append('show_on_nav_menu', this.show_on_nav_menu ? 1 : 0);
                     formData.append('show_on_footer', this.show_on_footer ? 1 : 0);
                     formData.append('show_on_sidebar', this.show_on_sidebar ? 1 : 0);
-                    formData.append('show_on_header', this.show_on_header ? 1 : 0);
                     formData.append('show_on_slider', this.show_on_slider ? 1 : 0);
                     formData.append('show_on_top', this.show_on_top ? 1 : 0);
                     formData.append('show_on_bottom', this.show_on_bottom ? 1 : 0);

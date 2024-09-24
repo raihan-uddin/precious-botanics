@@ -22,8 +22,8 @@ class CategoryController extends Controller
             return $query->where('name', 'like', "%{$search}%")
                 ->orWhere('slug', 'like', "%{$search}%");
         })->orderBy('name')
-        ->paginate(10); // Adjust the number per page as needed
-
+        ->paginate(10)->withQueryString();
+        
         return view('admin.categories.index', compact('categories', 'search'));
     }
 
@@ -32,8 +32,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
-
+         // Fetch all menus
+        $menus = Category::where('is_menu', true)->orderBy('name')->get(); // Fetch all menus
+    
+        return view('admin.categories.create', compact('menus'));
     }
 
     /**
@@ -45,6 +47,8 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:categories,slug|max:255',
             'order_column' => 'required|integer',
+            'menus' => 'required|array',
+            'menus.*' => 'exists:categories,id', // Validate that each menu exists in the database
             'icon' => 'nullable|string',
             'image' => 'nullable|file|image|max:2048',
         ]);
@@ -62,17 +66,20 @@ class CategoryController extends Controller
         $category->is_menu = $request->boolean('is_menu');
         $category->is_active = $request->boolean('is_active');
         $category->show_on_home = $request->boolean('show_on_home');
-        $category->show_on_menu = $request->boolean('show_on_menu');
+        $category->show_on_nav_menu = $request->boolean('show_on_nav_menu');
         $category->show_on_footer = $request->boolean('show_on_footer');
         $category->show_on_sidebar = $request->boolean('show_on_sidebar');
-        $category->show_on_header = $request->boolean('show_on_header');
         $category->show_on_slider = $request->boolean('show_on_slider');
         $category->show_on_top = $request->boolean('show_on_top');
         $category->show_on_bottom = $request->boolean('show_on_bottom');
         $category->save();
 
+        // Attach the selected menus to the category
+        $category->menus()->attach($validated['menus']);
+
         return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -121,10 +128,9 @@ class CategoryController extends Controller
         $category->is_menu = $request->boolean('is_menu');
         $category->is_active = $request->boolean('is_active');
         $category->show_on_home = $request->boolean('show_on_home');
-        $category->show_on_menu = $request->boolean('show_on_menu');
+        $category->show_on_nav_menu = $request->boolean('show_on_nav_menu');
         $category->show_on_footer = $request->boolean('show_on_footer');
         $category->show_on_sidebar = $request->boolean('show_on_sidebar');
-        $category->show_on_header = $request->boolean('show_on_header');
         $category->show_on_slider = $request->boolean('show_on_slider');
         $category->show_on_top = $request->boolean('show_on_top');
         $category->show_on_bottom = $request->boolean('show_on_bottom');
