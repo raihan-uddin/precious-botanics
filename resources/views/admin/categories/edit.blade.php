@@ -43,7 +43,7 @@
                             <x-input-label for="menus" :value="__('Assign to Menus')" />
                             <select x-model="menus" id="menus" class="block mt-1 w-full" multiple>
                                 @foreach($menus as $menu)
-                                    <option value="{{ $menu->id }}" x-bind:selected="menus.includes({{ $menu->id }})">{{ $menu->name }}</option>
+                                    <option value="{{ $menu->id }}" >{{ $menu->name }}</option>
                                 @endforeach
                             </select>
                             <span x-show="errors.menus" class="text-red-600 text-sm" x-text="errors.menus"></span>

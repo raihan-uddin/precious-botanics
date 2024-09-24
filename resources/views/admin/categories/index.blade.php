@@ -65,10 +65,9 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Menu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show on Menu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Menus</th> 
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Active</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show on Home</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show on Menu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -84,6 +83,14 @@
                                             <span class="text-red-500">&#10007;</span>   <!-- Cross mark -->
                                         @endif
                                     </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if ($category->show_on_nav_menu)
+                                            <span class="text-green-500">&#10003;</span>
+                                        @else
+                                            <span class="text-red-500">&#10007;</span>
+                                        @endif
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if($category->menus->isNotEmpty())
                                             <div class="flex flex-wrap space-x-1">
@@ -97,20 +104,6 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if ($category->is_active)
-                                            <span class="text-green-500">&#10003;</span>
-                                        @else
-                                            <span class="text-red-500">&#10007;</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($category->show_on_home)
-                                            <span class="text-green-500">&#10003;</span>
-                                        @else
-                                            <span class="text-red-500">&#10007;</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($category->show_on_nav_menu)
                                             <span class="text-green-500">&#10003;</span>
                                         @else
                                             <span class="text-red-500">&#10007;</span>

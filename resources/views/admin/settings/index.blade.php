@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <!-- {{ __('Settings') }} -->
-            <a href="{{ route('settings.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+            <a href="{{ route('settings.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
                 {{ __('Create Setting') }}
             </a>
             {{-- <h1>{{ \App\Helpers\SettingsHelper::get('site_email', 'Default Site Name') }}</h1> --}}
