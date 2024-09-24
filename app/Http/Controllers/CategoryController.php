@@ -54,7 +54,7 @@ class CategoryController extends Controller
             'menus' => 'required|array',
             'menus.*' => 'exists:categories,id', // Validate that each menu exists in the database
             'icon' => 'nullable|string',
-            'image' => 'nullable|file|image|max:2048',
+            'image' => 'nullable|file|image|max:520',
         ]);
 
         if ($request->hasFile('image')) {
@@ -132,7 +132,7 @@ class CategoryController extends Controller
             'show_on_top' => 'boolean',
             'show_on_bottom' => 'boolean',
             'icon' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:520',
         ]);
 
         $category->name = $request->name;
