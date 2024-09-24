@@ -5,6 +5,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -27,7 +28,7 @@ Route::prefix('/admin')->middleware(['auth', AdminMiddleware::class])->group(fun
     Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagController::class);
     Route::resource('products', ProductController::class);
-
+    Route::resource('banners', BannerController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -25,6 +25,10 @@
                     >
                         {{ __('Products') }}
                     </x-nav-link> 
+
+                    <x-nav-link :href="route('banners.index')" :active="request()->routeIs('banners.*')">
+                        {{ __('Banners') }}
+                    </x-nav-link>  
                 </div>
             </div>
 
@@ -83,8 +87,11 @@
             <x-responsive-nav-link :href="route('settings.index')" :active="request()->routeIs('settings.*')">
                 {{ __('Settings') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('categories.*') || request()->routeIs('tags.*') || request()->routeIs('products.*') ">
                 {{ __('Products') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('banners.index')" :active="request()->routeIs('banners.*')">
+                {{ __('Banners') }}
             </x-responsive-nav-link>
         </div>
 

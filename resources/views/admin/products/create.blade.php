@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="title">
-        {{ __('Create Product') }}
+        {{ $pageTitle ?? config('app.name', 'Laravel') }}
     </x-slot>
 
     <x-slot name="header">
