@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -79,6 +80,9 @@ class CategoryController extends Controller
 
         // Attach the selected menus to the category
         $category->menus()->attach($validated['menus']);
+
+        // Clear the cache after storing a new category
+        Cache::forget('active_menu_categories');
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
@@ -156,6 +160,10 @@ class CategoryController extends Controller
         // Sync menus
         $category->menus()->sync($request->menus);
 
+
+        // Clear the cache after updating a category
+        Cache::forget('active_menu_categories');
+
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
@@ -169,6 +177,10 @@ class CategoryController extends Controller
             Storage::disk('public')->delete($category->image);
         }
         $category->delete();
+
+        // Clear the cache after deleting a category
+        Cache::forget('active_menu_categories');
+        
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 }

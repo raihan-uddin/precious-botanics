@@ -11,6 +11,9 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+
+                <div class="p-6 bg-white border-b border-gray-200">
+                </div>
             </div>
         </div>
     </div>
