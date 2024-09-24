@@ -18,7 +18,8 @@ class SettingsController extends Controller
     {
         // Get all settings for the view
         $settings = Setting::all();
-        return view('admin.settings.index', compact('settings'));
+        $pageTitle = 'Settings';
+        return view('admin.settings.index', compact('settings', 'pageTitle'));
     }
 
     /**
@@ -26,7 +27,8 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        return view('admin.settings.create');
+        $pageTitle = 'Create Setting';
+        return view('admin.settings.create', compact('pageTitle'));
     }
 
     /**
@@ -74,7 +76,8 @@ class SettingsController extends Controller
     public function edit($id)
     {
         $setting = Setting::findOrFail($id);
-        return view('admin.settings.edit', compact('setting'));
+        $pageTitle = 'Edit Setting: ' . $setting->key;
+        return view('admin.settings.edit', compact('setting', 'pageTitle'));
     }
 
     /**

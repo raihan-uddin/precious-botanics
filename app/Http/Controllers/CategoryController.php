@@ -23,8 +23,10 @@ class CategoryController extends Controller
                 ->orWhere('slug', 'like', "%{$search}%");
         })->orderBy('name')
         ->paginate(10)->withQueryString();
+
+        $pageTitle = 'Categories';
         
-        return view('admin.categories.index', compact('categories', 'search'));
+        return view('admin.categories.index', compact('categories', 'search', 'pageTitle'));
     }
 
     /**
@@ -34,8 +36,9 @@ class CategoryController extends Controller
     {
          // Fetch all menus
         $menus = Category::where('is_menu', true)->orderBy('name')->get(); 
-    
-        return view('admin.categories.create', compact('menus'));
+
+        $pageTitle = 'Create Category';
+        return view('admin.categories.create', compact('menus', 'pageTitle'));
     }
 
     /**
@@ -96,7 +99,9 @@ class CategoryController extends Controller
     {
         // Fetch all menus
         $menus = Category::where('is_menu', true)->orderBy('name')->get();
-        return view('admin.categories.edit', compact('category', 'menus'));
+
+        $pageTitle = 'Edit Category: ' . $category->name;
+        return view('admin.categories.edit', compact('category', 'menus', 'pageTitle'));
     }
 
     /**
