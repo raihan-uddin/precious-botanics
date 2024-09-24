@@ -11,16 +11,22 @@ class ProductVariation extends Model
 
     protected $fillable = [
         'product_id',
-        'variation_type',
-        'variation_value',
-        'price',
-        'stock_quantity',
-        'is_active',
+        'size', 
+        'color', 
+        'price', 
+        'stock_quantity'
     ];
+
 
     // Relationship with Product
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'product_variation_attributes')
+            ->withPivot('value'); // This is where the attribute value is associated with the variation
     }
 }

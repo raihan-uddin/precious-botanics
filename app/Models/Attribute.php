@@ -9,16 +9,16 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'product_id',
-        'key',
-        'value',
-    ];
+    protected $fillable = ['key'];
 
-
-    // Relationship with Product
-    public function product()
+    public function values()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(AttributeValue::class);
+    }
+
+    public function variations()
+    {
+        return $this->belongsToMany(ProductVariation::class, 'product_variation_attributes')
+            ->withPivot('value'); // Adjust based on your needs
     }
 }

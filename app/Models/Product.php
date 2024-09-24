@@ -33,7 +33,7 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->hasMany(Attribute::class);
+        return $this->belongsToMany(Attribute::class, 'product_attributes'); // Adjust according to your pivot table
     }
 
     public function categories()

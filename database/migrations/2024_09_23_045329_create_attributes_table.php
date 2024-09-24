@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('key'); // Attribute key (e.g., material)
-            $table->string('value'); // Attribute value (e.g., cotton)
+            $table->string('name')->unique(); // Ensure names are unique
             $table->timestamps();
         });
     }
