@@ -16,14 +16,16 @@
                     @php
                         $menuCategories = getMenuCategories();
                     @endphp
-                    <ul>
+                    <ul class="pl-4">
                         @foreach ($menuCategories as $menu)
-                            <li>
-                                {{ $menu->name }}
+                            <li class="mt-2">
+                                <span class="font-semibold text-gray-700">{{ $menu->name }}</span>
                                 @if ($menu->submenus->isNotEmpty())
-                                    <ul>
+                                    <ul class="pl-4 border-l-2 border-gray-300 ml-2">
                                         @foreach ($menu->submenus as $submenu)
-                                            <li>----{{ $submenu->name }}</li>
+                                            <li class="mt-1">
+                                                <span class="text-gray-600">---- {{ $submenu->name }}</span>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 @endif
@@ -31,6 +33,7 @@
                         @endforeach
                     </ul>
                 </div>
+                
             </div>
         </div>
     </div>
