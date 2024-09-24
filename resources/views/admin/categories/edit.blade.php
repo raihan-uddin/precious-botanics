@@ -99,8 +99,16 @@
                         <!-- Image -->
                         <div>
                             <x-input-label for="image" :value="__('Image')" />
-                            <input id="image" type="file" @change="fileChanged" class="block mt-1 w-full" />
+                            <input id="image" type="file" @change="fileChanged" class="block mt-1 w-full" accept="image/jpeg, image/jpg, image/png" />
                             <span x-show="errors.image" class="text-red-600 text-sm" x-text="errors.image"></span>
+
+                             <!-- Show Previous Image -->
+                            @if($category->image) <!-- Check if there is an existing image -->
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/' . $category->image) }}" alt="Uploaded Image" class="w-32 h-32 object-cover rounded-md" />
+                                    <p class="text-sm text-gray-500 mt-1">Uploaded Image</p>
+                                </div>
+                            @endif
                         </div>
 
                         <!-- Submit Button -->
