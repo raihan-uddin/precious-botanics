@@ -16,7 +16,7 @@ class TagController extends Controller
         $tags = Tag::when($search, function ($query) use ($search) {
             return $query->where('name', 'like', "%{$search}%")
                          ->orWhere('slug', 'like', "%{$search}%");
-        })->orderBy('name')->paginate(10)->withQueryString();
+        })->orderBy('name')->paginate(50)->withQueryString();
 
         $pageTitle = 'Tags';
 
