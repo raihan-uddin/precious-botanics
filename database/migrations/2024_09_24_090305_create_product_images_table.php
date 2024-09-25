@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('image_path'); // Path to the image file
             $table->string('caption')->nullable(); // Caption for the image
-            $table->boolean('is_featured')->default(false); // Whether the image is the featured image for the product
+            $table->boolean('is_featured')->default(false)->comment('Is this is the main image of the product.');; // Whether the image is the featured image for the product
             $table->unsignedTinyInteger('order')->default(0); // Order of the image in the product gallery
+            $table->string('thumb_size', 50)->nullable(); // Thumbnail size
             $table->timestamps();
         });
     }

@@ -23,10 +23,18 @@ return new class extends Migration
             $table->boolean('in_stock')->default(true); // Stock status
             $table->boolean('is_active')->default(true); // Active status
             $table->boolean('is_featured')->default(false); // Featured product
+            $table->string('image')->nullable(); // Primary product image
+            $table->foreignId('brand_id')
+                ->nullable()
+                ->constrained('brands');
+            $table->timestamps();
+            
+
+             // SEO Fields
             $table->string('meta_title')->nullable(); // Meta title for SEO
             $table->text('meta_description')->nullable(); // Meta description for SEO
-            $table->string('image')->nullable(); // Primary product image
-            $table->timestamps();
+            $table->string('slug')->unique();
+
         });
     }
 
