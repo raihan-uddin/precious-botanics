@@ -33,7 +33,6 @@ return new class extends Migration
              // SEO Fields
             $table->string('meta_title')->nullable(); // Meta title for SEO
             $table->text('meta_description')->nullable(); // Meta description for SEO
-            $table->string('slug')->unique();
 
         });
     }
