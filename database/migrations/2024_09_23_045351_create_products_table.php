@@ -18,9 +18,12 @@ return new class extends Migration
             $table->text('short_description')->nullable(); // Short product description
             $table->text('description')->nullable(); // Product description
             $table->string('sku')->unique(); // Stock Keeping Unit
+            // vendor
+            $table->string('vendor')->nullable();
+
             
             // Pricing and Taxation
-            $table->decimal('price', 10, 2); // Product price
+            $table->decimal('price', 10, 2); // Default price, could be overridden by variants
             $table->decimal('discount_price', 10, 2)->nullable(); // Discount price
             $table->decimal('tax_rate', 5, 2)->default(0); // Tax rate for the product
             $table->boolean('is_taxable')->default(false); // Flag to indicate if the product is taxable
@@ -62,7 +65,7 @@ return new class extends Migration
             $table->boolean('is_on_promotion')->default(false); // Promotion flag
             $table->json('promotion_details')->nullable(); // Store details like banner text, expiration date
             
-            $table->string('image')->nullable(); // Primary product image
+            $table->string('featured_image')->nullable(); // Primary product image
 
              // SEO Fields
             $table->string('meta_title')->nullable(); // Meta title for SEO

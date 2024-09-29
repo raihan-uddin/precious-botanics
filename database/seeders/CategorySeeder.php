@@ -100,6 +100,18 @@ class CategorySeeder extends Seeder
             'updated_by' => 1,
         ]);
 
+        $menu8 = DB::table('categories')->insertGetId([
+            'name' => 'Latest Products',
+            'slug' => Str::slug('Latest Products'),
+            'order_column' => 8,
+            'is_menu' => false,
+            'is_active' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
+
         $submenu1 = DB::table('categories')->insertGetId([
             'name' => 'African Shea Butter',
             'slug' => Str::slug('African Shea Butter'),

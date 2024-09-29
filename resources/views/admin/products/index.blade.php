@@ -1,13 +1,9 @@
 <x-app-layout>
-
     <x-slot name="title">
-        {{ $pageTitle ?? 'Product List' }}
+        {{ $pageTitle ?? config('app.name', 'Laravel') }}
     </x-slot>
 
     <x-slot name="header">
-        <!-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Product List') }}
-        </h2> -->
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <a href="{{ route('products.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
                 {{ __('Create Product') }}
@@ -51,40 +47,56 @@
                         </script>
                     @endif
 
+                    <!-- Filters -->
                     <div class="mb-4">
                         <form method="GET" action="{{ route('products.index') }}">
-                            <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search..." class="border rounded px-3 py-2 w-full" />
+                            <div class="grid grid-cols-6 gap-4">
+                                <input type="text" name="filter[name]" value="{{ $filter['name'] ?? '' }}" placeholder="Search by name" class="border rounded px-3 py-2 w-full" />
+                                <input type="number" name="filter[min_price]" value="{{ $filter['min_price'] ?? '' }}" placeholder="Min price" class="border rounded px-3 py-2 w-full" />
+                                <input type="number" name="filter[max_price]" value="{{ $filter['max_price'] ?? '' }}" placeholder="Max price" class="border rounded px-3 py-2 w-full" />
+                                <select name="filter[status]" class="border rounded px-3 py-2 w-full">
+                                    <option value="">{{ __('Filter by status') }}</option>
+                                    <option value="draft" {{ ($filter['status'] ?? '') == 'draft' ? 'selected' : '' }}>{{ __('Draft') }}</option>
+                                    <option value="published" {{ ($filter['status'] ?? '') == 'published' ? 'selected' : '' }}>{{ __('Published') }}</option>
+                                    <option value="archived" {{ ($filter['status'] ?? '') == 'archived' ? 'selected' : '' }}>{{ __('Archived') }}</option>
+                                </select>                                   
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">{{ __('Filter') }}</button>
+                                <a href="{{ route('products.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-md">{{ __('Reset') }}</a>
+                            </div>
                         </form>
                     </div>
 
-                    <table class="min-w-full divide-y divide-gray-200" id="products-table">
+                    <!-- Products Table -->
+                    <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SKU</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Active</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($products as $product)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $product->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $product->sku }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $product->price }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $product->stock_quantity }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($product->is_active)
-                                            <span class="text-green-500">&#10003;</span>
+                                        @if($product->image)
+                                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover">
                                         @else
-                                            <span class="text-red-500">&#10007;</span>
+                                            <span class="text-gray-500">{{ __('No Image') }}</span>
                                         @endif
                                     </td>
-                                    
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $product->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $product->sku }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ number_format($product->price, 2) }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ ucfirst($product->status) }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="{{ route('products.show', $product->id) }}" class="text-blue-500 hover:underline">View</a>
+                                        {{ $product->stock_quantity > 0 ? $product->stock_quantity . ' in stock' : 'Out of stock' }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('products.edit', $product->id) }}" class="text-blue-600 hover:underline">Edit</a>
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block" onsubmit="return confirmDelete(event, '{{ $product->name }}');">
                                             @csrf

@@ -47,11 +47,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        info($request->all());
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:categories,slug|max:255',
             'order_column' => 'required|integer',
-            'menus' => 'required|array',
+            'menus' => 'nullable|array',
             'menus.*' => 'exists:categories,id', // Validate that each menu exists in the database
             'icon' => 'nullable|string',
             'image' => 'nullable|file|image|max:520',
@@ -79,6 +80,7 @@ class CategoryController extends Controller
         $category->save();
 
         // Attach the selected menus to the category
+        $validated['menus'] = $validated['menus'] ?? [];
         $category->menus()->attach($validated['menus']);
 
         // Clear and refresh the cache after storing a new category

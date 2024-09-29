@@ -172,7 +172,7 @@
                     try {
                         const response = await axios.post("{{ route('categories.store') }}", formData);
                         alert('Category created successfully!');
-                        window.location.href = "{{ route('categories.index') }}";
+                        // window.location.href = "{{ route('categories.index') }}";
                     } catch (error) {
                         if (error.response && error.response.status === 422) {
                             this.errors = error.response.data.errors;

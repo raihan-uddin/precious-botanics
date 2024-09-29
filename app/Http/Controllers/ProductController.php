@@ -15,22 +15,50 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
-        // Get the search query
-        $search = $request->input('search');
+        // Initialize the query
+        $query = Product::query();
 
-        // Fetch products with pagination and search functionality
-        $products = Product::with('variations', 'attributes', 'tags', 'images')
-            ->when($search, function($query) use ($search) {
-                return $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('sku', 'like', "%{$search}%");
-            })->orderBy('name')->paginate(10)->withQueryString();
+        // Filters
+        if ($request->has('filter')) {
+            $filters = $request->get('filter');
 
+            // Filter by name
+            if (!empty($filters['name'])) {
+                $query->where('name', 'like', '%' . $filters['name'] . '%');
+            }
+
+            // Filter by price range (min and max)
+            if (!empty($filters['min_price'])) {
+                $query->where('price', '>=', $filters['min_price']);
+            }
+
+            if (!empty($filters['max_price'])) {
+                $query->where('price', '<=', $filters['max_price']);
+            }
+
+            // Filter by status
+            if (!empty($filters['status'])) {
+                $query->where('status', $filters['status']);
+            }
+        }
+
+        // Get paginated results
+        $products = $query->paginate(10)->withQueryString();
+
+        
         $pageTitle = 'Products';
 
-        return view('admin.products.index', compact('products', 'search', 'pageTitle'));
+        // Pass filters to the view to maintain the state
+        return view('admin.products.index', [
+            'pageTitle' => $pageTitle,
+            'products' => $products,
+            'filter' => $request->get('filter', []),  // To maintain the filter state in the view
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,100 +78,89 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-        // Validate the request data
+        info($request->all());
+        // validate the form data
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:products,slug',
-            'sku' => 'required|string|max:255|unique:products,sku',
+            'slug' => 'required|string|unique:products',
             'description' => 'nullable|string',
+            'sku' => 'required|string|unique:products',
             'price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
-            'categories' => 'required|array',
-            'categories.*' => 'exists:categories,id',
-            'tags' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'variations' => 'nullable|array',
-            'variations.*.variation_type' => 'nullable|string|max:255',
-            'variations.*.variation_value' => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'variations.*.variation_type' => 'required|string',
+            'variations.*.variation_value' => 'required|string',
             'variations.*.price' => 'nullable|numeric',
-            'variations.*.stock_quantity' => 'nullable|integer',
-            'attributes' => 'nullable|array',
-            'attributes.*.key' => 'nullable|string|max:255',
-            'attributes.*.value' => 'nullable|string|max:255',
-            'images' => 'nullable|array',
-            'images.*.image_path' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'images.*.caption' => 'nullable|string|max:255',
-            'images.*.order' => 'nullable|integer',
-            'images.*.is_active' => 'nullable|boolean',
+            'variations.*.stock_quantity' => 'required|integer',
+            'attributes.*.key' => 'required|string',
+            'attributes.*.value' => 'required|string',
+            'tags' => 'array',
+            'images.*.image_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'images.*.caption' => 'nullable|string',
         ]);
 
-        // Create the product
         $product = new Product();
+    
+        // Set product details without mass assignment
         $product->name = $request->name;
-        $product->slug = $request->slug;
+        $product->slug = Str::slug($request->name);
         $product->sku = $request->sku;
+        $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
+        $product->tax_rate = $request->tax_rate;
+        $product->is_taxable = $request->is_taxable;
         $product->stock_quantity = $request->stock_quantity;
-
-        // Handle product image upload
+        $product->in_stock = $request->in_stock;
+        $product->allow_out_of_stock_orders = $request->allow_out_of_stock_orders;
+        // $product->is_on_sale = $request->is_on_sale;
+        $product->min_order_quantity = $request->min_order_quantity;
+        $product->max_order_quantity = $request->max_order_quantity;
+        $product->barcode = $request->barcode;
+        $product->weight = $request->weight;
+        $product->length = $request->length;
+        $product->width = $request->width;
+        $product->height = $request->height;
+        $product->is_featured = $request->is_featured;
+        $product->is_visible = $request->is_visible;
+        $product->is_digital = $request->is_digital;
+        $product->status = $request->status;
+    
+        // Product image upload
         if ($request->hasFile('image')) {
             $product->image = $request->file('image')->store('products', 'public');
         }
-
+    
         $product->save();
-
+    
         // Attach categories
-        $product->categories()->attach($request->categories);
-
+        if ($request->categories) {
+            $product->categories()->attach($request->categories);
+        }
+    
         // Handle tags
         if ($request->tags) {
             $tags = array_map('trim', explode(',', $request->tags));
             foreach ($tags as $tagName) {
-                $slug = Str::slug($tagName); // Generate a slug from the tag name
-                $tag = Tag::firstOrCreate(['name' => $tagName], ['slug' => $slug]); // Create or retrieve the tag with slug
+                $slug = Str::slug($tagName);
+                $tag = Tag::firstOrCreate(['name' => $tagName], ['slug' => $slug]);
                 $product->tags()->attach($tag);
             }
         }
-
-        // Handle variations
-        if ($request->variations) {
-            foreach ($request->variations as $variation) {
-                $product->variations()->create([
-                    'variation_type' => $variation['variation_type'],
-                    'variation_value' => $variation['variation_value'],
-                    'price' => $variation['price'],
-                    'stock_quantity' => $variation['stock_quantity'],
+    
+        // Save additional images
+        if ($request->has('additional_images')) {
+            foreach ($request->file('additional_images') as $image) {
+                $product->images()->create([
+                    'image_path' => $image->store('product_images', 'public'),
+                    'is_featured' => $request->input('is_featured', 0),
+                    'order_column' => $request->input('order', null),
                 ]);
             }
         }
-
-        // Handle attributes
-        if ($request->attributes) {
-            foreach ($request->attributes as $attribute) {
-                $product->attributes()->create([
-                    'key' => $attribute['key'],
-                    'value' => $attribute['value'],
-                ]);
-            }
-        }
-
-        // Handle additional images
-        if ($request->images) {
-            foreach ($request->images as $image) {
-                if ($image['image_path']) {
-                    $path = $image['image_path']->store('product_images', 'public');
-                    $product->images()->create([
-                        'image_path' => $path,
-                        'caption' => $image['caption'],
-                        'order' => $image['order'],
-                        'is_active' => $image['is_active'] ?? false,
-                    ]);
-                }
-            }
-        }
-
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    
+        return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
 
