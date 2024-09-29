@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingsSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(TagsSeeder::class);
-        $this->call(AttributeSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }

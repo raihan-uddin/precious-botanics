@@ -9,8 +9,8 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "maatwebsite/excel": "^1.1",
         "meilisearch/meilisearch-php": "^1.10",
+        "phpoffice/phpspreadsheet": "^3.3",
         "rap2hpoutre/fast-excel": "^5.5"
     },
     "require-dev": {

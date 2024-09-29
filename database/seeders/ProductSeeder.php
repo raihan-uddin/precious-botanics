@@ -14,6 +14,11 @@ use App\Models\Variation;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\ProductImage;
+use App\Models\Variant;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ProductSeeder extends Seeder
 {
@@ -22,147 +27,154 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        
-        // Fetch all categories and tags
-        $categories = Category::all()->pluck('id')->toArray();
-        $tags = Tag::all()->pluck('id')->toArray();
-        
-        // Example attributes
-        $attributes = [
-            ['name' => 'Size'],
-            ['name' => 'Color'],
-            ['name' => 'Weight'],
-        ];
-
-        // Create attributes if they don't exist
-        foreach ($attributes as $attribute) {
-            Attribute::firstOrCreate($attribute);
-        }
-
-        // Example products with realistic data
-        $products = [
-            [
-                'name' => 'Premium Coffee Beans',
-                'sku' => 'CFF-001',
-                'price' => 19.99,
-                'stock_quantity' => 150,
-                'description' => $faker->paragraph,
-                'is_active' => 1,
-                'tags' => ['coffee', 'premium', 'organic'],
-                'attributes' => [
-                    ['name' => 'Size', 'value' => '1kg'],
-                    ['name' => 'Flavor', 'value' => 'Dark Roast'],
-                ],
-                'variations' => [
-                    ['color' => 'Brown', 'size' => '1kg'],
-                    ['color' => 'Dark Brown', 'size' => '2kg'],
-                ],
-                'images' => [
-                    'coffee_beans_1.jpg',
-                    'coffee_beans_2.jpg',
-                ],
-            ],
-            [
-                'name' => 'Leather Wallet',
-                'sku' => 'LWL-002',
-                'price' => 49.99,
-                'stock_quantity' => 100,
-                'description' => $faker->paragraph,
-                'is_active' => 1,
-                'tags' => ['wallet', 'leather', 'fashion'],
-                'attributes' => [
-                    ['name' => 'Color', 'value' => 'Black'],
-                    ['name' => 'Material', 'value' => 'Genuine Leather'],
-                ],
-                'variations' => [
-                    ['color' => 'Black', 'size' => 'Standard'],
-                    ['color' => 'Brown', 'size' => 'Standard'],
-                ],
-                'images' => [
-                    'leather_wallet_1.jpg',
-                    'leather_wallet_2.jpg',
-                ],
-            ],
-            [
-                'name' => 'Running Shoes',
-                'sku' => 'RS-003',
-                'price' => 89.99,
-                'stock_quantity' => 75,
-                'description' => $faker->paragraph,
-                'is_active' => 1,
-                'tags' => ['shoes', 'running', 'sports'],
-                'attributes' => [
-                    ['name' => 'Size', 'value' => '10'],
-                    ['name' => 'Color', 'value' => 'Blue'],
-                ],
-                'variations' => [
-                    ['color' => 'Blue', 'size' => '10'],
-                    ['color' => 'Red', 'size' => '10'],
-                ],
-                'images' => [
-                    'running_shoes_1.jpg',
-                    'running_shoes_2.jpg',
-                ],
-            ],
-            // Add more products as needed
-        ];
-
-        foreach ($products as $productData) {
-            // Generate a unique slug
-            $slug = Str::slug($productData['name']);
-            $originalSlug = $slug;
-            $counter = 1;
-
-            while (Product::where('slug', $slug)->exists()) {
-                $slug = $originalSlug . '-' . $counter;
-                $counter++;
+        $filePath = storage_path('app/sample-data/minebotanicals_products.xlsx');
+        $spreadsheet = IOFactory::load($filePath);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = $sheet->toArray(null, true, true, true);
+        $productsAlreadyCreated = [];
+        foreach ($rows as $key => $row) {
+            // Skip the first row if it's the header
+            if ($key == 1) {
+                continue;
             }
 
+            $productTitle = $row['A'];
+            if (in_array($productTitle, $productsAlreadyCreated)) {
+                info("Product already created: {$productTitle}");
+                continue;
+            }
+            info("Creating product: {$productTitle}");
+            // Parse categories, tags, images, and variants from JSON-like strings
+            // categories: ["category1", "category2"]
+            $categoriesString = str_replace("'", '"', trim($row['E'], "[]"));
+            $categories = json_decode("[$categoriesString]", true);
+            
+            // tags: ["tag1", "tag2"]
+            $tagsString = str_replace("'", '"', trim($row['F'], "[]"));
+            $tags = json_decode("[$tagsString]", true);
+
+            // images: ["image1.jpg", "image2.jpg"]
+            $imagesString = str_replace("'", '"', trim($row['K'], "[]"));
+            $images = json_decode("[$imagesString]", true);
+            
+            // variants: [{'title': '8 oz', 'sku': 'WSB-AE-8-01', 'public_title': '8 oz', 'options': ['8 oz'], 'price': '11.99', 'weight': 227}, {'title': '12 oz', 'sku': 'WSB-AE-12-01', 'public_title': '12 oz', 'options': ['12 oz'], 'price': '14.99', 'weight': 340}]
+            $variantsString = str_replace("'", '"', trim($row['J'], "[]"));
+            $variants = json_decode("[$variantsString]", true);
+        
             // Create the product
             $product = Product::create([
-                'name' => $productData['name'],
-                'sku' => $productData['sku'],
-                'price' => $productData['price'],
-                'stock_quantity' => $productData['stock_quantity'],
-                'description' => $productData['description'],
-                'slug' => $slug,
-                'is_active' => $productData['is_active'],
+                'name' => $productTitle,
+                'short_description' => $row['B'],
+                'vendor' => $row['C'],
+                'price' => $row['G'],
+                'allow_out_of_stock_orders' => true,
+                'slug' => Str::slug($productTitle),
+                'description' => $row['M'],
+                'status' => 'published',
+                'published_at' => now(),
+                'meta_title' => $productTitle,
+                // meta_description remove all special characters from  $row['B'] allow only alphanumeric characters & comma, space, period, hyphen and underscore
+                'meta_description' => preg_replace('/[^A-Za-z0-9 ,\.\-_]/', '', $row['B']),
+                // generate meta_keywords from $productTitle,  $categories, $tags must be unique and separated by comma
+                'meta_keywords' => implode(',', array_unique(array_merge([$productTitle], $categories, $tags))),
+                'featured_image' => $this->downloadImage($row['L'], $productTitle, 'featured')
             ]);
 
             // Attach categories
-            $product->categories()->attach($categories[array_rand($categories)]);
-
-            // Attach tags
-            foreach ($productData['tags'] as $tagName) {
-                $tag = Tag::firstOrCreate(['name' => $tagName]);
-                $product->tags()->attach($tag);
-            }
-
-            // Add attributes
-            foreach ($productData['attributes'] as $attributeData) {
-                $attribute = Attribute::where('name', $attributeData['name'])->first();
-                if ($attribute) {
-                    $product->attributes()->attach($attribute->id, ['value' => $attributeData['value']]);
+            if(empty($categories)) {
+                foreach ($categories as $category) {
+                    $categoryModel = Category::firstOrCreate(['name' => $category, 'slug' => Str::slug($category)]);
+                    $product->categories()->attach($categoryModel);
                 }
             }
 
-            // Add variations
-            foreach ($productData['variations'] as $variationData) {
-                ProductVariation::create([
-                    'product_id' => $product->id,
-                    'color' => $variationData['color'],
-                    'size' => $variationData['size'],
-                ]);
+            // Attach tags
+            if(!empty($tags)){
+                foreach ($tags as $tag) {
+                    $tagModel = Tag::firstOrCreate(['name' => $tag, 'slug' => Str::slug($tag)]);
+                    $product->tags()->attach($tagModel);
+                }
             }
 
-            // Add images
-            foreach ($productData['images'] as $image) {
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'image_path' => 'images/products/' . $image, // Assuming you store images in this path
-                ]);
+            // Download product images and save to `product_images`
+            if(!empty($images)) {
+                info("Downloading multiple images for {$productTitle}");
+                foreach ($images as $image) {
+                    $imagePath = $this->downloadImage($image, $productTitle, 'product');
+                    info("Image downloaded: {$imagePath}");
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'image_path' => $imagePath,
+                        'caption' => $productTitle,  // You can add a caption if available
+                    ]);
+                }
             }
+
+            // Handle and save variants
+            if(!empty($variants)) {
+                foreach ($variants as $variant) {
+                    Variant::create([
+                        'product_id' => $product->id,
+                        'size' => $variant['options'][0] ?? null,  // Assuming size is in the first option
+                        'color' => $variant['options'][1] ?? null,  // Assuming color is in the second option if available
+                        'price' => $variant['price'],
+                        'sku' => $variant['sku'] ?? null,
+                        'stock' => 0, // Add stock logic if available
+                    ]);
+                }
+            }
+
+            $productsAlreadyCreated[] = $productTitle;
         }
     }
+
+    /**
+     * Download an image from a URL and save it to the storage
+     */
+    // Function to download image and store it in the local storage
+    private function downloadImage($url, $productName, $type)
+    {
+        if (!$url) return null;
+
+        try {
+            $response = Http::get($url);
+
+            if ($response->successful()) {
+                // Get the file extension from the response headers
+                $extension = $this->getExtensionFromResponse($response);
+                
+                if ($extension) {
+                    $imageName = Str::slug($productName) . '-' . $type . '-' . time() . '.' . $extension;
+                    $imagePath = 'products/' . $imageName;
+                    
+                    // Store the image in the public disk
+                    Storage::put('public/' . $imagePath, $response->body());
+                    
+                    return 'storage/' . $imagePath;  // Return the stored image path for database reference
+                }
+            }
+        } catch (\Exception $e) {
+            Log::error("Failed to download image from {$url}. Error: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    // Function to extract the image extension from the response headers
+    private function getExtensionFromResponse($response)
+    {
+        // Extract the Content-Type header
+        $mimeType = $response->header('Content-Type');
+
+        // Map MIME type to extension
+        $extensionMap = [
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png',
+            'image/webp' => 'webp',
+            'image/gif' => 'gif',
+            // Add more mappings as needed
+        ];
+
+        return $extensionMap[$mimeType] ?? null;
+    }
+
 }

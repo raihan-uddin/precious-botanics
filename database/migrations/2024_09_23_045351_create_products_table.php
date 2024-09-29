@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('short_description')->nullable(); // Short product description
             $table->text('description')->nullable(); // Product description
-            $table->string('sku')->unique(); // Stock Keeping Unit
+            $table->string('sku')->nullable(); // Stock Keeping Unit
             // vendor
             $table->string('vendor')->nullable();
 
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2); // Default price, could be overridden by variants
             $table->decimal('discount_price', 10, 2)->nullable(); // Discount price
             $table->decimal('tax_rate', 5, 2)->default(0); // Tax rate for the product
-            $table->boolean('is_taxable')->default(false); // Flag to indicate if the product is taxable
+            $table->boolean('is_taxable')->default(true); // Flag to indicate if the product is taxable
 
             // Stock management
             $table->integer('stock_quantity')->default(0); // Quantity in stock
