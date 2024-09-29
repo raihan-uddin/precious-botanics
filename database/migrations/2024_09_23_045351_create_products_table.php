@@ -15,24 +15,63 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // SEO-friendly URL slug
             $table->string('slug')->unique();
+            $table->text('short_description')->nullable(); // Short product description
             $table->text('description')->nullable(); // Product description
             $table->string('sku')->unique(); // Stock Keeping Unit
+            
+            // Pricing and Taxation
             $table->decimal('price', 10, 2); // Product price
             $table->decimal('discount_price', 10, 2)->nullable(); // Discount price
+            $table->decimal('tax_rate', 5, 2)->default(0); // Tax rate for the product
+            $table->boolean('is_taxable')->default(false); // Flag to indicate if the product is taxable
+
+            // Stock management
             $table->integer('stock_quantity')->default(0); // Quantity in stock
             $table->boolean('in_stock')->default(true); // Stock status
-            $table->boolean('is_active')->default(true); // Active status
-            $table->boolean('is_featured')->default(false); // Featured product
-            $table->string('image')->nullable(); // Primary product image
-            $table->foreignId('brand_id')
-                ->nullable()
-                ->constrained('brands');
-            $table->timestamps();
+            $table->boolean('allow_out_of_stock_orders')->default(false);
+            $table->unsignedInteger('low_stock_threshold')->nullable(); // Low stock notification threshold
+            $table->unsignedInteger('min_order_quantity')->nullable(); // Minimum quantity allowed for an order
+            $table->unsignedInteger('max_order_quantity')->nullable(); // Maximum quantity allowed for an order
             
+
+            // Additional metadata
+            $table->string('barcode')->nullable(); // Barcode if applicable
+            $table->decimal('weight', 8, 2)->nullable(); // Weight of the product
+            $table->decimal('length', 8, 2)->nullable(); // Dimensions
+            $table->decimal('width', 8, 2)->nullable();
+            $table->decimal('height', 8, 2)->nullable();
+            
+            // Product visibility options
+            $table->boolean('is_featured')->default(false); // Featured product
+            $table->boolean('is_visible')->default(true); // Whether the product is visible in listings
+            $table->boolean('is_digital')->default(false); // Is it a digital product?
+
+
+            // Product status: draft, published, archived, etc.
+            $table->enum('status', ['draft', 'published', 'archived'])->default('draft'); // Status management
+            $table->timestamp('published_at')->nullable(); // Publishing time for products
+
+            $table->json('recommended_products')->nullable(); // JSON field for upselling recommended products
+
+            // Reviews & Ratings
+            $table->boolean('allow_reviews')->default(true); // Allow customers to review the product
+            $table->decimal('average_rating', 3, 2)->nullable(); // Average customer rating
+            $table->unsignedInteger('total_reviews')->default(0); // Total number of reviews
+
+            // Promotions
+            $table->boolean('is_on_promotion')->default(false); // Promotion flag
+            $table->json('promotion_details')->nullable(); // Store details like banner text, expiration date
+            
+            $table->string('image')->nullable(); // Primary product image
 
              // SEO Fields
             $table->string('meta_title')->nullable(); // Meta title for SEO
             $table->text('meta_description')->nullable(); // Meta description for SEO
+            $table->string('meta_keywords')->nullable(); // Meta keywords for SEO
+
+            // Soft Deletes & Timestamps
+            $table->softDeletes(); // Support for soft deletes
+            $table->timestamps();
 
         });
     }

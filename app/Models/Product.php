@@ -4,37 +4,73 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'slug',
+        'short_description',
         'description',
         'sku',
         'price',
         'discount_price',
+        'tax_rate',
+        'is_taxable',
         'stock_quantity',
         'in_stock',
-        'is_active',
+        'allow_out_of_stock_orders',
+        'low_stock_threshold',
+        'min_order_quantity',
+        'max_order_quantity',
+        'barcode',
+        'weight',
+        'length',
+        'width',
+        'height',
         'is_featured',
+        'is_visible',
+        'is_digital',
+        'status',
+        'published_at',
+        'recommended_products',
+        'allow_reviews',
+        'average_rating',
+        'total_reviews',
+        'is_on_promotion',
+        'promotion_details',
+        'image',
         'meta_title',
         'meta_description',
-        'image',
+        'meta_keywords',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'published_at' => 'datetime',
+        'recommended_products' => 'array',
+        'promotion_details' => 'array',
+        'is_taxable' => 'boolean',
+        'is_featured' => 'boolean',
+        'is_visible' => 'boolean',
+        'is_digital' => 'boolean',
+        'allow_out_of_stock_orders' => 'boolean',
+        'allow_reviews' => 'boolean',
+        'is_on_promotion' => 'boolean',
+    ];
 
-    public function variations()
-    {
-        return $this->hasMany(ProductVariation::class);
-    }
-
-    public function attributes()
-    {
-        return $this->belongsToMany(Attribute::class, 'product_attributes'); // Adjust according to your pivot table
-    }
 
     public function categories()
     {
@@ -46,10 +82,21 @@ class Product extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     // Relationship with ProductImage
     public function images()
     {
         return $this->hasMany(ProductImage::class);
+    }
+
+    // Accessor for full image URL
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
     }
 
     
@@ -67,4 +114,72 @@ class Product extends Model
     {
         return $this->featured_image ? $this->featured_image->image_path : null;
     }
+
+    // Accessor to calculate the final price including tax
+    public function getFinalPriceAttribute()
+    {
+        return $this->is_taxable 
+            ? round($this->price * (1 + $this->tax_rate / 100), 2) 
+            : $this->price;
+    }
+    
+    // Accessor to calculate discount percentage
+    public function getDiscountPercentageAttribute()
+    {
+        return $this->discount_price 
+            ? round((($this->price - $this->discount_price) / $this->price) * 100, 2)
+            : 0;
+    }
+
+
+    /**
+     * Scopes
+     */
+    // Scope for filtering published products
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
+    }
+
+    // Scope for filtering featured products
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
+
+    // Scope for filtering visible products
+    public function scopeVisible($query)
+    {
+        return $query->where('is_visible', true);
+    }
+
+
+    /**
+     * Custom Methods
+     */
+
+    // Check if the product is on sale (has a discount)
+    public function isOnSale()
+    {
+        return $this->discount_price && $this->discount_price < $this->price;
+    }
+
+    // Calculate the final price after discount
+    public function finalPrice()
+    {
+        return $this->isOnSale() ? $this->discount_price : $this->price;
+    }
+
+    // Check if the product is in stock
+    public function isInStock()
+    {
+        return $this->stock_quantity > 0 && $this->in_stock;
+    }
+
+    // Check if out of stock orders are allowed
+    public function canOrderWhenOutOfStock()
+    {
+        return $this->allow_out_of_stock_orders;
+    }
+
 }
