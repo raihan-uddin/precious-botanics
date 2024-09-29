@@ -80,11 +80,15 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                        
                             @foreach($products as $product)
+
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if($product->image)
-                                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover">
+                                    
+                                        <hr>
+                                        @if($product->featured_image)
+                                            <img src="{{ asset('storage/' . $product->featured_image) }}" alt="{{ $product->featured_image }}" class="w-16 h-16 object-cover">
                                         @else
                                             <span class="text-gray-500">{{ __('No Image') }}</span>
                                         @endif

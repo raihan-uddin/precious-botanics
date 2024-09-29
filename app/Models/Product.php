@@ -48,7 +48,7 @@ class Product extends Model
         'total_reviews',
         'is_on_promotion',
         'promotion_details',
-        'image',
+        'featured_image',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -83,10 +83,10 @@ class Product extends Model
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
 
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
+    // public function reviews()
+    // {
+    //     return $this->hasMany(Review::class);
+    // }
 
     // Relationship with ProductImage
     public function images()
@@ -111,10 +111,7 @@ class Product extends Model
         return $this->images->where('is_featured', false);
     }
 
-    public function getThumbnailAttribute()
-    {
-        return $this->featured_image ? $this->featured_image->image_path : null;
-    }
+
 
     // Accessor to calculate the final price including tax
     public function getFinalPriceAttribute()

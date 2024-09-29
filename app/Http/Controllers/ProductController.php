@@ -46,7 +46,7 @@ class ProductController extends Controller
         }
 
         // Get paginated results
-        $products = $query->paginate(10)->withQueryString();
+        $products = $query->paginate(10);
 
         
         $pageTitle = 'Products';

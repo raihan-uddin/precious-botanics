@@ -61,6 +61,9 @@ class ProductSeeder extends Seeder
             $variantsString = str_replace("'", '"', trim($row['J'], "[]"));
             $variants = json_decode("[$variantsString]", true);
         
+           
+            $featuredImagePath = $this->downloadImage($row['L'], $productTitle, 'featured');
+            info("Downloading featured image for {$productTitle}, path: {$featuredImagePath}");
             // Create the product
             $product = Product::create([
                 'name' => $productTitle,
@@ -77,11 +80,11 @@ class ProductSeeder extends Seeder
                 'meta_description' => preg_replace('/[^A-Za-z0-9 ,\.\-_]/', '', $row['B']),
                 // generate meta_keywords from $productTitle,  $categories, $tags must be unique and separated by comma
                 'meta_keywords' => implode(',', array_unique(array_merge([$productTitle], $categories, $tags))),
-                'featured_image' => $this->downloadImage($row['L'], $productTitle, 'featured')
+                'featured_image' => $featuredImagePath
             ]);
 
             // Attach categories
-            if(empty($categories)) {
+            if(!empty($categories)) {
                 foreach ($categories as $category) {
                     $categoryModel = Category::firstOrCreate(['name' => $category, 'slug' => Str::slug($category)]);
                     $product->categories()->attach($categoryModel);
@@ -148,9 +151,10 @@ class ProductSeeder extends Seeder
                     $imagePath = 'products/' . $imageName;
                     
                     // Store the image in the public disk
-                    Storage::put('public/' . $imagePath, $response->body());
+                    // Storage::put('public/' . $imagePath, $response->body());
+                    Storage::disk('public')->put($imagePath, $response->body());
                     
-                    return 'storage/' . $imagePath;  // Return the stored image path for database reference
+                    return $imagePath;  // Return the stored image path for database reference
                 }
             }
         } catch (\Exception $e) {
