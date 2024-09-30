@@ -40,10 +40,10 @@ class ProductSeeder extends Seeder
 
             $productTitle = $row['A'];
             if (in_array($productTitle, $productsAlreadyCreated)) {
-                info("Product already created: {$productTitle}");
+                info("{$key}. Product already created: {$productTitle}");
                 continue;
             }
-            info("Creating product: {$productTitle}");
+            info("{$key}. Creating product: {$productTitle}");
             // Parse categories, tags, images, and variants from JSON-like strings
             // categories: ["category1", "category2"]
             $categoriesString = str_replace("'", '"', trim($row['E'], "[]"));
@@ -61,9 +61,7 @@ class ProductSeeder extends Seeder
             $variantsString = str_replace("'", '"', trim($row['J'], "[]"));
             $variants = json_decode("[$variantsString]", true);
         
-           
             $featuredImagePath = $this->downloadImage($row['L'], $productTitle, 'featured');
-            info("Downloading featured image for {$productTitle}, path: {$featuredImagePath}");
             // Create the product
             $product = Product::create([
                 'name' => $productTitle,
@@ -105,11 +103,13 @@ class ProductSeeder extends Seeder
                 foreach ($images as $image) {
                     $imagePath = $this->downloadImage($image, $productTitle, 'product');
                     info("Image downloaded: {$imagePath}");
-                    ProductImage::create([
-                        'product_id' => $product->id,
-                        'image_path' => $imagePath,
-                        'caption' => $productTitle,  // You can add a caption if available
-                    ]);
+                    if ($imagePath) {
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'image_path' => $imagePath,
+                            'caption' => $productTitle,  // You can add a caption if available
+                        ]);
+                    }
                 }
             }
 
@@ -140,28 +140,43 @@ class ProductSeeder extends Seeder
         if (!$url) return null;
 
         try {
-            $response = Http::get($url);
+            // Retry the download 3 times with a 200ms delay between attempts
+            return retry(3, function ($attempt) use ($url, $productName, $type) {
+                Log::info("Attempting to download image from {$url}. Attempt: {$attempt}");
 
-            if ($response->successful()) {
-                // Get the file extension from the response headers
-                $extension = $this->getExtensionFromResponse($response);
-                
-                if ($extension) {
-                    $imageName = Str::slug($productName) . '-' . $type . '-' . time() . '.' . $extension;
-                    $imagePath = 'products/' . $imageName;
-                    
-                    // Store the image in the public disk
-                    // Storage::put('public/' . $imagePath, $response->body());
-                    Storage::disk('public')->put($imagePath, $response->body());
-                    
-                    return $imagePath;  // Return the stored image path for database reference
+                $response = Http::get($url);
+
+                if ($response->successful()) {
+                    // Get the file extension from the response headers
+                    $extension = $this->getExtensionFromResponse($response);
+
+                    if ($extension) {
+                        $imageName = Str::slug($productName) . '-' . $type . '-' . time() . '.' . $extension;
+                        $imagePath = 'products/' . $imageName;
+
+                        // Store the image in the public disk
+                        Storage::disk('public')->put($imagePath, $response->body());
+
+                        Log::info("Image successfully downloaded and saved to {$imagePath}");
+                        
+                        return $imagePath;  // Return the stored image path for database reference
+                    } else {
+                        Log::warning("Failed to determine file extension for the image from {$url}");
+                    }
+                } else {
+                    Log::error("Failed to download image from {$url}. Status code: " . $response->status());
                 }
-            }
+
+                return null;
+            }, 200);  // 200ms delay between retries
+
         } catch (\Exception $e) {
             Log::error("Failed to download image from {$url}. Error: " . $e->getMessage());
             return null;
         }
     }
+
+
 
     // Function to extract the image extension from the response headers
     private function getExtensionFromResponse($response)
