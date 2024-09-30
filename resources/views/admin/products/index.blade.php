@@ -47,43 +47,57 @@
                     <!-- Filters and Sorting -->
                     <div class="mb-4">
                         <form method="GET" action="{{ route('products.index') }}">
-                            <div class="grid grid-cols-6 gap-4 mb-4">
-                                <input type="text" name="filter[name]" value="{{ $filter['name'] ?? '' }}" placeholder="Search by name" class="border rounded px-3 py-2 w-full" />
-                                <input type="number" name="filter[min_price]" value="{{ $filter['min_price'] ?? '' }}" placeholder="Min price" class="border rounded px-3 py-2 w-full" />
-                                <input type="number" name="filter[max_price]" value="{{ $filter['max_price'] ?? '' }}" placeholder="Max price" class="border rounded px-3 py-2 w-full" />
-                                <select name="filter[status]" class="border rounded px-3 py-2 w-full">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
+                                <!-- Search by name -->
+                                <x-text-input id="name"  type="text" name="filter[name]"  placeholder="Search by name" value="{{ $filter['name'] ?? '' }}" />
+                                <!-- Min price -->
+                                <x-text-input id="min_price" type="number" name="filter[min_price]" placeholder="Min price" value="{{ $filter['min_price'] ?? '' }}" />
+                                <!-- Max price -->
+                                <x-text-input id="max_price" type="number" name="filter[max_price]" placeholder="Max price" value="{{ $filter['max_price'] ?? '' }}" />
+                                <!-- Filter by status -->
+                                <x-select name="filter[status]">
                                     <option value="">{{ __('Filter by status') }}</option>
                                     <option value="draft" {{ ($filter['status'] ?? '') == 'draft' ? 'selected' : '' }}>{{ __('Draft') }}</option>
                                     <option value="published" {{ ($filter['status'] ?? '') == 'published' ? 'selected' : '' }}>{{ __('Published') }}</option>
                                     <option value="archived" {{ ($filter['status'] ?? '') == 'archived' ? 'selected' : '' }}>{{ __('Archived') }}</option>
-                                </select>
-                                <select name="filter[category]" class="border rounded px-3 py-2 w-full">
+                                </x-select>
+                                <!-- Filter by category -->
+
+                                <x-select name="filter[category]">
                                     <option value="">{{ __('Filter by category') }}</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}" {{ ($filter['category'] ?? '') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                     @endforeach
-                                </select>
-                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">{{ __('Filter') }}</button>
-                                <a href="{{ route('products.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-md">{{ __('Reset') }}</a>
+                                </x-select>
+                                <!-- Filter and Reset buttons -->
+                                <div class="flex space-x-2">
+                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md w-full">{{ __('Filter') }}</button>
+                                    <a href="{{ route('products.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-md w-full text-center">{{ __('Reset') }}</a>
+                                </div>
                             </div>
-                            <div class="flex items-center space-x-4 mb-4">
-                                <select name="sort_by" class="border rounded px-3 py-2 w-1/3">
+
+                            <!-- Sorting section -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                                <!-- Sort by field -->
+                                <x-select name="sort_by">
                                     <option value="">{{ __('Sort by') }}</option>
                                     <option value="name" {{ ($filter['sort_by'] ?? '') == 'name' ? 'selected' : '' }}>{{ __('Name') }}</option>
                                     <option value="price" {{ ($filter['sort_by'] ?? '') == 'price' ? 'selected' : '' }}>{{ __('Price') }}</option>
                                     <option value="created_at" {{ ($filter['sort_by'] ?? '') == 'created_at' ? 'selected' : '' }}>{{ __('Created At') }}</option>
-                                </select>
-                                
-                                <select name="sort_direction" class="border rounded px-3 py-2 w-1/3">
+                                </x-select>
+
+                                <!-- Sort direction field -->
+                                <x-select name="sort_direction">
                                     <option value="asc" {{ ($filter['sort_direction'] ?? 'asc') == 'asc' ? 'selected' : '' }}>{{ __('Ascending') }}</option>
                                     <option value="desc" {{ ($filter['sort_direction'] ?? 'asc') == 'desc' ? 'selected' : '' }}>{{ __('Descending') }}</option>
-                                </select>
-                                
-                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">{{ __('Sort') }}</button>
+                                </x-select>
+
+                                <!-- Sort button -->
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md w-full">{{ __('Sort') }}</button>
                             </div>
-                            
                         </form>
                     </div>
+
 
                     <!-- Pagination Controls -->
                     <div class="mt-4 mb-4">
@@ -91,14 +105,19 @@
                     </div>
 
                     <!-- Products Display -->
-                    <div class="overflow-x-auto">
+                    <div x-data="{ showModal: false, imageUrl: '' }" class="overflow-x-auto">
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                             @foreach($products as $product)
                                 <div class="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition duration-150 ease-in-out bg-white">
                                     <div class="flex justify-center mb-4">
                                         @if($product->image_url)
                                             <div class="relative w-24 h-24 overflow-hidden rounded-md border border-gray-200">
-                                                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105">
+                                                <img 
+                                                    src="{{ asset($product->image_url) }}" 
+                                                    alt="{{ $product->name }}" 
+                                                    class="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                                                    @click="showModal = true; imageUrl = '{{ asset($product->image_url) }}'"
+                                                >
                                             </div>
                                         @else
                                             <span class="text-gray-500">{{ __('No Image') }}</span>
@@ -109,17 +128,17 @@
                                     </h4>
                                     <p class="text-gray-600 text-sm mb-1">SKU: {{ $product->sku ?? 'N/A' }}</p>
                                     <p class="text-gray-800 font-bold text-sm mb-1">Price: ${{ number_format($product->price, 2) }}</p>
-                                    <p class="text-gray-600 text-sm mb-1">Status: <span class="{{ $product->status == 'active' ? 'text-green-600' : 'text-red-600' }}">{{ ucfirst($product->status) }}</span></p>
+                                    <p class="text-gray-600 text-sm mb-1">Status: <span class="{{ $product->status == 'published' ? 'text-green-600' : 'text-red-600' }}">{{ ucfirst($product->status) }}</span></p>
                                     <p class="text-gray-600 text-sm">Stock: {{ $product->stock_quantity > 0 ? $product->stock_quantity . ' in stock' : 'Out of stock' }}</p>
-                    
+
                                     <div class="mt-2 mb-4">
                                         @foreach($product->categories as $category)
-                                            <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full mr-2">
+                                            <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-1 py-0.5 rounded-full mr-1">
                                                 {{ $category->name }}
                                             </span>
                                         @endforeach
                                     </div>
-                    
+
                                     <div class="mt-4 flex justify-between">
                                         <a href="{{ route('products.edit', $product->id) }}" class="text-blue-600 hover:underline text-xs flex items-center">
                                             <i class="fas fa-edit mr-1"></i> Edit
@@ -135,16 +154,55 @@
                                 </div>
                             @endforeach
                         </div>
+
+                        <!-- Global Modal -->
+                        <div x-show="showModal" 
+                            x-transition 
+                            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+                            @click.away="showModal = false"
+                            @keydown.escape.window="showModal = false"
+                            style="display: none;">
+                            <div class="relative bg-white rounded-md p-4"> <!-- Added background and padding -->
+                                <button 
+                                    @click="showModal = false" 
+                                    class="absolute top-0 right-0 mt-2 mr-2 text-white text-2xl font-bold bg-red-500 hover:bg-red-700 transition duration-200 ease-in-out p-2 rounded-full shadow-md transform hover:scale-105"
+                                >
+                                    &times;
+                                </button>
+
+                                <img :src="imageUrl" alt="Product Image" class="max-w-full max-h-screen rounded-md shadow-lg"> <!-- Optional shadow for better visibility -->
+                            </div>
+                        </div>
+
                     </div>
+
 
                     <!-- Pagination Controls -->
                     <div class="mt-4">
                         {{ $products->links() }} <!-- This will render the pagination controls -->
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
+    
+
+    <!-- Global Modal -->
+    <div x-show="showModal" 
+         x-transition 
+         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+         @click.away="showModal = false"
+         @keydown.escape.window="showModal = false"
+         style="display: none;">
+        <div class="relative">
+            <button @click="showModal = false" class="absolute top-0 right-0 mt-2 mr-2 text-white text-2xl font-bold">
+                &times;
+            </button>
+            <img :src="imageUrl" alt="Product Image" class="max-w-full max-h-screen rounded-md">
+        </div>
+    </div>
+</div>
 
     <script>
         function confirmDelete(event, productName) {

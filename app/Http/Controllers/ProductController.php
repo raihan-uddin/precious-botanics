@@ -53,11 +53,16 @@ class ProductController extends Controller
         }
 
         // Sorting (optional)
-        if ($request->has('sort_by')) {
-            $sortDirection = $request->get('sort_direction', 'asc'); // Default to ascending
-            $query->orderBy($request->get('sort_by'), $sortDirection);
+        if ($request->has('sort_by') && !empty($request->get('sort_by'))) {
+            $validSortColumns = ['name', 'price', 'created_at']; // Define valid columns for sorting
+            $sortBy = $request->get('sort_by');
+            
+            // Ensure that the sort_by value is valid
+            if (in_array($sortBy, $validSortColumns)) {
+                $sortDirection = $request->get('sort_direction', 'asc'); // Default to ascending
+                $query->orderBy($sortBy, $sortDirection);
+            }
         }
-        
         // Get paginated results
         $products = $query->paginate(40);
 
