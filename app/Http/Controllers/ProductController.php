@@ -99,8 +99,6 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-        info($request->all());
-        // validate the form data
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:products',
@@ -108,7 +106,7 @@ class ProductController extends Controller
             'sku' => 'required|string|unique:products',
             'price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:512',
             'variations.*.variation_type' => 'required|string',
             'variations.*.variation_value' => 'required|string',
             'variations.*.price' => 'nullable|numeric',
