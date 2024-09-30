@@ -162,7 +162,7 @@
                             @click.away="showModal = false"
                             @keydown.escape.window="showModal = false"
                             style="display: none;">
-                            <div class="relative bg-white rounded-md p-4"> <!-- Added background and padding -->
+                            <div class="relative bg-white rounded-md p-4">
                                 <button 
                                     @click="showModal = false" 
                                     class="absolute top-0 right-0 mt-2 mr-2 text-white text-2xl font-bold bg-red-500 hover:bg-red-700 transition duration-200 ease-in-out p-2 rounded-full shadow-md transform hover:scale-105"

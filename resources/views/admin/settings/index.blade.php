@@ -34,7 +34,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <input type="text" id="search" placeholder="Search..." class="border rounded px-3 py-2 w-full" />
+                        <x-text-input type="text" id="search" placeholder="Search..." class="w-full" />
                     </div>
 
                     <!-- <div class="mb-4">
@@ -52,13 +52,21 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm ">
                             @foreach($settings as $setting)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $setting->key }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if($setting->type === 'file')
                                             <a href="{{ asset('storage/' . $setting->value) }}" target="_blank" class="text-blue-600 hover:underline">Preview</a>
+                                            <div class="relative w-24 h-24 overflow-hidden rounded-md border border-gray-200">
+                                                <img 
+                                                    src="{{ asset($setting->value) }}" 
+                                                    alt="{{ $setting->key }}" 
+                                                    class="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                                                    @click="showModal = true; imageUrl = '{{ asset($setting->value) }}'"
+                                                >
+                                            </div>
                                         @else
                                             {{ $setting->value }}
                                         @endif
@@ -66,6 +74,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $setting->type }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('settings.edit', $setting->id) }}" class="text-blue-600 hover:underline">Edit</a>
+                                        <span class="mx-2">|</span>
                                         <form action="{{ route('settings.destroy', $setting->id) }}" method="POST" class="inline-block" onsubmit="return confirmDelete(event, '{{ $setting->key }}');">
                                             @csrf
                                             @method('DELETE')
@@ -83,6 +92,25 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Global Modal -->
+    <div x-show="showModal" 
+        x-transition 
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+        @click.away="showModal = false"
+        @keydown.escape.window="showModal = false"
+        style="display: none;">
+        <div class="relative bg-white rounded-md p-4">
+            <button 
+                @click="showModal = false" 
+                class="absolute top-0 right-0 mt-2 mr-2 text-white text-2xl font-bold bg-red-500 hover:bg-red-700 transition duration-200 ease-in-out p-2 rounded-full shadow-md transform hover:scale-105"
+            >
+                &times;
+            </button>
+
+            <img :src="imageUrl" alt="Image" class="max-w-full max-h-screen rounded-md shadow-lg">
         </div>
     </div>
 
