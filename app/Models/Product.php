@@ -97,14 +97,9 @@ class Product extends Model
     // Accessor for full image URL
     public function getImageUrlAttribute()
     {
-        return $this->image ? asset('storage/' . $this->image) : null;
+        return $this->featured_image ? asset('storage/' . $this->featured_image) : null;
     }
 
-    
-    public function getFeaturedImageAttribute()
-    {
-        return $this->images->where('is_featured', true)->first();
-    }
 
     public function getGalleryImagesAttribute()
     {

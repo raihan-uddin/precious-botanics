@@ -43,18 +43,34 @@ class ProductController extends Controller
             if (!empty($filters['status'])) {
                 $query->where('status', $filters['status']);
             }
+
+            // Filter by category if applicable
+            if (!empty($filters['category'])) {
+                $query->whereHas('categories', function ($query) use ($filters) {
+                    $query->where('id', $filters['category']);
+                });
+            }
         }
 
+        // Sorting (optional)
+        if ($request->has('sort_by')) {
+            $sortDirection = $request->get('sort_direction', 'asc'); // Default to ascending
+            $query->orderBy($request->get('sort_by'), $sortDirection);
+        }
+        
         // Get paginated results
-        $products = $query->paginate(10);
+        $products = $query->paginate(40);
 
         
         $pageTitle = 'Products';
+
+        $categories = Category::orderBy('name')->get();
 
         // Pass filters to the view to maintain the state
         return view('admin.products.index', [
             'pageTitle' => $pageTitle,
             'products' => $products,
+            'categories' => $categories,
             'filter' => $request->get('filter', []),  // To maintain the filter state in the view
         ]);
     }
@@ -170,7 +186,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         // Fetch the product
-        $product = Product::with('variations', 'attributes', 'tags', 'images')->findOrFail($id);
+        $product = Product::with('tags', 'images', 'tags', 'categories')->findOrFail($id);
 
         $pageTitle = 'Product Details: ' . $product->name;
 
