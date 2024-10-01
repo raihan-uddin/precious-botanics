@@ -34,28 +34,45 @@
                             <div class="mb-2">
                                 <strong>SKU:</strong> <span>{{ $product->sku }}</span>
                             </div>
-                            <div class="mb-2">
-                                <strong>Categories:</strong>
-                                <ul class="list-disc ml-4">
+                            <div class="mb-4">
+                                <strong class="text-lg">Categories:</strong>
+                                <div class="flex flex-wrap mt-2">
                                     @foreach($product->categories as $category)
-                                        <li>{{ $category->name }}</li>
+                                        <a href="{{ route('products.index', ['filter[category]' => $category->id]) }}" class="bg-blue-500 text-white text-xs font-semibold mr-2 mb-2 px-3 py-1 rounded-full transition duration-200 ease-in-out transform hover:bg-blue-600 hover:scale-105 cursor-pointer">
+                                            {{ $category->name }}
+                                        </a>
                                     @endforeach
-                                </ul>
-                            </div>
-                            <div class="mb-2">
-                                <strong>Tags:</strong>
-                                <ul class="list-disc ml-4">
+                                </div>
+                            </div>                                                                       
+                            <div class="mb-4">
+                                <strong class="text-lg">Tags:</strong>
+                                <div class="flex flex-wrap mt-2">
                                     @foreach($product->tags as $tag)
-                                        <li>{{ $tag->name }}</li>
+                                        <span class="bg-green-500 text-white text-xs font-semibold mr-2 mb-2 px-3 py-1 rounded-full transition duration-200 ease-in-out transform hover:bg-green-600 hover:scale-105 cursor-pointer">
+                                            {{ $tag->name }}
+                                        </span>
                                     @endforeach
-                                </ul>
-                            </div>
+                                </div>
+                            </div>                           
+                            
                             <div class="mb-2">
-                                <strong>Status:</strong> <span>{{ ucfirst($product->status) }}</span>
+                                <strong>Status:</strong> 
+                                <span class="{{ $product->status === 'published' ? 'text-green-500' : ($product->status === 'draft' ? 'text-yellow-500' : 'text-red-500') }}">
+                                    {{ ucfirst($product->status) }}
+                                </span>
                             </div>
+                            
                             <div class="mb-2">
-                                <strong>Published At:</strong> <span>{{ $product->published_at }}</span>
+                                <strong>Published At:</strong> 
+                                <span title="{{ $product->published_at }}"  class="{{ $product->published_at ? '' : 'text-red-500 font-bold' }}">
+                                    @if($product->published_at)
+                                        {{ \Carbon\Carbon::parse($product->published_at)->diffForHumans() }}
+                                    @else
+                                        Not yet published
+                                    @endif
+                                </span>
                             </div>
+                            
                             <div class="mb-2">
                                 <strong>Price:</strong> <span>${{ number_format($product->price, 2) }}</span>
                             </div>
@@ -67,6 +84,54 @@
                             </div>
                         </div>
                     </div>
+                    {{-- Variants Section --}}
+                    @if($product->variants->isNotEmpty())
+                    <div class="mt-6">
+                        <div class="flex items-center">
+                            <hr class="flex-grow border-t border-gray-300">
+                            <h2 class="mx-4 text-2xl font-bold text-gray-800">Variants</h2>
+                            <hr class="flex-grow border-t border-gray-300">
+                        </div>
+                        <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-300 mt-4">
+                            <table class="min-w-full bg-white transition-shadow duration-300 hover:shadow-xl">
+                                <thead class="bg-gray-200 text-gray-700 uppercase text-xs">
+                                    <tr>
+                                        <th class="px-6 py-4 text-left">Size</th>
+                                        <th class="px-6 py-4 text-left">Color</th>
+                                        <th class="px-6 py-4 text-left">SKU</th>
+                                        <th class="px-6 py-4 text-left">Price</th>
+                                        <th class="px-6 py-4 text-left">Stock Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-800 text-sm">
+                                    @foreach($product->variants as $variant)
+                                        <tr class="border-b transition-colors duration-200 hover:bg-gray-50">
+                                            <td class="px-6 py-4">{{ $variant->size }}</td>
+                                            <td class="px-6 py-4 flex items-center">
+                                                <!-- Color badge -->
+                                                <div class="w-6 h-6 rounded-full mr-2" style="background-color: {{ $variant->color }};"></div>
+                                                <span class="text-gray-600">{{ $variant->color }}</span>
+                                            </td>
+                                            <td class="px-6 py-4">{{ $variant->sku }}</td>
+                                            <td class="px-6 py-4 font-semibold">${{ number_format($variant->price, 2) }}</td>
+                                            <td class="px-6 py-4">
+                                                <span class="{{ $variant->stock_quantity > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                                    {{ $variant->stock_quantity > 0 ? $variant->stock_quantity . ' in stock' : 'Out of stock' }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
+
+
+
+
+
+
 
                     {{-- Descriptions --}}
                     <div class="space-y-4">

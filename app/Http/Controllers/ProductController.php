@@ -9,6 +9,10 @@ use App\Models\Attribute;
 use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Variant;
 
 class ProductController extends Controller
 {
@@ -99,85 +103,147 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-        $request->validate([
+        
+        // Validate the input data
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:products',
+            'sku' => 'nullable|string', //|unique:products
+            'categories' => 'required|array',
+            'tags' => 'nullable|array',
+            'short_description' => 'nullable|string',
             'description' => 'nullable|string',
-            'sku' => 'required|string|unique:products',
+            'full_description' => 'nullable|string',
             'price' => 'required|numeric',
+            'discount_price' => 'nullable|numeric',
+            'tax_rate' => 'nullable|numeric',
+            'is_taxable' => 'nullable|boolean',
             'stock_quantity' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:512',
-            'variations.*.variation_type' => 'required|string',
-            'variations.*.variation_value' => 'required|string',
-            'variations.*.price' => 'nullable|numeric',
-            'variations.*.stock_quantity' => 'required|integer',
-            'attributes.*.key' => 'required|string',
-            'attributes.*.value' => 'required|string',
-            'tags' => 'array',
-            'images.*.image_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'images.*.caption' => 'nullable|string',
+            'in_stock' => 'nullable|boolean',
+            'allow_out_of_stock_orders' => 'nullable|boolean',
+            'min_order_quantity' => 'nullable|integer',
+            'max_order_quantity' => 'nullable|integer',
+            'barcode' => 'nullable|string',
+            'weight' => 'nullable|numeric',
+            'length' => 'nullable|numeric',
+            'width' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'is_featured' => 'nullable|boolean',
+            'is_visible' => 'nullable|boolean',
+            'is_digital' => 'nullable|boolean',
+            //  status: 'draft', 'published', 'archived'
+            'status' => 'required|string|in:draft,published,archived',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            // Product variants [size][], color, price, sku, stock
+            'variants' => 'nullable|array',
+            // if variants is present, validate the fields
+            
+            'variants.*.size' => 'nullable|string',
+            'variants.*.color' => 'nullable|string',
+            'variants.*.price' => 'nullable|numeric',
+            'variants.*.sku' => 'nullable|string',
+            'variants.*.stock_quantity' => 'nullable|integer',
         ]);
 
-        $product = new Product();
-    
-        // Set product details without mass assignment
-        $product->name = $request->name;
-        $product->slug = Str::slug($request->name);
-        $product->sku = $request->sku;
-        $product->short_description = $request->short_description;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->discount_price = $request->discount_price;
-        $product->tax_rate = $request->tax_rate;
-        $product->is_taxable = $request->is_taxable;
-        $product->stock_quantity = $request->stock_quantity;
-        $product->in_stock = $request->in_stock;
-        $product->allow_out_of_stock_orders = $request->allow_out_of_stock_orders;
-        // $product->is_on_sale = $request->is_on_sale;
-        $product->min_order_quantity = $request->min_order_quantity;
-        $product->max_order_quantity = $request->max_order_quantity;
-        $product->barcode = $request->barcode;
-        $product->weight = $request->weight;
-        $product->length = $request->length;
-        $product->width = $request->width;
-        $product->height = $request->height;
-        $product->is_featured = $request->is_featured;
-        $product->is_visible = $request->is_visible;
-        $product->is_digital = $request->is_digital;
-        $product->status = $request->status;
-    
-        // Product image upload
-        if ($request->hasFile('image')) {
-            $product->image = $request->file('image')->store('products', 'public');
-        }
-    
-        $product->save();
-    
-        // Attach categories
-        if ($request->categories) {
+        try {
+
+
+            // start a transaction
+            DB::beginTransaction();
+            // Create the product
+            $product = new Product();
+            $product->name = $request->name;
+            $product->slug = $request->slug;
+            $product->sku = $request->sku;
+            $product->short_description = $request->short_description;
+            $product->description = $request->description;
+            $product->description = $request->full_description;
+            $product->price = $request->price;
+            $product->discount_price = $request->discount_price;
+            $product->tax_rate = $request->tax_rate;
+            $product->is_taxable = $request->is_taxable;
+            $product->stock_quantity = $request->stock_quantity;
+            $product->in_stock = $request->in_stock;
+            $product->allow_out_of_stock_orders = $request->allow_out_of_stock_orders;
+            $product->min_order_quantity = $request->min_order_quantity;
+            $product->max_order_quantity = $request->max_order_quantity;
+            $product->barcode = $request->barcode;
+            $product->weight = $request->weight;
+            $product->length = $request->length;
+            $product->width = $request->width;
+            $product->height = $request->height;
+            $product->is_featured = $request->is_featured;
+            $product->is_visible = $request->is_visible;
+            $product->is_digital = $request->is_digital;
+            $product->status = $request->status;
+            if ($request->has('published_at')) {
+                $product->published_at = $request->published_at;
+            }
+            if ($request->hasFile('featured_image')) {
+                $product->featured_image = $request->file('featured_image')->store('featured', 'public');
+            }
+            if(!$product->save()){
+                // Rollback the transaction
+                DB::rollBack();
+                // Log the error
+                Log::error('Error saving product');
+                throw new \Exception('Error saving product');
+            }
+
+            // Attach categories
             $product->categories()->attach($request->categories);
-        }
-    
-        // Handle tags
-        if ($request->tags) {
-            $tags = array_map('trim', explode(',', $request->tags));
-            foreach ($tags as $tagName) {
-                $slug = Str::slug($tagName);
-                $tag = Tag::firstOrCreate(['name' => $tagName], ['slug' => $slug]);
-                $product->tags()->attach($tag);
+
+            // Attach tags
+            if ($request->has('tags')) {
+                $product->tags()->attach($request->tags);
             }
-        }
-    
-        // Save additional images
-        if ($request->has('additional_images')) {
-            foreach ($request->file('additional_images') as $image) {
-                $product->images()->create([
-                    'image_path' => $image->store('product_images', 'public'),
-                    'is_featured' => $request->input('is_featured', 0),
-                    'order_column' => $request->input('order', null),
-                ]);
+
+            // Store additional images
+            if ($request->hasFile('additional_images')) {
+                foreach ($request->file('additional_images') as $image) {
+                    $path = $image->store('product_images', 'public');
+                    $product->images()->create(['image_path' => $path]);
+                }
             }
+
+
+            // Store product variants
+            if ($request->has('variants')) {
+                foreach ($request->variants as $key => $variant) {
+                    $productVariant = new Variant();
+                    $productVariant->product_id = $product->id;
+                    $productVariant->size = $variant['size'];
+                    $productVariant->color = $variant['color'];
+                    $productVariant->price = $variant['price'];
+                    $productVariant->sku = $variant['sku'];
+                    $productVariant->stock = $variant['stock'];
+                    
+                    if(!$productVariant->save()){
+                        // Rollback the transaction
+                        DB::rollBack();
+                        // Log the error
+                        Log::error('Error saving product variant');
+                        throw new \Exception('Error saving product variant');
+                    }
+                }
+            }
+
+            // Commit the transaction
+            DB::commit();
+
+        } catch (\Exception $e) {
+            //TODO:: remove the featured image if it was saved
+
+            //TODO: remove the additional images if they were saved
+            
+            // Rollback the transaction
+            DB::rollBack();
+            // Log the error
+            Log::error($e->getMessage());
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
+        
     
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
@@ -189,7 +255,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         // Fetch the product
-        $product = Product::with('tags', 'images', 'tags', 'categories')->findOrFail($id);
+        $product = Product::with('tags', 'images', 'tags', 'categories', 'variants')->findOrFail($id);
 
         $pageTitle = 'Product Details: ' . $product->name;
 

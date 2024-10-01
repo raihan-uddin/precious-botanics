@@ -133,9 +133,9 @@
 
                                     <div class="mt-2 mb-4">
                                         @foreach($product->categories as $category)
-                                            <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-1 py-0.5 rounded-full mr-1">
+                                            <a href="{{ route('products.index', ['filter[category]' => $category->id]) }}" class="bg-blue-500 text-white text-xs font-semibold mr-2 mb-2 px-3 py-1 rounded-full transition duration-200 ease-in-out transform hover:bg-blue-600 hover:scale-105 cursor-pointer">
                                                 {{ $category->name }}
-                                            </span>
+                                            </a>
                                         @endforeach
                                     </div>
 

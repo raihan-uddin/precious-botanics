@@ -25,7 +25,7 @@
                     @endif
                     @if(session('success'))
                         <div id="toast"
-                             class="fixed top-0 right-0 mt-4 mr-4 bg-green-500 text-white text-sm rounded-lg p-4">
+                            class="fixed top-0 right-0 mt-4 mr-4 bg-green-500 text-white text-sm rounded-lg p-4">
                             {{ session('success') }}
                         </div>
                         <script>
@@ -36,7 +36,7 @@
                         </script>
                     @endif
                     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
-                          class="space-y-6">
+                        class="space-y-6">
                         @csrf
                         <div>
                             <div class="grid grid-cols-3 gap-4 mt-4">
@@ -44,8 +44,8 @@
                                 <div class="mb-4">
                                     <x-input-label for="name" :value="__('Product Name')"/>
                                     <x-input id="name" name="name" class="block mt-1 w-full" type="text" required
-                                             onkeyup="generateSlug(this.value)" onchange="generateSlug(this.value)"
-                                             autofocus/>
+                                            onkeyup="generateSlug(this.value)" onchange="generateSlug(this.value)"
+                                            autofocus/>
                                     @if($errors->has('name'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -56,7 +56,7 @@
                                 <div class="mb-4">
                                     <x-input-label for="slug" :value="__('Product Slug')"/>
                                     <x-input id="slug" name="slug" class="block mt-1 w-full" type="text" required
-                                             readonly/>
+                                            readonly/>
                                     @if($errors->has('slug'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('slug') }}</strong>
@@ -81,7 +81,7 @@
                                 <div class="mb-4">
                                     <x-input-label for="categories" :value="__('Assign to Categories')"/>
                                     <x-select id="categories" name="categories[]" class="block mt-1 w-full" multiple
-                                              required>
+                                            required>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -152,7 +152,7 @@
                                 <div class="mb-4">
                                     <x-input-label for="discount_price" :value="__('Special Price')"/>
                                     <x-input id="discount_price" name="discount_price" class="block mt-1 w-full"
-                                             type="number"/>
+                                            type="number"/>
                                     @if($errors->has('discount_price'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('discount_price') }}</strong>
@@ -164,7 +164,7 @@
                                 <div class="mb-4">
                                     <x-input-label for="tax_rate" :value="__('Tax Rate')"/>
                                     <x-input id="tax_rate" name="tax_rate" class="block mt-1 w-full" type="number"
-                                             required/>
+                                            required/>
                                     @if($errors->has('tax_rate'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('tax_rate') }}</strong>
@@ -193,8 +193,8 @@
                                 <div class="mb-4">
                                     <x-input-label for="stock_quantity" :value="__('Stock Quantity')"/>
                                     <x-input id="stock_quantity" name="stock_quantity" class="block mt-1 w-full"
-                                             type="number"
-                                             required/>
+                                            type="number"
+                                            required/>
                                     @if($errors->has('stock_quantity'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('stock_quantity') }}</strong>
@@ -219,9 +219,9 @@
                                 <!-- allow_out_of_stock_orders -->
                                 <div class="mb-4">
                                     <x-input-label for="allow_out_of_stock_orders"
-                                                   :value="__('Allow Out of Stock Orders')"/>
+                                                :value="__('Allow Out of Stock Orders')"/>
                                     <x-select id="allow_out_of_stock_orders" name="allow_out_of_stock_orders"
-                                              class="block mt-1 w-full" required>
+                                            class="block mt-1 w-full" required>
                                         <option value="1">Yes</option>
                                         <option value="0">No</option>
                                     </x-select>
@@ -236,7 +236,7 @@
                                 <div class="mb-4">
                                     <x-input-label for="min_order_quantity" :value="__('Minimum Order Quantity')"/>
                                     <x-input id="min_order_quantity" name="min_order_quantity" class="block mt-1 w-full"
-                                             type="number" required/>
+                                            type="number" required/>
                                     @if($errors->has('min_order_quantity'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('min_order_quantity') }}</strong>
@@ -248,14 +248,13 @@
                                 <div class="mb-4">
                                     <x-input-label for="max_order_quantity" :value="__('Maximum Order Quantity')"/>
                                     <x-input id="max_order_quantity" name="max_order_quantity" class="block mt-1 w-full"
-                                             type="number" required/>
+                                            type="number" required/>
                                     @if($errors->has('max_order_quantity'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('max_order_quantity') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-
                             </div>
 
                             <!-- Product Additional metadata -->
@@ -377,7 +376,7 @@
                                 <x-input-label for="featured_image" :value="__('Product Featured Image')"/>
                                 <!-- Featured Image Input -->
                                 <input type="file" name="featured_image" id="featured_image" class="block mt-1 w-full"
-                                       accept="image/*">
+                                    accept="image/*">
                                 @if($errors->has('featured_image'))
                                     <span class="text-red-600 text-sm" role="alert">
                                     <strong>{{ $errors->first('featured_image') }}</strong>
@@ -396,7 +395,7 @@
                             <div class="mb-4">
                                 <label class="block text-gray-700">Additional Images</label>
                                 <input type="file" name="additional_images[]" id="additional_images"
-                                       class="block mt-1 w-full" accept="image/*" multiple>
+                                    class="block mt-1 w-full" accept="image/*" multiple>
                                 @if($errors->has('additional_images'))
                                     <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $errors->first('additional_images') }}</strong>
@@ -416,28 +415,28 @@
                                     <div class="flex flex-wrap gap-4 mb-4 items-center">
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="size" :value="__('Size')"/>
-                                            <x-input id="size" name="size[]" class="block mt-1 w-full" type="text"
-                                                     placeholder="Enter size"/>
+                                            <x-input id="size" class="block mt-1 w-full" type="text"
+                                                    placeholder="Enter size"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="color" :value="__('Color')"/>
-                                            <x-input id="color" name="color[]" class="block mt-1 w-full" type="text"
-                                                     placeholder="Enter color"/>
+                                            <x-input id="color" class="block mt-1 w-full" type="text"
+                                                    placeholder="Enter color"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="variant_price" :value="__('Price')"/>
-                                            <x-input id="variant_price" name="variant_price[]" class="block mt-1 w-full" type="number"
-                                                     placeholder="Enter price"/>
+                                            <x-input id="variant_price" class="block mt-1 w-full" type="number"
+                                                    placeholder="Enter price"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="variant_sku" :value="__('SKU')"/>
-                                            <x-input id="variant_sku" name="variant_sku[]" class="block mt-1 w-full" type="text"
-                                                     placeholder="Enter SKU"/>
+                                            <x-input id="variant_sku" class="block mt-1 w-full" type="text"
+                                                    placeholder="Enter SKU"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="stock" :value="__('Stock')"/>
-                                            <x-input id="stock" name="stock[]" class="block mt-1 w-full" type="number"
-                                                     placeholder="Enter stock"/>
+                                            <x-input id="stock" class="block mt-1 w-full" type="number"
+                                                    placeholder="Enter stock"/>
                                         </div>
                                         <div class="mb-4">
                                             <button type="button" id="addVariant"
@@ -542,24 +541,27 @@
                 const price = $('#variant_price').val();
                 const sku = $('#variant_sku').val();
                 const stock = $('#stock').val();
-
+                console.log(size, color, price, sku, stock);
                 // Validate input before adding
                 if (size && color && price && sku && stock) {
+                    // Generate a unique key for the new variant group (using timestamp)
+                    const uniqueKey = Date.now();
+                    console.log(uniqueKey);
                     // Create a new variant preview
                     const variantHtml = `
                     <div class="bg-gray-100 border border-gray-300 rounded-md p-4 flex justify-between items-center">
-                        <div>
+                        <div class="variant-group" data-key="${uniqueKey}">
+
                             <strong>Size:</strong> ${size},
                             <strong>Color:</strong> ${color},
                             <strong>Price:</strong> $${price},
                             <strong>SKU:</strong> ${sku},
                             <strong>Stock:</strong> ${stock}
-                            <-- Hidden input fields to store the variant data -->
-                            <input type="hidden" name="variant[size][]" value="${size}">
-                            <input type="hidden" name="variant[color][]" value="${color}">
-                            <input type="hidden" name="variant[price][]" value="${price}">
-                            <input type="hidden" name="variant[sku][]" value="${sku}">
-                            <input type="hidden" name="variant[stock][]" value="${stock}">
+                            <input type="hidden" name="variants[${uniqueKey}][size]" value="${size}">
+                            <input type="hidden" name="variants[${uniqueKey}][color]" value="${color}">
+                            <input type="hidden" name="variants[${uniqueKey}][price]" value="${price}">
+                            <input type="hidden" name="variants[${uniqueKey}][sku]" value="${sku}">
+                            <input type="hidden" name="variants[${uniqueKey}][stock]" value="${stock}">
 
                         </div>
                         <button type="button" class="text-red-600 removeVariant">&times;</button>
@@ -577,21 +579,11 @@
                     $('#stock').val('');
                 } else {
                     // add red border which are empty
-                    if (!size) {
-                        $('#size').css('border', '1px solid red');
-                    }
-                    if (!color) {
-                        $('#color').css('border', '1px solid red');
-                    }
-                    if (!price) {
-                        $('#variant_price').css('border', '1px solid red');
-                    }
-                    if (!sku) {
-                        $('#variant_sku').css('border', '1px solid red');
-                    }
-                    if (!stock) {
-                        $('#stock').css('border', '1px solid red');
-                    }
+                    if (!size) $('#size').css('border', '1px solid red');
+                    if (!color) $('#color').css('border', '1px solid red');
+                    if (!price) $('#variant_price').css('border', '1px solid red');
+                    if (!sku) $('#variant_sku').css('border', '1px solid red');
+                    if (!stock) $('#stock').css('border', '1px solid red');
                 }
             });
 
@@ -630,7 +622,7 @@
         var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
-                toolbar: toolbarOptions
+                toolbar: toolbarOptions,
             }
         });
     </script>
