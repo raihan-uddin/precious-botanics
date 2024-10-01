@@ -1,4 +1,5 @@
 <x-app-layout>
+    
     <x-slot name="title">
         {{ $product->name ?? config('app.name', 'Laravel') }}
     </x-slot>
@@ -126,12 +127,6 @@
                         </div>
                     </div>
                     @endif
-
-
-
-
-
-
 
                     {{-- Descriptions --}}
                     <div class="space-y-4">
