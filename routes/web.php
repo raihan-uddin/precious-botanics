@@ -6,13 +6,17 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\Frontend\PageController; 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'index'])->name('home');
 
+
+
+
+
+// Auth routes
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
