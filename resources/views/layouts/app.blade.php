@@ -8,7 +8,7 @@
         <title>{{ $title ?? config('app.name', 'Laravel') }}</title>
 
         <!-- Fav icon -->
-        <link rel="icon" href="{{ asset('images/logos/favico.png') }}" type="image/x-icon" />
+        <link rel="icon" href="{{ asset('images/logos/logo.svg') }}" type="image/x-icon" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,7 +16,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/custom.css'])
-
+        <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
         @stack('scripts')
     </head>
     <body class="font-sans antialiased">
