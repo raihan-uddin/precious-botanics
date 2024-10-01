@@ -4,12 +4,18 @@
         {{ $product->name ?? config('app.name', 'Laravel') }}
     </x-slot>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Product Details') }}
-        </h2>
+    <x-slot name="header"> 
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Product Details') }}
+            </h2>
+            <a href="{{ url()->previous() !== url()->current() ? url()->previous() : route('products.index') }}" 
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                {{ __('Back') }}
+            </a>
+        </div>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white shadow-sm rounded-lg">
@@ -131,11 +137,19 @@
                     {{-- Descriptions --}}
                     <div class="space-y-4">
                         <div>
-                            <strong>Short Description:</strong>
+                            <div class="flex items-center">
+                                <hr class="flex-grow border-t border-gray-300">
+                                <h2 class="mx-4 text-2xl font-bold text-gray-800">Short Description</h2>
+                                <hr class="flex-grow border-t border-gray-300">
+                            </div>
                             <p class="mt-1 text-gray-700">{!! $product->short_description !!}</p>
                         </div>
                         <div>
-                            <strong>Full Description:</strong>
+                        <div class="flex items-center">
+                                <hr class="flex-grow border-t border-gray-300">
+                                <h2 class="mx-4 text-2xl font-bold text-gray-800">Long Description</h2>
+                                <hr class="flex-grow border-t border-gray-300">
+                            </div>
                             <p class="mt-1 text-gray-700">{!! $product->description !!}</p>
                         </div>
                     </div>
@@ -143,7 +157,11 @@
                     {{-- Additional Images --}}
                     @if($product->images->isNotEmpty())
                         <div class="mt-6">
-                            <strong>Additional Images:</strong>
+                            <div class="flex items-center">
+                                <hr class="flex-grow border-t border-gray-300">
+                                <h2 class="mx-4 text-2xl font-bold text-gray-800">Gallery Images</h2>
+                                <hr class="flex-grow border-t border-gray-300">
+                            </div>
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
                                 @foreach($product->images as $image)
                                     <div class="rounded overflow-hidden shadow">

@@ -147,8 +147,6 @@ class ProductController extends Controller
         ]);
 
         try {
-
-
             // start a transaction
             DB::beginTransaction();
             // Create the product
@@ -206,7 +204,6 @@ class ProductController extends Controller
                     $product->images()->create(['image_path' => $path]);
                 }
             }
-
 
             // Store product variants
             if ($request->has('variants')) {
@@ -267,7 +264,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-         // get the list of tags in alphabetical order
+        // Eager load the tags, images, and categories
+        $product->load('tags', 'images', 'categories', 'variants');
+        
+        // get the list of tags in alphabetical order
         $tags = Tag::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
         
