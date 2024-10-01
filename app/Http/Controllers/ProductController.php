@@ -60,7 +60,7 @@ class ProductController extends Controller
         if ($request->has('sort_by') && !empty($request->get('sort_by'))) {
             $validSortColumns = ['name', 'price', 'created_at']; // Define valid columns for sorting
             $sortBy = $request->get('sort_by');
-            
+
             // Ensure that the sort_by value is valid
             if (in_array($sortBy, $validSortColumns)) {
                 $sortDirection = $request->get('sort_direction', 'asc'); // Default to ascending
@@ -70,7 +70,7 @@ class ProductController extends Controller
         // Get paginated results
         $products = $query->paginate(40);
 
-        
+
         $pageTitle = 'Products';
 
         $categories = Category::orderBy('name')->get();
@@ -100,10 +100,10 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    
+
     public function store(Request $request)
     {
-        
+
         // Validate the input data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -137,13 +137,6 @@ class ProductController extends Controller
             'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             // Product variants [size][], color, price, sku, stock
             'variants' => 'nullable|array',
-            // if variants is present, validate the fields
-            
-            'variants.*.size' => 'nullable|string',
-            'variants.*.color' => 'nullable|string',
-            'variants.*.price' => 'nullable|numeric',
-            'variants.*.sku' => 'nullable|string',
-            'variants.*.stock_quantity' => 'nullable|integer',
         ]);
 
         try {
@@ -215,7 +208,7 @@ class ProductController extends Controller
                     $productVariant->price = $variant['price'];
                     $productVariant->sku = $variant['sku'];
                     $productVariant->stock = $variant['stock'];
-                    
+
                     if(!$productVariant->save()){
                         // Rollback the transaction
                         DB::rollBack();
@@ -233,15 +226,15 @@ class ProductController extends Controller
             //TODO:: remove the featured image if it was saved
 
             //TODO: remove the additional images if they were saved
-            
+
             // Rollback the transaction
             DB::rollBack();
             // Log the error
             Log::error($e->getMessage());
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
-        
-    
+
+
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
@@ -266,11 +259,11 @@ class ProductController extends Controller
     {
         // Eager load the tags, images, and categories
         $product->load('tags', 'images', 'categories', 'variants');
-        
+
         // get the list of tags in alphabetical order
         $tags = Tag::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
-        
+
         $pageTitle = 'Edit Product: ' . $product->name;
         return view('admin.products.edit', compact('product', 'pageTitle', 'tags', 'categories'));
     }
@@ -280,65 +273,128 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        // Validate the input data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|unique:products,slug,' . $product->id,
+            'sku' => 'nullable|string', //|unique:products,sku,' . $product->id,
+            'categories' => 'required|array',
+            'tags' => 'nullable|array',
+            'short_description' => 'nullable|string',
+            'description' => 'nullable|string',
+            'full_description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'discount_price' => 'nullable|numeric',
+            'tax_rate' => 'nullable|numeric',
+            'is_taxable' => 'nullable|boolean',
+            'stock_quantity' => 'required|integer',
+            'in_stock' => 'nullable|boolean',
+            'allow_out_of_stock_orders' => 'nullable|boolean',
+            'min_order_quantity' => 'nullable|integer',
+            'max_order_quantity' => 'nullable|integer',
+            'barcode' => 'nullable|string',
+            'weight' => 'nullable|numeric',
+            'length' => 'nullable|numeric',
+            'width' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'is_featured' => 'nullable|boolean',
+            'is_visible' => 'nullable|boolean',
+            'is_digital' => 'nullable|boolean',
+            //  status: 'draft', 'published', 'archived'
+            'status' => 'required|string|in:draft,published,archived',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            // Product variants [size][], color, price, sku, stock
+            'variants' => 'nullable|array',
+        ]);
+
         try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'slug' => 'required|string|unique:products,slug,' . $product->id,
-                'description' => 'nullable|string',
-                'sku' => 'required|string|unique:products,sku,' . $product->id,
-                'price' => 'required|numeric',
-                'stock_quantity' => 'required|integer',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-                'variations.*.variation_type' => 'required|string',
-                'variations.*.variation_value' => 'required|string',
-                'variations.*.price' => 'nullable|numeric',
-                'variations.*.stock_quantity' => 'required|integer',
-                'attributes.*.key' => 'required|string',
-                'attributes.*.value' => 'required|string',
-                'tags' => 'array',
-                'images.*.image_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-                'images.*.caption' => 'nullable|string',
-            ]);
 
-            // Update product
-            $product->update($request->only(['name', 'slug', 'description', 'sku', 'price', 'stock_quantity', 'image']));
-
-            // Update variations
-            if ($request->has('variations')) {
-                foreach ($request->variations as $variationData) {
-                    // Logic to update existing variations or create new ones
-                    ProductVariation::updateOrCreate(
-                        ['id' => $variationData['id'] ?? null, 'product_id' => $product->id],
-                        $variationData
-                    );
-                }
+            // start a transaction
+            DB::beginTransaction();
+            // Update the product
+            $product->name = $request->name;
+            $product->slug = $request->slug;
+            $product->sku = $request->sku;
+            $product->short_description = $request->short_description;
+            $product->description = $request->description;
+            $product->description = $request->full_description;
+            $product->price = $request->price;
+            $product->discount_price = $request->discount_price;
+            $product->tax_rate = $request->tax_rate;
+            $product->is_taxable = $request->is_taxable;
+            $product->stock_quantity = $request->stock_quantity;
+            $product->in_stock = $request->in_stock;
+            $product->allow_out_of_stock_orders = $request->allow_out_of_stock_orders;
+            $product->min_order_quantity = $request->min_order_quantity;
+            $product->max_order_quantity = $request->max_order_quantity;
+            $product->barcode = $request->barcode;
+            $product->weight = $request->weight;
+            $product->length = $request->length;
+            $product->width = $request->width;
+            $product->height = $request->height;
+            $product->is_featured = $request->is_featured;
+            $product->is_visible = $request->is_visible;
+            $product->is_digital = $request->is_digital;
+            $product->status = $request->status;
+            if ($request->has('published_at')) {
+                $product->published_at = $request->published_at;
+            }
+            if ($request->hasFile('featured_image')) {
+                // Delete the old featured image
+                Storage::disk('public')->delete($product->featured_image);
+                $product->featured_image = $request->file('featured_image')->store('featured', 'public');
+            }
+            if(!$product->save()){
+                // Rollback the transaction
+                DB::rollBack();
+                // Log the error
+                Log::error('Error saving product');
+                throw new \Exception('Error saving product');
             }
 
-            // Update attributes
-            if ($request->has('attributes')) {
-                foreach ($request->attributes as $attributeData) {
-                    Attribute::updateOrCreate(
-                        ['id' => $attributeData['id'] ?? null, 'product_id' => $product->id],
-                        $attributeData
-                    );
-                }
-            }
+            // Sync categories
+            $product->categories()->sync($request->categories);
 
-            // Attach tags
+            // Sync tags
             if ($request->has('tags')) {
                 $product->tags()->sync($request->tags);
             }
 
-            // Store images
-            if ($request->has('images')) {
-                foreach ($request->images as $imageData) {
-                    $path = $imageData['image_path']->store('product_images', 'public');
-                    $product->images()->create([
-                        'image_path' => $path,
-                        'caption' => $imageData['caption'],
-                    ]);
+            // Store additional images
+            if ($request->hasFile('additional_images')) {
+                foreach ($request->file('additional_images') as $image) {
+                    $path = $image->store('product_images', 'public');
+                    $product->images()->create(['image_path' => $path]);
                 }
             }
+
+            // Store product variants
+            if ($request->has('variants')) {
+                // remove existing variants
+                $product->variants()->delete();
+
+                foreach ($request->variants as $key => $variant) {
+                    $productVariant = new Variant();
+                    $productVariant->product_id = $product->id;
+                    $productVariant->size = $variant['size'];
+                    $productVariant->color = $variant['color'];
+                    $productVariant->price = $variant['price'];
+                    $productVariant->sku = $variant['sku'];
+                    $productVariant->stock = $variant['stock'];
+
+                    if(!$productVariant->save()){
+                        // Rollback the transaction
+                        DB::rollBack();
+                        // Log the error
+                        Log::error('Error saving product variant');
+                        throw new \Exception('Error saving product variant');
+                    }
+                }
+            }
+
+            // Commit the transaction
+            DB::commit();
 
             return redirect()->route('products.index')->with('success', 'Product updated successfully.');
         } catch (\Exception $e) {
