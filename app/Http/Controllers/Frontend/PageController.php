@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category; // Add this line
+use App\Models\Product;  // Add this line
+use App\Models\Banner;   // Add this line
+use App\Models\Tag;      // Add this line
 
 class PageController extends Controller
 {
@@ -12,7 +16,12 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        $products = Product::all();
+        $banners = Banner::all();
+        $tags = Tag::all();
+
+        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags'));
     }
 
     /**
