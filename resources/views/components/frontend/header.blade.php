@@ -4,25 +4,11 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
-        <a href="#" class="text-white text-xl font-bold">Brand</a>
+        <a href="#" class="text-white text-xl font-bold">Precious Botanics</a>
       </div>
       <div class="hidden md:flex items-center space-x-4">
         <a href="#" class="text-gray-300 hover:text-white">Home</a>
         <a href="#" class="text-gray-300 hover:text-white">About</a>
-        <div class="relative group">
-          <button class="text-gray-300 hover:text-white inline-flex items-center">
-            Services
-            <svg class="w-5 h-5 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <!-- Dropdown -->
-          <div class="absolute hidden group-hover:block mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-10">
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Web Design</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">SEO</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Marketing</a>
-          </div>
-        </div>
         <a href="#" class="text-gray-300 hover:text-white">Contact</a>
         <!-- login -->
         <a href="{{ route('login') }}" class="text-gray-300 hover:text-white">Login</a>
