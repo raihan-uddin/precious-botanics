@@ -9,8 +9,7 @@
             {{ __('Create Product') }}
         </h2>
     </x-slot>
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet"/>
-    <script src="{{ asset('js/select2.min.js') }}"></script>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-sm sm:rounded-lg">
@@ -72,7 +71,7 @@
                                     <x-input-label for="sku" :value="__('Product SKU')"/>
                                     <x-input id="sku" name="sku" class="block mt-1 w-full" type="text"
                                              value="{{ old('sku') }}"/>
-                                    @error('slug')
+                                    @error('sku')
                                     <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -137,8 +136,8 @@
                             <!-- Short Description -->
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
-                                <x-textarea id="short_description" name="short_description"
-                                            class="block mt-1 w-full">{{ old('short_description') }}</x-textarea>
+                                <x-textarea id="short_description" name="short_description"  :value="old('short_description')"
+                                            class="block mt-1 w-full"></x-textarea>
                                 @error('short_description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -149,14 +148,14 @@
 
                             <!-- Full Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
-                                <x-input-label for="full_description" :value="__('Full Description')"/>
+                                <x-input-label for="description" :value="__('Full Description')"/>
 
                                 <div id="editor" class="block mt-1 w-full"
-                                     style="height: 300px">{{ old('full_description') }}</div>
+                                     style="height: 300px">{{ old('description') }}</div>
 
-                                <input type="hidden" name="full_description" id="full_description"
-                                       value="{{ old('full_description') }}">
-                                @error('full_description')
+                                <input type="hidden" name="description" id="description"
+                                       value="{{ old('description') }}">
+                                @error('description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -211,7 +210,7 @@
                                         <option value="0" {{ old('is_taxable') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
 
-                                    @error('tax_rate')
+                                    @error('is_taxable')
                                     <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -253,9 +252,15 @@
                                 <div class="mb-4">
                                     <x-input-label for="allow_out_of_stock_orders"
                                                    :value="__('Allow Out of Stock Orders')"/>
-                                    <x-select id="allow_out_of_stock_orders" name="allow_out_of_stock_orders" class="block mt-1 w-full" required>
-                                        <option value="1" {{ old('allow_out_of_stock_orders') == '1' ? 'selected' : '' }}>Yes</option>
-                                        <option value="0" {{ old('allow_out_of_stock_orders') == '0' ? 'selected' : '' }}>No</option>
+                                    <x-select id="allow_out_of_stock_orders" name="allow_out_of_stock_orders"
+                                              class="block mt-1 w-full" required>
+                                        <option
+                                            value="1" {{ old('allow_out_of_stock_orders') == '1' ? 'selected' : '' }}>
+                                            Yes
+                                        </option>
+                                        <option
+                                            value="0" {{ old('allow_out_of_stock_orders') == '0' ? 'selected' : '' }}>No
+                                        </option>
                                     </x-select>
                                     @error('allow_out_of_stock_orders')
                                     <span class="text-red-600 text-sm" role="alert">
@@ -512,6 +517,11 @@
         </div>
     </div>
 
+
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+
+
     <!-- Add Quill's CSS and JS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -680,11 +690,11 @@
             }
         });
 
-        const oldValue = document.querySelector('input[name="full_description"]').value;
+        const oldValue = document.querySelector('input[name="description"]').value;
         quill.root.innerHTML = oldValue; // Set Quill editor content to old value
         // Update the hidden input value before form submission
         document.querySelector('form').addEventListener('submit', function () {
-            const fullDescriptionInput = document.querySelector('#full_description');
+            const fullDescriptionInput = document.querySelector('#description');
             fullDescriptionInput.value = quill.root.innerHTML; // Get the content from Quill editor
         });
     </script>
