@@ -9,7 +9,8 @@
             {{ __('Create Product') }}
         </h2>
     </x-slot>
-
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-sm sm:rounded-lg">
@@ -80,7 +81,7 @@
                             <div class="grid grid-cols-2 gap-4 mt-4">
                                 <div class="mb-4">
                                     <x-input-label for="categories" :value="__('Assign to Categories')"/>
-                                    <x-select id="categories" name="categories[]" class="block mt-1 w-full" multiple
+                                    <x-select id="categories" name="categories[]" class="block mt-1 w-full select2" multiple
                                             required>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -96,7 +97,7 @@
                                 <!-- Assign to Product Tags -->
                                 <div class="mb-4">
                                     <x-input-label for="tags" :value="__('Assign to Tags')"/>
-                                    <x-select id="tags" name="tags[]" class="block mt-1 w-full" multiple required>
+                                    <x-select id="tags" name="tags[]" class="block mt-1 w-full select2" multiple required>
                                         @foreach($tags as $tag)
                                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                         @endforeach
@@ -470,6 +471,10 @@
             const slug = value.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
             document.getElementById('slug').value = slug;
         }
+
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
 
         $(document).ready(function () {
             $('#featured_image').change(function (e) {
