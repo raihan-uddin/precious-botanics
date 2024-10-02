@@ -9,7 +9,7 @@
             {{ __('Create Product') }}
         </h2>
     </x-slot>
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet"/>
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -26,7 +26,7 @@
                     @endif
                     @if(session('success'))
                         <div id="toast"
-                            class="fixed top-0 right-0 mt-4 mr-4 bg-green-500 text-white text-sm rounded-lg p-4">
+                             class="fixed top-0 right-0 mt-4 mr-4 bg-green-500 text-white text-sm rounded-lg p-4">
                             {{ session('success') }}
                         </div>
                         <script>
@@ -37,43 +37,58 @@
                         </script>
                     @endif
                     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
-                        class="space-y-6">
+                          class="space-y-6">
                         @csrf
                         <div>
-                            <div class="grid grid-cols-3 gap-4 mt-4">
+                            <div class="grid grid-cols-4 gap-4 mt-4">
                                 <!-- Product Name -->
                                 <div class="mb-4">
                                     <x-input-label for="name" :value="__('Product Name')"/>
                                     <x-input id="name" name="name" class="block mt-1 w-full" type="text" required
-                                            onkeyup="generateSlug(this.value)" onchange="generateSlug(this.value)"
-                                            autofocus/>
-                                    @if($errors->has('name'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                             onkeyup="generateSlug(this.value)" onchange="generateSlug(this.value)"
+                                             value="{{ old('name') }}"
+                                             autofocus/>
+                                    @error('name')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                                 <!-- Product Slug -->
                                 <div class="mb-4">
                                     <x-input-label for="slug" :value="__('Product Slug')"/>
                                     <x-input id="slug" name="slug" class="block mt-1 w-full" type="text" required
-                                            readonly/>
-                                    @if($errors->has('slug'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('slug') }}</strong>
+                                             value="{{ old('slug') }}"
+                                             readonly/>
+                                    @error('slug')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- Product SKU -->
                                 <div class="mb-4">
                                     <x-input-label for="sku" :value="__('Product SKU')"/>
-                                    <x-input id="sku" name="sku" class="block mt-1 w-full" type="text" required/>
-                                    @if($errors->has('sku'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('sku') }}</strong>
+                                    <x-input id="sku" name="sku" class="block mt-1 w-full" type="text"
+                                             value="{{ old('sku') }}"/>
+                                    @error('slug')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
+                                </div>
+
+                                <!-- Vendor -->
+                                <div class="mb-4">
+                                    <x-input-label for="vendor" :value="__('Vendor')"/>
+                                    <x-input id="vendor" name="vendor" class="block mt-1 w-full" type="text"
+                                             value="{{ old('sku') }}"/>
+                                    @error('vendor')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -81,32 +96,40 @@
                             <div class="grid grid-cols-2 gap-4 mt-4">
                                 <div class="mb-4">
                                     <x-input-label for="categories" :value="__('Assign to Categories')"/>
-                                    <x-select id="categories" name="categories[]" class="block mt-1 w-full select2" multiple
-                                            required>
+                                    <x-select id="categories" name="categories[]" class="block mt-1 w-full select2"
+                                              multiple
+                                              required>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option
+                                                value="{{ $category->id }}" {{ in_array($category->id, old('categories', [])) ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
                                         @endforeach
                                     </x-select>
-                                    @if($errors->has('categories'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('categories') }}</strong>
+                                    @error('categories')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- Assign to Product Tags -->
                                 <div class="mb-4">
                                     <x-input-label for="tags" :value="__('Assign to Tags')"/>
-                                    <x-select id="tags" name="tags[]" class="block mt-1 w-full select2" multiple required>
+                                    <x-select id="tags" name="tags[]" class="block mt-1 w-full select2" multiple
+                                              required>
                                         @foreach($tags as $tag)
-                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            <option
+                                                value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
+                                                {{ $tag->name }}
+                                            </option>
                                         @endforeach
                                     </x-select>
-                                    @if($errors->has('tags'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('tags') }}</strong>
+                                    @error('tags')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
 
@@ -114,26 +137,30 @@
                             <!-- Short Description -->
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
-                                <x-textarea id="short_description" name="short_description" class="block mt-1 w-full"
-                                            required></x-textarea>
-                                @if($errors->has('short_description'))
-                                    <span class="text-red-600 text-sm" role="alert">
-                                        <strong>{{ $errors->first('short_description') }}</strong>
+                                <x-textarea id="short_description" name="short_description"
+                                            class="block mt-1 w-full">{{ old('short_description') }}</x-textarea>
+                                @error('short_description')
+                                <span class="text-red-600 text-sm" role="alert">
+                                        <strong>{{ $message }}</strong>
                                     </span>
-                                @endif
+                                @enderror
                             </div>
 
 
                             <!-- Full Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
                                 <x-input-label for="full_description" :value="__('Full Description')"/>
-                                <div id="editor" class="block mt-1 w-full" style="height: 300px"></div>
-                                <input type="hidden" name="full_description" id="full_description">
-                                @if($errors->has('full_description'))
-                                    <span class="text-red-600 text-sm" role="alert">
-                                        <strong>{{ $errors->first('full_description') }}</strong>
+
+                                <div id="editor" class="block mt-1 w-full"
+                                     style="height: 300px">{{ old('full_description') }}</div>
+
+                                <input type="hidden" name="full_description" id="full_description"
+                                       value="{{ old('full_description') }}">
+                                @error('full_description')
+                                <span class="text-red-600 text-sm" role="alert">
+                                        <strong>{{ $message }}</strong>
                                     </span>
-                                @endif
+                                @enderror
                             </div>
 
 
@@ -142,102 +169,107 @@
                                 <!-- price -->
                                 <div class="mb-4">
                                     <x-input-label for="price" :value="__('Price')"/>
-                                    <x-input id="price" name="price" class="block mt-1 w-full" type="number" required/>
-                                    @if($errors->has('price'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('price') }}</strong>
+                                    <x-input id="price" name="price" class="block mt-1 w-full" type="number"
+                                             value="{{ old('price') }}" required/>
+                                    @error('price')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                                 <!-- discount_price -->
                                 <div class="mb-4">
                                     <x-input-label for="discount_price" :value="__('Special Price')"/>
-                                    <x-input id="discount_price" name="discount_price" class="block mt-1 w-full"
-                                            type="number"/>
-                                    @if($errors->has('discount_price'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('discount_price') }}</strong>
+                                    <x-input id="discount_price" name="discount_price"
+                                             value="{{ old('discount_price') }}" class="block mt-1 w-full"
+                                             type="number"/>
+                                    @error('discount_price')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- tax_rate -->
                                 <div class="mb-4">
                                     <x-input-label for="tax_rate" :value="__('Tax Rate')"/>
-                                    <x-input id="tax_rate" name="tax_rate" class="block mt-1 w-full" type="number"
-                                            required/>
-                                    @if($errors->has('tax_rate'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('tax_rate') }}</strong>
+                                    <x-input id="tax_rate" name="tax_rate" class="block mt-1 w-full"
+                                             value="{{ old('discount_price') }}" type="number"
+                                             required/>
+                                    @error('tax_rate')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- is_taxable -->
                                 <div class="mb-4">
                                     <x-input-label for="is_taxable" :value="__('Is Taxable')"/>
                                     <x-select id="is_taxable" name="is_taxable" class="block mt-1 w-full" required>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1" {{ old('is_taxable') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('is_taxable') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
-                                    @if($errors->has('is_taxable'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('is_taxable') }}</strong>
+
+                                    @error('tax_rate')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
 
                             <!-- Stock management -->
-                            <div class="grid grid-cols-6 gap-4 mt-4">
+                            <div class="grid grid-cols-5 gap-4 mt-4">
                                 <!-- stock_quantity -->
                                 <div class="mb-4">
                                     <x-input-label for="stock_quantity" :value="__('Stock Quantity')"/>
                                     <x-input id="stock_quantity" name="stock_quantity" class="block mt-1 w-full"
-                                            type="number"
-                                            required/>
-                                    @if($errors->has('stock_quantity'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('stock_quantity') }}</strong>
+                                             type="number" value="{{ old('stock_quantity') }}"
+                                             required/>
+                                    @error('stock_quantity')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- in_stock -->
                                 <div class="mb-4">
                                     <x-input-label for="in_stock" :value="__('In Stock')"/>
                                     <x-select id="in_stock" name="in_stock" class="block mt-1 w-full" required>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1" {{ old('in_stock') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('in_stock') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
-                                    @if($errors->has('in_stock'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('in_stock') }}</strong>
+
+                                    @error('in_stock')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- allow_out_of_stock_orders -->
                                 <div class="mb-4">
                                     <x-input-label for="allow_out_of_stock_orders"
-                                                :value="__('Allow Out of Stock Orders')"/>
-                                    <x-select id="allow_out_of_stock_orders" name="allow_out_of_stock_orders"
-                                            class="block mt-1 w-full" required>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                                   :value="__('Allow Out of Stock Orders')"/>
+                                    <x-select id="allow_out_of_stock_orders" name="allow_out_of_stock_orders" class="block mt-1 w-full" required>
+                                        <option value="1" {{ old('allow_out_of_stock_orders') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('allow_out_of_stock_orders') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
-                                    @if($errors->has('allow_out_of_stock_orders'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('allow_out_of_stock_orders') }}</strong>
+                                    @error('allow_out_of_stock_orders')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- min_order_quantity -->
                                 <div class="mb-4">
                                     <x-input-label for="min_order_quantity" :value="__('Minimum Order Quantity')"/>
                                     <x-input id="min_order_quantity" name="min_order_quantity" class="block mt-1 w-full"
-                                            type="number" required/>
+                                             value="{{ old('min_order_quantity') }}"
+                                             type="number" required/>
                                     @if($errors->has('min_order_quantity'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('min_order_quantity') }}</strong>
@@ -249,12 +281,13 @@
                                 <div class="mb-4">
                                     <x-input-label for="max_order_quantity" :value="__('Maximum Order Quantity')"/>
                                     <x-input id="max_order_quantity" name="max_order_quantity" class="block mt-1 w-full"
-                                            type="number" required/>
-                                    @if($errors->has('max_order_quantity'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('max_order_quantity') }}</strong>
+                                             value="{{ old('max_order_quantity') }}"
+                                             type="number" required/>
+                                    @error('max_order_quantity')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
 
@@ -263,56 +296,61 @@
                                 <!-- barcode -->
                                 <div class="mb-4">
                                     <x-input-label for="barcode" :value="__('Barcode')"/>
-                                    <x-input id="barcode" name="barcode" class="block mt-1 w-full" type="text"/>
-                                    @if($errors->has('barcode'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('barcode') }}</strong>
+                                    <x-input id="barcode" name="barcode" class="block mt-1 w-full" type="text"
+                                             value="{{ old('barcode') }}"/>
+                                    @error('barcode')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- weight -->
                                 <div class="mb-4">
                                     <x-input-label for="weight" :value="__('Weight')"/>
-                                    <x-input id="weight" name="weight" class="block mt-1 w-full" type="number"/>
-                                    @if($errors->has('weight'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('weight') }}</strong>
+                                    <x-input id="weight" name="weight" class="block mt-1 w-full" type="number"
+                                             value="{{ old('weight') }}"/>
+                                    @error('weight')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- length -->
                                 <div class="mb-4">
                                     <x-input-label for="length" :value="__('Length')"/>
-                                    <x-input id="length" name="length" class="block mt-1 w-full" type="number"/>
-                                    @if($errors->has('length'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('length') }}</strong>
+                                    <x-input id="length" name="length" class="block mt-1 w-full" type="number"
+                                             value="{{ old('length') }}"/>
+                                    @error('length')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- width -->
                                 <div class="mb-4">
                                     <x-input-label for="width" :value="__('Width')"/>
-                                    <x-input id="width" name="width" class="block mt-1 w-full" type="number"/>
-                                    @if($errors->has('width'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('width') }}</strong>
+                                    <x-input id="width" name="width" class="block mt-1 w-full" type="number"
+                                             value="{{ old('width') }}"/>
+                                    @error('width')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
 
                                 <!-- height -->
                                 <div class="mb-4">
                                     <x-input-label for="height" :value="__('Height')"/>
-                                    <x-input id="height" name="height" class="block mt-1 w-full" type="number"/>
-                                    @if($errors->has('height'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('height') }}</strong>
+                                    <x-input id="height" name="height" class="block mt-1 w-full" type="number"
+                                             value="{{ old('height') }}"/>
+                                    @error('height')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
                             <!-- Product visibility options -->
@@ -321,54 +359,61 @@
                                 <div class="mb-4">
                                     <x-input-label for="is_featured" :value="__('Is Featured')"/>
                                     <x-select id="is_featured" name="is_featured" class="block mt-1 w-full" required>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1" {{ old('is_featured') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('is_featured') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
-                                    @if($errors->has('is_featured'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('is_featured') }}</strong>
+
+                                    @error('is_featured')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                                 <!-- is_visible -->
                                 <div class="mb-4">
                                     <x-input-label for="is_visible" :value="__('Is Visible')"/>
                                     <x-select id="is_visible" name="is_visible" class="block mt-1 w-full" required>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1" {{ old('is_visible') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('is_visible') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
-                                    @if($errors->has('is_visible'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('is_visible') }}</strong>
+
+                                    @error('is_visible')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                                 <!-- is_digital -->
                                 <div class="mb-4">
                                     <x-input-label for="is_digital" :value="__('Is Digital')"/>
                                     <x-select id="is_digital" name="is_digital" class="block mt-1 w-full" required>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1" {{ old('is_digital') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('is_digital') == '0' ? 'selected' : '' }}>No</option>
                                     </x-select>
-                                    @if($errors->has('is_digital'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('is_digital') }}</strong>
+                                    @error('is_digital')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                                 <!-- status: 'draft', 'published', 'archived' -->
                                 <div class="mb-4">
                                     <x-input-label for="status" :value="__('Status')"/>
                                     <x-select id="status" name="status" class="block mt-1 w-full" required>
-                                        <option value="draft">Draft</option>
-                                        <option value="published">Published</option>
-                                        <option value="archived">Archived</option>
+                                        <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>
+                                            Published
+                                        </option>
+                                        <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft
+                                        </option>
+                                        <option value="archived" {{ old('status') == 'archived' ? 'selected' : '' }}>
+                                            Archived
+                                        </option>
                                     </x-select>
-                                    @if($errors->has('status'))
-                                        <span class="text-red-600 text-sm" role="alert">
-                                            <strong>{{ $errors->first('status') }}</strong>
+                                    @error('status')
+                                    <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
 
@@ -377,12 +422,12 @@
                                 <x-input-label for="featured_image" :value="__('Product Featured Image')"/>
                                 <!-- Featured Image Input -->
                                 <input type="file" name="featured_image" id="featured_image" class="block mt-1 w-full"
-                                    accept="image/*">
-                                @if($errors->has('featured_image'))
-                                    <span class="text-red-600 text-sm" role="alert">
-                                    <strong>{{ $errors->first('featured_image') }}</strong>
-                                </span>
-                                @endif
+                                       accept="image/*">
+                                @error('featured_image')
+                                <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
 
                                 <!-- Preview Image -->
                                 <div id="imagePreview" class="mt-4 hidden">
@@ -396,12 +441,12 @@
                             <div class="mb-4">
                                 <label class="block text-gray-700">Additional Images</label>
                                 <input type="file" name="additional_images[]" id="additional_images"
-                                    class="block mt-1 w-full" accept="image/*" multiple>
-                                @if($errors->has('additional_images'))
-                                    <span class="text-red-600 text-sm" role="alert">
-                                        <strong>{{ $errors->first('additional_images') }}</strong>
-                                    </span>
-                                @endif
+                                       class="block mt-1 w-full" accept="image/*" multiple>
+                                @error('additional_images')
+                                <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
 
                                 <!-- Preview Container -->
                                 <div id="additionalImagePreview" class="mt-4 grid grid-cols-3 gap-4 hidden">
@@ -417,27 +462,27 @@
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="size" :value="__('Size')"/>
                                             <x-input id="size" class="block mt-1 w-full" type="text"
-                                                    placeholder="Enter size"/>
+                                                     placeholder="Enter size"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="color" :value="__('Color')"/>
                                             <x-input id="color" class="block mt-1 w-full" type="text"
-                                                    placeholder="Enter color"/>
+                                                     placeholder="Enter color"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="variant_price" :value="__('Price')"/>
                                             <x-input id="variant_price" class="block mt-1 w-full" type="number"
-                                                    placeholder="Enter price"/>
+                                                     placeholder="Enter price"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="variant_sku" :value="__('SKU')"/>
                                             <x-input id="variant_sku" class="block mt-1 w-full" type="text"
-                                                    placeholder="Enter SKU"/>
+                                                     placeholder="Enter SKU"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="stock" :value="__('Stock')"/>
                                             <x-input id="stock" class="block mt-1 w-full" type="number"
-                                                    placeholder="Enter stock"/>
+                                                     placeholder="Enter stock"/>
                                         </div>
                                         <div class="mb-4">
                                             <button type="button" id="addVariant"
@@ -452,6 +497,11 @@
                                         <!-- Dynamically added variants will be displayed here -->
                                     </div>
                                 </div>
+                                @error('variants')
+                                <span class="text-red-600 text-sm" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
                         </div>
                         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create Product</button>
@@ -472,7 +522,7 @@
             document.getElementById('slug').value = slug;
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.select2').select2();
         });
 
@@ -628,6 +678,14 @@
             modules: {
                 toolbar: toolbarOptions,
             }
+        });
+
+        const oldValue = document.querySelector('input[name="full_description"]').value;
+        quill.root.innerHTML = oldValue; // Set Quill editor content to old value
+        // Update the hidden input value before form submission
+        document.querySelector('form').addEventListener('submit', function () {
+            const fullDescriptionInput = document.querySelector('#full_description');
+            fullDescriptionInput.value = quill.root.innerHTML; // Get the content from Quill editor
         });
     </script>
 </x-app-layout>

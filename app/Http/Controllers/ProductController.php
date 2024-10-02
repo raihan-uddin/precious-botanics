@@ -111,6 +111,7 @@ class ProductController extends Controller
             'sku' => 'nullable|string', //|unique:products
             'categories' => 'required|array',
             'tags' => 'nullable|array',
+            'vendor' => 'nullable|string',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'full_description' => 'nullable|string',
@@ -147,6 +148,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->slug = $request->slug;
             $product->sku = $request->sku;
+            $product->vendor = $request->vendor;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->description = $request->full_description;
