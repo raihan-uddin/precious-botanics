@@ -132,12 +132,15 @@
                                 </div>
                             </div>
 
-
-                            <!-- Short Description -->
+                            <!-- Short Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
-                                <x-textarea id="short_description" name="short_description"  :value="old('short_description')"
-                                            class="block mt-1 w-full"></x-textarea>
+
+                                <div id="editor" class="block mt-1 w-full editor"
+                                     style="height: 300px">{{ old('short_description') }}</div>
+
+                                <input type="hidden" name="short_description" id="short_description"
+                                       value="{{ old('short_description') }}">
                                 @error('short_description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -150,7 +153,7 @@
                             <div class="mb-4">
                                 <x-input-label for="description" :value="__('Full Description')"/>
 
-                                <div id="editor" class="block mt-1 w-full"
+                                <div id="editor" class="block mt-1 w-full editor"
                                      style="height: 300px">{{ old('description') }}</div>
 
                                 <input type="hidden" name="description" id="description"
@@ -683,19 +686,32 @@
             // ['clean']                                         // remove formatting button
         ];
         <!-- Initialize Quill editor with advance -->
-        var quill = new Quill('#editor', {
-            theme: 'snow',
-            modules: {
-                toolbar: toolbarOptions,
-            }
+        // Select all elements with the class 'editor'
+        var editors = document.querySelectorAll('.editor');
+        // Loop through each element and initialize Quill
+        editors.forEach(function(editor) {
+            new Quill(editor, {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions,
+                }
+            });
         });
 
-        const oldValue = document.querySelector('input[name="description"]').value;
-        quill.root.innerHTML = oldValue; // Set Quill editor content to old value
+        const oldValueLong = document.querySelector('input[name="description"]').value;
+        quill.root.innerHTML = oldValueLong; // Set Quill editor content to old value
         // Update the hidden input value before form submission
         document.querySelector('form').addEventListener('submit', function () {
             const fullDescriptionInput = document.querySelector('#description');
             fullDescriptionInput.value = quill.root.innerHTML; // Get the content from Quill editor
+        });
+
+        const oldValueShort = document.querySelector('input[name="short_description"]').value;
+        quill.root.innerHTML = oldValueShort; // Set Quill editor content to old value
+        // Update the hidden input value before form submission
+        document.querySelector('form').addEventListener('submit', function () {
+            const shortDescriptionInput = document.querySelector('#short_description');
+            shortDescriptionInput.value = quill.root.innerHTML; // Get the content from Quill editor
         });
     </script>
 </x-app-layout>

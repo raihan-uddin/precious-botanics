@@ -126,11 +126,13 @@
                                 </div>
                             </div>
 
-                            <!-- Short Description -->
+                             <!-- Short Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
-                                <x-textarea id="short_description" name="short_description" class="block mt-1 w-full"
-                                            :value="old('short_description', $product->short_description)"></x-textarea>
+                                <div id="editor1" class="block mt-1 w-full editor" style="height: 300px">
+                                    {!! old('short_description', $product->short_description) !!}
+                                </div>
+                                <input type="hidden" name="description" id="description">
                                 @error('short_description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -141,7 +143,7 @@
                             <!-- Full Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
                                 <x-input-label for="description" :value="__('Full Description')"/>
-                                <div id="editor" class="block mt-1 w-full" style="height: 300px">
+                                <div id="editor" class="block mt-1 w-full editor" style="height: 300px">
                                     {!! old('description', $product->description) !!}
                                 </div>
                                 <input type="hidden" name="description" id="description">
@@ -737,11 +739,17 @@
             // ['clean']                                         // remove formatting button
         ];
         <!-- Initialize Quill editor with advance -->
-        var quill = new Quill('#editor', {
-            theme: 'snow',
-            modules: {
-                toolbar: toolbarOptions,
-            }
+
+        // Select all elements with the class 'editor'
+        var editors = document.querySelectorAll('.editor');
+        // Loop through each element and initialize Quill
+        editors.forEach(function(editor) {
+            new Quill(editor, {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions,
+                }
+            });
         });
     </script>
 
