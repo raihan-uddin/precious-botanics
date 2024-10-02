@@ -126,7 +126,7 @@
                                 </div>
                             </div>
 
-                             <!-- Short Description (Quill WYSIWYG Editor) -->
+                            <!-- Short Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
                                 <div id="editor1" class="block mt-1 w-full editor" style="height: 300px">
@@ -475,12 +475,22 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                 @enderror
-                                <!-- Preview Additional Images -->
-                                <div id="oldAdditionalImagesPreview" class="mt-4">
+
+                                <!-- Existing Images Preview -->
+                                <div id="oldAdditionalImagesPreview" class="mt-4 flex flex-wrap">
                                     @foreach($product->images as $image)
-                                        <div class="w-32 h-32 object-cover rounded-md inline-block mr-2">
+                                        <div class="image-container w-32 h-32 relative mr-2 mb-2 group">
                                             <img src="{{ $image->image_url }}" alt="{{ $product->name }}"
-                                                 class="w-32 h-32 object-cover rounded-md">
+                                                 class="w-full h-full object-cover rounded-md transition-transform duration-200 group-hover:scale-105">
+                                            <button
+                                                class="remove-image absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full p-2 shadow-md hover:bg-red-700 transition duration-200 opacity-0 group-hover:opacity-100"
+                                                onclick="removeImage(this)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                </svg>
+                                            </button>
                                         </div>
                                     @endforeach
                                 </div>
@@ -743,7 +753,7 @@
         // Select all elements with the class 'editor'
         var editors = document.querySelectorAll('.editor');
         // Loop through each element and initialize Quill
-        editors.forEach(function(editor) {
+        editors.forEach(function (editor) {
             new Quill(editor, {
                 theme: 'snow',
                 modules: {
