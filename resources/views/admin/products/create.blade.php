@@ -512,7 +512,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create Product</button>
+                        <div class="flex items center justify-end mt-4">
+                            <x-button>{{ __('Create Product') }}</x-button>
+                        </div>
                     </form>
 
                 </div>
