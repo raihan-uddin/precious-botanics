@@ -35,7 +35,17 @@
 
                         <div class="mb-4">
                             <label for="image" class="block text-sm font-medium text-gray-700">{{ __('Image') }}</label>
-                            <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="previewImage(event)" />
+                        </div>
+
+                        <!-- Image Preview -->
+                        <div id="image-preview-container" class="mb-4 hidden">
+                            <div class="relative">
+                                <img id="image-preview" src="" alt="Image Preview" class="w-full h-auto rounded-md border border-gray-300">
+                                <button type="button" class="absolute top-0 right-0 bg-red-600 text-white rounded-full p-2 focus:outline-none" onclick="removeImage()">
+                                    &times;
+                                </button>
+                            </div>
                         </div>
 
                         <div class="mb-4">
@@ -51,7 +61,6 @@
                                 <option value="banner" {{ old('section') == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section') == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section') == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                                <!-- Add more sections as needed -->
                             </select>
                         </div>
 
@@ -62,7 +71,7 @@
 
                         <div class="mb-4">
                             <label for="is_active" class="flex items-center">
-                                <input type="hidden" name="is_active" value="0"> <!-- This ensures the value is sent as false when unchecked -->
+                                <input type="hidden" name="is_active" value="0">
                                 <input type="checkbox" id="is_active" name="is_active" value="1" class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500" {{ old('is_active') ? 'checked' : '' }}>
                                 <span class="ml-2 text-sm text-gray-700">{{ __('Active') }}</span>
                             </label>
@@ -81,5 +90,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var previewContainer = document.getElementById('image-preview-container');
+            var previewImage = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.classList.remove('hidden');  // Show preview container
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeImage() {
+            var input = document.getElementById('image');
+            var previewContainer = document.getElementById('image-preview-container');
+            var previewImage = document.getElementById('image-preview');
+
+            input.value = '';  // Clear the input value
+            previewImage.src = '';  // Remove image preview
+            previewContainer.classList.add('hidden');  // Hide preview container
+        }
+    </script>
 
 </x-app-layout>
