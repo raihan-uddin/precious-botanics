@@ -30,7 +30,7 @@
 
                         <div class="mb-4">
                             <x-input-label for="title" :value="__('Title')"/>
-                            <x-input id="title" class="block mt-1 w-full" type="text" name="name"
+                            <x-input id="title" class="block mt-1 w-full" type="text" name="title"
                                 :value="old('title')" required autofocus/>
                             @error('title')
                             <span class="text-red-600 text-sm" role="alert">
