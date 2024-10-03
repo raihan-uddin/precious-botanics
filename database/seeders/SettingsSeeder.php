@@ -39,6 +39,39 @@ class SettingsSeeder extends Seeder
             ['key' => 'site_telegram', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_snapchat', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_tiktok', 'value' => 'https://www.tiktok.com/@preciousbotanic', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            // Google ReCapcha *
+            ['key' => 'capcha', 'value' => 0, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'recaptcha_site_key', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'recaptcha_secret_key', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+
+            // Cookie
+            ['key' => 'cookie', 'value' => 1, 'type', 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_message', 'value' => 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_button', 'value' => 'Accept', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_policy', 'value' => 'Privacy Policy', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_link', 'value' => 'privacy-policy', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_position', 'value' => 'bottom', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_expire', 'value' => 365, 'type' => 'number', 'created_at' => now(), 'updated_at' => now()],
+
+            // Control Home Page
+            // show slider
+            ['key' => 'show_slider', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show featured products
+            ['key' => 'show_featured_products', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show latest products
+            ['key' => 'show_latest_products', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show popular products
+            ['key' => 'show_popular_products', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show best selling products
+            ['key' => 'show_best_selling_products', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show blog
+            ['key' => 'show_blog', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show featured categories
+            ['key' => 'show_featured_categories', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            // show testimonials
+            ['key' => 'show_testimonials', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            
+
         ]);
     }
 }
