@@ -42,12 +42,12 @@
                                 <template x-if="type === 'boolean'">
                                     <div class="flex items-center space-x-4">
                                         <div class="flex items-center">
-                                            <input type="radio" id="yes" name="value" value="yes" x-model="value"
+                                            <input type="radio" id="yes" name="value" value="1" x-model="value"
                                                 class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
                                             <label for="yes" class="ml-2 block text-sm text-gray-700">Yes</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="radio" id="no" name="value" value="no" x-model="value"
+                                            <input type="radio" id="no" name="value" value="0" x-model="value"
                                                 class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
                                             <label for="no" class="ml-2 block text-sm text-gray-700">No</label>
                                         </div>

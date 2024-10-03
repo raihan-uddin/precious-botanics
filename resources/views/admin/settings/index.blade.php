@@ -47,8 +47,8 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -56,6 +56,7 @@
                             @foreach($settings as $setting)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $setting->key }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $setting->type }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if($setting->type === 'file')
                                             <a href="{{ asset('storage/' . $setting->value) }}" target="_blank" class="text-blue-600 hover:underline">Preview</a>
@@ -67,11 +68,12 @@
                                                     @click="showModal = true; imageUrl = '{{ asset($setting->value) }}'"
                                                 >
                                             </div>
+                                        @elseif ($setting->type === 'boolean')
+                                                {{ $setting->value ? 'Yes' : 'No' }}
                                         @else
                                             {{ \Illuminate\Support\Str::limit($setting->value, 30, '...') }}
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $setting->type }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('settings.edit', $setting->id) }}" class="text-blue-600 hover:underline">Edit</a>
                                         <span class="mx-2">|</span>
