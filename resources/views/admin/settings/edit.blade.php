@@ -50,7 +50,7 @@
                             <label for="value" class="block text-sm font-medium text-gray-700">Value</label>
                             <div id="value-input">
                                 <template x-if="type === 'text' || type === 'email' || type === 'number'">
-                                    <input :type="type" id="value" name="value" x-model="value" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                    <input :type="type" id="value" name="value" x-model="value"  step="any" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                 </template>
 
                                 <template x-if="type === 'file'">
