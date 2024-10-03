@@ -79,9 +79,14 @@
 
                                 <!-- Vendor -->
                                 <div class="mb-4">
-                                    <x-input-label for="vendor" :value="__('Vendor')"/>
-                                    <x-input id="vendor" name="vendor" class="block mt-1 w-full" type="text"
-                                             :value="old('vendor', $product->vendor)"/>
+                                    <x-input-label for="vendor_id" :value="__('Vendor')"/>
+                                    <x-select id="vendor_id" name="vendor_id" class="block mt-1 w-full" required>
+                                        <option value="" disabled>{{ __('Select Vendor') }}</option>
+                                        @foreach($vendors as $vendor)
+                                            <option
+                                                value="{{ $vendor->id }}" {{ old('vendor_id', $product->vendor_id) == $vendor->id ? 'selected' : '' }}>{{ $vendor->name }}</option>
+                                        @endforeach
+                                    </x-select>
                                     @error('vendor')
                                     <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -482,7 +487,7 @@
                                         <div class="image-container w-32 h-32 relative mr-2 mb-2 group">
                                             <img src="{{ $image->image_url }}" alt="{{ $product->name }}"
                                                  class="w-full h-full object-cover rounded-md transition-transform duration-200 group-hover:scale-105">
-                                            <button
+                                            <button type="button"
                                                 class="remove-image absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full p-2 shadow-md hover:bg-red-700 transition duration-200 opacity-0 group-hover:opacity-100"
                                                 data-image-id="{{ $image->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
@@ -663,6 +668,36 @@
             });
         });
 
+
+        // gallery images remove
+        $(document).ready(function() {
+            // Event listener for the remove button
+            $('.remove-image').click(function() {
+                var imageId = $(this).data('image-id'); // Get the image ID from the button data attribute
+                var $imageContainer = $(this).closest('.image-container'); // Get the image container
+
+                // AJAX call to remove the image from the database
+                $.ajax({
+                    url: '{{ route("remove.image") }}', 
+                    type: 'POST', // Use the appropriate HTTP method
+                    data: {
+                        image_id: imageId,
+                        _token: '{{ csrf_token() }}' // Include CSRF token if necessary
+                    },
+                    success: function(response) {
+                        // On success, remove the image container from the DOM
+                        $imageContainer.remove();
+                        alert('Image removed successfully!');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error removing image:', error);
+                        alert('Failed to remove the image.');
+                    }
+                });
+            });
+        });
+
+
         $(document).ready(function () {
             $('#addVariant').click(function () {
                 // Get values from the input fields
@@ -724,34 +759,6 @@
                 if ($('#variantsPreview').children().length === 0) {
                     $('#variantsPreview').addClass('hidden');
                 }
-            });
-        });
-
-        // gallery images remove
-        $(document).ready(function() {
-            // Event listener for the remove button
-            $('.remove-image').click(function() {
-                var imageId = $(this).data('image-id'); // Get the image ID from the button data attribute
-                var $imageContainer = $(this).closest('.image-container'); // Get the image container
-
-                // AJAX call to remove the image from the database
-                $.ajax({
-                    url: '{{ route("remove.image") }}', 
-                    type: 'POST', // Use the appropriate HTTP method
-                    data: {
-                        image_id: imageId,
-                        _token: '{{ csrf_token() }}' // Include CSRF token if necessary
-                    },
-                    success: function(response) {
-                        // On success, remove the image container from the DOM
-                        $imageContainer.remove();
-                        alert('Image removed successfully!');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error removing image:', error);
-                        alert('Failed to remove the image.');
-                    }
-                });
             });
         });
 

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Tag;
 use App\Models\Variant;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -88,9 +89,10 @@ class ProductController extends Controller
         // get the list of tags in alphabetical order
         $tags = Tag::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
+        $vendors = Vendor::orderBy('name')->get();
         $pageTitle = 'Create Product';
 
-        return view('admin.products.create', compact('pageTitle', 'tags', 'categories'));
+        return view('admin.products.create', compact('pageTitle', 'tags', 'categories', 'vendors'));
     }
 
     /**
@@ -129,8 +131,8 @@ class ProductController extends Controller
             'is_digital' => 'nullable|boolean',
             //  status: 'draft', 'published', 'archived'
             'status' => 'required|string|in:draft,published,archived',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             // Product variants [size][], color, price, sku, stock
             'variants' => 'nullable|array',
         ]);
@@ -241,7 +243,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         // Fetch the product
-        $product = Product::with('tags', 'images', 'tags', 'categories', 'variants')->findOrFail($id);
+        $product = Product::with('tags', 'images', 'tags', 'categories', 'variants', 'vendor')->findOrFail($id);
 
         $pageTitle = 'Product Details: '.$product->name;
 
@@ -254,15 +256,16 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         // Eager load the tags, images, and categories
-        $product->load('tags', 'images', 'categories', 'variants');
+        $product->load('tags', 'images', 'categories', 'variants', 'vendor');
 
         // get the list of tags in alphabetical order
         $tags = Tag::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
+        $vendors = Vendor::orderBy('name')->get();
 
         $pageTitle = 'Edit Product: '.$product->name;
 
-        return view('admin.products.edit', compact('product', 'pageTitle', 'tags', 'categories'));
+        return view('admin.products.edit', compact('product', 'pageTitle', 'tags', 'categories', 'vendors'));
     }
 
     /**
@@ -300,8 +303,8 @@ class ProductController extends Controller
             'is_digital' => 'nullable|boolean',
             //  status: 'draft', 'published', 'archived'
             'status' => 'required|string|in:draft,published,archived',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             // Product variants [size][], color, price, sku, stock
             'variants' => 'nullable|array',
         ]);
@@ -418,7 +421,7 @@ class ProductController extends Controller
     public function removeGalleryImage(Request $request)
     {
         $request->validate([
-            'image_id' => 'required|exists:images,id',
+            'image_id' => 'required|exists:product_images,id',
         ]);
 
         $image = ProductImage::find($request->image_id);

@@ -81,8 +81,15 @@
                                 <!-- Vendor -->
                                 <div class="mb-4">
                                     <x-input-label for="vendor" :value="__('Vendor')"/>
-                                    <x-input id="vendor" name="vendor" class="block mt-1 w-full" type="text"
-                                             value="{{ old('sku') }}"/>
+                                    <x-select id="vendor_id" name="vendor_id" class="block mt-1 w-full">
+                                        <option value=""  selected>{{ __('Select Vendor') }}</option>
+                                        @foreach($vendors as $vendor)
+                                            <option
+                                                value="{{ $vendor->id }}" {{ old('vendor_id') == $vendor->id ? 'selected' : '' }}>
+                                                {{ $vendor->name }}
+                                            </option>
+                                        @endforeach
+                                    </x-select>
                                     @error('vendor')
                                     <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $message }}</strong>

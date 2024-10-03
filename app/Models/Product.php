@@ -53,6 +53,7 @@ class Product extends Model
         'meta_title',
         'meta_description',
         'meta_keywords',
+        'vendor_id',
     ];
 
     /**
@@ -87,6 +88,12 @@ class Product extends Model
     {
         return $this->HasMany(Variant::class, 'product_id', 'id');
     }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
+
 
     // public function reviews()
     // {

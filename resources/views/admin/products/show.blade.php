@@ -36,7 +36,7 @@
                                 <strong>Slug:</strong> <span>{{ $product->slug }}</span>
                             </div>
                             <div class="mb-2">
-                                <strong>Vendor:</strong> <span>{{ $product->vendor }}</span>
+                                <strong>Vendor:</strong> <span>{{ $product->vendor ? $product->vendor->name : 'N/A'}}</span>
                             </div>
                             <div class="mb-2">
                                 <strong>SKU:</strong> <span>{{ $product->sku }}</span>
