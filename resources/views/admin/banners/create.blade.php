@@ -40,6 +40,22 @@
                         </div>
 
                         <div class="mb-4">
+                            <x-input-label for="section" :value="__('Section')"/>
+                            <x-select id="section" name="section" class="w-full" required>
+                                <option value="" disabled selected>{{ __('Select Section') }}</option>
+                                <option value="slider" {{ old('section') == 'slider' ? 'selected' : '' }}>{{ __('Slider') }}</option>
+                                <option value="banner" {{ old('section') == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
+                                <option value="footer" {{ old('section') == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
+                                <option value="sidebar" {{ old('section') == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
+                            </x-select>
+                            @error('section')
+                            <span class="text-red-600 text-sm" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
                             <x-input-label for="image" :value="__('Banner image')"/>
                             <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="previewImage(event)" />
                             @error('image')
@@ -69,22 +85,6 @@
                             <x-input id="link" class="block mt-1 w-full" type="url" name="link"
                                 :value="old('link')"/>
                             @error('link')
-                            <span class="text-red-600 text-sm" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <x-input-label for="section" :value="__('Section')"/>
-                            <x-select id="section" name="section" class="w-full" required>
-                                <option value="" disabled selected>{{ __('Select Section') }}</option>
-                                <option value="slider" {{ old('section') == 'slider' ? 'selected' : '' }}>{{ __('Slider') }}</option>
-                                <option value="banner" {{ old('section') == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
-                                <option value="footer" {{ old('section') == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
-                                <option value="sidebar" {{ old('section') == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                            </x-select>
-                            @error('section')
                             <span class="text-red-600 text-sm" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
