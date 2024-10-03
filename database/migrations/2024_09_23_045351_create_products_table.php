@@ -21,7 +21,6 @@ return new class extends Migration
             // vendor
             $table->string('vendor')->nullable();
 
-            
             // Pricing and Taxation
             $table->decimal('price', 10, 2); // Default price, could be overridden by variants
             $table->decimal('discount_price', 10, 2)->nullable(); // Discount price
@@ -35,7 +34,6 @@ return new class extends Migration
             $table->unsignedInteger('low_stock_threshold')->nullable(); // Low stock notification threshold
             $table->unsignedInteger('min_order_quantity')->nullable(); // Minimum quantity allowed for an order
             $table->unsignedInteger('max_order_quantity')->nullable(); // Maximum quantity allowed for an order
-            
 
             // Additional metadata
             $table->string('barcode')->nullable(); // Barcode if applicable
@@ -43,12 +41,11 @@ return new class extends Migration
             $table->decimal('length', 8, 2)->nullable(); // Dimensions
             $table->decimal('width', 8, 2)->nullable();
             $table->decimal('height', 8, 2)->nullable();
-            
+
             // Product visibility options
             $table->boolean('is_featured')->default(false); // Featured product
             $table->boolean('is_visible')->default(true); // Whether the product is visible in listings
             $table->boolean('is_digital')->default(false); // Is it a digital product?
-
 
             // Product status: draft, published, archived, etc.
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft'); // Status management
@@ -64,10 +61,10 @@ return new class extends Migration
             // Promotions
             $table->boolean('is_on_promotion')->default(false); // Promotion flag
             $table->json('promotion_details')->nullable(); // Store details like banner text, expiration date
-            
+
             $table->string('featured_image')->nullable(); // Primary product image
 
-             // SEO Fields
+            // SEO Fields
             $table->string('meta_title')->nullable(); // Meta title for SEO
             $table->text('meta_description')->nullable(); // Meta description for SEO
             $table->string('meta_keywords')->nullable(); // Meta keywords for SEO

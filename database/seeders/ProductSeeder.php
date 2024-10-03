@@ -2,23 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
-use Illuminate\Support\Str;
 use App\Models\Category;
-use App\Models\Tag;
-use App\Models\Attribute;
 use App\Models\Image;
-use App\Models\Variation;
 use App\Models\Product;
-use App\Models\ProductVariation;
 use App\Models\ProductImage;
+use App\Models\Tag;
 use App\Models\Variant;
-use PhpOffice\PhpSpreadsheet\IOFactory;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ProductSeeder extends Seeder
 {
@@ -41,26 +36,27 @@ class ProductSeeder extends Seeder
             $productTitle = $row['A'];
             if (in_array($productTitle, $productsAlreadyCreated)) {
                 info("{$key}. Product already created: {$productTitle}");
+
                 continue;
             }
             info("{$key}. Creating product: {$productTitle}");
             // Parse categories, tags, images, and variants from JSON-like strings
             // categories: ["category1", "category2"]
-            $categoriesString = str_replace("'", '"', trim($row['E'], "[]"));
+            $categoriesString = str_replace("'", '"', trim($row['E'], '[]'));
             $categories = json_decode("[$categoriesString]", true);
-            
+
             // tags: ["tag1", "tag2"]
-            $tagsString = str_replace("'", '"', trim($row['F'], "[]"));
+            $tagsString = str_replace("'", '"', trim($row['F'], '[]'));
             $tags = json_decode("[$tagsString]", true);
 
             // images: ["image1.jpg", "image2.jpg"]
-            $imagesString = str_replace("'", '"', trim($row['K'], "[]"));
+            $imagesString = str_replace("'", '"', trim($row['K'], '[]'));
             $images = json_decode("[$imagesString]", true);
-            
+
             // variants: [{'title': '8 oz', 'sku': 'WSB-AE-8-01', 'public_title': '8 oz', 'options': ['8 oz'], 'price': '11.99', 'weight': 227}, {'title': '12 oz', 'sku': 'WSB-AE-12-01', 'public_title': '12 oz', 'options': ['12 oz'], 'price': '14.99', 'weight': 340}]
-            $variantsString = str_replace("'", '"', trim($row['J'], "[]"));
+            $variantsString = str_replace("'", '"', trim($row['J'], '[]'));
             $variants = json_decode("[$variantsString]", true);
-        
+
             $featuredImagePath = $this->downloadImage($row['L'], $productTitle, 'featured');
             // Create the product
             $product = Product::create([
@@ -78,11 +74,11 @@ class ProductSeeder extends Seeder
                 'meta_description' => preg_replace('/[^A-Za-z0-9 ,\.\-_]/', '', $row['B']),
                 // generate meta_keywords from $productTitle,  $categories, $tags must be unique and separated by comma
                 'meta_keywords' => implode(',', array_unique(array_merge([$productTitle], $categories, $tags))),
-                'featured_image' => $featuredImagePath
+                'featured_image' => $featuredImagePath,
             ]);
 
             // Attach categories
-            if(!empty($categories)) {
+            if (! empty($categories)) {
                 foreach ($categories as $category) {
                     $categoryModel = Category::firstOrCreate(['name' => $category, 'slug' => Str::slug($category)]);
                     $product->categories()->attach($categoryModel);
@@ -90,7 +86,7 @@ class ProductSeeder extends Seeder
             }
 
             // Attach tags
-            if(!empty($tags)){
+            if (! empty($tags)) {
                 foreach ($tags as $tag) {
                     $tagModel = Tag::firstOrCreate(['name' => $tag, 'slug' => Str::slug($tag)]);
                     $product->tags()->attach($tagModel);
@@ -98,7 +94,7 @@ class ProductSeeder extends Seeder
             }
 
             // Download product images and save to `product_images`
-            if(!empty($images)) {
+            if (! empty($images)) {
                 info("Downloading multiple images for {$productTitle}");
                 foreach ($images as $image) {
                     $imagePath = $this->downloadImage($image, $productTitle, 'product');
@@ -114,7 +110,7 @@ class ProductSeeder extends Seeder
             }
 
             // Handle and save variants
-            if(!empty($variants)) {
+            if (! empty($variants)) {
                 foreach ($variants as $variant) {
                     Variant::create([
                         'product_id' => $product->id,
@@ -137,7 +133,9 @@ class ProductSeeder extends Seeder
     // Function to download image and store it in the local storage
     private function downloadImage($url, $productName, $type)
     {
-        if (!$url) return null;
+        if (! $url) {
+            return null;
+        }
 
         try {
             // Retry the download 3 times with a 200ms delay between attempts
@@ -151,32 +149,31 @@ class ProductSeeder extends Seeder
                     $extension = $this->getExtensionFromResponse($response);
 
                     if ($extension) {
-                        $imageName = Str::slug($productName) . '-' . $type . '-' . time() . '.' . $extension;
-                        $imagePath = 'products/' . $imageName;
+                        $imageName = Str::slug($productName).'-'.$type.'-'.time().'.'.$extension;
+                        $imagePath = 'products/'.$imageName;
 
                         // Store the image in the public disk
                         Storage::disk('public')->put($imagePath, $response->body());
 
                         Log::info("Image successfully downloaded and saved to {$imagePath}");
-                        
+
                         return $imagePath;  // Return the stored image path for database reference
                     } else {
                         Log::warning("Failed to determine file extension for the image from {$url}");
                     }
                 } else {
-                    Log::error("Failed to download image from {$url}. Status code: " . $response->status());
+                    Log::error("Failed to download image from {$url}. Status code: ".$response->status());
                 }
 
                 return null;
             }, 200);  // 200ms delay between retries
 
         } catch (\Exception $e) {
-            Log::error("Failed to download image from {$url}. Error: " . $e->getMessage());
+            Log::error("Failed to download image from {$url}. Error: ".$e->getMessage());
+
             return null;
         }
     }
-
-
 
     // Function to extract the image extension from the response headers
     private function getExtensionFromResponse($response)
@@ -195,5 +192,4 @@ class ProductSeeder extends Seeder
 
         return $extensionMap[$mimeType] ?? null;
     }
-
 }

@@ -33,5 +33,4 @@ class CategoryMenu extends Model
     {
         return $query->where('menu_id', $menuId)->where('submenu_id', $submenuId);
     }
-
 }

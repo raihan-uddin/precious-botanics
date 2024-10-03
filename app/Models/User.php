@@ -47,8 +47,6 @@ class User extends Authenticatable
 
     /**
      * Get the user's full name.
-     *
-     * @return string
      */
     public function getFullNameAttribute(): string
     {
@@ -57,19 +55,14 @@ class User extends Authenticatable
 
     /**
      * Get the user's first name.
-     *
-     * @return string
      */
     public function getFirstNameAttribute(): string
     {
         return explode(' ', $this->name)[0];
     }
 
-
     /**
      * Get the user's last name.
-     *
-     * @return string
      */
     public function getLastNameAttribute(): string
     {
@@ -78,13 +71,11 @@ class User extends Authenticatable
 
     /**
      * Get the user's initials.
-     *
-     * @return string
      */
     public function getInitialsAttribute(): string
     {
         $name = explode(' ', $this->name);
-        return strtoupper($name[0][0] . $name[1][0]);
+
+        return strtoupper($name[0][0].$name[1][0]);
     }
-    
 }

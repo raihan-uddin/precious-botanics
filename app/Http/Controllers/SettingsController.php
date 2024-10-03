@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Helpers\SettingsHelper;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
-use App\Helpers\SettingsHelper; // Add this line to import SettingsHelper
+use Illuminate\Support\Facades\Storage; // Add this line to import SettingsHelper
 
 class SettingsController extends Controller
 {
@@ -19,6 +17,7 @@ class SettingsController extends Controller
         // Get all settings for the view
         $settings = Setting::all();
         $pageTitle = 'Settings';
+
         return view('admin.settings.index', compact('settings', 'pageTitle'));
     }
 
@@ -28,6 +27,7 @@ class SettingsController extends Controller
     public function create()
     {
         $pageTitle = 'Create Setting';
+
         return view('admin.settings.create', compact('pageTitle'));
     }
 
@@ -42,7 +42,7 @@ class SettingsController extends Controller
             'type' => 'required|string',
         ]);
 
-        $setting = new Setting();
+        $setting = new Setting;
         $setting->key = $request->key;
         $setting->type = $request->type;
 
@@ -76,7 +76,8 @@ class SettingsController extends Controller
     public function edit($id)
     {
         $setting = Setting::findOrFail($id);
-        $pageTitle = 'Edit Setting: ' . $setting->key;
+        $pageTitle = 'Edit Setting: '.$setting->key;
+
         return view('admin.settings.edit', compact('setting', 'pageTitle'));
     }
 
@@ -95,8 +96,8 @@ class SettingsController extends Controller
         // Handle file uploads
         if ($request->type === 'file' && $request->hasFile('value')) {
             // Debugging line to check if file is received
-            info('File received: ' . $request->file('value')->getClientOriginalName());
-            
+            info('File received: '.$request->file('value')->getClientOriginalName());
+
             // Delete the old file if it exists
             if ($setting->value && Storage::exists($setting->value)) {
                 Storage::delete($setting->value);
@@ -115,7 +116,6 @@ class SettingsController extends Controller
 
         return response()->json(['message' => 'Setting updated successfully!'], 200);
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -136,6 +136,4 @@ class SettingsController extends Controller
 
         return redirect()->route('settings.index')->with('success', 'Setting deleted successfully!');
     }
-    
-
 }

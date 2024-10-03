@@ -20,8 +20,8 @@ return new class extends Migration
             // Nullable columns for guest orders (if applicable)
             $table->string('guest_email')->nullable();
             $table->string('guest_name')->nullable();
-            $table->string('guest_phone')->nullable(); 
-            
+            $table->string('guest_phone')->nullable();
+
             // Payment information
             $table->string('payment_status')->default('pending'); // pending, paid, failed, etc.
             $table->string('payment_method')->nullable(); // Credit card, PayPal, etc.
@@ -49,11 +49,10 @@ return new class extends Migration
             $table->string('coupon_code')->nullable(); // Code applied to the order
             $table->decimal('discount_amount', 15, 2)->default(0.00); // Total discount applied to the order
 
-
             // Order details
             $table->integer('total_items')->default(0);
             $table->decimal('subtotal', 15, 2)->comment('Total cost before taxes, shipping etc.'); // Total cost before taxes, shipping, delivery fees, etc.
-            
+
             $table->decimal('shipping_cost', 15, 2)->default(0.00)->comment('Shipping cost');
             $table->decimal('total', 15, 2)->comment('Subtotal + tax + shipping');  // Final total after tax and shipping
             $table->string('currency')->default('USD'); // Currency code (USD, EUR, etc.)
@@ -80,13 +79,9 @@ return new class extends Migration
             $table->boolean('is_gift')->default(false); // If the order is marked as a gift
             $table->json('gift_message')->nullable(); // Optional message if the order is a gift
 
-
             // Audit columns
             $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
-            
-
-
 
             // Soft deletes for orders
             $table->softDeletes();

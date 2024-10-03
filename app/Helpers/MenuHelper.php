@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 
-if (!function_exists('getMenuCategories')) {
+if (! function_exists('getMenuCategories')) {
     function getMenuCategories()
     {
         return Cache::rememberForever('menu_categories', function () {

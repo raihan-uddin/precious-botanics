@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -15,7 +15,7 @@ class TagController extends Controller
         $search = $request->input('search');
         $tags = Tag::when($search, function ($query) use ($search) {
             return $query->where('name', 'like', "%{$search}%")
-                         ->orWhere('slug', 'like', "%{$search}%");
+                ->orWhere('slug', 'like', "%{$search}%");
         })->orderBy('name')->paginate(50)->withQueryString();
 
         $pageTitle = 'Tags';
@@ -29,6 +29,7 @@ class TagController extends Controller
     public function create()
     {
         $pageTitle = 'Create Tag';
+
         return view('admin.tags.create', compact('pageTitle'));
     }
 
@@ -61,7 +62,8 @@ class TagController extends Controller
     public function edit(Tag $tag)
     {
         // page title with tag name
-        $pageTitle = 'Edit Tag: ' . $tag->name;
+        $pageTitle = 'Edit Tag: '.$tag->name;
+
         return view('admin.tags.edit', compact('tag', 'pageTitle'));
     }
 
@@ -71,8 +73,8 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
-            'name' => 'required|max:255|unique:tags,name,' . $tag->id,
-            'slug' => 'required|max:255|unique:tags,slug,' . $tag->id,
+            'name' => 'required|max:255|unique:tags,name,'.$tag->id,
+            'slug' => 'required|max:255|unique:tags,slug,'.$tag->id,
         ]);
 
         $tag->update($request->all());

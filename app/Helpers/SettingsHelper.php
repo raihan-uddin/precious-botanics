@@ -11,6 +11,7 @@ class SettingsHelper
     {
         return Cache::remember("settings.$key", now()->addMinutes(60), function () use ($key) {
             $setting = Setting::where('key', $key)->first();
+
             return $setting ? $setting->value : null;
         }) ?? $default;
     }

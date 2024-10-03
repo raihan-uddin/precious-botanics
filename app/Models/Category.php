@@ -48,7 +48,6 @@ class Category extends Model
         return $this->belongsToMany(Product::class, 'product_categories');
     }
 
-
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
@@ -129,7 +128,6 @@ class Category extends Model
         return $query->where('deleted_by', $userId);
     }
 
-
     public function scopeSearch($query, $search)
     {
         return $query->where('name', 'like', "%$search%")
@@ -145,5 +143,4 @@ class Category extends Model
     {
         return $query->where('menu_id', $menuId)->where('submenu_id', $submenuId);
     }
-    
 }

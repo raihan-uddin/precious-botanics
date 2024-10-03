@@ -30,7 +30,7 @@ class ProductImage extends Model
 
     public function getImageUrlAttribute()
     {
-        return asset('storage/' . $this->image_path);
+        return asset('storage/'.$this->image_path);
     }
 
     public function getCaptionAttribute($value)

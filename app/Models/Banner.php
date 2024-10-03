@@ -11,14 +11,14 @@ class Banner extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title', 
-        'image', 
-        'link', 
-        'section', 
-        'order_column', 
-        'is_active', 
-        'created_by', 
-        'updated_by', 
-        'deleted_by'
+        'title',
+        'image',
+        'link',
+        'section',
+        'order_column',
+        'is_active',
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 }

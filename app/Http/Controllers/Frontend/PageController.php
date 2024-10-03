@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Banner;
 use App\Models\Category; // Add this line
 use App\Models\Product;  // Add this line
-use App\Models\Banner;   // Add this line
-use App\Models\Tag;      // Add this line
+use App\Models\Tag;   // Add this line
+use Illuminate\Http\Request;      // Add this line
 
 class PageController extends Controller
 {

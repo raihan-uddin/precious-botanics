@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -38,7 +37,6 @@ class CategorySeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
-
 
         $menu3 = DB::table('categories')->insertGetId([
             'name' => 'Body Products',
@@ -412,7 +410,6 @@ class CategorySeeder extends Seeder
             'updated_by' => 1,
         ]);
 
-
         $submenu27 = DB::table('categories')->insertGetId([
             'name' => 'Burning Oil',
             'slug' => Str::slug('Burning Oil'),
@@ -452,43 +449,40 @@ class CategorySeeder extends Seeder
         // Menu-Submenu relationship
 
         DB::table('category_menus')->insert([
-            ['menu_id' => $menu1, 'submenu_id' => $submenu1,],
-            ['menu_id' => $menu1, 'submenu_id' => $submenu2,],
+            ['menu_id' => $menu1, 'submenu_id' => $submenu1],
+            ['menu_id' => $menu1, 'submenu_id' => $submenu2],
 
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu3,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu4,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu5,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu6,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu7,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu8,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu9,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu10,],
-            ['menu_id' => $menu2, 'sub_menu_id' => $submenu11,],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu3],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu4],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu5],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu6],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu7],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu8],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu9],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu10],
+            ['menu_id' => $menu2, 'sub_menu_id' => $submenu11],
 
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu12],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu13],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu14],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu15],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu16],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu17],
+            ['menu_id' => $menu3, 'sub_menu_id' => $submenu18],
 
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu12,],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu13,],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu14,],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu15,],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu16,],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu17,],
-            ['menu_id' => $menu3, 'sub_menu_id' => $submenu18,],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu8],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu19],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu20],
+            ['menu_id' => $menu4, 'sub_menu_id' => $submenu21],
 
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu8,],
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu19,],
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu20,],
-            ['menu_id' => $menu4, 'sub_menu_id' => $submenu21,],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu22],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu23],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu24],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu25],
+            ['menu_id' => $menu5, 'sub_menu_id' => $submenu27],
 
-
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu22,],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu23,],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu24,],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu25,],
-            ['menu_id' => $menu5, 'sub_menu_id' => $submenu27,],
-
-
-            ['menu_id' => $menu6, 'sub_menu_id' => $submenu28,],
-            ['menu_id' => $menu6, 'sub_menu_id' => $submenu29,],
+            ['menu_id' => $menu6, 'sub_menu_id' => $submenu28],
+            ['menu_id' => $menu6, 'sub_menu_id' => $submenu29],
 
         ]);
     }

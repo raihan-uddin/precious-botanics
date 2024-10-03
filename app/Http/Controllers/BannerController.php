@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Banner;
+use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
@@ -13,7 +13,7 @@ class BannerController extends Controller
     public function index(Request $request)
     {
         // Fetch all banners with pagination and search functionality
-        $banners = Banner::when($request->search, function($query) use ($request) {
+        $banners = Banner::when($request->search, function ($query) use ($request) {
             return $query->where('title', 'like', "%{$request->search}%")
                 ->orWhere('description', 'like', "%{$request->search}%");
         })->orderBy('title')->paginate(10)->withQueryString();
@@ -29,6 +29,7 @@ class BannerController extends Controller
     public function create()
     {
         $pageTitle = 'Create Banner';
+
         return view('admin.banners.create', compact('pageTitle'));
     }
 
@@ -47,7 +48,7 @@ class BannerController extends Controller
         ]);
 
         try {
-            $banner = new Banner();
+            $banner = new Banner;
             $banner->title = $validated['title'] ?? null;
             if ($request->hasFile('image')) {
                 $banner->image = $request->file('image')->store('banners', 'public');
@@ -70,17 +71,18 @@ class BannerController extends Controller
      */
     public function show(Banner $banner)
     {
-        $pageTitle = 'Show Banner' . $banner->title;
+        $pageTitle = 'Show Banner'.$banner->title;
+
         return view('admin.banners.show', compact('pageTitle', 'banner'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Banner $banner)
     {
-        $pageTitle = 'Edit Banner: ' . $banner->title;
+        $pageTitle = 'Edit Banner: '.$banner->title;
+
         return view('admin.banners.edit', compact('pageTitle', 'banner'));
     }
 

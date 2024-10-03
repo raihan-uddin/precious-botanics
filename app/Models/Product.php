@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
@@ -73,7 +73,6 @@ class Product extends Model
         'is_on_promotion' => 'boolean',
     ];
 
-
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'product_categories');
@@ -86,7 +85,7 @@ class Product extends Model
 
     public function variants(): HasMany
     {
-        return $this->HasMany(Variant::class,  'product_id', 'id');
+        return $this->HasMany(Variant::class, 'product_id', 'id');
     }
 
     // public function reviews()
@@ -103,33 +102,29 @@ class Product extends Model
     // Accessor for full image URL
     public function getImageUrlAttribute()
     {
-        return $this->featured_image ? asset('storage/' . $this->featured_image) : null;
+        return $this->featured_image ? asset('storage/'.$this->featured_image) : null;
     }
-
 
     public function getGalleryImagesAttribute()
     {
         return $this->images->where('is_featured', false);
     }
 
-
-
     // Accessor to calculate the final price including tax
     public function getFinalPriceAttribute()
     {
-        return $this->is_taxable 
-            ? round($this->price * (1 + $this->tax_rate / 100), 2) 
+        return $this->is_taxable
+            ? round($this->price * (1 + $this->tax_rate / 100), 2)
             : $this->price;
     }
-    
+
     // Accessor to calculate discount percentage
     public function getDiscountPercentageAttribute()
     {
-        return $this->discount_price 
+        return $this->discount_price
             ? round((($this->price - $this->discount_price) / $this->price) * 100, 2)
             : 0;
     }
-
 
     /**
      * Scopes
@@ -151,7 +146,6 @@ class Product extends Model
     {
         return $query->where('is_visible', true);
     }
-
 
     /**
      * Custom Methods
@@ -180,5 +174,4 @@ class Product extends Model
     {
         return $this->allow_out_of_stock_orders;
     }
-
 }

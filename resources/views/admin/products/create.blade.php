@@ -430,7 +430,7 @@
                                 <x-input-label for="featured_image" :value="__('Product Featured Image')"/>
                                 <!-- Featured Image Input -->
                                 <input type="file" name="featured_image" id="featured_image" class="block mt-1 w-full"
-                                       accept="image/*">
+                                    accept="image/*">
                                 @error('featured_image')
                                 <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -449,7 +449,7 @@
                             <div class="mb-4">
                                 <label class="block text-gray-700">Additional Images</label>
                                 <input type="file" name="additional_images[]" id="additional_images"
-                                       class="block mt-1 w-full" accept="image/*" multiple>
+                                    class="block mt-1 w-full" accept="image/*" multiple>
                                 @error('additional_images')
                                 <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -470,27 +470,27 @@
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="size" :value="__('Size')"/>
                                             <x-input id="size" class="block mt-1 w-full" type="text"
-                                                     placeholder="Enter size"/>
+                                                    placeholder="Enter size"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="color" :value="__('Color')"/>
                                             <x-input id="color" class="block mt-1 w-full" type="text"
-                                                     placeholder="Enter color"/>
+                                                    placeholder="Enter color"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="variant_price" :value="__('Price')"/>
                                             <x-input id="variant_price" class="block mt-1 w-full" type="number"
-                                                     placeholder="Enter price"/>
+                                                    placeholder="Enter price"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="variant_sku" :value="__('SKU')"/>
                                             <x-input id="variant_sku" class="block mt-1 w-full" type="text"
-                                                     placeholder="Enter SKU"/>
+                                                    placeholder="Enter SKU"/>
                                         </div>
                                         <div class="flex-1 min-w-[150px] mb-4">
                                             <x-input-label for="stock" :value="__('Stock')"/>
                                             <x-input id="stock" class="block mt-1 w-full" type="number"
-                                                     placeholder="Enter stock"/>
+                                                    placeholder="Enter stock"/>
                                         </div>
                                         <div class="mb-4">
                                             <button type="button" id="addVariant"

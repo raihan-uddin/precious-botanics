@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\ProductVariation;
-use App\Models\Attribute;
-use App\Models\Tag;
 use App\Models\Category;
-use Illuminate\Support\Str;
+use App\Models\Product;
+use App\Models\Tag;
+use App\Models\Variant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Variant;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
     public function index(Request $request)
     {
         // Initialize the query
@@ -30,26 +26,26 @@ class ProductController extends Controller
             $filters = $request->get('filter');
 
             // Filter by name
-            if (!empty($filters['name'])) {
-                $query->where('name', 'like', '%' . $filters['name'] . '%');
+            if (! empty($filters['name'])) {
+                $query->where('name', 'like', '%'.$filters['name'].'%');
             }
 
             // Filter by price range (min and max)
-            if (!empty($filters['min_price'])) {
+            if (! empty($filters['min_price'])) {
                 $query->where('price', '>=', $filters['min_price']);
             }
 
-            if (!empty($filters['max_price'])) {
+            if (! empty($filters['max_price'])) {
                 $query->where('price', '<=', $filters['max_price']);
             }
 
             // Filter by status
-            if (!empty($filters['status'])) {
+            if (! empty($filters['status'])) {
                 $query->where('status', $filters['status']);
             }
 
             // Filter by category if applicable
-            if (!empty($filters['category'])) {
+            if (! empty($filters['category'])) {
                 $query->whereHas('categories', function ($query) use ($filters) {
                     $query->where('id', $filters['category']);
                 });
@@ -57,7 +53,7 @@ class ProductController extends Controller
         }
 
         // Sorting (optional)
-        if ($request->has('sort_by') && !empty($request->get('sort_by'))) {
+        if ($request->has('sort_by') && ! empty($request->get('sort_by'))) {
             $validSortColumns = ['name', 'price', 'created_at']; // Define valid columns for sorting
             $sortBy = $request->get('sort_by');
 
@@ -69,7 +65,6 @@ class ProductController extends Controller
         }
         // Get paginated results
         $products = $query->paginate(40);
-
 
         $pageTitle = 'Products';
 
@@ -84,7 +79,6 @@ class ProductController extends Controller
         ]);
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
@@ -94,13 +88,13 @@ class ProductController extends Controller
         $tags = Tag::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
         $pageTitle = 'Create Product';
+
         return view('admin.products.create', compact('pageTitle', 'tags', 'categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-
     public function store(Request $request)
     {
 
@@ -144,7 +138,7 @@ class ProductController extends Controller
             // start a transaction
             DB::beginTransaction();
             // Create the product
-            $product = new Product();
+            $product = new Product;
             $product->name = $request->name;
             $product->slug = $request->slug;
             $product->sku = $request->sku;
@@ -176,7 +170,7 @@ class ProductController extends Controller
             if ($request->hasFile('featured_image')) {
                 $product->featured_image = $request->file('featured_image')->store('featured', 'public');
             }
-            if(!$product->save()){
+            if (! $product->save()) {
                 // Rollback the transaction
                 DB::rollBack();
                 // Log the error
@@ -203,7 +197,7 @@ class ProductController extends Controller
             // Store product variants
             if ($request->has('variants')) {
                 foreach ($request->variants as $key => $variant) {
-                    $productVariant = new Variant();
+                    $productVariant = new Variant;
                     $productVariant->product_id = $product->id;
                     $productVariant->size = $variant['size'];
                     $productVariant->color = $variant['color'];
@@ -211,7 +205,7 @@ class ProductController extends Controller
                     $productVariant->sku = $variant['sku'];
                     $productVariant->stock = $variant['stock'];
 
-                    if(!$productVariant->save()){
+                    if (! $productVariant->save()) {
                         // Rollback the transaction
                         DB::rollBack();
                         // Log the error
@@ -233,13 +227,12 @@ class ProductController extends Controller
             DB::rollBack();
             // Log the error
             Log::error($e->getMessage());
+
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
 
-
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
-
 
     /**
      * Display the specified resource.
@@ -249,7 +242,7 @@ class ProductController extends Controller
         // Fetch the product
         $product = Product::with('tags', 'images', 'tags', 'categories', 'variants')->findOrFail($id);
 
-        $pageTitle = 'Product Details: ' . $product->name;
+        $pageTitle = 'Product Details: '.$product->name;
 
         return view('admin.products.show', compact('product', 'pageTitle'));
     }
@@ -266,7 +259,8 @@ class ProductController extends Controller
         $tags = Tag::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
 
-        $pageTitle = 'Edit Product: ' . $product->name;
+        $pageTitle = 'Edit Product: '.$product->name;
+
         return view('admin.products.edit', compact('product', 'pageTitle', 'tags', 'categories'));
     }
 
@@ -278,7 +272,7 @@ class ProductController extends Controller
         // Validate the input data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:products,slug,' . $product->id,
+            'slug' => 'required|string|unique:products,slug,'.$product->id,
             'sku' => 'nullable|string', //|unique:products,sku,' . $product->id,
             'vendor' => 'nullable|string',
             'categories' => 'required|array',
@@ -349,7 +343,7 @@ class ProductController extends Controller
                 Storage::disk('public')->delete($product->featured_image);
                 $product->featured_image = $request->file('featured_image')->store('featured', 'public');
             }
-            if(!$product->save()){
+            if (! $product->save()) {
                 // Rollback the transaction
                 DB::rollBack();
                 // Log the error
@@ -379,7 +373,7 @@ class ProductController extends Controller
                 $product->variants()->delete();
 
                 foreach ($request->variants as $key => $variant) {
-                    $productVariant = new Variant();
+                    $productVariant = new Variant;
                     $productVariant->product_id = $product->id;
                     $productVariant->size = $variant['size'];
                     $productVariant->color = $variant['color'];
@@ -387,7 +381,7 @@ class ProductController extends Controller
                     $productVariant->sku = $variant['sku'];
                     $productVariant->stock = $variant['stock'];
 
-                    if(!$productVariant->save()){
+                    if (! $productVariant->save()) {
                         // Rollback the transaction
                         DB::rollBack();
                         // Log the error
@@ -413,6 +407,7 @@ class ProductController extends Controller
     {
         try {
             $product->delete();
+
             return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

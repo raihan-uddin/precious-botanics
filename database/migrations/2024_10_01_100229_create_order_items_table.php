@@ -23,8 +23,8 @@ return new class extends Migration
             $table->decimal('subtotal', 15, 2); // Subtotal for the item (quantity * price)
             $table->decimal('discount', 15, 2)->default(0.00); // Discount applied to the item, if any
             $table->integer('variant_id')->nullable(); // ID of the product variant, if applicable
-            $table->string("size")->nullable(); // Size of the product, if applicable
-            $table->string("color")->nullable(); // Color of the product, if applicable
+            $table->string('size')->nullable(); // Size of the product, if applicable
+            $table->string('color')->nullable(); // Color of the product, if applicable
             $table->json('variant_data')->nullable(); // JSON field for storing variant attributes (size, color, etc.)
             // Item status for tracking
             $table->enum('status', ['in_stock', 'backordered', 'shipped', 'returned', 'cancelled'])->default('in_stock'); // Current status of the item

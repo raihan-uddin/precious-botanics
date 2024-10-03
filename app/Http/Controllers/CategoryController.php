@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -19,14 +18,14 @@ class CategoryController extends Controller
         $search = $request->input('search');
 
         // Fetch categories with pagination and search functionality
-        $categories = Category::when($search, function($query) use ($search) {
+        $categories = Category::when($search, function ($query) use ($search) {
             return $query->where('name', 'like', "%{$search}%")
                 ->orWhere('slug', 'like', "%{$search}%");
         })->orderBy('name')
-        ->paginate(10)->withQueryString();
+            ->paginate(10)->withQueryString();
 
         $pageTitle = 'Categories';
-        
+
         return view('admin.categories.index', compact('categories', 'search', 'pageTitle'));
     }
 
@@ -35,10 +34,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-         // Fetch all menus
-        $menus = Category::where('is_menu', true)->orderBy('name')->get(); 
+        // Fetch all menus
+        $menus = Category::where('is_menu', true)->orderBy('name')->get();
 
         $pageTitle = 'Create Category';
+
         return view('admin.categories.create', compact('menus', 'pageTitle'));
     }
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
             $validated['image'] = $request->file('image')->store('categories', 'public');
         }
 
-        $category = new Category();
+        $category = new Category;
         $category->name = $validated['name'];
         $category->slug = $validated['slug'];
         $category->order_column = $validated['order_column'];
@@ -87,10 +87,8 @@ class CategoryController extends Controller
         Cache::forget('menu_categories');
         getMenuCategories();
 
-
         return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
-
 
     /**
      * Display the specified resource.
@@ -108,7 +106,8 @@ class CategoryController extends Controller
         // Fetch all menus
         $menus = Category::where('is_menu', true)->orderBy('name')->get();
 
-        $pageTitle = 'Edit Category: ' . $category->name;
+        $pageTitle = 'Edit Category: '.$category->name;
+
         return view('admin.categories.edit', compact('category', 'menus', 'pageTitle'));
     }
 
@@ -121,7 +120,7 @@ class CategoryController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
+            'slug' => 'required|string|max:255|unique:categories,slug,'.$category->id,
             'order_column' => 'required|integer',
             'menus' => 'array',
             'is_active' => 'boolean',
@@ -164,14 +163,12 @@ class CategoryController extends Controller
         // Sync menus
         $category->menus()->sync($request->menus);
 
-
         // Clear and refresh the cache after storing a new category
         Cache::forget('menu_categories');
         getMenuCategories();
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -186,8 +183,7 @@ class CategoryController extends Controller
         // Clear and refresh the cache after storing a new category
         Cache::forget('menu_categories');
         getMenuCategories();
-        
-        
+
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 }
