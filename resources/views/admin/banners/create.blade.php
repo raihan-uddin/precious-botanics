@@ -57,7 +57,7 @@
                         <div class="mb-4">
                             <x-input-label for="link" :value="__('Link')"/>
                             <x-input id="link" class="block mt-1 w-full" type="url" name="link"
-                                :value="old('link')" required/>
+                                :value="old('link')"/>
                         </div>
 
                         <div class="mb-4">
