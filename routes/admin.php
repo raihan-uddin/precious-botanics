@@ -27,6 +27,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('tags', TagController::class);
         Route::resource('products', ProductController::class);
+        Route::post('/remove-gallery-image', [ProductController::class, 'removeGalleryImage'])->name('remove.image');
+
         Route::resource('banners', BannerController::class);
     });
 });

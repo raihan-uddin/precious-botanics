@@ -467,7 +467,7 @@
 
                             <!-- Additional Images -->
                             <div class="mb-4">
-                                <label class="block text-gray-700">Additional Images</label>
+                                <label class="block text-gray-700">Gallery Images</label>
                                 <input type="file" name="additional_images[]" id="additional_images"
                                        class="block mt-1 w-full" accept="image/*" multiple>
                                 @error('additional_images')
@@ -484,7 +484,7 @@
                                                  class="w-full h-full object-cover rounded-md transition-transform duration-200 group-hover:scale-105">
                                             <button
                                                 class="remove-image absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full p-2 shadow-md hover:bg-red-700 transition duration-200 opacity-0 group-hover:opacity-100"
-                                                onclick="removeImage(this)">
+                                                data-image-id="{{ $image->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                      viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -724,6 +724,34 @@
                 if ($('#variantsPreview').children().length === 0) {
                     $('#variantsPreview').addClass('hidden');
                 }
+            });
+        });
+
+        // gallery images remove
+        $(document).ready(function() {
+            // Event listener for the remove button
+            $('.remove-image').click(function() {
+                var imageId = $(this).data('image-id'); // Get the image ID from the button data attribute
+                var $imageContainer = $(this).closest('.image-container'); // Get the image container
+
+                // AJAX call to remove the image from the database
+                $.ajax({
+                    url: '{{ route("remove.image") }}', 
+                    type: 'POST', // Use the appropriate HTTP method
+                    data: {
+                        image_id: imageId,
+                        _token: '{{ csrf_token() }}' // Include CSRF token if necessary
+                    },
+                    success: function(response) {
+                        // On success, remove the image container from the DOM
+                        $imageContainer.remove();
+                        alert('Image removed successfully!');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error removing image:', error);
+                        alert('Failed to remove the image.');
+                    }
+                });
             });
         });
 

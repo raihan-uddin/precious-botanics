@@ -17,6 +17,9 @@ class SettingsSeeder extends Seeder
             ['key' => 'site_email', 'value' => 'info@preciousbotanic.com', 'type' => 'email', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_phone', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_address', 'value' => '234 E 47th street, Chicago iI 60653', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            // google map
+            ['key' => 'latitude', 'value' => '41.8094254', 'type' => 'number', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'longitude', 'value' => '-87.6187', 'type' => 'number', 'created_at' => now(), 'updated_at' => now()],
             // ['key' => 'site_logo', 'value' => 'logo.png', 'type' => 'file', 'created_at' => now(), 'updated_at' => now()],
             // ['key' => 'site_favicon', 'value' => 'logo.png', 'type' => 'file', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'currency', 'value' => 'USD', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],

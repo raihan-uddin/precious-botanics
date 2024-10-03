@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Tag;
 use App\Models\Variant;
 use Illuminate\Http\Request;
@@ -412,5 +413,24 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    public function removeGalleryImage(Request $request)
+    {
+        $request->validate([
+            'image_id' => 'required|exists:images,id',
+        ]);
+
+        $image = ProductImage::find($request->image_id);
+
+        // Delete the image file from storage if necessary
+        if (Storage::disk('public')->exists($image->image_path)) {
+            Storage::disk('public')->delete($image->image_path);
+        }
+
+        // Delete the image record from the database
+        $image->delete();
+
+        return response()->json(['success' => true]);
     }
 }
