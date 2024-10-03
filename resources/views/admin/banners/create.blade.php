@@ -58,7 +58,7 @@
 
                         <div class="mb-4">
                             <x-input-label for="image" :value="__('Banner image')"/>
-                            <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="previewImage(event)" />
+                            <input type="file" id="image" name="image" accept="image/*" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="previewImage(event)" />
                             @error('image')
                             <span class="text-red-600 text-sm" role="alert">
                                     <strong>{{ $message }}</strong>

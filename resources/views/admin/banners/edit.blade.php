@@ -50,7 +50,7 @@
 
                         <div class="mb-4">
                             <x-input-label for="image" :value="__('Image')"/>
-                            <input type="file" id="image" name="image" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" accept="image/jpeg, image/jpg, image/png" onchange="previewImage(event)" />
+                            <input type="file" id="image" name="image" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" accept="image/*" onchange="previewImage(event)" />
                             <div class="mt-2" id="current-image-container">
                                 @if($banner->image)
                                     <div class="relative">
