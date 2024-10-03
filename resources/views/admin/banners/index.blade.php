@@ -30,7 +30,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <input type="text" id="search" placeholder="Search..." class="border rounded px-3 py-2 w-full" />
+                        <x-input id="search" placeholder="Search..." class="w-full" />
                     </div>
 
                     <table class="min-w-full divide-y divide-gray-200" id="banners-table">
