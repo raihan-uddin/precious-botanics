@@ -21,8 +21,10 @@ class SettingsSeeder extends Seeder
             ['key' => 'latitude', 'value' => '41.8094254', 'type' => 'number', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'longitude', 'value' => '87.622386917', 'type' => 'number', 'created_at' => now(), 'updated_at' => now()],
             // google map location iframe/link
-            ['key' => 'google_map', 'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.073013013073!2d-87.622386917!3d41.8094254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2c6f7b3f3b6d%3A0x1f3b1b1b1b1b1b1b!2s234%20E%2047th%20St%2C%20Chicago%2C%20IL%2060653%2C%20USA!5e0!3m2!1sen!2sng!4v1626826820004!5m2!1sen!2sng', 'type' => 'textarea', 'created_at' => now(), 'updated_at' => now()],
-            
+            ['key' => 'google_map',
+                'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.073013013073!2d-87.622386917!3d41.8094254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2c6f7b3f3b6d%3A0x1f3b1b1b1b1b1b1b!2s234%20E%2047th%20St%2C%20Chicago%2C%20IL%2060653%2C%20USA!5e0!3m2!1sen!2sng!4v1626826820004!5m2!1sen!2sng',
+                'type' => 'textarea', 'created_at' => now(), 'updated_at' => now()],
+
             // ['key' => 'site_logo', 'value' => 'logo.png', 'type' => 'file', 'created_at' => now(), 'updated_at' => now()],
             // ['key' => 'site_favicon', 'value' => 'logo.png', 'type' => 'file', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'currency', 'value' => 'USD', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
@@ -48,8 +50,10 @@ class SettingsSeeder extends Seeder
             ['key' => 'recaptcha_secret_key', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
 
             // Cookie
-            ['key' => 'cookie', 'value' => 1, 'type', 'boolean', 'created_at' => now(), 'updated_at' => now()],
-            ['key' => 'cookie_message', 'value' => 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie', 'value' => 1, 'type'=> 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie_message', 
+                'value' => 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 
+                'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'cookie_button', 'value' => 'Accept', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'cookie_policy', 'value' => 'Privacy Policy', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'cookie_link', 'value' => 'privacy-policy', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
@@ -73,7 +77,6 @@ class SettingsSeeder extends Seeder
             ['key' => 'show_featured_categories', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
             // show testimonials
             ['key' => 'show_testimonials', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
-
 
         ]);
     }

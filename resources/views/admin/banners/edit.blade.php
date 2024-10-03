@@ -44,6 +44,7 @@
                                 <option value="banner" {{ old('section', $banner->section) == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section', $banner->section) == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section', $banner->section) == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
+                                <option value="featured" {{ old('section', $banner->section) == 'featured' ? 'selected' : '' }}>{{ __('Featured') }}</option>
                             </x-select>
                         </div>
 

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('short_description')->nullable(); // Short product description
             $table->text('description')->nullable(); // Product description
             $table->string('sku')->nullable(); // Stock Keeping Unit
-            // vendor
-            $table->string('vendor')->nullable();
+            // vendor_id is a foreign key to the vendors table to establish a relationship on delete set null
+            $table->foreignId('vendor_id')->nullable()->constrained()->nullOnDelete();
 
             // Pricing and Taxation
             $table->decimal('price', 10, 2); // Default price, could be overridden by variants
@@ -68,6 +68,9 @@ return new class extends Migration
             $table->string('meta_title')->nullable(); // Meta title for SEO
             $table->text('meta_description')->nullable(); // Meta description for SEO
             $table->string('meta_keywords')->nullable(); // Meta keywords for SEO
+
+            // full text search
+            $table->text('full_text')->nullable();
 
             // Soft Deletes & Timestamps
             $table->softDeletes(); // Support for soft deletes

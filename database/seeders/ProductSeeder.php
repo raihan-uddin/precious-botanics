@@ -58,11 +58,17 @@ class ProductSeeder extends Seeder
             $variants = json_decode("[$variantsString]", true);
 
             $featuredImagePath = $this->downloadImage($row['L'], $productTitle, 'featured');
+
+            // product full text will be, product name, vendor, unique (categories, tags), veriants
+            $productFullText = $productTitle.' '.$row['C'].' '.implode(' ', array_unique(array_merge($categories, $tags))).' '.implode(' ', array_map(function ($variant) {
+                return implode(' ', $variant['options']);
+            }, $variants));
+
             // Create the product
             $product = Product::create([
                 'name' => $productTitle,
                 'short_description' => $row['B'],
-                'vendor' => $row['C'],
+                'vendor' => 1, // Mine Botanicals vendor ID
                 'price' => $row['G'],
                 'allow_out_of_stock_orders' => true,
                 'slug' => Str::slug($productTitle),
@@ -75,6 +81,7 @@ class ProductSeeder extends Seeder
                 // generate meta_keywords from $productTitle,  $categories, $tags must be unique and separated by comma
                 'meta_keywords' => implode(',', array_unique(array_merge([$productTitle], $categories, $tags))),
                 'featured_image' => $featuredImagePath,
+                'full_text' => $productFullText,
             ]);
 
             // Attach categories

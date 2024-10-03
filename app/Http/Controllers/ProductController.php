@@ -106,7 +106,7 @@ class ProductController extends Controller
             'sku' => 'nullable|string', //|unique:products
             'categories' => 'required|array',
             'tags' => 'nullable|array',
-            'vendor' => 'nullable|string',
+            'vendor_id' => 'nullable|numeric',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'full_description' => 'nullable|string',
@@ -143,7 +143,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->slug = $request->slug;
             $product->sku = $request->sku;
-            $product->vendor = $request->vendor;
+            $product->vendor_id = $request->vendor_id;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->description = $request->full_description;
@@ -275,7 +275,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:products,slug,'.$product->id,
             'sku' => 'nullable|string', //|unique:products,sku,' . $product->id,
-            'vendor' => 'nullable|string',
+            'vendor_id' => 'nullable|numeric',
             'categories' => 'required|array',
             'tags' => 'nullable|array',
             'short_description' => 'nullable|string',
@@ -314,7 +314,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->slug = $request->slug;
             $product->sku = $request->sku;
-            $product->vendor = $request->vendor;
+            $product->vendor_id = $request->vendor_id;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->description = $request->full_description;
