@@ -49,7 +49,7 @@
                             @enderror
                         </div>
 
-                        <!-- Image Preview -->
+                        <!-- Image Preview and Size Display -->
                         <div id="image-preview-container" class="mb-4 hidden">
                             <div class="relative">
                                 <img id="image-preview" src="" alt="Image Preview" class="w-full h-auto rounded-md border border-gray-300">
@@ -57,6 +57,7 @@
                                     &times;
                                 </button>
                             </div>
+                            <p id="image-size" class="text-sm text-gray-700 mt-2"></p>
                         </div>
 
                         <div class="mb-4">
@@ -130,6 +131,7 @@
             var input = event.target;
             var previewContainer = document.getElementById('image-preview-container');
             var previewImage = document.getElementById('image-preview');
+            var imageSizeText = document.getElementById('image-size');
 
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -138,6 +140,16 @@
                     previewContainer.classList.remove('hidden');  // Show preview container
                 };
                 reader.readAsDataURL(input.files[0]);
+
+                // Display image size in KB or MB
+                var fileSizeInBytes = input.files[0].size;
+                var fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
+                var fileSizeInMB = (fileSizeInBytes / (1024 * 1024)).toFixed(2);
+                if (fileSizeInMB > 1) {
+                    imageSizeText.textContent = `Size: ${fileSizeInMB} MB`;
+                } else {
+                    imageSizeText.textContent = `Size: ${fileSizeInKB} KB`;
+                }
             }
         }
 
@@ -145,9 +157,11 @@
             var input = document.getElementById('image');
             var previewContainer = document.getElementById('image-preview-container');
             var previewImage = document.getElementById('image-preview');
+            var imageSizeText = document.getElementById('image-size');
 
             input.value = '';  // Clear the input value
             previewImage.src = '';  // Remove image preview
+            imageSizeText.textContent = '';  // Remove file size text
             previewContainer.classList.add('hidden');  // Hide preview container
         }
     </script>
