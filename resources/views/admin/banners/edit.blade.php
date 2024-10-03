@@ -30,24 +30,25 @@
                         @method('PUT')
 
                         <div class="mb-4">
-                            <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Title') }}</label>
-                            <input type="text" id="title" name="title" value="{{ old('title', $banner->title) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required />
+                            <x-input-label for="title" :value="__('Title')"/>
+                            <x-input id="title" class="block mt-1 w-full" type="text" name="title"
+                                :value="old('title', $banner->title)" required autofocus/>
                         </div>
 
                         
                         <div class="mb-4">
-                            <label for="section" class="block text-sm font-medium text-gray-700">{{ __('Section') }}</label>
-                            <select id="section" name="section" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                            <x-input-label for="section" :value="__('Section')"/>
+                            <x-select  id="section" name="section" class=" block w-full" required>
                                 <option value="" disabled>{{ __('Select Section') }}</option>
                                 <option value="slider" {{ old('section', $banner->section) == 'slider' ? 'selected' : '' }}>{{ __('Slider') }}</option>
                                 <option value="banner" {{ old('section', $banner->section) == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section', $banner->section) == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section', $banner->section) == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                            </select>
+                            </x-select>
                         </div>
 
                         <div class="mb-4">
-                            <label for="image" class="block text-sm font-medium text-gray-700">{{ __('Image') }}</label>
+                            <x-input-label for="image" :value="__('Image')"/>
                             <input type="file" id="image" name="image" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" accept="image/jpeg, image/jpg, image/png" onchange="previewImage(event)" />
                             <div class="mt-2" id="current-image-container">
                                 @if($banner->image)
@@ -72,13 +73,15 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="link" class="block text-sm font-medium text-gray-700">{{ __('Link') }}</label>
-                            <input type="url" id="link" name="link" value="{{ old('link', $banner->link) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            <x-input-label for="link" :value="__('Link')"/>
+                            <x-input id="link" class="block mt-1 w-full" type="url" name="link"
+                                :value="old('link', $banner->link)"/>
                         </div>
 
                         <div class="mb-4">
-                            <label for="order_column" class="block text-sm font-medium text-gray-700">{{ __('Order') }}</label>
-                            <input type="number" id="order_column" name="order_column" value="{{ old('order_column', $banner->order_column) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            <x-input-label for="order_column" :value="__('Order')"/>
+                            <x-input id="order_column" class="block mt-1 w-full" type="number" name="order_column"
+                                :value="old('order_column', $banner->order_column)"/>
                         </div>
 
                         <div class="mb-4">
