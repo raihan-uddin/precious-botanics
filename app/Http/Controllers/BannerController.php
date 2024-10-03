@@ -60,6 +60,9 @@ class BannerController extends Controller
             $banner->created_by = auth()->id();
             $banner->save();
 
+            // call cachedBanner method to remove old cached data & cache new data
+            $this->cachedBanner();
+
             return redirect()->route('banners.index')->with('success', 'Banner created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
@@ -112,6 +115,9 @@ class BannerController extends Controller
             $banner->updated_by = auth()->id();
             $banner->save();
 
+            // call cachedBanner method to remove old cached data & cache new data
+            $this->cachedBanner();
+
             return redirect()->route('banners.index')->with('success', 'Banner updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
@@ -128,9 +134,24 @@ class BannerController extends Controller
             $banner->save();
             $banner->delete();
 
+            // call cachedBanner method to remove old cached data & cache new data
+            $this->cachedBanner();
+
             return redirect()->route('banners.index')->with('success', 'Banner deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    /**
+     * Remove all old cached data & cache new data.
+     */
+     public function cachedBanner()
+     {
+        $banners = Banner::where('is_active', true)->orderBy('order_column')->get();
+        cache()->forget('banners');
+        cache()->rememberForever('banners', function () use ($banners) {
+            return $banners;
+        });
+     }
 }
