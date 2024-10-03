@@ -51,13 +51,17 @@
 
                         <!-- Image Preview and Size Display -->
                         <div id="image-preview-container" class="mb-4 hidden">
-                            <div class="relative">
-                                <img id="image-preview" src="" alt="Image Preview" class="w-full h-auto rounded-md border border-gray-300">
+                            <div class="relative flex items-center space-x-4">
+                                <!-- Thumbnail Image Preview -->
+                                <img id="image-preview" src="" alt="Image Preview" class="w-40 h-auto rounded-md border border-gray-300">
+
+                                <!-- Remove Button -->
                                 <button type="button" class="absolute top-0 right-0 bg-red-600 text-white rounded-full p-2 focus:outline-none" onclick="removeImage()">
                                     &times;
                                 </button>
                             </div>
-                            <p id="image-size" class="text-sm text-gray-700 mt-2"></p>
+                            <!-- Highlighted Image Size -->
+                            <p id="image-size" class="text-sm font-semibold text-gray-700 mt-2 bg-yellow-100 p-2 rounded-md"></p>
                         </div>
 
                         <div class="mb-4">
@@ -146,10 +150,13 @@
                 var fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
                 var fileSizeInMB = (fileSizeInBytes / (1024 * 1024)).toFixed(2);
                 if (fileSizeInMB > 1) {
-                    imageSizeText.textContent = `Size: ${fileSizeInMB} MB`;
+                    imageSizeText.innerHTML = `<strong>Size:</strong> ${fileSizeInMB} MB`;
                 } else {
-                    imageSizeText.textContent = `Size: ${fileSizeInKB} KB`;
+                    imageSizeText.innerHTML = `<strong>Size:</strong> ${fileSizeInKB} KB`;
                 }
+
+                // Add highlight class to image size text
+                imageSizeText.classList.add('bg-yellow-100', 'p-2', 'rounded-md');
             }
         }
 
