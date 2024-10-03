@@ -66,6 +66,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('banners.edit', $banner->id) }}" class="text-blue-600 hover:underline">{{ __('Edit') }}</a>
+                                        <span class="text-gray-400">|</span>
                                         <form action="{{ route('banners.destroy', $banner->id) }}" method="POST" class="inline-block" onsubmit="return confirmDelete(event, '{{ $banner->title }}');">
                                             @csrf
                                             @method('DELETE')

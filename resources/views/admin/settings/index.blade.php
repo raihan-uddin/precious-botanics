@@ -68,7 +68,7 @@
                                                 >
                                             </div>
                                         @else
-                                            {{ $setting->value }}
+                                            {{ \Illuminate\Support\Str::limit($setting->value, 30, '...') }}
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $setting->type }}</td>
