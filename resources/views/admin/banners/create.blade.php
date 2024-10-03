@@ -87,8 +87,12 @@
 
                         
                         <div class="flex items center justify-end mt-4">
-                            <x-primary-button>{{ __('Create Banner') }}</x-primary-button>
-                            <x-secondary-button href="{{ route('banners.index') }}">{{ __('Cancel') }}</x-secondary-button>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
+                                {{ __('Create Banner') }}
+                            </button>
+                            <a href="{{ route('banners.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200 disabled:opacity-25 transition">
+                                {{ __('Cancel') }}
+                            </a>
                         </div>
                     </form>
                 </div>
