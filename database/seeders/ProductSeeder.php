@@ -68,7 +68,7 @@ class ProductSeeder extends Seeder
             $product = Product::create([
                 'name' => $productTitle,
                 'short_description' => $row['B'],
-                'vendor' => 1, // Mine Botanicals vendor ID
+                'vendor_id' => 1, // Mine Botanicals vendor ID
                 'price' => $row['G'],
                 'allow_out_of_stock_orders' => true,
                 'slug' => Str::slug($productTitle),
