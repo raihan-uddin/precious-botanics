@@ -150,7 +150,7 @@
                                 <h2 class="mx-4 text-2xl font-bold text-gray-800">Long Description</h2>
                                 <hr class="flex-grow border-t border-gray-300">
                             </div>
-                            <p class="mt-1 text-gray-700">{!! $product->description !!}</p>
+                            <p class="mt-1 text-gray-700">{!! $product->full_description !!}</p>
                         </div>
                     </div>
 

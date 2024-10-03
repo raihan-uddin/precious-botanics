@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // SEO-friendly URL slug
             $table->string('slug')->unique();
-            $table->text('short_description')->nullable(); // Short product description
-            $table->text('description')->nullable(); // Product description
+            $table->text('short_description')->nullable(); // Product Short description
+            $table->text('full_description')->nullable(); // Product Full description
             $table->string('sku')->nullable(); // Stock Keeping Unit
             // vendor_id is a foreign key to the vendors table to establish a relationship on delete set null
             $table->foreignId('vendor_id')->nullable()->constrained()->nullOnDelete();

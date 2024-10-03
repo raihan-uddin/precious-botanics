@@ -134,10 +134,10 @@
                             <!-- Short Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
-                                <div id="editor1" class="block mt-1 w-full editor" style="height: 300px">
+                                <div id="short_description_editor" class="block mt-1 w-full editor" style="height: 300px">
                                     {!! old('short_description', $product->short_description) !!}
                                 </div>
-                                <input type="hidden" name="description" id="description">
+                                <textarea name="short_description" id="short_description" class="hidden">{{ old('short_description', $product->short_description) }}</textarea>
                                 @error('short_description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -147,12 +147,12 @@
 
                             <!-- Full Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
-                                <x-input-label for="description" :value="__('Full Description')"/>
-                                <div id="editor" class="block mt-1 w-full editor" style="height: 300px">
-                                    {!! old('description', $product->description) !!}
+                                <x-input-label for="full_description" :value="__('Full Description')"/>
+                                <div id="full_description_editor" class="block mt-1 w-full editor" style="height: 300px">
+                                    {!! old('full_description', $product->full_description) !!}
                                 </div>
-                                <input type="hidden" name="description" id="description">
-                                @error('description')
+                                <textarea name="full_description" id="full_description" class="hidden">{{ old('full_description', $product->full_description) }}</textarea>
+                                @error('full_description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -784,18 +784,33 @@
             // ['clean']                                         // remove formatting button
         ];
         <!-- Initialize Quill editor with advance -->
-
-        // Select all elements with the class 'editor'
-        var editors = document.querySelectorAll('.editor');
-        // Loop through each element and initialize Quill
-        editors.forEach(function (editor) {
-            new Quill(editor, {
-                theme: 'snow',
-                modules: {
-                    toolbar: toolbarOptions,
-                }
-            });
+        // Short Description Editor
+        const shortDescriptionEditor = new Quill('#short_description_editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
+
+        shortDescriptionEditor.on('text-change', function () {
+            const html = shortDescriptionEditor.root.innerHTML;
+            document.getElementById('short_description').value = html;
+        });
+
+        // Full Description Editor
+
+        const fullDescriptionEditor = new Quill('#full_description_editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        });
+
+        fullDescriptionEditor.on('text-change', function () {
+            const html = fullDescriptionEditor.root.innerHTML;
+            document.getElementById('full_description').value = html;
+        });
+        
     </script>
 
 </x-app-layout>

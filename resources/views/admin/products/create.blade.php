@@ -143,7 +143,7 @@
                             <div class="mb-4">
                                 <x-input-label for="short_description" :value="__('Short Description')"/>
 
-                                <div id="editor" class="block mt-1 w-full editor"
+                                <div id="short_description_editor" class="block mt-1 w-full editor"
                                      style="height: 300px">{{ old('short_description') }}</div>
 
                                 <input type="hidden" name="short_description" id="short_description"
@@ -158,14 +158,12 @@
 
                             <!-- Full Description (Quill WYSIWYG Editor) -->
                             <div class="mb-4">
-                                <x-input-label for="description" :value="__('Full Description')"/>
-
-                                <div id="editor" class="block mt-1 w-full editor"
-                                     style="height: 300px">{{ old('description') }}</div>
-
-                                <input type="hidden" name="description" id="description"
-                                       value="{{ old('description') }}">
-                                @error('description')
+                                <x-input-label for="full_description" :value="__('Full Description')"/>
+                                <div id="full_description_editor" class="block mt-1 w-full editor"
+                                style="height: 300px">{{ old('full_description') }}</div>
+                                <textarea name="full_description" id="full_description" class="hidden"
+                                          required>{{ old('full_description') }}</textarea>         
+                                @error('full_description')
                                 <span class="text-red-600 text-sm" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -695,32 +693,32 @@
             // ['clean']                                         // remove formatting button
         ];
         <!-- Initialize Quill editor with advance -->
-        // Select all elements with the class 'editor'
-        var editors = document.querySelectorAll('.editor');
-        // Loop through each element and initialize Quill
-        editors.forEach(function(editor) {
-            new Quill(editor, {
-                theme: 'snow',
-                modules: {
-                    toolbar: toolbarOptions,
-                }
-            });
+        
+        // Short Description Editor
+        var shortDescriptionEditor = new Quill('#short_description_editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
 
-        const oldValueLong = document.querySelector('input[name="description"]').value;
-        quill.root.innerHTML = oldValueLong; // Set Quill editor content to old value
-        // Update the hidden input value before form submission
-        document.querySelector('form').addEventListener('submit', function () {
-            const fullDescriptionInput = document.querySelector('#description');
-            fullDescriptionInput.value = quill.root.innerHTML; // Get the content from Quill editor
+        shortDescriptionEditor.on('text-change', function () {
+            const shortDescription = shortDescriptionEditor.root.innerHTML;
+            document.getElementById('short_description').value = shortDescription;
         });
 
-        const oldValueShort = document.querySelector('input[name="short_description"]').value;
-        quill.root.innerHTML = oldValueShort; // Set Quill editor content to old value
-        // Update the hidden input value before form submission
-        document.querySelector('form').addEventListener('submit', function () {
-            const shortDescriptionInput = document.querySelector('#short_description');
-            shortDescriptionInput.value = quill.root.innerHTML; // Get the content from Quill editor
+        // Full Description Editor
+        var fullDescriptionEditor = new Quill('#full_description_editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
         });
+
+        fullDescriptionEditor.on('text-change', function () {
+            const fullDescription = fullDescriptionEditor.root.innerHTML;
+            document.getElementById('full_description').value = fullDescription;
+        });
+
     </script>
 </x-app-layout>

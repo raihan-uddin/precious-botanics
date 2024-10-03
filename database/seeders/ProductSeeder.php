@@ -61,20 +61,15 @@ class ProductSeeder extends Seeder
 
             // product full text will be, product name, vendor, unique (categories, tags), veriants
             // Build the product full text
-            $productFullText = $productTitle.' '.$row['C'].' ';
+            $productFullText = $productTitle;
 
-            // Handle categories and tags safely
-            if (!empty($categories) || !empty($tags)) {
-                $productFullText .= implode(' ', array_unique(array_merge($categories, $tags))) . ' ';
-            }
-
-            // Handle variants safely
-            if (!empty($variants)) {
-                $productFullText .= implode(' ', array_map(function ($variant) {
-                    return implode(' ', $variant['options']);
-                }, $variants));
+            // Handle categories as comma-separated string
+            if (!empty($categories)) {
+                $productFullText .= ', '.implode(', ', $categories);
             }
             
+            // handle vendor name
+            $productFullText .= ', Mine Botanicals';
 
             // Create the product
             $product = Product::create([
@@ -84,7 +79,7 @@ class ProductSeeder extends Seeder
                 'price' => $row['G'],
                 'allow_out_of_stock_orders' => true,
                 'slug' => Str::slug($productTitle),
-                'description' => $row['M'],
+                'full_description' => $row['M'],
                 'status' => 'published',
                 'published_at' => now(),
                 'meta_title' => $productTitle,

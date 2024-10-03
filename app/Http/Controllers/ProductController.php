@@ -110,7 +110,6 @@ class ProductController extends Controller
             'tags' => 'nullable|array',
             'vendor_id' => 'nullable|numeric',
             'short_description' => 'nullable|string',
-            'description' => 'nullable|string',
             'full_description' => 'nullable|string',
             'price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
@@ -147,8 +146,7 @@ class ProductController extends Controller
             $product->sku = $request->sku;
             $product->vendor_id = $request->vendor_id;
             $product->short_description = $request->short_description;
-            $product->description = $request->description;
-            $product->description = $request->full_description;
+            $product->full_description = $request->full_description;
             $product->price = $request->price;
             $product->discount_price = $request->discount_price;
             $product->tax_rate = $request->tax_rate;
@@ -218,6 +216,10 @@ class ProductController extends Controller
                 }
             }
 
+            // Update the product full text
+            $product->full_text = $this->generateFullTextSearchOfProduct($product);
+            $product->save();
+
             // Commit the transaction
             DB::commit();
 
@@ -282,7 +284,6 @@ class ProductController extends Controller
             'categories' => 'required|array',
             'tags' => 'nullable|array',
             'short_description' => 'nullable|string',
-            'description' => 'nullable|string',
             'full_description' => 'nullable|string',
             'price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
@@ -319,8 +320,7 @@ class ProductController extends Controller
             $product->sku = $request->sku;
             $product->vendor_id = $request->vendor_id;
             $product->short_description = $request->short_description;
-            $product->description = $request->description;
-            $product->description = $request->full_description;
+            $product->full_description = $request->full_description;
             $product->price = $request->price;
             $product->discount_price = $request->discount_price;
             $product->tax_rate = $request->tax_rate;
@@ -395,6 +395,10 @@ class ProductController extends Controller
                 }
             }
 
+            // Update the product full text
+            $product->full_text = $this->generateFullTextSearchOfProduct($product);
+            $product->save();
+
             // Commit the transaction
             DB::commit();
 
@@ -435,5 +439,23 @@ class ProductController extends Controller
         $image->delete();
 
         return response()->json(['success' => true]);
+    }
+
+    // product full text will be, product name, vendor, unique (categories, tags), veriants
+    public function generateFullTextSearchOfProduct($product){
+            $productFullText = $product->name;
+
+            // Handle categories comma separated string
+            $categories = $product->categories->pluck('name')->toArray();
+            if (!empty($categories)) {
+                $productFullText .= ', ' . implode(', ', $categories);
+            }
+
+            // if vendor is available
+            if ($product->vendor) {
+                $productFullText .= ', ' . $product->vendor->name;
+            }
+
+        return $productFullText;
     }
 }
