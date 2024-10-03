@@ -29,12 +29,18 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Title') }}</label>
-                            <input type="text" id="title" name="title" value="{{ old('title') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required />
+                            <x-input-label for="title" :value="__('Title')"/>
+                            <x-input id="title" class="block mt-1 w-full" type="text" name="name"
+                                :value="old('title')" required autofocus/>
+                            @error('title')
+                            <span class="text-red-600 text-sm" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="image" class="block text-sm font-medium text-gray-700">{{ __('Image') }}</label>
+                            <x-input-label for="image" :value="__('Banner image')"/>
                             <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="previewImage(event)" />
                         </div>
 
@@ -49,24 +55,26 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="link" class="block text-sm font-medium text-gray-700">{{ __('Link') }}</label>
-                            <input type="url" id="link" name="link" value="{{ old('link') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            <x-input-label for="link" :value="__('Link')"/>
+                            <x-input id="link" class="block mt-1 w-full" type="url" name="link"
+                                :value="old('link')" required/>
                         </div>
 
                         <div class="mb-4">
-                            <label for="section" class="block text-sm font-medium text-gray-700">{{ __('Section') }}</label>
-                            <select id="section" name="section" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                            <x-input-label for="section" :value="__('Section')"/>
+                            <x-select id="section" name="section" class="w-full" required>
                                 <option value="" disabled selected>{{ __('Select Section') }}</option>
                                 <option value="slider" {{ old('section') == 'slider' ? 'selected' : '' }}>{{ __('Slider') }}</option>
                                 <option value="banner" {{ old('section') == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section') == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section') == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                            </select>
+                            </x-select>
                         </div>
 
                         <div class="mb-4">
-                            <label for="order_column" class="block text-sm font-medium text-gray-700">{{ __('Order') }}</label>
-                            <input type="number" id="order_column" name="order_column" value="{{ old('order_column', 0) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            <x-input-label for="order_column" :value="__('Order')"/>
+                            <x-input id="order_column" class="block mt-1 w-full" type="number" name="order_column"
+                                :value="old('order_column', 0)" required/>
                         </div>
 
                         <div class="mb-4">
@@ -77,13 +85,10 @@
                             </label>
                         </div>
 
-                        <div class="mt-4">
-                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
-                                {{ __('Create Banner') }}
-                            </button>
-                            <a href="{{ route('banners.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200 disabled:opacity-25 transition">
-                                {{ __('Cancel') }}
-                            </a>
+                        
+                        <div class="flex items center justify-end mt-4">
+                            <x-primary-button>{{ __('Create Banner') }}</x-primary-button>
+                            <x-secondary-button href="{{ route('banners.index') }}">{{ __('Cancel') }}</x-secondary-button>
                         </div>
                     </form>
                 </div>
