@@ -16,7 +16,7 @@ class BannerController extends Controller
         $banners = Banner::when($request->search, function ($query) use ($request) {
             return $query->where('title', 'like', "%{$request->search}%")
                 ->orWhere('description', 'like', "%{$request->search}%");
-        })->orderBy('title')->paginate(10)->withQueryString();
+        })->orderBy('order_column', 'desc')->paginate(10)->withQueryString();
 
         $pageTitle = 'Banners';
 
