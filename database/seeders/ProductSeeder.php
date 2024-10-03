@@ -43,26 +43,38 @@ class ProductSeeder extends Seeder
             // Parse categories, tags, images, and variants from JSON-like strings
             // categories: ["category1", "category2"]
             $categoriesString = str_replace("'", '"', trim($row['E'], '[]'));
-            $categories = json_decode("[$categoriesString]", true);
+            $categories = json_decode("[$categoriesString]", true) ?? [];
 
             // tags: ["tag1", "tag2"]
             $tagsString = str_replace("'", '"', trim($row['F'], '[]'));
-            $tags = json_decode("[$tagsString]", true);
+            $tags = json_decode("[$tagsString]", true) ?? [];
 
             // images: ["image1.jpg", "image2.jpg"]
             $imagesString = str_replace("'", '"', trim($row['K'], '[]'));
-            $images = json_decode("[$imagesString]", true);
+            $images = json_decode("[$imagesString]", true) ?? [];
 
             // variants: [{'title': '8 oz', 'sku': 'WSB-AE-8-01', 'public_title': '8 oz', 'options': ['8 oz'], 'price': '11.99', 'weight': 227}, {'title': '12 oz', 'sku': 'WSB-AE-12-01', 'public_title': '12 oz', 'options': ['12 oz'], 'price': '14.99', 'weight': 340}]
             $variantsString = str_replace("'", '"', trim($row['J'], '[]'));
-            $variants = json_decode("[$variantsString]", true);
+            $variants = json_decode("[$variantsString]", true) ?? [];
 
             $featuredImagePath = $this->downloadImage($row['L'], $productTitle, 'featured');
 
             // product full text will be, product name, vendor, unique (categories, tags), veriants
-            $productFullText = $productTitle.' '.$row['C'].' '.implode(' ', array_unique(array_merge($categories, $tags))).' '.implode(' ', array_map(function ($variant) {
-                return implode(' ', $variant['options']);
-            }, $variants));
+            // Build the product full text
+            $productFullText = $productTitle.' '.$row['C'].' ';
+
+            // Handle categories and tags safely
+            if (!empty($categories) || !empty($tags)) {
+                $productFullText .= implode(' ', array_unique(array_merge($categories, $tags))) . ' ';
+            }
+
+            // Handle variants safely
+            if (!empty($variants)) {
+                $productFullText .= implode(' ', array_map(function ($variant) {
+                    return implode(' ', $variant['options']);
+                }, $variants));
+            }
+            
 
             // Create the product
             $product = Product::create([
