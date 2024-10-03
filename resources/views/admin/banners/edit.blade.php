@@ -36,11 +36,26 @@
 
                         <div class="mb-4">
                             <label for="image" class="block text-sm font-medium text-gray-700">{{ __('Image') }}</label>
-                            <input type="file" id="image" name="image" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            <div class="mt-2">
+                            <input type="file" id="image" name="image" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" accept="image/jpeg, image/jpg, image/png" onchange="previewImage(event)" />
+                            <div class="mt-2" id="current-image-container">
                                 @if($banner->image)
-                                    <img src="{{ asset('storage/' . $banner->image) }}" alt="Current Image" class="w-32 h-32 object-cover">
+                                    <div class="relative">
+                                        <img src="{{ asset('storage/' . $banner->image) }}" alt="Current Image" id="current-image" class="w-32 h-32 object-cover rounded-md border border-gray-300">
+                                        <button type="button" class="absolute top-0 right-0 bg-red-600 text-white rounded-full p-2 focus:outline-none" onclick="removeCurrentImage()">
+                                            &times;
+                                        </button>
+                                    </div>
                                 @endif
+                            </div>
+                        </div>
+
+                        <!-- Image Preview for new selection -->
+                        <div id="image-preview-container" class="mb-4 hidden">
+                            <div class="relative">
+                                <img id="image-preview" src="" alt="Image Preview" class="w-full h-auto rounded-md border border-gray-300">
+                                <button type="button" class="absolute top-0 right-0 bg-red-600 text-white rounded-full p-2 focus:outline-none" onclick="removeImage()">
+                                    &times;
+                                </button>
                             </div>
                         </div>
 
@@ -57,7 +72,6 @@
                                 <option value="banner" {{ old('section', $banner->section) == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section', $banner->section) == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section', $banner->section) == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                                <!-- Add more sections as needed -->
                             </select>
                         </div>
 
@@ -87,4 +101,38 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var previewContainer = document.getElementById('image-preview-container');
+            var previewImage = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.classList.remove('hidden');  // Show preview container
+                    document.getElementById('current-image-container').classList.add('hidden');  // Hide current image
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeImage() {
+            var input = document.getElementById('image');
+            var previewContainer = document.getElementById('image-preview-container');
+            var previewImage = document.getElementById('image-preview');
+
+            input.value = '';  // Clear the input value
+            previewImage.src = '';  // Remove image preview
+            previewContainer.classList.add('hidden');  // Hide preview container
+        }
+
+        function removeCurrentImage() {
+            document.getElementById('current-image-container').classList.add('hidden');
+            document.getElementById('image').value = ''; // Clear the file input
+        }
+    </script>
+
 </x-app-layout>
