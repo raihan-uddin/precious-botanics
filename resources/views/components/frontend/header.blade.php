@@ -13,35 +13,35 @@
 
             <!-- Center: Menu Items -->
             <div class="hidden lg:flex space-x-8">
-  <a href="#" class="text-gray-900 hover:text-theme-color-hover">Home</a>
+    <a href="#" class="text-gray-900 hover:text-theme-color-hover">Home</a>
 
-  @php( $menuCategories = getMenuCategories())
-  @if( $menuCategories )
-    @foreach ($menuCategories as $key => $menu)
-    @if($key > 7)
-    @break
+    @php( $menuCategories = getMenuCategories())
+    @if( $menuCategories )
+        @foreach ($menuCategories as $key => $menu)
+        @if($key > 7)
+        @break
+        @endif
+        @if ($menu->submenus->isNotEmpty())
+            <!-- Categories Dropdown -->
+            <div class="relative group">
+            <button id="categories-btn" class="text-gray-900 hover:text-theme-color-hover inline-flex items-center focus:outline-none">
+                {{ $menu->name }}
+                <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <!-- Sub-menu -->
+            <div class="absolute left-0 hidden group-hover:block bg-white shadow-lg py-2 mt-2 rounded-md w-48 z-50 overflow-y-auto max-h-60">
+                @foreach ($menu->submenus as $submenu)
+                <a href="{{ $submenu->link }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">{{ $submenu->name }}</a>
+                @endforeach
+            </div>
+            </div>
+        @else
+            <a href="{{ $menu->link }}" class="text-gray-900 hover:text-theme-color-hover">{{ $menu->name }}</a>
+        @endif
+        @endforeach
     @endif
-      @if ($menu->submenus->isNotEmpty())
-        <!-- Categories Dropdown -->
-        <div class="relative group">
-          <button id="categories-btn" class="text-gray-900 hover:text-theme-color-hover inline-flex items-center focus:outline-none">
-            {{ $menu->name }}
-            <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <!-- Sub-menu -->
-          <div class="absolute left-0 hidden group-hover:block bg-white shadow-lg py-2 mt-2 rounded-md w-48 z-50 overflow-y-auto max-h-60">
-            @foreach ($menu->submenus as $submenu)
-              <a href="{{ $submenu->link }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">{{ $submenu->name }}</a>
-            @endforeach
-          </div>
-        </div>
-      @else
-        <a href="{{ $menu->link }}" class="text-gray-900 hover:text-theme-color-hover">{{ $menu->name }}</a>
-      @endif
-    @endforeach
-  @endif
 </div>
 
 
