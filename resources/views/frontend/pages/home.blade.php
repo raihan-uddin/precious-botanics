@@ -3,42 +3,41 @@
 
 @section('content')
 
-    <!-- image slider -->
-    @if($banners->count())
-    <section class="relative">
-        <!-- Swiper -->
-        <div class="swiper-container overflow-hidden">
-          <div class="swiper-wrapper">
-            @foreach($banners as $banner)
-              <div class="swiper-slide">
-                <img src="{{ asset('storage/' . $banner->image) }}" alt="Banner Image" class="w-full h-auto object-cover">
-              </div>
-            @endforeach
-          </div>
-          
-          <!-- Pagination -->
-          <div class="swiper-pagination"></div>
-          
-          <!-- Navigation buttons -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </section>
-      
-      
-      
-    @endif
+<!-- image slider -->
+@if($banners->count())
+<section class="relative">
+  <!-- Swiper -->
+  <div class="swiper-container overflow-hidden">
+    <div class="swiper-wrapper">
+      @foreach($banners as $banner)
+      <div class="swiper-slide">
+        <img src="{{ asset('storage/' . $banner->image) }}" alt="Banner Image" class="w-full h-auto object-cover">
+      </div>
+      @endforeach
+    </div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+@endif
+
+<!-- end image slider -->
 
 @endsection
 @push('scripts')
-    <!-- Swiper CSS -->
+<!-- Swiper CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
       var swiper = new Swiper('.swiper-container', {
         loop: true,
         autoplay: {
@@ -57,6 +56,6 @@
         centeredSlides: true,
       });
     });
-  </script>
+</script>
 
 @endpush
