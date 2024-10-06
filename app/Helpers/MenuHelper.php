@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 if (! function_exists('getMenuCategories')) {
     function getMenuCategories()
     {
-        return Cache::rememberForever('menu_categories', function () {
+        $data = Cache::rememberForever('menu_categories', function () {
             return Category::with('submenus')
                 ->where('is_active', true)
                 ->where('is_menu', true)
@@ -14,5 +14,6 @@ if (! function_exists('getMenuCategories')) {
                 ->orderBy('order_column', 'asc')
                 ->get();
         });
+        return  $data;
     }
 }
