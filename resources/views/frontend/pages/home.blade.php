@@ -5,9 +5,9 @@
 
     <!-- image slider -->
     @if($banners->count())
-    <section class="relative w-full min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px] xl:min-h-[600px] 2xl:min-h-[700px]">
+    <section class="relative">
         <!-- Swiper -->
-        <div class="swiper-container">
+        <div class="swiper-container overflow-hidden">
           <div class="swiper-wrapper">
             @foreach($banners as $banner)
               <div class="swiper-slide">

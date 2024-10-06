@@ -24,18 +24,22 @@
         @if ($menu->submenus->isNotEmpty())
             <!-- Categories Dropdown -->
             <div class="relative group">
-                <button id="categories-btn" class="text-gray-900 hover:text-theme-color-hover inline-flex items-center focus:outline-none">
+                <a href="#" id="categories-btn" class="text-gray-900 hover:text-theme-color-hover inline-flex items-center focus:outline-none">
                     {{ $menu->name }}
                     <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
-                </button>
+                </a>
                 <!-- Sub-menu -->
-                <div class="absolute left-0 hidden group-hover:block bg-white shadow-lg py-2 mt-2 rounded-md w-48 z-50 h-auto">
-                    @foreach ($menu->submenus as $submenu)
-                    <a href="{{ $submenu->link }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-theme-color-hover">{{ $submenu->name }}</a>
-                    @endforeach
-                </div>
+                 <div class="w-80 z-10 hidden absolute flex items-end">
+                    <div class=" hidden group-hover:block bg-white shadow-lg py-2 mt-2 rounded-md w-48 z-50 h-auto">
+                        @foreach ($menu->submenus as $submenu)
+                        <a href="{{ $submenu->link }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-theme-color-hover">{{ $submenu->name }}</a>
+                        @endforeach
+                    </div>
+                 </div>
+
+
             </div>
         @else
             <a href="{{ $menu->link }}" class="text-gray-900 hover:text-theme-color-hover">{{ $menu->name }}</a>
@@ -53,7 +57,7 @@
                 </button>
 
                 <!-- Cart Icon -->
-                <button class="text-gray-900 hover:text-indigo-600 flex items-center justify-center">
+                <button class="text-gray-900 hover:text-indigo-600 flex items-center justify-center pb-1">
                     <img src="{{ asset('images/icons/icon_cart_header.png') }}" alt="Cart" class="h-6 w-6 object-contain" />
                 </button>
 
