@@ -22,9 +22,9 @@
 <body class="font-sans antialiased overflow-x-hidden lg:overflow-x-hidden">
 <x-frontend.header></x-frontend.header>
 
-
-@yield('content')
-
+<div class="h-screen">
+    @yield('content')
+</div>
 
 <x-frontend.footer></x-frontend.footer>
 
