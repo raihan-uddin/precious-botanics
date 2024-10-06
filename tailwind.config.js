@@ -14,6 +14,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            // fontFamily: {
+            //     dosis: ["dosis", "sans-serif"],
+            // },
+            colors: {
+                'primary': '#9FD62E',
+                'secondary': '#1F232E',
+                'secondary-light': '#222222',
+            },
         },
         container: {
             center: true,
@@ -24,8 +32,6 @@ export default {
                 xl: '4rem',
             },
         },
-
-
     },
 
     plugins: [forms],

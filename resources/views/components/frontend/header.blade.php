@@ -363,15 +363,14 @@
                         <!-- ./home -->
                         @php($menuCategories = getMenuCategories())
                         @foreach($menuCategories as $category)
-                            {{info($category->submenus)}}
-                            @if($category->submenus)
+                            @if(count($category->submenus) > 0)
                                 <!-- Natural Products -->
                                 <li class="relative group">
                                     <a class="text-lg hover:text-primary transition duration-200 ease-in-out font-medium"
                                        href="#">{{$category->name}}</a>
                                     <div class="w-80 h-32 z-10 hidden absolute flex items-end">
                                         <div
-                                            class="w-80 h-20 mt-8 group-hover:block px-4 bg-white box-shadow-custom  z-10 border-t-2 border-gray-200">
+                                            class="w-80 h-auto mt-8 pb-5 group-hover:block px-4 bg-white box-shadow-custom  z-10 border-t-2 border-gray-200">
                                             <ul class="space-y-4 pt-2">
                                                 @foreach($category->submenus as $subCategory)
                                                     <li>
