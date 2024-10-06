@@ -34,27 +34,26 @@
 
     <script>
 
-        $(document).ready(function () {
-            $('#slider').lightSlider({
-                item: 1,
-                loop: true,
-                slideMargin: 0,
-                speed: 1000,
-                auto: true,
-                pause: 3000,
-                controls: false,
-                pager: false,
-                enableDrag: false,
-                enableTouch: false,
-            });
+        const slider = document.getElementById('slider');
+        const images = slider.children;
+        const totalImages = images.length;
+        let currentIndex = 0;
 
-            $('#prev').click(function () {
-                $('#slider').goToPrevSlide();
-            });
+        function updateSlider() {
+            const offset = -currentIndex * 100; // Move to the correct image
+            slider.style.transform = `translateX(${offset}%)`;
+        }
 
-            $('#next').click(function () {
-                $('#slider').goToNextSlide();
-            });
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateSlider();
         });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateSlider();
+        });
+
+
     </script>
 @endpush
