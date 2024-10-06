@@ -20,11 +20,17 @@
     @stack('styles')
 </head>
 <body class="font-sans antialiased overflow-x-hidden lg:overflow-x-hidden">
-
 <x-frontend.header></x-frontend.header>
+
+
+@yield('content')
+
+
+<x-frontend.footer></x-frontend.footer>
 
 <!-- Jquery -->
 <script src="{{ asset('js/jquery-3.7.1.min.js' )}}"></script>
+
 <!-- Scripts -->
 @stack('scripts')
 </body>

@@ -174,7 +174,7 @@
                     <div class="w-full h-full flex items-center justify-center">
                         <div class="w-6">
                             <button onclick="openMenu2()" id="btn">
-                                <img id="menu-icon" src="images/menu-svgrepo-com.png">
+                                <img id="menu-icon" src="{{ asset('images/icons/icon_account.png') }}">
                             </button>
                         </div>
                         <!-- The menu here -->
@@ -430,35 +430,35 @@
 
 <script>
 
-function closeMenu() {
-    sideMenu.classList.remove('right-0');
-    sideMenu.classList.add('right-[-250px]');
-}
+    function closeMenu() {
+        sideMenu.classList.remove('right-0');
+        sideMenu.classList.add('right-[-250px]');
+    }
 
 
-var sideMenu1 = document.getElementById('side-menu-1');
+    var sideMenu1 = document.getElementById('side-menu-1');
 
-function openMenu1() {
-    sideMenu1.classList.remove('right-[-440px]');
-    sideMenu1.classList.add('right-0');
-}
+    function openMenu1() {
+        sideMenu1.classList.remove('right-[-440px]');
+        sideMenu1.classList.add('right-0');
+    }
 
-function closeMenu1() {
-    sideMenu1.classList.remove('right-0');
-    sideMenu1.classList.add('right-[-440px]');
-}
+    function closeMenu1() {
+        sideMenu1.classList.remove('right-0');
+        sideMenu1.classList.add('right-[-440px]');
+    }
 
 
-var sideMenu2 = document.getElementById('side-menu-2');
+    var sideMenu2 = document.getElementById('side-menu-2');
 
-function openMenu2() {
-    sideMenu2.classList.remove('left-[-250px]');
-    sideMenu2.classList.add('left-0');
-}
+    function openMenu2() {
+        sideMenu2.classList.remove('left-[-250px]');
+        sideMenu2.classList.add('left-0');
+    }
 
-function closeMenu2() {
-    sideMenu2.classList.remove('left-0');
-    sideMenu2.classList.add('left-[-250px]');
-}
+    function closeMenu2() {
+        sideMenu2.classList.remove('left-0');
+        sideMenu2.classList.add('left-[-250px]');
+    }
 
 </script>

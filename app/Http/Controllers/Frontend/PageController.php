@@ -18,7 +18,7 @@ class PageController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        $banners = Banner::all();
+        $banners = Banner::where('is_active', 1)->get();
         $tags = Tag::all();
 
         return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags'));
