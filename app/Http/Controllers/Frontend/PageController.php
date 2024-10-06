@@ -16,8 +16,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $products = Product::all();
+        $categories = Category::where('is_active', 1)->get();
+        $products = Product::where('status', 'published')->get();
         $banners = Banner::where('is_active', 1)->get();
         $tags = Tag::all();
 
