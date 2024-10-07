@@ -15,13 +15,11 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-            // fontFamily: {
-            //     dosis: ["dosis", "sans-serif"],
-            // },
             colors: {
-                'primary': '#9FD62E',
+                'primary': '#a1cd00',
                 'secondary': '#1F232E',
                 'secondary-light': '#222222',
+                'theme-color-hover': '#a1cd00'
             },
         },
         container: {
