@@ -28,7 +28,7 @@
                     class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-prev>
         <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -41,7 +41,7 @@
                     class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-next>
         <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -81,32 +81,42 @@
             <div class="flex items-center justify-center my-8">
                 <h1 class="font-semibold text-2xl lg:text-5xl">Most Loved Products</h1>
             </div>
-            <!-- Swiper Container -->
+
+            <!-- Product Carousel -->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @foreach($mostLovedProducts as $product)
+                        <!-- Product Card -->
                         <div class="swiper-slide">
-                            <div class="w-48 h-auto lg:w-80 h-full relative card">
-                                <div class="relative h-72 w-full flex justify-center items-center">
-                                    <img class="lg:w-60 lg:h-60"
-                                         src="{{ asset('storage/' . $product->featured_image) }}"
-                                         alt="{{ $product->name }}">
-                                    <div class="contentBx absolute bottom-0 w-full h-24">
-                                        <a href="#"><img class="w-6"
-                                                         src="{{asset('images/icons/icon_select_hover.png')}}"
-                                                         alt=""></a>
-                                        <a href="#"><img class="w-6"
-                                                         src="{{asset('images/icons/icon_quick_view.png')}}"></a>
+                            <div class="w-full h-auto relative card group"> <!-- Added group class for hover effects -->
+                                <!-- Product Image -->
+                                <div class="relative h-60 w-full flex justify-center items-center">
+                                    <img class="lg:w-60 lg:h-60 object-contain"
+                                         src="{{ asset('storage/' . $product->featured_image) }}" alt="Product 1">
+                                    <!-- SVG Icons -->
+                                    <div class="absolute inset-0 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <!-- Hidden by default -->
+                                        <a href="#" class="text-center mt-4">
+                                            <img class="w-8 h-8" src="{{ asset('images/icons/icon_select_hover.png') }}"
+                                                 alt="Add to Cart">
+                                        </a>
+                                        <a href="#" class="text-center mb-4">
+                                            <img class="w-8 h-8" src="{{ asset('images/icons/icon_quick_view.png') }}"
+                                                 alt="View Product">
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="px-4">
+                                <!-- Product Title and Price -->
+                                <div class="px-4 text-center h-32 flex flex-col justify-between">
                                     <p class="text-xl hover:text-primary cursor-pointer">{{ $product->name }}</p>
-                                    <p>${{ $product->price }}</p>
+                                    <p class="text-lg font-semibold text-gray-700">
+                                        ${{ number_format($product->price, 2) }}</p> <!-- Properly formatted price -->
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
             </div>
         </section>
         <!-- ./Most Loved Products -->
@@ -122,30 +132,29 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1,  // Default for small devices
-            spaceBetween: 10,
-            loop: false,  // No looping
-            navigation: false,  // No navigation arrows
-            pagination: false,  // No pagination dots
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1, // Default to 1 item on small screens
+            spaceBetween: 20,
             breakpoints: {
                 640: {
-                    slidesPerView: 2,  // For devices 640px and larger
+                    slidesPerView: 1, // 1 item on small screens
                     spaceBetween: 20,
                 },
                 768: {
-                    slidesPerView: 3,  // For devices 768px and larger
+                    slidesPerView: 3, // 3 items on medium devices
                     spaceBetween: 30,
                 },
                 1024: {
-                    slidesPerView: 4,  // For devices 1024px and larger
+                    slidesPerView: 3, // 3 items on medium devices
+                    spaceBetween: 30,
+                },
+                1280: {
+                    slidesPerView: 5, // 5 items on large devices
                     spaceBetween: 40,
                 },
-                1440: {
-                    slidesPerView: 5,  // For devices 1440px and larger
-                    spaceBetween: 50,
-                }
             },
+            draggable: true,
+            // Disable navigation buttons by simply not adding them
         });
     </script>
 
