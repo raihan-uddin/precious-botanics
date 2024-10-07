@@ -48,6 +48,140 @@
 @endif
 <!-- ./Featured banner card -->
 
+ <!-- most loved product -->
+<section class="most-product section-gap px-2">
+	<div class="flex items-center justify-center my-8">
+		<h1 class="font-semibold text-2xl lg:text-5xl">Most Loved Products</h1>
+	</div>
+	<ul id="autoWidth" class="cs-hidden">
+		<li class="item-a">
+			<div class=" w-48 h-auto lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-5.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl hover:text-primary cursor-pointer">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+		<li class="item-a">
+			<div class="lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-6.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">
+		
+					 
+		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+		<li class="item-a">
+			<div class="lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-7.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">
+		
+					 
+		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl hover:text-primary cursor-pointer">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+		<li class="item-a">
+			<div class="lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-8.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">
+		
+					 
+		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl hover:text-primary cursor-pointer">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+		<li class="item-a">
+			<div class="lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-9.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">
+		
+					 
+		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl hover:text-primary cursor-pointer">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+		<li class="item-a">
+			<div class="lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-5.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">
+		
+					 
+		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl hover:text-primary cursor-pointer">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+		<li class="item-a">
+			<div class="lg:w-80 h-ful relative card">
+				<div class="relative h-72 w-full flex justify-center items-center">
+					<img class="lg:w-60 lg:h-60" src="images/product-5.png" alt="Product 1">
+					<div class="contentBx absolute bottom-0 w-full h-24">
+		
+					 
+		
+						<a href="#"><img class="w-6" src="images/plus-large-svgrepo-com.png"></a>
+						<a href="#"><img class="w-6" src="images/eye-open-svgrepo-com.png"></a>
+					</div>
+				</div>
+				<div class="px-4">
+					<p class="text-xl hover:text-primary cursor-pointer">Mango Butter Whipped Shea Butter</p>
+					<p>$11.9</p>
+				</div>
+			</div>
+		</li>
+
+	</ul>
+</section>
+<!-- ./most product -->
+
 
 @endsection
 @push('scripts')

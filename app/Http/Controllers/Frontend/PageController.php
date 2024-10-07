@@ -25,6 +25,9 @@ class PageController extends Controller
         
         $tags = Tag::all();
 
+        // most popular products random product take 20
+        // $products = Product::
+
         return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners'));
     }
 }
