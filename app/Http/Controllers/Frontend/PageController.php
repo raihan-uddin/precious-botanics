@@ -19,56 +19,12 @@ class PageController extends Controller
         $categories = Category::where('is_active', 1)->get();
         $products = Product::where('status', 'published')->get();
         $banners = Banner::where('is_active', 1)->get();
+
+        $sliders = $banners->where('section', 'slider');
+        $featuredBanners = $banners->where('section', 'featured');
+        
         $tags = Tag::all();
 
-        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners'));
     }
 }

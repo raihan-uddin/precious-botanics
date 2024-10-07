@@ -4,14 +4,14 @@
 @section('content')
 
 <!-- image slider -->
-@if($banners->count())
+@if($sliders->count())
 <section class="relative">
   <!-- Swiper -->
   <div class="swiper-container overflow-hidden">
     <div class="swiper-wrapper">
-      @foreach($banners as $banner)
+      @foreach($sliders as $banner)
       <div class="swiper-slide">
-        <img src="{{ asset('storage/' . $banner->image) }}" alt="Banner Image" class="w-full h-auto object-cover">
+        <img src="{{ asset('storage/' . $banner->image) }}" alt="{{$banner->title}}" class="w-full h-auto object-cover">
       </div>
       @endforeach
     </div>
@@ -25,8 +25,29 @@
   </div>
 </section>
 @endif
-
 <!-- end image slider -->
+
+<!-- Featured banner card -->
+@if($featuredBanners->count())
+	<section class="bg-white p-4 flex justify-center">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 space-y-2 space-x-2">
+			@foreach($featuredBanners as $banner)
+				<div class="relative flex items-end justify-center overflow-hidden">
+					<img class="" id="img-product" src="{{ asset('storage/' . $banner->image) }}">
+					<div class="absolute bottom-8">
+						<!-- Button with hover effect to show the image -->
+						<button class="button-container">
+							<span class="button-text">{{$banner->title}}</span>
+							<img class="button-img" src="{{ asset('images/icons/right-arrow.png') }}" alt="Arrow">
+						</button>
+					</div>
+				</div>
+			@endforeach
+		</div>
+	</section>
+@endif
+<!-- ./Featured banner card -->
+
 
 @endsection
 @push('scripts')
