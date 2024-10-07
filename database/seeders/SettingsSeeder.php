@@ -51,8 +51,8 @@ class SettingsSeeder extends Seeder
 
             // Cookie
             ['key' => 'cookie', 'value' => 1, 'type'=> 'boolean', 'created_at' => now(), 'updated_at' => now()],
-            ['key' => 'cookie_message', 
-                'value' => 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 
+            ['key' => 'cookie_message',
+                'value' => 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.',
                 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'cookie_button', 'value' => 'Accept', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'cookie_policy', 'value' => 'Privacy Policy', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
@@ -77,6 +77,9 @@ class SettingsSeeder extends Seeder
             ['key' => 'show_featured_categories', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
             // show testimonials
             ['key' => 'show_testimonials', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+
+            // show newslaetter
+            ['key' => 'show_newsletter', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
 
         ]);
     }

@@ -1,5 +1,6 @@
+@php use App\Helpers\SettingsHelper; @endphp
 
-<!-- Footer -->
+    <!-- Footer -->
 <footer class="bb-footer mt-[50px] max-[1199px]:mt-[35px] bg-[#f8f8fb] text-[#fff]">
     <div class="footer-directory py-[50px] max-[1199px]:py-[35px] border-[1px] border-solid border-solid">
         <div
@@ -261,7 +262,8 @@
                                  class="bb-footer-dark-logo max-w-[144px] mb-[30px] max-[767px]:max-w-[130px] hidden"
                                  alt="footer logo">
                             <p class="bb-footer-detail max-w-[400px] mb-[30px] p-[0] font-Poppins text-[14px] leading-[27px] font-normal text-[#686e7d] inline-block relative max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
-                                Precious Botanics is your go-to source for natural and herbal beauty products. Embrace your wellness journey with our carefully curated selection.
+                                Precious Botanics is your go-to source for natural and herbal beauty products. Embrace
+                                your wellness journey with our carefully curated selection.
                             </p>
                         </div>
                     </div>
@@ -358,22 +360,26 @@
                                                     <i class="ri-map-pin-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
                                                 </span>
                                             <p class="m-[0] font-Poppins text-[14px] text-[#686e7d] font-normal leading-[28px] tracking-[0.03rem]">
-                                                971 Lajamni, Motavarachha, Surat, Gujarat, Bharat 394101.</p>
+                                                {{ SettingsHelper::get('site_address', 'Dhaka, Bangladesh') }}
+                                            </p>
                                         </li>
                                         <li class="bb-footer-link bb-foo-call flex items-start max-[991px]:mb-[15px] mb-[16px]">
                                                 <span class="w-[25px] basis-[auto] grow-[0] shrink-[0]">
                                                     <i class="ri-whatsapp-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
                                                 </span>
-                                            <a href="tel:+009876543210"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">+00
-                                                9876543210</a>
+                                            <a href="tel:{{ SettingsHelper::get('site_phone', '+8801680527922') }}"
+                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
+                                                {{ SettingsHelper::get('site_phone', '+8801680527922') }}
+                                            </a>
                                         </li>
                                         <li class="bb-footer-link bb-foo-mail flex">
                                                 <span class="w-[25px] basis-[auto] grow-[0] shrink-[0]">
                                                     <i class="ri-mail-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
                                                 </span>
-                                            <a href="mailto:example@email.com"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">example@email.com</a>
+                                            <a href="mailto:{{ SettingsHelper::get('site_email', 'raihanuddin2@yahoo.com') }}"
+                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
+                                                {{ SettingsHelper::get('site_email', 'raihanuddin2@yahoo.com') }}
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -383,26 +389,34 @@
                             <div class="bb-footer-widget">
                                 <div class="bb-footer-links bb-footer-dropdown hidden max-[991px]:mb-[35px]">
                                     <ul class="align-items-center flex flex-wrap items-center">
-                                        <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
-                                            <a href="javascript:void(0)"
-                                               class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
-                                                    class="ri-facebook-fill text-[16px] text-[#fff]"></i></a>
-                                        </li>
-                                        <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
-                                            <a href="javascript:void(0)"
-                                               class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
-                                                    class="ri-twitter-fill text-[16px] text-[#fff]"></i></a>
-                                        </li>
-                                        <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
-                                            <a href="javascript:void(0)"
-                                               class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
-                                                    class="ri-linkedin-fill text-[16px] text-[#fff]"></i></a>
-                                        </li>
-                                        <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
-                                            <a href="javascript:void(0)"
-                                               class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
-                                                    class="ri-instagram-line text-[16px] text-[#fff]"></i></a>
-                                        </li>
+                                        @if(SettingsHelper::get('site_facebook'))
+                                            <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
+                                                <a href="{{ SettingsHelper::get('site_facebook') }}"
+                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                        class="ri-facebook-fill text-[16px] text-[#fff]"></i></a>
+                                            </li>
+                                        @endif
+                                        @if(SettingsHelper::get('twitter'))
+                                            <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
+                                                <a href="{{ SettingsHelper::get('twitter') }}"
+                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                        class="ri-twitter-fill text-[16px] text-[#fff]"></i></a>
+                                            </li>
+                                        @endif
+                                        @if(SettingsHelper::get('linkedin'))
+                                            <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
+                                                <a href="{{ SettingsHelper::get('linkedin') }}"
+                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                        class="ri-linkedin-fill text-[16px] text-[#fff]"></i></a>
+                                            </li>
+                                        @endif
+                                        @if(SettingsHelper::get('instagram'))
+                                            <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
+                                                <a href="javascript:void(0)"
+                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                        class="ri-instagram-line text-[16px] text-[#fff]"></i></a>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
@@ -603,7 +617,6 @@
     </div>
 </div>
 
-
 <!-- Quick view Modal -->
 <div class="bb-modal-overlay w-full h-screen hidden fixed top-0 left-0 z-[26] bg-[#000000b3]"></div>
 <div
@@ -641,16 +654,14 @@
                                 <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
                                 <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
                             </div>
-                            <div
-                                class="bb-quickview-desc mb-[10px] text-[15px] leading-[24px] text-[#777] font-light">
+                            <div class="bb-quickview-desc mb-[10px] text-[15px] leading-[24px] text-[#777] font-light">
                                 Lorem Ipsum is simply dummy text of the printing and
                                 typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
                                 since the 1900s,
                             </div>
                             <div class="bb-quickview-price pt-[5px] pb-[10px] flex items-center justify-left">
                                 <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold">$50.00</span>
-                                <span
-                                    class="old-price px-[3px] text-[14px] text-[#686e7d] line-through">$62.00</span>
+                                <span class="old-price px-[3px] text-[14px] text-[#686e7d] line-through">$62.00</span>
                             </div>
                             <div class="bb-pro-variation mt-[15px] mb-[25px]">
                                 <ul class="flex flex-wrap m-[-2px]">
@@ -700,36 +711,38 @@
 </div>
 
 <!-- Newsletter Modal -->
-<div class="bb-popnews-bg fixed left-[0] top-[0] w-full h-full bg-[#00000080] hidden z-[25] hidden"></div>
-<div
-    class="bb-popnews-box w-full max-w-[600px] p-[24px] fixed left-[50%] top-[50%] bg-[#fff] hidden z-[25] text-center rounded-[15px] overflow-hidden max-[767px]:w-[90%]">
+@if(SettingsHelper::get('show_newsletter', false))
+    <div class="bb-popnews-bg fixed left-[0] top-[0] w-full h-full bg-[#00000080] hidden z-[25] hidden"></div>
     <div
-        class="bb-popnews-close transition-all duration-[0.3s] ease-in-out w-[16px] h-[20px] absolute top-[-5px] right-[27px] bg-[#e04e4eb3] rounded-[10px] cursor-pointer hover:bg-[#e04e4e]"
-        title="Close"></div>
-    <div class="flex flex-wrap mx-[-12px]">
-        <div class="min-[768px]:w-[50%] w-full px-[12px]">
-            <img src="{{ asset('assets/img/newsletter/newsletter.jpg') }}" alt="newsletter"
-                 class="w-full rounded-[15px] max-[767px]:hidden">
-        </div>
-        <div class="min-[768px]:w-[50%] w-full px-[12px]">
-            <div class="bb-popnews-box-content h-full flex flex-col items-center justify-center">
-                <h2 class="font-quicksand text-[#3d4750] block text-[22px] leading-[33px] font-semibold mt-[0] mx-[auto] mb-[10px] tracking-[0] capitalize">
-                    Newsletter.</h2>
-                <p class="font-Poppins font-light tracking-[0.03rem] mb-[8px] text-[14px] leading-[22px] text-[#686e7d]">
-                    Subscribe the {{ env('APP_NAME') }} to get in touch and get the future update.</p>
-                <form class="bb-popnews-form mt-[0]" action="#" method="post">
-                    <input type="email" name="newsemail" placeholder="Email Address"
-                           class="mb-[20px] bg-transparent border-[1px] border-solid border-[#eee] text-[#3d4750] text-[14px] py-[10px] px-[15px] w-full outline-[0] rounded-[10px] font-normal"
-                           required>
-                    <button type="button"
-                            class="bb-btn-2 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[4px] px-[15px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]"
-                            name="subscribe">Subscribe
-                    </button>
-                </form>
+        class="bb-popnews-box w-full max-w-[600px] p-[24px] fixed left-[50%] top-[50%] bg-[#fff] hidden z-[25] text-center rounded-[15px] overflow-hidden max-[767px]:w-[90%]">
+        <div
+            class="bb-popnews-close transition-all duration-[0.3s] ease-in-out w-[16px] h-[20px] absolute top-[-5px] right-[27px] bg-[#e04e4eb3] rounded-[10px] cursor-pointer hover:bg-[#e04e4e]"
+            title="Close"></div>
+        <div class="flex flex-wrap mx-[-12px]">
+            <div class="min-[768px]:w-[50%] w-full px-[12px]">
+                <img src="{{ asset('assets/img/newsletter/newsletter.jpg') }}" alt="newsletter"
+                     class="w-full rounded-[15px] max-[767px]:hidden">
+            </div>
+            <div class="min-[768px]:w-[50%] w-full px-[12px]">
+                <div class="bb-popnews-box-content h-full flex flex-col items-center justify-center">
+                    <h2 class="font-quicksand text-[#3d4750] block text-[22px] leading-[33px] font-semibold mt-[0] mx-[auto] mb-[10px] tracking-[0] capitalize">
+                        Newsletter.</h2>
+                    <p class="font-Poppins font-light tracking-[0.03rem] mb-[8px] text-[14px] leading-[22px] text-[#686e7d]">
+                        Subscribe the {{ env('APP_NAME') }} to get in touch and get the future update.</p>
+                    <form class="bb-popnews-form mt-[0]" action="#" method="post">
+                        <input type="email" name="newsemail" placeholder="Email Address"
+                               class="mb-[20px] bg-transparent border-[1px] border-solid border-[#eee] text-[#3d4750] text-[14px] py-[10px] px-[15px] w-full outline-[0] rounded-[10px] font-normal"
+                               required>
+                        <button type="button"
+                                class="bb-btn-2 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[4px] px-[15px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]"
+                                name="subscribe">Subscribe
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 
 <!-- Tools Sidebar -->
 <div class="bb-tools-sidebar-overlay w-full h-screen fixed top-[0] left-[0] bg-[#00000080] z-[16] hidden"></div>
