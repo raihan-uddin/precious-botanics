@@ -39,6 +39,7 @@
     @stack('styles')
 </head>
 <body>
+{{--TODO:: need to active after all done--}}
 <!-- Loader -->
 {{--<div
     class="bb-loader min-w-full w-full h-screen fixed top-[0] left-[0] flex items-center justify-center bg-[#fff] z-[45]">

@@ -43,6 +43,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'site_whatsapp', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_telegram', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_snapchat', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'site_twitter', 'value' => 'https://twitter.com/PreciousBotanic', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'site_tiktok', 'value' => 'https://www.tiktok.com/@preciousbotanic', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             // Google ReCapcha *
             ['key' => 'capcha', 'value' => 0, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
