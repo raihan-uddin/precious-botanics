@@ -11,17 +11,19 @@
                 <div class="swiper-wrapper">
                     @foreach($sliders as $banner)
                         <div class="swiper-slide">
-                            <img src="{{ asset('storage/' . $banner->image) }}" alt="{{$banner->title}}"
-                                 class="w-full h-auto object-contain">
+                            <div class="h-full md:h-screen">
+                                <img src="{{ asset('storage/' . $banner->image) }}" alt="{{$banner->title}}"
+                                 class="w-full h-full object-contain md:object-cover">
+                            </div>
                         </div>
                     @endforeach
                 </div>
-                <!-- Pagination -->
-                <div class="swiper-pagination"></div>
+{{--                <!-- Pagination -->--}}
+{{--                <div class="swiper-pagination"></div>--}}
 
-                <!-- Navigation buttons -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+{{--                <!-- Navigation buttons -->--}}
+{{--                <div class="swiper-button-next"></div>--}}
+{{--                <div class="swiper-button-prev"></div>--}}
             </div>
         </section>
     @endif
@@ -95,17 +97,17 @@
             var swiper = new Swiper('.banner-swiper-container', {
                 loop: true,
                 autoplay: {
-                    delay: 2500,
+                    delay: 2000,
                     disableOnInteraction: false,
                 },
-                pagination: {
+                /*pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
-                },
+                },*/
                 slidesPerView: 1, // Keep 1 slide per view across all devices
                 centeredSlides: true,
             });
