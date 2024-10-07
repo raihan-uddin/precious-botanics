@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Models\Category; // Add this line
-use App\Models\Product;  // Add this line
-use App\Models\Tag;   // Add this line
-use Illuminate\Http\Request;      // Add this line
+use App\Models\Category;
+
+// Add this line
+use App\Models\Product;
+
+// Add this line
+use App\Models\Tag;
+
+// Add this line
+use Illuminate\Http\Request;
+
+// Add this line
 
 class PageController extends Controller
 {
@@ -22,12 +30,12 @@ class PageController extends Controller
 
         $sliders = $banners->where('section', 'slider');
         $featuredBanners = $banners->where('section', 'featured');
-        
+
         $tags = Tag::all();
 
         // most popular products random product take 20
-        // $products = Product::
+        $mostLovedProducts = Product::where('status', 'published')->inRandomOrder()->take(20)->get();
 
-        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners'));
+        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts'));
     }
 }
