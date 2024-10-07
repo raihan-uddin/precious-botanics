@@ -30,7 +30,7 @@ class PageController extends Controller
 
         $tags = Tag::all();
 
-        // wherehas variants
+        
         $mostLovedProducts = Product::with([
             'variants:id,product_id,size,color,price,sku,stock', 
             'categories'
@@ -45,7 +45,27 @@ class PageController extends Controller
             ->take(20)
             ->get();
 
-        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts'));
+        // GET categories where show_on_home is true and get the products of those categories which are published and in stock and take 20 random products
+        $latestProducts = Product::with([
+            'variants:id,product_id,size,color,price,sku,stock', 
+            'categories'
+            ])
+            ->whereHas('categories', function ($query) {
+                $query->where('show_on_home', 1);
+            })
+            ->where('status', 'published')
+            ->where(function ($query) {
+                $query->where('stock_quantity', '>', 0)
+                    ->orWhere('allow_out_of_stock_orders', 1);
+            })
+            ->inRandomOrder()
+            ->take(20)
+            ->get();
+
+        // now group the products by category
+        $latestProducts = $latestProducts->groupBy('categories.0.id');
+
+        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts', 'latestProducts', 'latestProducts'));
     }
 
     public function categoryProduct($slug)
