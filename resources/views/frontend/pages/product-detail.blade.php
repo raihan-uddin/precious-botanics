@@ -1,6 +1,6 @@
 @extends('frontend.layouts.default')
 
-@section('title', 'Home')
+@section('title', $pageTitle)
 
 @section('content')
     <!-- Breadcrumb -->
@@ -11,20 +11,18 @@
             <div class="flex flex-wrap w-full">
                 <div class="w-full px-[12px]">
                     <div class="flex flex-wrap w-full bb-breadcrumb-inner m-[0] py-[20px] items-center">
-                        <div class="min-[768px]:w-[50%] min-[576px]:w-full w-full px-[12px]">
-                            <h2 class="bb-breadcrumb-title font-quicksand tracking-[0.03rem] leading-[1.2] text-[16px] font-bold text-[#3d4750] max-[767px]:text-center max-[767px]:mb-[10px]">
-                                product Page</h2>
-                        </div>
-                        <div class="min-[768px]:w-[50%] min-[576px]:w-full w-full px-[12px]">
+                        
+                        <div class="min-[768px]:w-[100%] min-[576px]:w-full w-full px-[12px]">
                             <ul class="bb-breadcrumb-list mx-[-5px] flex justify-end max-[767px]:justify-center">
-                                <li class="bb-breadcrumb-item text-[14px] font-normal px-[5px]"><a href="index.html"
-                                                                                                   class="font-Poppins text-[14px] leading-[28px] tracking-[0.03rem] font-semibold text-[#686e7d]">Home</a>
+                                <li class="bb-breadcrumb-item text-[14px] font-normal px-[5px]">
+                                    <a href="{{ route('home') }}"class="font-Poppins text-[14px] leading-[28px] tracking-[0.03rem] font-semibold text-[#686e7d]">Home</a>
                                 </li>
                                 <li class="text-[14px] font-normal px-[5px]"><i
                                         class="ri-arrow-right-double-fill text-[14px] font-semibold leading-[28px]"></i>
                                 </li>
                                 <li class="bb-breadcrumb-item font-Poppins text-[#686e7d] text-[14px] leading-[28px] font-normal tracking-[0.03rem] px-[5px] active">
-                                    product Page
+                                    {{-- print first category of the product --}}
+                                    <a href="{{ route('category.product', $product->categories->first()->slug) }}" class="font-Poppins text-[14px] leading-[28px] tracking-[0.03rem] font-semibold text-[#686e7d]">{{ $product->categories->first()->name }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -46,53 +44,35 @@
                                 <div
                                     class="single-pro-slider sticky top-[0] p-[15px] border-[1px] border-solid border-[#eee] rounded-[24px] max-[991px]:max-w-[500px] max-[991px]:m-auto">
                                     <div class="single-product-cover">
-                                        <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                            <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]"
-                                                 src="assets/img/new-product/1.jpg" alt="product-1">
-                                        </div>
-                                        <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                            <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]"
-                                                 src="assets/img/new-product/2.jpg" alt="product-2">
-                                        </div>
-                                        <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                            <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]"
-                                                 src="assets/img/new-product/3.jpg" alt="product-3">
-                                        </div>
-                                        <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                            <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]"
-                                                 src="assets/img/new-product/4.jpg" alt="product-4">
-                                        </div>
-                                        <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                            <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]"
-                                                 src="assets/img/new-product/5.jpg" alt="product-5">
-                                        </div>
+                                        @if($product->images)
+                                            
+                                            @foreach($product->images as $image)
+                                                <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
+                                                    <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]" src="{{ asset('storage/'.$image->image_url) }}" alt="{{ $product->name }}">
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
+                                                <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]" src="{{ asset('storage/'. $product->featured_image) }}" alt="{{ $product->name }}">
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="single-nav-thumb w-full overflow-hidden">
-                                        <div class="single-slide px-[10px] block">
-                                            <img
-                                                class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
-                                                src="assets/img/new-product/1.jpg" alt="product-1">
-                                        </div>
-                                        <div class="single-slide px-[10px] block">
-                                            <img
-                                                class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
-                                                src="assets/img/new-product/2.jpg" alt="product-2">
-                                        </div>
-                                        <div class="single-slide px-[10px] block">
-                                            <img
-                                                class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
-                                                src="assets/img/new-product/3.jpg" alt="product-3">
-                                        </div>
-                                        <div class="single-slide px-[10px] block">
-                                            <img
-                                                class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
-                                                src="assets/img/new-product/4.jpg" alt="product-4">
-                                        </div>
-                                        <div class="single-slide px-[10px] block">
-                                            <img
-                                                class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
-                                                src="assets/img/new-product/5.jpg" alt="product-5">
-                                        </div>
+                                        @if($product->images)
+                                            @foreach($product->images as $image)
+                                                <div class="single-slide px-[10px] block">
+                                                    <img
+                                                        class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
+                                                        src="{{ asset('storage/'.$image->image_url) }}" alt="{{ $product->name }}">
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <div class="single-slide px-[10px] block">
+                                                <img
+                                                    class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
+                                                    src="{{ asset('storage/'. $product->featured_image) }}" alt="{{ $product->name }}">
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +80,8 @@
                                 <div class="bb-single-pro-contact">
                                     <div class="bb-sub-title mb-[20px]">
                                         <h4 class="font-quicksand text-[22px] tracking-[0.03rem] font-bold leading-[1.2] text-[#3d4750]">
-                                            Ground Nuts Oil Pack 52g</h4>
+                                            {{ $product->name }}
+                                        </h4>
                                     </div>
                                     <div class="bb-single-rating mb-[12px]">
                                         <span class="bb-pro-rating mr-[10px]">
@@ -112,55 +93,47 @@
                                         </span>
                                         <span class="bb-read-review">
                                             |&nbsp;&nbsp;<a href="#bb-spt-nav-review"
-                                                            class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem] text-[#6c7fd8]">992 Ratings</a>
+                                                            class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem] text-[#6c7fd8] hidden">992 Ratings</a>
                                         </span>
                                     </div>
                                     <p class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem]">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas nihil laboriosam
-                                        voluptatem
-                                        ab consectetur dolorum id, soluta sunt at culpa commodi totam quod natus qui!
+                                        {!! $product->short_description !!}
                                     </p>
                                     <div class="bb-single-price-wrap flex justify-between py-[10px]">
                                         <div class="bb-single-price py-[15px]">
                                             <div class="price mb-[8px]">
                                                 <h5 class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[20px] font-extrabold text-[#3d4750]">
-                                                    $923.00 <span class="text-[#3d4750] text-[20px]">-78%</span></h5>
+                                                    ${{  $product->discount_price > 0 ? number_format($product->discount_price, 2) :number_format($product->price, 2)   }} 
+                                                    @if($product->discount_price > 0)
+                                                        @php
+                                                            $discount = 100 - (($product->discount_price / $product->price) * 100);
+                                                        @endphp
+                                                        <span class="text-[#3d4750] text-[20px]">
+                                                            -{{ number_format($discount, 0) }}%
+                                                        </span>
+                                                    @endif
+                                                </h5>
                                             </div>
                                             <div class="mrp">
                                                 <p class="font-Poppins text-[16px] font-light text-[#686e7d] leading-[28px] tracking-[0.03rem]">
-                                                    M.R.P. : <span class="text-[15px] line-through">$1,999.00</span></p>
+                                                    M.R.P. : <span class="text-[15px] line-through">${{  number_format($product->price , 2) }}</span></p>
                                             </div>
                                         </div>
                                         <div class="bb-single-price py-[15px]">
                                             <div class="sku mb-[8px]">
                                                 <h5 class="font-quicksand text-[18px] font-extrabold leading-[1.2] tracking-[0.03rem] text-[#3d4750]">
-                                                    SKU#: WH12</h5>
+                                                    SKU#: {{ $product->sku }}</h5>
                                             </div>
                                             <div class="stock">
-                                                <span class="text-[18px] text-[#6c7fd8]">In stock</span>
+                                                @if($product->stock_quantity > 0 || $product->allow_out_of_stock_orders > 0)
+                                                    <span class="text-[18px] text-[#6c7fd8]">In stock</span>
+                                                @else
+                                                    <span class="text-[18px] text-[#f44336]">Out of stock</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="bb-single-list mb-[30px]">
-                                        <ul class="my-[-8px] pl-[18px]">
-                                            <li class="my-[8px] font-Poppins text-[14px] font-light leading-[28px] tracking-[0.03rem] text-[#777] list-disc">
-                                                <span class="font-Poppins text-[#777] text-[14px]">Closure :</span> Hook
-                                                & Loop
-                                            </li>
-                                            <li class="my-[8px] font-Poppins text-[14px] font-light leading-[28px] tracking-[0.03rem] text-[#777] list-disc">
-                                                <span class="font-Poppins text-[#777] text-[14px]">Sole :</span>
-                                                Polyvinyl Chloride
-                                            </li>
-                                            <li class="my-[8px] font-Poppins text-[14px] font-light leading-[28px] tracking-[0.03rem] text-[#777] list-disc">
-                                                <span class="font-Poppins text-[#777] text-[14px]">Width :</span> Medium
-                                            </li>
-                                            <li class="my-[8px] font-Poppins text-[14px] font-light leading-[28px] tracking-[0.03rem] text-[#777] list-disc">
-                                                <span
-                                                    class="font-Poppins text-[#777] text-[14px]">Outer Material :</span>
-                                                A-Grade Standard Quality
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    
                                     <div class="bb-single-pro-weight mb-[24px]">
                                         <div class="pro-title mb-[12px]">
                                             <h4 class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">

@@ -33,8 +33,16 @@ class PageController extends Controller
 
         $tags = Tag::all();
 
-        // most popular products random product take 20
-        $mostLovedProducts = Product::with(['variants', 'categories'])->where('status', 'published')->inRandomOrder()->take(20)->get();
+        // where stock_quantity > 0 or allow_out_of_stock_orders = 1
+        $mostLovedProducts = Product::with(['variants', 'categories'])
+        ->where('status', 'published')
+        ->where(function ($query) {
+            $query->where('stock_quantity', '>', 0)
+            ->orWhere('allow_out_of_stock_orders', 1);
+        })
+        ->inRandomOrder()
+        ->take(20)
+        ->get();
 
         return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts'));
     }
@@ -52,14 +60,16 @@ class PageController extends Controller
 
     public function productDetail($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::with(['variants', 'categories', 'images'])->where('slug', $slug)->first();
 
         // if product not found then show 404 page
         if (!$product) {
             abort(404);
         }
+        
         $relatedProducts = $product->categories;
         $tags = Tag::all();
-        return view('frontend.pages.product-detail', compact('product', 'relatedProducts', 'tags'));
+        $pageTitle = $product->name;
+        return view('frontend.pages.product-detail', compact('product', 'relatedProducts', 'tags', 'pageTitle'));
     }
 }

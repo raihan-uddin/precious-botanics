@@ -122,8 +122,7 @@
                         <div class="bb-deal-slider m-[-12px]">
                             <div class="bb-deal-block owl-carousel">
                                 @foreach($mostLovedProducts as $product)
-                                    <div class="bb-deal-card p-[12px]" data-aos="fade-up" data-aos-duration="1000"
-                                         data-aos-delay="200">
+                                    <div class="bb-deal-card p-[12px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                                         <div
                                             class="bb-pro-box bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[20px]">
                                             <div
