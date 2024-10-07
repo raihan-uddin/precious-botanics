@@ -38,4 +38,28 @@ class PageController extends Controller
 
         return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts'));
     }
+
+    public function categoryProduct($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        if (!$category) {
+            abort(404);
+        }
+        $products = $category->products()->where('status', 'published')->get();
+        $tags = Tag::all();
+        return view('frontend.pages.category-product', compact('category', 'products', 'tags'));
+    }
+
+    public function productDetail($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+
+        // if product not found then show 404 page
+        if (!$product) {
+            abort(404);
+        }
+        $relatedProducts = $product->categories;
+        $tags = Tag::all();
+        return view('frontend.pages.product-detail', compact('product', 'relatedProducts', 'tags'));
+    }
 }
