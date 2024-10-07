@@ -113,6 +113,7 @@
     @endif
 
 @endsection
+
 @push('scripts')
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">

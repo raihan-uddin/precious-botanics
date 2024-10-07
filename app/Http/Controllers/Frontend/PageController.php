@@ -34,7 +34,7 @@ class PageController extends Controller
         $tags = Tag::all();
 
         // most popular products random product take 20
-        $mostLovedProducts = Product::where('status', 'published')->inRandomOrder()->take(20)->get();
+        $mostLovedProducts = Product::where('status', 'published')->inRandomOrder()->take(40)->get();
 
         return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts'));
     }

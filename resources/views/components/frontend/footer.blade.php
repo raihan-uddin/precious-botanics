@@ -1,4 +1,4 @@
-<div class="footer-wrapper bg-white border-t bg-red-400 h-28">
+<div class="footer-wrapper bg-white border-t">
 this is footer
 </div>
 
