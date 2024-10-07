@@ -186,22 +186,7 @@
         },
     });
 
-    /*----------- modal ----------------*/
-    $(".bb-modal-toggle").on("click", function () {
-        $(".bb-modal-overlay").fadeIn();
-        $(".bb-modal").fadeIn();
-        $("body").addClass("bb-overflow-hidden")
-        $(".bb-modal-dialog").addClass("bb-fadeOutUp");
-        $(".bb-modal-dialog").removeClass("bb-fadeInDown");
-    });
-
-    $(".bb-close-modal, .bb-modal-overlay").on("click", function () {
-        $(".bb-modal-overlay").fadeOut();
-        $(".bb-modal").fadeOut();
-        $("body").removeClass("bb-overflow-hidden")
-        $(".bb-modal-dialog").removeClass("bb-fadeOutUp");
-        $(".bb-modal-dialog").addClass("bb-fadeInDown");
-    });
+    
 
     /*-------------- tabs-ProductTab-Tailwindcss -------------------*/
     $("#ProductTab li:nth-child(2)").addClass("active");

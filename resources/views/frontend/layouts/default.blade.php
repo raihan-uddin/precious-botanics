@@ -14,9 +14,6 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
-    <!-- Site Favicon -->
-    <link rel="icon" href="{{asset('assets/img/favicon/favicon.png')}}" type="image/x-icon">
-
     <!-- Css All Plugins Files -->
     <link rel="stylesheet" href="{{asset('assets/css/vendor/remixicon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/vendor/aos.css')}}">

@@ -30,8 +30,12 @@ class PageController extends Controller
 
         $tags = Tag::all();
 
-        // where stock_quantity > 0 or allow_out_of_stock_orders = 1
-        $mostLovedProducts = Product::with(['variants', 'categories'])
+        // wherehas variants
+        $mostLovedProducts = Product::with([
+            'variants:id,product_id,size,color,price,sku,stock', 
+            'categories'
+            ])
+            ->whereHas('variants')
             ->where('status', 'published')
             ->where(function ($query) {
                 $query->where('stock_quantity', '>', 0)

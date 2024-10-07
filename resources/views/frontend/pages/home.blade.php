@@ -1,4 +1,3 @@
-@php use Carbon\Carbon; @endphp
 @extends('frontend.layouts.default')
 @section('title', 'Home')
 
@@ -70,96 +69,7 @@
                         @foreach($mostLovedProducts as $product)
                         <div class="bb-deal-card p-[12px]" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="200">
-                            <div class="bb-pro-box bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[20px]">
-                                <div
-                                    class="bb-pro-img overflow-hidden relative border-b-[1px] border-solid border-[#eee] z-[4]">
-                                    @php
-                                    $date = Carbon::parse($product->created_at);
-                                    $now = Carbon::now();
-                                    $diff = $date->diffInDays($now);
-                                    $badge = "";
-                                    if ($diff <= 7) { $badge="New" ; } @endphp @if($badge) <span
-                                        class="flags transition-all duration-[0.3s] ease-in-out absolute z-[5] top-[10px] left-[6px]">
-                                        <span class="text-[14px] text-[#777] font-medium uppercase">{{ $badge }}</span>
-                                        </span>
-                                        @endif
-                                        <a href="javascript:void(0)">
-                                            <div
-                                                class="inner-img relative block overflow-hidden pointer-events-none rounded-t-[20px] aspect-square ">
-                                                <img class="main-img transition-all duration-[0.3s] ease-in-out w-full  h-full object-contain"
-                                                    src="{{ asset('storage/' . $product->featured_image) }}"
-                                                    alt="product-1">
-                                                <img class="hover-img transition-all duration-[0.3s] ease-in-out absolute z-[2] top-[0] left-[0] opacity-[0] w-full h-full object-contain"
-                                                    src="{{ asset('storage/' . $product->featured_image) }}"
-                                                    alt="product-1">
-                                            </div>
-                                        </a>
-                                        <ul
-                                            class="bb-pro-actions transition-all duration-[0.3s] ease-in-out my-[0] mx-[auto] absolute z-[9] left-[0] right-[0] bottom-[0] flex flex-row items-center justify-center opacity-[0]">
-                                            {{--<li
-                                                class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
-                                                <a href="javascript:void(0)" title="Wishlist"
-                                                    class="w-[35px] h-[35px] flex items-center justify-center">
-                                                    <i
-                                                        class="ri-heart-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
-                                                </a>
-                                            </li>--}}
-                                            <li
-                                                class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
-                                                <a href="javascript:void(0)" title="Quick View"
-                                                    class="bb-modal-toggle w-[35px] h-[35px] flex items-center justify-center">
-                                                    <i
-                                                        class="ri-eye-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
-                                                </a>
-                                            </li>
-                                            <li
-                                                class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
-                                                <a href="javascript:void(0)" title="Add To Cart"
-                                                    class="w-[35px] h-[35px] flex items-center justify-center">
-                                                    <i
-                                                        class="ri-shopping-bag-4-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                </div>
-                                <div class="bb-pro-contact p-[20px]">
-                                    <div class="bb-pro-subtitle mb-[8px] flex flex-wrap justify-between">
-                                        <a href="{{ route('category.product', $product->categories->first()->slug) }}"
-                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[13px] leading-[16px] text-[#777] font-light tracking-[0.03rem]">
-                                            {{ $product->categories->first()->name }}
-                                        </a>
-                                        <span class="bb-pro-rating">
-                                            <i
-                                                class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                            <i
-                                                class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                            <i
-                                                class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                            <i
-                                                class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                            <i
-                                                class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
-                                        </span>
-                                    </div>
-                                    <h4 class="bb-pro-title mb-[8px] text-[16px] leading-[18px]"
-                                        title="{{ $product->name }}">
-                                        <a href="{{ route('product.detail', $product->slug) }}"
-                                            class="transition-all duration-[0.3s] ease-in-out font-quicksand w-full block whitespace-nowrap overflow-hidden text-ellipsis text-[15px] leading-[18px] text-[#3d4750] font-semibold tracking-[0.03rem]">{{
-                                            $product->name }}</a>
-                                    </h4>
-                                    <div class="bb-price flex flex-wrap justify-between">
-                                        <div class="inner-price mx-[-3px]">
-                                            <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold">{{
-                                                $product->discount_price ?? $product->price }}</span>
-                                            @if($product->discount_price)
-                                            <span class="old-price px-[3px] text-[14px] text-[#686e7d] line-through">${{
-                                                $product->price }}</span>
-                                            @endif
-                                        </div>
-                                        <span class="last-items text-[14px] text-[#686e7d]">1 Pack</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <x-product-thumb :product="$product" />
                         </div>
                         @endforeach
                     </div>
@@ -173,20 +83,20 @@
 
 @if($featuredBanners)
 @php
-        function randomColor() {
-            // Generate random values for red, green, and blue, ensuring they are closer to 255 for a lighter color
-            $min = 180; // Min value to avoid dark colors, closer to 255 for light colors
-            $red = dechex(rand($min, 255));
-            $green = dechex(rand($min, 255));
-            $blue = dechex(rand($min, 255));
+function randomColor() {
+    // Generate random values for red, green, and blue, ensuring they are closer to 255 for a lighter color
+    $min = 180; // Min value to avoid dark colors, closer to 255 for light colors
+    $red = dechex(rand($min, 255));
+    $green = dechex(rand($min, 255));
+    $blue = dechex(rand($min, 255));
 
-            // Ensure each value is two digits
-            $red = str_pad($red, 2, '0', STR_PAD_LEFT);
-            $green = str_pad($green, 2, '0', STR_PAD_LEFT);
-            $blue = str_pad($blue, 2, '0', STR_PAD_LEFT);
+    // Ensure each value is two digits
+    $red = str_pad($red, 2, '0', STR_PAD_LEFT);
+    $green = str_pad($green, 2, '0', STR_PAD_LEFT);
+    $blue = str_pad($blue, 2, '0', STR_PAD_LEFT);
 
-            return "#" . $red . $green . $blue;
-        }
+    return "#" . $red . $green . $blue;
+}
 @endphp
 <!-- Banner -->
 <section class="section-banner-one overflow-hidden py-[50px] max-[1199px]:py-[35px]">
@@ -196,7 +106,8 @@
             @foreach ($featuredBanners as $banner)
             <div class="min-[992px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up" data-aos-duration="1000"
                 data-aos-delay="400">
-                <div class="banner-box p-[30px] rounded-[20px] relative overflow-hidden bg-box-color-one bg-[{{ $banner->bg_color ?? randomColor() }}]">
+                <div
+                    class="banner-box p-[30px] rounded-[20px] relative overflow-hidden bg-box-color-one bg-[{{ $banner->bg_color ?? randomColor() }}]">
                     <div class="inner-banner-box relative z-[1] flex justify-between max-[480px]:flex-col">
                         <div
                             class="side-image px-[12px] flex items-center max-[480px]:p-[0] max-[480px]:mb-[12px] max-[480px]:justify-center">

@@ -1,6 +1,6 @@
 @php use App\Helpers\SettingsHelper; @endphp
 
-    <!-- Footer -->
+<!-- Footer -->
 <footer class="bb-footer mt-[50px] max-[1199px]:mt-[35px] bg-[#f8f8fb] text-[#fff]">
     <div class="footer-directory py-[50px] max-[1199px]:py-[35px] border-[1px] border-solid border-solid">
         <div
@@ -634,8 +634,7 @@
                             class="single-pro-img single-pro-img-no-sidebar h-full border-[1px] border-solid border-[#eee] overflow-hidden rounded-[20px]">
                             <div class="single-product-scroll h-full">
                                 <div class="single-slide zoom-image-hover h-full bg-[#fff] flex items-center">
-                                    <img class="img-responsive max-w-full block" src="assets/img/product/1.jpg"
-                                         alt="product-img-1">
+                                    <img class="img-responsive max-w-full block" src="" alt="product-img-1">
                                 </div>
                             </div>
                         </div>
@@ -643,9 +642,8 @@
                     <div class="min-[768px]:w-[58.33%] min-[576px]:w-full px-[12px] mb-[24px]">
                         <div class="quickview-pro-content">
                             <h5 class="bb-quick-title">
-                                <a href="product-left-sidebar.html"
-                                   class="font-Poppins tracking-[0.03rem] mb-[10px] block text-[#3d4750] text-[20px] leading-[30px] font-medium">Mix
-                                    nuts premium quality organic dried fruit 250g pack</a>
+                                <a href="product-left-sidebar.html" class="font-Poppins tracking-[0.03rem] mb-[10px] block text-[#3d4750] text-[20px] leading-[30px] font-medium">
+                                </a>
                             </h5>
                             <div class="bb-pro-rating flex mb-[10px]">
                                 <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
@@ -655,15 +653,14 @@
                                 <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
                             </div>
                             <div class="bb-quickview-desc mb-[10px] text-[15px] leading-[24px] text-[#777] font-light">
-                                Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                since the 1900s,
                             </div>
                             <div class="bb-quickview-price pt-[5px] pb-[10px] flex items-center justify-left">
-                                <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold">$50.00</span>
-                                <span class="old-price px-[3px] text-[14px] text-[#686e7d] line-through">$62.00</span>
+                                <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold"></span>
+                                <span class="old-price px-[3px] text-[14px] text-[#686e7d] line-through"></span>
                             </div>
                             <div class="bb-pro-variation mt-[15px] mb-[25px]">
+                                <h5 class="font-Poppins text-[16px] text-[#3d4750] mb-[10px] leading-[24px] font-medium">Select Size</h5>
+
                                 <ul class="flex flex-wrap m-[-2px]">
                                     <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal active">
                                         <a href="javascript:void(0)"
@@ -852,5 +849,165 @@
 </a>
 
 @push('scripts')
+<script>
+
+    /*----------- modal ----------------*/
+    $(".bb-modal-toggle").on("click", function () {
+         // Get the product data from the data attribute
+        const productData = $(this).closest('.bb-pro-box').find('.bb-price').data('product');
+
+        // change the product image
+        $(".single-pro-img img").attr('src', `/storage/${productData.featured_image}`);
+
+        // change the product name .bb-quick-title a
+        $(".bb-quick-title a").text(productData.name);
+
+        let plainTextShortDescription = $(productData.short_description).text();
+
+        // if the short description is too long, truncate it  
+        if (plainTextShortDescription.length > 100) {
+            plainTextShortDescription = plainTextShortDescription.substring(0, 300) + '....';
+        }
+
+        // change .bb-quickview-desc if productData.short_description is available else use productData.description
+        $(".bb-quickview-desc").text(plainTextShortDescription);
+
+
+        // change .bb-quickview-price .new-price if productData.discount_price is available else use productData.price
+        if (productData.discount_price) {
+            $(".bb-quickview-price .new-price").text(`$${productData.discount_price}`);
+            $(".bb-quickview-price .old-price").text(`$${productData.price}`);
+        } else {
+            $(".bb-quickview-price .new-price").text(`$${productData.price}`);
+            $(".bb-quickview-price .old-price").text('');
+        }
+
+        let variants = productData.variants;
+        /*
+        [
+            {
+                "id": 23,
+                "product_id": 18,
+                "size": "8 oz",
+                "color": null,
+                "price": "220.00",
+                "sku": "Ameer Al Oud Attar",
+                "stock": 0
+            },
+            {
+                "id": 24,
+                "product_id": 18,
+                "size": "16 oz",
+                "color": null,
+                "price": "400.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 25,
+                "product_id": 18,
+                "size": "4 oz",
+                "color": null,
+                "price": "120.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 26,
+                "product_id": 18,
+                "size": "3 ml",
+                "color": null,
+                "price": "8.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 27,
+                "product_id": 18,
+                "size": "6 ml",
+                "color": null,
+                "price": "10.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 28,
+                "product_id": 18,
+                "size": "12 ml",
+                "color": null,
+                "price": "15.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 29,
+                "product_id": 18,
+                "size": "20 ml",
+                "color": null,
+                "price": "40.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 30,
+                "product_id": 18,
+                "size": "35 ml",
+                "color": null,
+                "price": "75.00",
+                "sku": "",
+                "stock": 0
+            },
+            {
+                "id": 31,
+                "product_id": 18,
+                "size": "55 ml",
+                "color": null,
+                "price": "100.00",
+                "sku": "",
+                "stock": 0
+            }
+        ]*/
+
+        // Handling product variants (size, color) first show the size then color, Like
+        // Size: 16oz, 12oz, 8oz, 4oz, 3oz, 2oz, 1oz
+        // Color: Red, Blue, Green, Yellow
+
+        // first remove all the existing size and color
+        // $(".bb-pro-variation ul").empty();
+
+        // get all the unique sizes from the variants dont need null or empty value
+        let uniqueSizes = variants.filter((variant) => variant.size).map((variant) => variant.size);
+        console.log(uniqueSizes);
+
+        // get all the unique colors from the variants dont need null or empty value
+        let uniqueColors = variants.filter((variant) => variant.color).map((variant) => variant.color);
+        console.log(uniqueColors);
+
+        // add the size to the .bb-pro-variation ul with a title of Select Size and toolip of price. after title must be a break
+        // if (uniqueSizes.length > 0) {
+        //     $(".bb-pro-variation ul").append(`<li class="font-Poppins text-[14px] leading-[22px] text-[#777] font-light">Select Size</li>`);
+        //     uniqueSizes.forEach((size) => {
+        //         $(".bb-pro-variation ul").append(`<li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal">
+        //             <a href="javascript:void(0)" class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]" data-tooltip="${size}">${size}</a>
+        //         </li>`);
+        //     });
+        // }
+        
+
+        $(".bb-modal-overlay").fadeIn();
+        $(".bb-modal").fadeIn();
+        $("body").addClass("bb-overflow-hidden")
+        $(".bb-modal-dialog").addClass("bb-fadeOutUp");
+        $(".bb-modal-dialog").removeClass("bb-fadeInDown");
+    });
+
+    $(".bb-close-modal, .bb-modal-overlay").on("click", function () {
+        $(".bb-modal-overlay").fadeOut();
+        $(".bb-modal").fadeOut();
+        $("body").removeClass("bb-overflow-hidden")
+        $(".bb-modal-dialog").removeClass("bb-fadeOutUp");
+        $(".bb-modal-dialog").addClass("bb-fadeInDown");
+    });
+</script>
 
 @endpush
