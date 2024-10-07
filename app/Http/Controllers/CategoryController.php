@@ -47,7 +47,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        info($request->all());
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:categories,slug|max:255',
@@ -55,24 +54,24 @@ class CategoryController extends Controller
             'menus' => 'nullable|array',
             'menus.*' => 'exists:categories,id', // Validate that each menu exists in the database
             'icon' => 'nullable|string',
-            'image' => 'nullable|file|image|max:520',
+            'image' => 'nullable|file|jpeg,png,jpg,gif,svg,webp|max:5024',
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('categories', 'public');
+           $image = $request->file('image')->store('categories', 'public');
         }
 
         $category = new Category;
-        $category->name = $validated['name'];
-        $category->slug = $validated['slug'];
-        $category->order_column = $validated['order_column'];
-        $category->icon = $validated['icon'] ?? null; // Handle nullable icon
-        $category->image = $validated['image'] ?? null; // Handle nullable image
-        $category->is_menu = $request->boolean('is_menu');
-        $category->is_active = $request->boolean('is_active');
-        $category->show_on_home = $request->boolean('show_on_home');
-        $category->show_on_nav_menu = $request->boolean('show_on_nav_menu');
-        $category->show_on_footer = $request->boolean('show_on_footer');
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->order_column = $request->order_column;
+        $category->icon = $request->icon;
+        $category->image = $image;
+        $category->is_menu = $request->is_menu;
+        $category->is_active = $request->is_active;
+        $category->show_on_home = $request->show_on_home;
+        $category->show_on_nav_menu = $request->show_on_nav_menu;
+        $category->show_on_footer = $request->show_on_footer;
         $category->show_on_sidebar = $request->boolean('show_on_sidebar');
         $category->show_on_slider = $request->boolean('show_on_slider');
         $category->show_on_top = $request->boolean('show_on_top');
@@ -88,14 +87,6 @@ class CategoryController extends Controller
         getMenuCategories();
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -133,7 +124,7 @@ class CategoryController extends Controller
             'show_on_top' => 'boolean',
             'show_on_bottom' => 'boolean',
             'icon' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:520',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5024',
         ]);
 
         $category->name = $request->name;
@@ -153,9 +144,9 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             // Store the new image
             if ($category->image) {
-                Storage::delete($category->image); // Delete old image if exists
+                Storage::disk('public')->delete($category->image);
             }
-            $category->image = $request->file('image')->store('categories');
+            $category->image = $request->file('image')->store('categories', 'public');
         }
 
         $category->save();

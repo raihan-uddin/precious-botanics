@@ -2,160 +2,164 @@
 @section('title', 'Home')
 
 @section('content')
-
     @if($sliders)
-        <!-- Banner Swiper -->
-        <div id="default-carousel" class="relative w-full" data-carousel="slide">
-            <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden rounded-lg md:h-[800px]">
-                @foreach($sliders as $banner)
-                    <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-linear" data-carousel-item>
-                        <img src="{{ asset('storage/' . $banner->image) }}"
-                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                @endforeach
-            </div>
-            <!-- Slider indicators -->
-            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                @foreach($sliders as $key => $banner)
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                            data-carousel-slide-to="{{$key}}"></button>
-                @endforeach
-            </div>
-            <!-- Slider controls -->
-            <button type="button"
-                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    data-carousel-prev>
-        <span
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M5 1 1 5l4 4"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
-            </button>
-            <button type="button"
-                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    data-carousel-next>
-        <span
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="m1 9 4-4-4-4"/>
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
-            </button>
-        </div>
-        <!-- ./Banner Swiper -->
-    @endif
-
-    <!-- Featured banner card -->
-    @if($featuredBanners->count())
-        <section class="bg-white p-4 flex justify-center">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 space-y-2 space-x-2">
-                @foreach($featuredBanners as $banner)
-                    <div class="relative flex items-end justify-center overflow-hidden">
-                        <img class="" id="img-product" src="{{ asset('storage/' . $banner->image) }}">
-                        <div class="absolute bottom-8">
-                            <!-- Button with hover effect to show the image -->
-                            <button class="button-container">
-                                <span class="button-text">{{$banner->title}}</span>
-                                <img class="button-img" src="{{ asset('images/icons/right-arrow.png') }}" alt="Arrow">
-                            </button>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </section>
-    @endif
-    <!-- ./Featured banner card -->
-
-    @if($mostLovedProducts)
-        <!-- Most Loved Products -->
-        <section class="most-product section-gap px-2">
-            <div class="flex items-center justify-center my-8">
-                <h1 class="font-semibold text-2xl lg:text-5xl">Most Loved Products</h1>
-            </div>
-
-            <!-- Product Carousel -->
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    @foreach($mostLovedProducts as $product)
-                        <!-- Product Card -->
-                        <div class="swiper-slide">
-                            <div class="w-full h-auto relative card group"> <!-- Added group class for hover effects -->
-                                <!-- Product Image -->
-                                <div class="relative h-60 w-full flex justify-center items-center">
-                                    <img class="lg:w-60 lg:h-60 object-contain"
-                                         src="{{ asset('storage/' . $product->featured_image) }}" alt="Product 1">
-                                    <!-- SVG Icons -->
-                                    <div class="absolute inset-0 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <!-- Hidden by default -->
-                                        <a href="#" class="text-center mt-4">
-                                            <img class="w-8 h-8" src="{{ asset('images/icons/icon_select_hover.png') }}"
-                                                 alt="Add to Cart">
-                                        </a>
-                                        <a href="#" class="text-center mb-4">
-                                            <img class="w-8 h-8" src="{{ asset('images/icons/icon_quick_view.png') }}"
-                                                 alt="View Product">
-                                        </a>
+        <!-- Hero -->
+        <section class="section-hero mb-[50px] max-[1199px]:mb-[35px] py-[16px] relative bg-[#f8f8fb] overflow-hidden">
+            <div
+                class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+                <div class="flex flex-wrap w-full">
+                    <div class="w-full">
+                        <div class="hero-slider swiper-container">
+                            <div class="swiper-wrapper">
+                                @foreach($sliders as $key => $slider)
+                                    <div class="swiper-slide slide-{{$key++}}">
+                                        <div class="flex flex-wrap w-full mb-[-16px]">
+                                            <div class="w-full">
+                                                <div class="hero-image relative  flex justify-center ">
+                                                    <img src="{{ asset('storage/' . $slider->image) }}"
+                                                         alt="{{ $slider->title }}"
+                                                         class="w-full opacity-[1] ">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Product Title and Price -->
-                                <div class="px-4 text-center h-32 flex flex-col justify-between">
-                                    <p class="text-xl hover:text-primary cursor-pointer">{{ $product->name }}</p>
-                                    <p class="text-lg font-semibold text-gray-700">
-                                        ${{ number_format($product->price, 2) }}</p> <!-- Properly formatted price -->
-                                </div>
+                                @endforeach
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-white"></div>
+                            <div class="swiper-buttons">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
-
+            </div>
+            <div class="bb-scroll-Page absolute right-[-15px] bottom-[75px] rotate-[270deg] max-[575px]:hidden">
+                <span class="scroll-bar transition-all duration-[0.3s] ease-in-out relative max-[1250px]:hidden">
+                    <a href="javascript:void(0)"
+                       class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[16px] font-medium leading-[28px] tracking-[0.03rem] text-[#686e7d]">Scroll Page</a>
+                </span>
             </div>
         </section>
-        <!-- ./Most Loved Products -->
     @endif
 
+    @if($mostLovedProducts)
+        <!-- Day of the deal -->
+        <section class="section-deal overflow-hidden py-[50px] max-[1199px]:py-[35px]">
+            <div
+                class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+                <div class="flex flex-wrap w-full">
+                    <div class="w-full px-[12px]">
+                        <div
+                            class="section-title bb-deal mb-[20px] pb-[20px] z-[5] relative flex justify-between max-[991px]:pb-[0] max-[991px]:flex-col max-[991px]:justify-center max-[991px]:text-center"
+                            data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="section-detail max-[991px]:mb-[12px]">
+                                <h2 class="bb-title font-quicksand mb-[0] p-[0] text-[25px] font-bold text-[#3d4750] relative inline capitalize leading-[1] tracking-[0.03rem] max-[767px]:text-[23px]">
+                                    Most <span class="text-[#6c7fd8]">Loved</span> Products</h2>
+                                <p class="font-Poppins w-full mt-[10px] text-[14px] text-[#686e7d] leading-[18px] font-light tracking-[0.03rem] max-[991px]:mx-[auto]">
+                                    Discover what's trending now. Find your favorite before it's gone!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full px-[12px]">
+                        <div class="bb-deal-slider m-[-12px]">
+                            <div class="bb-deal-block owl-carousel">
+                                @foreach($mostLovedProducts as $product)
+                                    <div class="bb-deal-card p-[12px]" data-aos="fade-up" data-aos-duration="1000"
+                                         data-aos-delay="200">
+                                        <div
+                                            class="bb-pro-box bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[20px]">
+                                            <div
+                                                class="bb-pro-img overflow-hidden relative border-b-[1px] border-solid border-[#eee] z-[4]">
+                                                {{-- if $product->crated_at is less then 1week then new--}}
+                                                @php
+                                                    $date = \Carbon\Carbon::parse($product->created_at);
+                                                    $now = \Carbon\Carbon::now();
+                                                    $diff = $date->diffInDays($now);
+                                                    $badge = "";
+                                                    if ($diff <= 7) {
+                                                        $badge = "New";
+                                                    }
+                                                @endphp
+                                                @if($badge)
+                                                    <span
+                                                        class="flags transition-all duration-[0.3s] ease-in-out absolute z-[5] top-[10px] left-[6px]">
+                                                    <span
+                                                        class="text-[14px] text-[#777] font-medium uppercase">{{ $badge }}</span>
+                                                </span>
+                                                @endif
+                                                <a href="javascript:void(0)">
+                                                    <div class="inner-img relative block overflow-hidden pointer-events-none rounded-t-[20px] aspect-square ">
+                                                        <img
+                                                            class="main-img transition-all duration-[0.3s] ease-in-out w-full  h-full object-contain"
+                                                            src="{{ asset('storage/' . $product->featured_image) }}" alt="product-1">
+                                                        <img
+                                                            class="hover-img transition-all duration-[0.3s] ease-in-out absolute z-[2] top-[0] left-[0] opacity-[0] w-full h-full object-contain"
+                                                            src="{{ asset('storage/' . $product->featured_image) }}" alt="product-1">
+                                                    </div>
+                                                </a>
+                                                <ul class="bb-pro-actions transition-all duration-[0.3s] ease-in-out my-[0] mx-[auto] absolute z-[9] left-[0] right-[0] bottom-[0] flex flex-row items-center justify-center opacity-[0]">
+                                                    <li class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
+                                                        <a href="javascript:void(0)" title="Wishlist"
+                                                           class="w-[35px] h-[35px] flex items-center justify-center">
+                                                            <i class="ri-heart-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
+                                                        <a href="javascript:void(0)" title="Quick View"
+                                                           class="bb-modal-toggle w-[35px] h-[35px] flex items-center justify-center">
+                                                            <i class="ri-eye-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
+                                                        <a href="javascript:void(0)" title="Add To Cart"
+                                                           class="w-[35px] h-[35px] flex items-center justify-center">
+                                                            <i class="ri-shopping-bag-4-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="bb-pro-contact p-[20px]">
+                                                <div class="bb-pro-subtitle mb-[8px] flex flex-wrap justify-between">
+                                                    <a href="#"
+                                                       class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[13px] leading-[16px] text-[#777] font-light tracking-[0.03rem]">
+                                                        {{ $product->categories->first()->name }}
+                                                    </a>
+                                                    <span class="bb-pro-rating">
+                                                        <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
+                                                        <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
+                                                        <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
+                                                        <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
+                                                        <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
+                                                    </span>
+                                                </div>
+                                                <h4 class="bb-pro-title mb-[8px] text-[16px] leading-[18px]">
+                                                    <a href="#"
+                                                       class="transition-all duration-[0.3s] ease-in-out font-quicksand w-full block whitespace-nowrap overflow-hidden text-ellipsis text-[15px] leading-[18px] text-[#3d4750] font-semibold tracking-[0.03rem]">{{ $product->name }}</a>
+                                                </h4>
+                                                <div class="bb-price flex flex-wrap justify-between">
+                                                    <div class="inner-price mx-[-3px]">
+                                                        <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold">{{ $product->discount_price ?? $product->price  }}</span>
+                                                        @if($product->discount_price)
+                                                            <span class="old-price px-[3px] text-[14px] text-[#686e7d] line-through">${{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <span class="last-items text-[14px] text-[#686e7d]">1 Pack</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection
 
 @push('scripts')
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <script>
-        const swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1, // Default to 1 item on small screens
-            spaceBetween: 20,
-            breakpoints: {
-                640: {
-                    slidesPerView: 1, // 1 item on small screens
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 3, // 3 items on medium devices
-                    spaceBetween: 30,
-                },
-                1024: {
-                    slidesPerView: 3, // 3 items on medium devices
-                    spaceBetween: 30,
-                },
-                1280: {
-                    slidesPerView: 5, // 5 items on large devices
-                    spaceBetween: 40,
-                },
-            },
-            draggable: true,
-            // Disable navigation buttons by simply not adding them
-        });
-    </script>
 
 @endpush
