@@ -7,7 +7,7 @@
     @if($sliders->count())
         <section class="relative">
             <!-- Swiper -->
-            <div class="swiper-container overflow-hidden">
+            <div class="banner-swiper-container overflow-hidden">
                 <div class="swiper-wrapper">
                     @foreach($sliders as $banner)
                         <div class="swiper-slide">
@@ -88,7 +88,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            var swiper = new Swiper('.swiper-container', {
+            var swiper = new Swiper('.banner-swiper-container', {
                 loop: true,
                 autoplay: {
                     delay: 2500,
