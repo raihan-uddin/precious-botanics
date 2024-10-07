@@ -12,7 +12,7 @@
                     @foreach($sliders as $banner)
                         <div class="swiper-slide">
                             <img src="{{ asset('storage/' . $banner->image) }}" alt="{{$banner->title}}"
-                                 class="w-full h-auto object-cover">
+                                 class="w-full h-auto object-contain">
                         </div>
                     @endforeach
                 </div>
@@ -49,18 +49,20 @@
     <!-- ./Featured banner card -->
 
     @if($mostLovedProducts)
-        <!-- most loved product -->
-        <section class="most-product section-gap px-2">
-            <div class="flex items-center justify-center my-8">
-                <h1 class="font-semibold text-2xl lg:text-5xl">Most Loved Products</h1>
-            </div>
-            <ul id="autoWidth" class="cs-hidden">
+    <!-- Most Loved Products -->
+    <section class="most-product section-gap px-2">
+        <div class="flex items-center justify-center my-8">
+            <h1 class="font-semibold text-2xl lg:text-5xl">Most Loved Products</h1>
+        </div>
+        <!-- Swiper Container -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
                 @foreach($mostLovedProducts as $product)
-                    <li class="item-a">
-                        <div class=" w-48 h-auto lg:w-80 h-ful relative card">
+                    <div class="swiper-slide">
+                        <div class="w-48 h-auto lg:w-80 h-full relative card">
                             <div class="relative h-72 w-full flex justify-center items-center">
                                 <img class="lg:w-60 lg:h-60" src="{{ asset('storage/' . $product->featured_image) }}"
-                                     alt="Product 1">
+                                     alt="{{ $product->name }}">
                                 <div class="contentBx absolute bottom-0 w-full h-24">
                                     <a href="#"><img class="w-6" src="{{asset('images/icons/icon_select_hover.png')}}" alt=""></a>
                                     <a href="#"><img class="w-6" src="{{asset('images/icons/icon_quick_view.png')}}"></a>
@@ -68,15 +70,17 @@
                             </div>
                             <div class="px-4">
                                 <p class="text-xl hover:text-primary cursor-pointer">{{ $product->name }}</p>
-                                <p>${{$product->price}}</p>
+                                <p>${{ $product->price }}</p>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
-        </section>
-        <!-- ./most loved product -->
-    @endif
+            </div>
+        </div>
+    </section>
+    <!-- ./Most Loved Products -->
+@endif
+
 
 @endsection
 @push('scripts')
@@ -107,5 +111,34 @@
             });
         });
     </script>
+
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,  // Default for small devices
+        spaceBetween: 10,
+        loop: false,  // No looping
+        navigation: false,  // No navigation arrows
+        pagination: false,  // No pagination dots
+        breakpoints: {
+            640: {
+                slidesPerView: 2,  // For devices 640px and larger
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 3,  // For devices 768px and larger
+                spaceBetween: 30,
+            },
+            1024: {
+                slidesPerView: 4,  // For devices 1024px and larger
+                spaceBetween: 40,
+            },
+            1440: {
+                slidesPerView: 5,  // For devices 1440px and larger
+                spaceBetween: 50,
+            }
+        },
+    });
+</script>
+
 
 @endpush
