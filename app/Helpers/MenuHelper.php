@@ -3,7 +3,7 @@
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 
-if (!function_exists('getMenuCategories')) {
+if (! function_exists('getMenuCategories')) {
     function getMenuCategories()
     {
         // products counts
@@ -18,12 +18,13 @@ if (!function_exists('getMenuCategories')) {
                 ->orderBy('order_column', 'asc')
                 ->get();
         });
+
         return $data;
     }
 }
 
 // get all categories with products count
-if (!function_exists('getCategoriesWithProductsCount')) {
+if (! function_exists('getCategoriesWithProductsCount')) {
     function getCategoriesWithProductsCount()
     {
         $data = Cache::rememberForever('categories_with_products_count', function () {
@@ -32,6 +33,7 @@ if (!function_exists('getCategoriesWithProductsCount')) {
                 ->orderBy('order_column', 'asc')
                 ->get();
         });
+
         return $data;
     }
 }

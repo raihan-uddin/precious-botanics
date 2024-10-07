@@ -64,10 +64,10 @@ class ProductSeeder extends Seeder
             $productFullText = $productTitle;
 
             // Handle categories as comma-separated string
-            if (!empty($categories)) {
+            if (! empty($categories)) {
                 $productFullText .= ', '.implode(', ', $categories);
             }
-            
+
             // handle vendor name
             $productFullText .= ', Mine Botanicals';
 

@@ -40,14 +40,25 @@
                         </div>
 
                         <div class="mb-4">
+                            <x-input-label for="bg_color" :value="__('Background Color')"/>
+                            <x-input id="bg_color" class="block mt-1 w-full" type="color" name="bg_color"
+                                :value="old('bg_color')" required/>
+                            @error('bg_color')
+                            <span class="text-red-600 text-sm" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
                             <x-input-label for="section" :value="__('Section')"/>
                             <x-select id="section" name="section" class="w-full" required>
                                 <option value="" disabled selected>{{ __('Select Section') }}</option>
                                 <option value="slider" {{ old('section') == 'slider' ? 'selected' : '' }}>{{ __('Slider') }}</option>
+                                <option value="featured" {{ old('section') == 'featured' ? 'selected' : '' }}>{{ __('Featured') }}</option>
                                 <option value="banner" {{ old('section') == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section') == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section') == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                                <option value="featured" {{ old('section') == 'featured' ? 'selected' : '' }}>{{ __('Featured') }}</option>
                             </x-select>
                             @error('section')
                             <span class="text-red-600 text-sm" role="alert">

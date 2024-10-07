@@ -35,16 +35,23 @@
                                 :value="old('title', $banner->title)" required autofocus/>
                         </div>
 
+                        {{-- bg_color --}}
+                        <div class="mb-4">
+                            <x-input-label for="bg_color" :value="__('Background Color')"/>
+                            <x-input id="bg_color" class="block mt-1 w-full" type="color" name="bg_color"
+                                :value="old('bg_color', $banner->bg_color)"/>
+                        </div>
+
                         
                         <div class="mb-4">
                             <x-input-label for="section" :value="__('Section')"/>
                             <x-select  id="section" name="section" class=" block w-full" required>
                                 <option value="" disabled>{{ __('Select Section') }}</option>
                                 <option value="slider" {{ old('section', $banner->section) == 'slider' ? 'selected' : '' }}>{{ __('Slider') }}</option>
+                                <option value="featured" {{ old('section', $banner->section) == 'featured' ? 'selected' : '' }}>{{ __('Featured') }}</option>
                                 <option value="banner" {{ old('section', $banner->section) == 'banner' ? 'selected' : '' }}>{{ __('Banner') }}</option>
                                 <option value="footer" {{ old('section', $banner->section) == 'footer' ? 'selected' : '' }}>{{ __('Footer') }}</option>
                                 <option value="sidebar" {{ old('section', $banner->section) == 'sidebar' ? 'selected' : '' }}>{{ __('Sidebar') }}</option>
-                                <option value="featured" {{ old('section', $banner->section) == 'featured' ? 'selected' : '' }}>{{ __('Featured') }}</option>
                             </x-select>
                         </div>
 

@@ -58,7 +58,7 @@ class CategoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-           $image = $request->file('image')->store('categories', 'public');
+            $image = $request->file('image')->store('categories', 'public');
         }
 
         $category = new Category;

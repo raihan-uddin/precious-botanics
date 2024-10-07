@@ -442,19 +442,20 @@ class ProductController extends Controller
     }
 
     // product full text will be, product name, vendor, unique (categories, tags), veriants
-    public function generateFullTextSearchOfProduct($product){
-            $productFullText = $product->name;
+    public function generateFullTextSearchOfProduct($product)
+    {
+        $productFullText = $product->name;
 
-            // Handle categories comma separated string
-            $categories = $product->categories->pluck('name')->toArray();
-            if (!empty($categories)) {
-                $productFullText .= ', ' . implode(', ', $categories);
-            }
+        // Handle categories comma separated string
+        $categories = $product->categories->pluck('name')->toArray();
+        if (! empty($categories)) {
+            $productFullText .= ', '.implode(', ', $categories);
+        }
 
-            // if vendor is available
-            if ($product->vendor) {
-                $productFullText .= ', ' . $product->vendor->name;
-            }
+        // if vendor is available
+        if ($product->vendor) {
+            $productFullText .= ', '.$product->vendor->name;
+        }
 
         return $productFullText;
     }

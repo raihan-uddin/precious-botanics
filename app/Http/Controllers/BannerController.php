@@ -44,19 +44,21 @@ class BannerController extends Controller
             'link' => 'nullable|url',
             'section' => 'required|string|max:255',
             'order_column' => 'required|integer',
+            'bg_color' => 'nullable|string|max:255',
             'is_active' => 'boolean',
         ]);
 
         try {
             $banner = new Banner;
-            $banner->title = $validated['title'] ?? null;
+            $banner->title = $request->title;
             if ($request->hasFile('image')) {
                 $banner->image = $request->file('image')->store('banners', 'public');
             }
-            $banner->link = $validated['link'] ?? null;
-            $banner->section = $validated['section'] ?? null;
-            $banner->order_column = $validated['order_column'] ?? 0;
-            $banner->is_active = $validated['is_active'] ?? true;
+            $banner->link = $request->link;
+            $banner->section = $request->section;
+            $banner->order_column = $request->order_column;
+            $banner->is_active = $request->is_active;
+            $banner->bg_color = $request->bg_color;
             $banner->created_by = auth()->id();
             $banner->save();
 
@@ -99,19 +101,21 @@ class BannerController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             'link' => 'nullable|url',
             'section' => 'nullable|string|max:255',
+            'bg_color' => 'nullable|string|max:255',
             'order_column' => 'integer',
             'is_active' => 'boolean',
         ]);
 
         try {
-            $banner->title = $validated['title'] ?? $banner->title;
+            $banner->title = $request->title;
             if ($request->hasFile('image')) {
                 $banner->image = $request->file('image')->store('banners', 'public');
             }
-            $banner->link = $validated['link'] ?? $banner->link;
-            $banner->section = $validated['section'] ?? $banner->section;
-            $banner->order_column = $validated['order_column'] ?? $banner->order_column;
-            $banner->is_active = $validated['is_active'] ?? $banner->is_active;
+            $banner->link = $request->link;
+            $banner->section = $request->section;
+            $banner->order_column = $request->order_column;
+            $banner->is_active = $request->is_active;
+            $banner->bg_color = $request->bg_color;
             $banner->updated_by = auth()->id();
             $banner->save();
 
@@ -146,12 +150,12 @@ class BannerController extends Controller
     /**
      * Remove all old cached data & cache new data.
      */
-     public function cachedBanner()
-     {
+    public function cachedBanner()
+    {
         $banners = Banner::where('is_active', true)->orderBy('order_column')->get();
         cache()->forget('banners');
         cache()->rememberForever('banners', function () use ($banners) {
             return $banners;
         });
-     }
+    }
 }

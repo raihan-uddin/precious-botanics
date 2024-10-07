@@ -51,7 +51,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'recaptcha_secret_key', 'value' => '', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
 
             // Cookie
-            ['key' => 'cookie', 'value' => 1, 'type'=> 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'cookie', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'cookie_message',
                 'value' => 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.',
                 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],

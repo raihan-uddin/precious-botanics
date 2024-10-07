@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->string('section')->nullable()->comment('slider, banner, etc.');
             $table->integer('order_column')->default(0);
+            $table->string('bg_color')->nullable();
             $table->boolean('is_active')->default(true);
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
