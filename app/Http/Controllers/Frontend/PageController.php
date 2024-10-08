@@ -93,4 +93,9 @@ class PageController extends Controller
 
         return view('frontend.pages.product-detail', compact('product', 'relatedProducts', 'tags', 'pageTitle'));
     }
+
+    public function about()
+    {
+        return view('frontend.pages.about');
+    }
 }

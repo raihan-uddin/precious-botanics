@@ -13,6 +13,10 @@
                         </div>
                         <div class="col-right-bar flex">
                             <div class="cols px-[12px]">
+                                <a href="{{route('about')}}"
+                                   class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] text-[#fff] font-light leading-[28px] tracking-[0.03rem]">About Us</a>
+                            </div>
+                            <div class="cols px-[12px]">
                                 <a href="{{route('home')}}"
                                    class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] text-[#fff] font-light leading-[28px] tracking-[0.03rem]">Help?</a>
                             </div>
