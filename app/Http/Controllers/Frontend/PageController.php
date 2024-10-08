@@ -118,4 +118,9 @@ class PageController extends Controller
     {
         return view('frontend.pages.terms-of-service');
     }
+
+    public function returnPolicy()
+    {
+        return view('frontend.pages.return-policy');
+    }
 }

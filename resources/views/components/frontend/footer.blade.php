@@ -74,49 +74,49 @@
                                                     class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Jewellery :</span>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Necklace</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Earrings</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Couple
                                                 Rings</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Pendants</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">crystal</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Bangles</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Bracelets</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Nose
                                                 pin</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Chain</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Earrings</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Couple
                                                 Rings</a>
                                         </li>
@@ -129,47 +129,47 @@
                                                     class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Footwear :</span>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Sport</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Formal</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Boots</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Casual</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Cowboy
                                                 Shoes</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Safety
                                                 Shoes</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Party
                                                 Wear Shoes</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Branded</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">First
                                                 copy</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Long
                                                 Shoes</a>
                                         </li>
@@ -184,30 +184,30 @@
                                                     class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Fashion :</span>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">T-Shirt</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Short
                                                 & Jeans</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Jacket</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Dress
                                                 & Frock</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Inner
                                                 wear</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hosiery</a>
                                         </li>
                                     </ul>
@@ -219,75 +219,75 @@
                                                     class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Cosmetics :</span>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Shampoo</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Body
                                                 wash</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">face
                                                 wash</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Makeup
                                                 kit</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Liner</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Lipstick</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Perfume</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Body
                                                 Shop</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Scrub</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hair
                                                 Gel</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hair
                                                 colors</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hair
                                                 Dye</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Sunscreen</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Skin
                                                 Lotion</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Liner</a>
                                         </li>
                                         <li>
-                                            <a href="shop-left-sidebar-col-3.html"
+                                            <a href="#"
                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Lipstick</a>
                                         </li>
                                     </ul>
@@ -363,7 +363,7 @@
                                         </a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="{{ route('delivery.information') }}"
+                                        <a href="{{ route('return.policy') }}"
                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">
                                            Return Policy
                                         </a>
@@ -397,17 +397,17 @@
                                             In</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="cart.html"
+                                        <a href="#"
                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">View
                                             Cart</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="product-left-sidebar.html"
+                                        <a href="#"
                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Affiliate
                                             Program</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center">
-                                        <a href="checkout.html"
+                                        <a href="#"
                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Payments</a>
                                     </li>
                                 </ul>
@@ -558,7 +558,7 @@
                             </a>
                             <div
                                 class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="product-left-sidebar.html"
+                                <a href="#"
                                    class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Ground
                                     Nuts Oil Pack</a>
                                 <span
@@ -584,7 +584,7 @@
                             </a>
                             <div
                                 class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="product-left-sidebar.html"
+                                <a href="#"
                                    class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Organic
                                     Litchi Juice Pack</a>
                                 <span
@@ -610,7 +610,7 @@
                             </a>
                             <div
                                 class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="product-left-sidebar.html"
+                                <a href="#"
                                    class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Crunchy
                                     Banana Chips</a>
                                 <span
@@ -636,7 +636,7 @@
                             </a>
                             <div
                                 class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="product-left-sidebar.html"
+                                <a href="#"
                                    class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Small
                                     Cardamom Spice Pack</a>
                                 <span
@@ -674,10 +674,10 @@
                         </table>
                     </div>
                     <div class="cart-btn flex justify-between mb-[20px]">
-                        <a href="cart.html"
+                        <a href="#"
                            class="bb-btn-1 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]">View
                             Cart</a>
-                        <a href="checkout.html"
+                        <a href="#"
                            class="bb-btn-2 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">Checkout</a>
                     </div>
                 </div>
@@ -711,7 +711,7 @@
                     <div class="min-[768px]:w-[58.33%] min-[576px]:w-full px-[12px] mb-[24px]">
                         <div class="quickview-pro-content">
                             <h5 class="bb-quick-title">
-                                <a href="product-left-sidebar.html" class="font-Poppins tracking-[0.03rem] mb-[10px] block text-[#3d4750] text-[20px] leading-[30px] font-medium">
+                                <a href="#" class="font-Poppins tracking-[0.03rem] mb-[10px] block text-[#3d4750] text-[20px] leading-[30px] font-medium">
                                 </a>
                             </h5>
                             <div class="bb-pro-rating flex mb-[10px]">
