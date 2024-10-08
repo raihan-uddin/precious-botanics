@@ -7,10 +7,10 @@
                     class="inner-img relative block overflow-hidden pointer-events-none rounded-t-[20px] aspect-square ">
                     <img class="main-img transition-all duration-[0.3s] ease-in-out w-full  h-full object-contain"
                         src="{{ asset('storage/' . $product->featured_image) }}"
-                        alt="product-1" loading="lazy">
+                        alt="product-1">
                     <img class="hover-img transition-all duration-[0.3s] ease-in-out absolute z-[2] top-[0] left-[0] opacity-[0] w-full h-full object-contain"
                         src="{{ asset('storage/' . $product->featured_image) }}"
-                        alt="product-1" loading="lazy">
+                        alt="product-1">
                 </div>
             </a>
             <ul
