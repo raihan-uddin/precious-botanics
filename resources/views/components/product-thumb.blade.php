@@ -1,5 +1,3 @@
-@php use Carbon\Carbon; @endphp
-
 <div class="bb-pro-box bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[20px]">
     <div
         class="bb-pro-img overflow-hidden relative border-b-[1px] border-solid border-[#eee] z-[4]">

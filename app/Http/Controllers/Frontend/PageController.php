@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+
 // Add this line
 use App\Models\Product;
+
 // Add this line
 use App\Models\Tag;
 
@@ -34,7 +36,7 @@ class PageController extends Controller
         $mostLovedProducts = Product::with([
             'variants:id,product_id,size,color,price,sku,stock',
             'categories'
-            ])
+        ])
             ->whereHas('variants')
             ->where('status', 'published')
             ->where(function ($query) {
@@ -45,33 +47,29 @@ class PageController extends Controller
             ->take(20)
             ->get();
 
-        // GET categories where show_on_home is true and get the products of those categories which are published and in stock and take 20 random products
+        // latest products with variants and categories relationship take 30 products
         $latestProducts = Product::with([
             'variants:id,product_id,size,color,price,sku,stock',
             'categories'
-            ])
-            ->whereHas('categories', function ($query) {
-                $query->where('show_on_home', 1);
-            })
+        ])
+//            ->whereHas('variants')
             ->where('status', 'published')
             ->where(function ($query) {
                 $query->where('stock_quantity', '>', 0)
                     ->orWhere('allow_out_of_stock_orders', 1);
             })
-            ->inRandomOrder()
-            ->take(20)
+            ->latest()
+            ->take(24)
             ->get();
 
-        // now group the products by category
-        $latestProducts = $latestProducts->groupBy('categories.0.id');
 
-        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts', 'latestProducts', 'latestProducts'));
+        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts', 'latestProducts'));
     }
 
     public function categoryProduct($slug)
     {
         $category = Category::where('slug', $slug)->first();
-        if (! $category) {
+        if (!$category) {
             abort(404);
         }
         $products = $category->products()->where('status', 'published')->get();
@@ -85,7 +83,7 @@ class PageController extends Controller
         $product = Product::with(['variants', 'categories', 'images'])->where('slug', $slug)->first();
 
         // if product not found then show 404 page
-        if (! $product) {
+        if (!$product) {
             abort(404);
         }
 

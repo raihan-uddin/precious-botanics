@@ -186,12 +186,12 @@
         },
     });
 
-    
+
 
     /*-------------- tabs-ProductTab-Tailwindcss -------------------*/
-    $("#ProductTab li:nth-child(2)").addClass("active");
+    $("#ProductTab li:nth-child(1)").addClass("active");
     $(".tab-product-pane").hide();
-    $(".tab-product-pane:nth-child(2)").show();
+    $(".tab-product-pane:nth-child(1)").show();
     $("#ProductTab li").click(function () {
         $("#ProductTab li").removeClass("active");
         $(this).addClass("active");
