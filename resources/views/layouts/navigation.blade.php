@@ -18,17 +18,23 @@
 
                     <x-nav-link :href="route('settings.index')" :active="request()->routeIs('settings.*')">
                         {{ __('Settings') }}
-                    </x-nav-link>                    
+                    </x-nav-link>
 
-                    <x-nav-link :href="route('products.index')" 
+                    <x-nav-link :href="route('products.index')"
                         :active="request()->routeIs('categories.*') || request()->routeIs('tags.*') || request()->routeIs('products.*') "
                     >
                         {{ __('Products') }}
-                    </x-nav-link> 
+                    </x-nav-link>
 
                     <x-nav-link :href="route('banners.index')" :active="request()->routeIs('banners.*')">
                         {{ __('Banners') }}
-                    </x-nav-link>  
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('phpinfo')" :active="request()->routeIs('phpinfo.*')">
+                        {{ __('Server') }}
+                    </x-nav-link>
+
+
                 </div>
             </div>
 

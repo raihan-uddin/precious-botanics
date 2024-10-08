@@ -23,16 +23,16 @@ class PageController extends Controller
     {
         $categories = Category::where('is_active', 1)->get();
         $products = Product::where('status', 'published')->get();
-        $banners = Banner::where('is_active', 1)->get();
+        $banners = Banner::where('is_active', 1)->orderBy('order_column', 'desc')->get();
 
         $sliders = $banners->where('section', 'slider');
         $featuredBanners = $banners->where('section', 'featured');
 
         $tags = Tag::all();
 
-        
+
         $mostLovedProducts = Product::with([
-            'variants:id,product_id,size,color,price,sku,stock', 
+            'variants:id,product_id,size,color,price,sku,stock',
             'categories'
             ])
             ->whereHas('variants')
@@ -47,7 +47,7 @@ class PageController extends Controller
 
         // GET categories where show_on_home is true and get the products of those categories which are published and in stock and take 20 random products
         $latestProducts = Product::with([
-            'variants:id,product_id,size,color,price,sku,stock', 
+            'variants:id,product_id,size,color,price,sku,stock',
             'categories'
             ])
             ->whereHas('categories', function ($query) {

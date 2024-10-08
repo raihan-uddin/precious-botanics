@@ -40,13 +40,14 @@ class BannerController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'image' => 'required|image|max:5120',
             'link' => 'nullable|url',
             'section' => 'required|string|max:255',
             'order_column' => 'required|integer',
             'bg_color' => 'nullable|string|max:255',
             'is_active' => 'boolean',
         ]);
+
 
         try {
             $banner = new Banner;

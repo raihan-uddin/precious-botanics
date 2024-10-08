@@ -17,7 +17,7 @@
                                 <div class="w-full">
                                     <div class="hero-image relative  flex justify-center ">
                                         <img src="{{ asset('storage/' . $slider->image) }}" alt="{{ $slider->title }}"
-                                            class="w-full opacity-[1] ">
+                                            class="w-full opacity-[1] " loading="lazy">
                                     </div>
                                 </div>
                             </div>

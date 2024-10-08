@@ -31,4 +31,11 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
         Route::resource('banners', BannerController::class);
     });
+
+    // php info
+    Route::get('/phpinfo', function () {
+        return view('phpinfo', [
+            'title' => 'PHP Info',
+        ]);
+    })->name('phpinfo');
 });
