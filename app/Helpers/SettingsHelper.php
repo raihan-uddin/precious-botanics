@@ -9,7 +9,7 @@ class SettingsHelper
 {
     public static function get($key, $default = null)
     {
-        return Cache::remember("settings.$key", now()->addMinutes(60), function () use ($key) {
+        return Cache::remember("settings.$key", now()->addDay(1), function () use ($key) {
             $setting = Setting::where('key', $key)->first();
 
             return $setting ? $setting->value : null;

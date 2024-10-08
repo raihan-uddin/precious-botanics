@@ -98,4 +98,14 @@ class PageController extends Controller
     {
         return view('frontend.pages.about');
     }
+
+    public function deliveryInformation()
+    {
+        return view('frontend.pages.delivery-information');
+    }
+
+    public function privacyPolicy()
+    {
+        return view('frontend.pages.privacy-policy');
+    }
 }
