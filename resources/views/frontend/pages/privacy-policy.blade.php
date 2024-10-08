@@ -1,6 +1,6 @@
 @php use App\Helpers\SettingsHelper; @endphp
 @extends('frontend.layouts.default')
-@section('title', 'Delivery Information')
+@section('title', 'Privacy Policy')
 
 @section('content')
 

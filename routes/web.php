@@ -7,6 +7,7 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/delivery-information', [PageController::class, 'deliveryInformation'])->name('delivery.information');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('terms-of-service', [PageController::class, 'termsOfService'])->name('terms.of.service');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/category/{slug}', [PageController::class, 'categoryProduct'])->name('category.product');

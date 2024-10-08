@@ -108,4 +108,9 @@ class PageController extends Controller
     {
         return view('frontend.pages.privacy-policy');
     }
+
+    public function termsOfService()
+    {
+        return view('frontend.pages.terms-of-service');
+    }
 }
