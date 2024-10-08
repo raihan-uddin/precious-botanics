@@ -8,8 +8,9 @@
                     <div class="inner-top-header flex justify-between">
                         <div class="col-left-bar">
                             <a href="{{route('home')}}"
-                               class="transition-all duration-[0.3s] ease-in-out font-Poppins font-light text-[14px] text-[#fff] leading-[28px] tracking-[0.03rem]">Flat
-                                50% Off On Grocery Shop.</a>
+                               class="transition-all duration-[0.3s] ease-in-out font-Poppins font-light text-[14px] text-[#fff] leading-[28px] tracking-[0.03rem]">
+                               Welcome to {{ config('app.name') }} – Your source for pure, natural beauty!
+                            </a>
                         </div>
                         <div class="col-right-bar flex">
                             <div class="cols px-[12px]">
