@@ -321,10 +321,10 @@
                         </div>
                     </div>
                     <div
-                        class="min-[992px]:w-[24.99%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-account">
+                        class="min-[992px]:w-[16.66%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-account">
                         <div class="bb-footer-widget">
                             <h4 class="bb-footer-heading font-quicksand leading-[1.2] text-[18px] font-bold mb-[20px] text-[#3d4750] tracking-[0] relative block w-full pb-[15px] capitalize border-b-[1px] border-solid border-[#eee] max-[991px]:text-[14px]">
-                                Company</h4>
+                            INFORMATION</h4>
                             <div class="bb-footer-links bb-footer-dropdown hidden max-[991px]:mb-[35px]">
                                 <ul class="align-items-center">
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
@@ -345,25 +345,50 @@
                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Terms
                                             of Service</a>
                                     </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="min-[992px]:w-[16.66%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-account">
+                        <div class="bb-footer-widget">
+                            <h4 class="bb-footer-heading font-quicksand leading-[1.2] text-[18px] font-bold mb-[20px] text-[#3d4750] tracking-[0] relative block w-full pb-[15px] capitalize border-b-[1px] border-solid border-[#eee] max-[991px]:text-[14px]">
+                            CUSTOMER SERVICE</h4>
+                            <div class="bb-footer-links bb-footer-dropdown hidden max-[991px]:mb-[35px]">
+                                <ul class="align-items-center">
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="checkout.html"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Secure
-                                            payment</a>
+                                        <a href="{{ route('contact') }}"
+                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">
+                                           Contact Us
+                                        </a>
                                     </li>
-                                    <li class="bb-footer-link leading-[1.5] flex items-center">
-                                        <a href="contact-us.html"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Contact
-                                            us</a>
+                                    <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
+                                        <a href="{{ route('delivery.information') }}"
+                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">
+                                           Return Policy
+                                        </a>
+                                    </li>
+                                    <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
+                                        <a href="{{ route('privacy.policy') }}"
+                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">
+                                           Site Map
+                                        </a>
+                                    </li>
+
+                                    <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
+                                        <a href="#"
+                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Become
+                                            a Distributor</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div
-                        class="min-[992px]:w-[24.99%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-service">
+                        class="min-[992px]:w-[16.66%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-service">
                         <div class="bb-footer-widget">
                             <h4 class="bb-footer-heading font-quicksand leading-[1.2] text-[18px] font-bold mb-[20px] text-[#3d4750] tracking-[0] relative block w-full pb-[15px] capitalize border-b-[1px] border-solid border-[#eee] max-[991px]:text-[14px]">
-                                Account</h4>
+                            MY ACCOUNT</h4>
                             <div class="bb-footer-links bb-footer-dropdown hidden max-[991px]:mb-[35px]">
                                 <ul class="align-items-center">
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
@@ -375,16 +400,6 @@
                                         <a href="cart.html"
                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">View
                                             Cart</a>
-                                    </li>
-                                    <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="faq.html"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Return
-                                            Policy</a>
-                                    </li>
-                                    <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="shop-left-sidebar-col-3.html"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Become
-                                            a Vendor</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
                                         <a href="product-left-sidebar.html"
@@ -415,15 +430,17 @@
                                                 {{ SettingsHelper::get('site_address', 'Dhaka, Bangladesh') }}
                                             </p>
                                         </li>
-                                        <li class="bb-footer-link bb-foo-call flex items-start max-[991px]:mb-[15px] mb-[16px]">
-                                                <span class="w-[25px] basis-[auto] grow-[0] shrink-[0]">
-                                                    <i class="ri-whatsapp-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
-                                                </span>
-                                            <a href="tel:{{ SettingsHelper::get('site_phone', '+8801680527922') }}"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
-                                                {{ SettingsHelper::get('site_phone', '+8801680527922') }}
-                                            </a>
-                                        </li>
+                                        @if (SettingsHelper::get('site_phone')) 
+                                            <li class="bb-footer-link bb-foo-call flex items-start max-[991px]:mb-[15px] mb-[16px]">
+                                                    <span class="w-[25px] basis-[auto] grow-[0] shrink-[0]">
+                                                        <i class="ri-whatsapp-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
+                                                    </span>
+                                                <a href="tel:{{ SettingsHelper::get('site_phone', '+8801680527922') }}"
+                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
+                                                    {{ SettingsHelper::get('site_phone', '+8801680527922') }}
+                                                </a>
+                                            </li>
+                                        @endif
                                         <li class="bb-footer-link bb-foo-mail flex">
                                                 <span class="w-[25px] basis-[auto] grow-[0] shrink-[0]">
                                                     <i class="ri-mail-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
