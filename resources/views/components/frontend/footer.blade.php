@@ -652,7 +652,7 @@
                                 <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
                                 <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
                             </div>
-                            <div class="bb-quickview-desc mb-[10px] text-[15px] leading-[24px] text-[#777] font-light">
+                            <div class="bb-quickview-desc mb-[10px] text-[15px] leading-[24px] text-[#777] font-light line-clamp-3">
                             </div>
                             <div class="bb-quickview-price pt-[5px] pb-[10px] flex items-center justify-left">
                                 <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold"></span>
@@ -855,6 +855,7 @@
     $(".bb-modal-toggle").on("click", function () {
          // Get the product data from the data attribute
         const productData = $(this).closest('.bb-pro-box').find('.bb-price').data('product');
+        console.log(productData);
 
         // change the product image
         $(".single-pro-img img").attr('src', `/storage/${productData.featured_image}`);
@@ -863,11 +864,6 @@
         $(".bb-quick-title a").text(productData.name);
 
         let plainTextShortDescription = $(productData.short_description).text();
-
-        // if the short description is too long, truncate it
-        if (plainTextShortDescription.length > 100) {
-            plainTextShortDescription = plainTextShortDescription.substring(0, 300) + '....';
-        }
 
         // change .bb-quickview-desc if productData.short_description is available else use productData.description
         $(".bb-quickview-desc").text(plainTextShortDescription);
@@ -977,11 +973,9 @@
 
         // get all the unique sizes from the variants dont need null or empty value
         let uniqueSizes = variants.filter((variant) => variant.size).map((variant) => variant.size);
-        console.log(uniqueSizes);
-
+        
         // get all the unique colors from the variants dont need null or empty value
         let uniqueColors = variants.filter((variant) => variant.color).map((variant) => variant.color);
-        console.log(uniqueColors);
 
         // add the size to the .bb-pro-variation ul with a title of Select Size and toolip of price. after title must be a break
         // if (uniqueSizes.length > 0) {
