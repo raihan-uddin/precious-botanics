@@ -58,7 +58,7 @@
 
                     <div class="mb-4">
                         <form method="GET" action="{{ route('categories.index') }}">
-                            <input type="text" name="search" value="{{ $search }}" placeholder="Search..." class="border rounded px-3 py-2 w-full" />
+                            <x-input type="text" name="search" value="{{ $search }}" placeholder="Search..." class="border rounded px-3 py-2 w-full"></x-input>
                             {{-- <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded">Search</button> --}}
                         </form>
                     </div>
@@ -70,7 +70,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Menu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show on Menu</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Menus</th> 
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Menus</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Active</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
@@ -113,7 +113,7 @@
                                             <span class="text-red-500">&#10007;</span>
                                         @endif
                                     </td>
-                                    
+
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('categories.edit', $category->id) }}" class="text-blue-600 hover:underline">Edit</a>
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline-block" onsubmit="return confirmDelete(event, '{{ $category->name }}');">
