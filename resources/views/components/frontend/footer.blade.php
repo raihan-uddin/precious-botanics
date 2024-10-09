@@ -7,7 +7,7 @@
                 <div class="min-[992px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="bb-services-box p-[30px] border-[1px] border-solid border-[#eee] rounded-[20px] text-center">
                         <div class="services-img mb-[20px] flex justify-center">
-                            <img src="assets/img/services/1.png" alt="services-1" class="w-[50px]">
+                            <img src="{{ asset('assets/img/services/1.png') }}" alt="services-1" class="w-[50px]">
                         </div>
                         <div class="services-contact">
                             <h4 class="font-quicksand mb-[8px] text-[18px] font-bold text-[#3d4750] leading-[1.2] tracking-[0.03rem]">Free Shipping</h4>
@@ -18,7 +18,7 @@
                 <div class="min-[992px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="400">
                     <div class="bb-services-box p-[30px] border-[1px] border-solid border-[#eee] rounded-[20px] text-center">
                         <div class="services-img mb-[20px] flex justify-center">
-                            <img src="assets/img/services/2.png" alt="services-2" class="w-[50px]">
+                            <img src="{{ asset('assets/img/services/2.png') }}" alt="services-2" class="w-[50px]">
                         </div>
                         <div class="services-contact">
                             <h4 class="font-quicksand mb-[8px] text-[18px] font-bold text-[#3d4750] leading-[1.2] tracking-[0.03rem]">24x7 Support</h4>
@@ -29,7 +29,7 @@
                 <div class="min-[992px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="600">
                     <div class="bb-services-box p-[30px] border-[1px] border-solid border-[#eee] rounded-[20px] text-center">
                         <div class="services-img mb-[20px] flex justify-center">
-                            <img src="assets/img/services/3.png" alt="services-3" class="w-[50px]">
+                            <img src="{{ asset('assets/img/services/3.png') }}" alt="services-3" class="w-[50px]">
                         </div>
                         <div class="services-contact">
                             <h4 class="font-quicksand mb-[8px] text-[18px] font-bold text-[#3d4750] leading-[1.2] tracking-[0.03rem]">Distributor</h4>
@@ -40,7 +40,7 @@
                 <div class="min-[992px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="800">
                     <div class="bb-services-box p-[30px] border-[1px] border-solid border-[#eee] rounded-[20px] text-center">
                         <div class="services-img mb-[20px] flex justify-center">
-                            <img src="assets/img/services/4.png" alt="services-4" class="w-[50px]">
+                            <img src="{{ asset('assets/img/services/4.png') }}" alt="services-4" class="w-[50px]">
                         </div>
                         <div class="services-contact">
                             <h4 class="font-quicksand mb-[8px] text-[18px] font-bold text-[#3d4750] leading-[1.2] tracking-[0.03rem]">Payment Secure</h4>
@@ -308,7 +308,7 @@
                     <div
                         class="min-[992px]:w-[25%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-cat">
                         <div class="bb-footer-widget bb-footer-company flex flex-col max-[991px]:mb-[24px]">
-                            <img src="assets/img/logo/logo.png"
+                            <img src="{{ asset('assets/img/logo/logo.png') }}"
                                  class="bb-footer-logo max-w-[144px] mb-[30px] max-[767px]:max-w-[130px]"
                                  alt="footer logo">
                             <img src="assets/img/logo/logo-dark.png"
@@ -517,7 +517,7 @@
                         <div class="footer-bottom-right">
                             <div class="footer-bottom-payment flex justify-center">
                                 <div class="payment-link">
-                                    <img src="assets/img/payment/payment.png" alt="payment"
+                                    <img src="{{ asset('assets/img/payment/payment.png') }}" alt="payment"
                                          class="max-[360px]:w-full">
                                 </div>
                             </div>

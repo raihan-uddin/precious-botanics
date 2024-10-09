@@ -48,12 +48,12 @@
                                             
                                             @foreach($product->images as $image)
                                                 <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                                    <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]" src="{{ asset('storage/'.$image->image_url) }}" alt="{{ $product->name }}">
+                                                    <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]" src="{{ asset($image->image_url) }}" alt="{{ $product->name }}">
                                                 </div>
                                             @endforeach
                                         @else
                                             <div class="single-slide zoom-image-hover rounded-tl-[15px] rounded-tr-[15px]">
-                                                <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]" src="{{ asset('storage/'. $product->featured_image) }}" alt="{{ $product->name }}">
+                                                <img class="img-responsive rounded-tl-[15px] rounded-tr-[15px]" src="{{ asset($product->featured_image) }}" alt="{{ $product->name }}">
                                             </div>
                                         @endif
                                     </div>
@@ -63,7 +63,7 @@
                                                 <div class="single-slide px-[10px] block">
                                                     <img
                                                         class="img-responsive border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[15px]"
-                                                        src="{{ asset('storage/'.$image->image_url) }}" alt="{{ $product->name }}">
+                                                        src="{{ asset($image->image_url) }}" alt="{{ $product->name }}">
                                                 </div>
                                             @endforeach
                                         @else
@@ -96,7 +96,7 @@
                                                             class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem] text-[#6c7fd8] hidden">992 Ratings</a>
                                         </span>
                                     </div>
-                                    <p class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem]">
+                                    <p class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem]  ">
                                         {!! $product->short_description !!}
                                     </p>
                                     <div class="bb-single-price-wrap flex justify-between py-[10px]">
@@ -214,42 +214,8 @@
                                     class="bb-inner-tabs border-[1px] border-solid border-[#eee] p-[15px] rounded-[20px]">
                                     <div class="bb-details">
                                         <p class="mb-[12px] font-Poppins text-[#686e7d] leading-[28px] tracking-[0.03rem] font-light">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
-                                            voluptatum. Vitae dolores alias repellat eligendi, officiis, exercitationem
-                                            corporis
-                                            quisquam delectus cum non recusandae numquam dignissimos molestiae
-                                            magnam hic natus. Cumque.</p>
-                                        <div class="details-info">
-                                            <ul class="list-disc pl-[20px] mb-[0]">
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    Any Product types that You want - Simple, Configurable
-                                                </li>
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    Downloadable/Digital Products, Virtual Products
-                                                </li>
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    Inventory Management with Backordered items
-                                                </li>
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    Flatlock seams throughout.
-                                                </li>
-                                            </ul>
-                                            <ul class="list-disc pl-[20px] mb-[0]">
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    <span
-                                                        class="inline-flex font-medium min-w-[150px]">Highlights</span>Form
-                                                    FactorWhole
-                                                </li>
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    <span class="inline-flex font-medium min-w-[150px]">Seller</span>No
-                                                    Returns Allowed
-                                                </li>
-                                                <li class="py-[5px] text-[15px] text-[#686e7d] font-Poppins leading-[28px] font-light">
-                                                    <span class="inline-flex font-medium min-w-[150px]">Services</span>Cash
-                                                    on Delivery available
-                                                </li>
-                                            </ul>
-                                        </div>
+                                            {!! $product->short_description !!}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -261,41 +227,6 @@
                                             <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
                                                 <span class="inline-flex min-w-[130px] font-medium">Weight</span> 500 g
                                             </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Dimensions</span> 17
-                                                × 15 × 3 cm
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Color</span>
-                                                black,yellow,red
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Brand</span> Wonder
-                                                Fort
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Form Factor</span>Whole
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Quantity</span>1
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span
-                                                    class="inline-flex min-w-[130px] font-medium">Container Type</span>Pouch
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Shelf Life</span>12
-                                                Months
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span class="inline-flex min-w-[130px] font-medium">Ingredients</span>Dalchini,
-                                                Dhaniya, Badi Elaichi, Laung
-                                            </li>
-                                            <li class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                                <span
-                                                    class="inline-flex min-w-[130px] font-medium">Other Features</span>Ingredient
-                                                Type: Vegetarian
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -304,7 +235,7 @@
                                 <div
                                     class="bb-inner-tabs border-[1px] border-solid border-[#eee] p-[15px] rounded-[20px]">
                                     <div class="bb-reviews">
-                                        <div class="reviews-bb-box flex mb-[24px] max-[575px]:flex-col">
+                                        <!-- <div class="reviews-bb-box flex mb-[24px] max-[575px]:flex-col">
                                             <div class="inner-image mr-[12px] max-[575px]:mr-[0] max-[575px]:mb-[12px]">
                                                 <img src="assets/img/reviews/1.jpg" alt="img-1"
                                                      class="w-[50px] h-[50px] max-w-[50px] rounded-[10px]">
@@ -325,29 +256,7 @@
                                                     laudantium soluta repellendus possimus a distinctio voluptate
                                                     veritatis nostrum perspiciatis est! Commodi!</p>
                                             </div>
-                                        </div>
-                                        <div class="reviews-bb-box flex mb-[24px] max-[575px]:flex-col">
-                                            <div class="inner-image mr-[12px] max-[575px]:mr-[0] max-[575px]:mb-[12px]">
-                                                <img src="assets/img/reviews/2.jpg" alt="img-2"
-                                                     class="w-[50px] h-[50px] max-w-[50px] rounded-[10px]">
-                                            </div>
-                                            <div class="inner-contact">
-                                                <h4 class="font-quicksand leading-[1.2] tracking-[0.03rem] mb-[5px] text-[16px] font-bold text-[#3d4750]">
-                                                    Saddika Alard</h4>
-                                                <div class="bb-pro-rating flex">
-                                                    <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
-                                                    <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
-                                                    <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
-                                                    <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
-                                                    <i class="ri-star-line float-left text-[15px] mr-[3px] text-[#777]"></i>
-                                                </div>
-                                                <p class="font-Poppins text-[14px] leading-[26px] font-light tracking-[0.03rem] text-[#686e7d]">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
-                                                    hic expedita asperiores eos neque cumque impedit quam, placeat
-                                                    laudantium soluta repellendus possimus a distinctio voluptate
-                                                    veritatis nostrum perspiciatis est! Commodi!</p>
-                                            </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="bb-reviews-form">
                                         <h3 class="font-quicksand tracking-[0.03rem] leading-[1.2] mb-[8px] text-[20px] font-bold text-[#3d4750]">
