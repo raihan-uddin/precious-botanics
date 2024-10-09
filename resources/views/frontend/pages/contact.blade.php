@@ -39,7 +39,7 @@
                 </div>
                 <div class="min-[992px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                     <div class="bb-contact-form border-[1px] border-solid border-[#eee] rounded-[20px] p-[30px]">
-                        <form method="post">
+                        <form method="post" id="contactUSForm">
                             <div class="bb-contact-wrap mb-[24px]">
                                 <input type="text" name="firstname" placeholder="Enter Your First Name" class="w-full h-[50px] py-[10px] pl-[15px] pr-[10px] border-[1px] border-solid border-[#eee] outline-[0] text-[14px] font-normal text-[#686e7d] rounded-[10px]">
                             </div>
@@ -71,3 +71,22 @@
         </div>
     </section>
 @endsection
+
+
+@push('scripts')
+<script src="https://www.google.com/recaptcha/api.js?render={{ env('GOOGLE_RECAPTCHA_KEY') }}"></script>
+
+<script type="text/javascript">
+    $('#contactUSForm').submit(function(event) {
+        event.preventDefault();
+    
+        grecaptcha.ready(function() {
+            grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {action: 'subscribe_newsletter'}).then(function(token) {
+                $('#contactUSForm').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+                $('#contactUSForm').unbind('submit').submit();
+            });;
+        });
+    });
+</script>
+    
+@endpush
