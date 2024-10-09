@@ -34,6 +34,17 @@
     @vite(['resources/css/frontend.css','resources/js/frontend.js',])
 
     @stack('styles')
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWSC97KGPP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-RWSC97KGPP');
+    </script>
 </head>
 <body>
 {{--TODO:: need to active after all done--}}
