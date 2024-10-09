@@ -81,17 +81,20 @@ class PageController extends Controller
     public function productDetail($slug)
     {
         $product = Product::with(['variants', 'categories', 'images'])->where('slug', $slug)->first();
-
+      
         // if product not found then show 404 page
         if (!$product) {
             abort(404);
         }
 
-        $relatedProducts = $product->categories;
+        $relatedCategories = $product->categories;
+        // [{"id":20,"name":"Whipped Shea Butter","slug":"whipped-shea-butter","order_column":19,"is_active":1,"is_menu":0,"show_on_nav_menu":1,"show_on_home":0,"show_on_footer":0,"show_on_sidebar":0,"show_on_slider":0,"show_on_top":0,"show_on_bottom":0,"icon":null,"image":null,"keywords":null,"description":null,"bg_color":null,"text_color":null,"border_color":null,"created_by":1,"updated_by":1,"deleted_by":null,"deleted_at":null,"created_at":"2024-10-08T08:36:05.000000Z","updated_at":"2024-10-08T08:36:05.000000Z","pivot":{"product_id":742,"category_id":20}}] 
+        
+
         $tags = Tag::all();
         $pageTitle = $product->name;
 
-        return view('frontend.pages.product-detail', compact('product', 'relatedProducts', 'tags', 'pageTitle'));
+        return view('frontend.pages.product-detail', compact('product', 'relatedCategories', 'tags', 'pageTitle'));
     }
 
     public function about()

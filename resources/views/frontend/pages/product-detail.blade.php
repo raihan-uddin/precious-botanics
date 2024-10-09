@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="min-[992px]:w-[58.33%] w-full px-[12px] mb-[24px]">
-                                <div class="bb-single-pro-contact">
+                                <div class="bb-single-pro-contact w-fit	">
                                     <div class="bb-sub-title mb-[20px]">
                                         <h4 class="font-quicksand text-[22px] tracking-[0.03rem] font-bold leading-[1.2] text-[#3d4750]">
                                             {{ $product->name }}
@@ -97,7 +97,7 @@
                                         </span>
                                     </div>
                                     <p class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem]  ">
-                                        {!! $product->short_description !!}
+                                        {{ Str::limit(html_entity_decode(strip_tags($product->short_description)), 240) }}
                                     </p>
                                     <div class="bb-single-price-wrap flex justify-between py-[10px]">
                                         <div class="bb-single-price py-[15px]">
@@ -214,7 +214,7 @@
                                     class="bb-inner-tabs border-[1px] border-solid border-[#eee] p-[15px] rounded-[20px]">
                                     <div class="bb-details">
                                         <p class="mb-[12px] font-Poppins text-[#686e7d] leading-[28px] tracking-[0.03rem] font-light">
-                                            {!! $product->short_description !!}
+                                            {!! $product->full_description !!}
                                         </p>
                                     </div>
                                 </div>
