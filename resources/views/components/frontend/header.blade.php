@@ -206,6 +206,7 @@
                                 </li>
                                 @php($menuCategories = getMenuCategories())
                                 @foreach($menuCategories as $menu)
+                                    @if($menu->submenus->count() > 0)
                                     <li class="nav-item bb-dropdown flex items-center relative mr-[45px]">
                                         <a class="nav-link bb-dropdown-item font-Poppins relative p-[0] leading-[28px] text-[15px] font-medium text-[#3d4750] block tracking-[0.03rem]"
                                            href="javascript:void(0)">{{ $menu->name }}</a>
@@ -218,6 +219,12 @@
                                             @endforeach
                                         </ul>
                                     </li>
+                                    @else
+                                        <li class="nav-item flex items-center font-Poppins text-[15px] text-[#686e7d] font-light leading-[28px] tracking-[0.03rem] mr-[35px]">
+                                            <a class="nav-link p-[0] font-Poppins leading-[28px] text-[15px] font-medium text-[#3d4750] tracking-[0.03rem] block"
+                                            href="#">{{ $menu->name }}</a>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
