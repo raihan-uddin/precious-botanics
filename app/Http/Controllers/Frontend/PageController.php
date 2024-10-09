@@ -62,9 +62,23 @@ class PageController extends Controller
             ->take(24)
             ->get();
 
+        // product has multiple categories so we need to get unique categorie
+        $latestCategories = Category::with([
+                'products' => function ($query) {
+                    $query->where('status', 'published');
+                    $query->take(24);
+                }
+            ])
+            ->where('show_on_home', 1)
+            ->whereHas('products', function ($query) {
+                $query->where('status', 'published');
+            })
+            ->take(6)
+            ->get();
 
-        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts', 'latestProducts'));
+        return view('frontend.pages.home', compact('categories', 'products', 'banners', 'tags', 'sliders', 'featuredBanners', 'mostLovedProducts', 'latestProducts', 'latestCategories'));
     }
+
 
     public function categoryProduct($slug)
     {
