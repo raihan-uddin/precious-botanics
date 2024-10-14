@@ -69,7 +69,7 @@
                                 <div class="mb-4">
                                     <x-input-label for="sku" :value="__('Product SKU')"/>
                                     <x-input id="sku" name="sku" class="block mt-1 w-full" type="text"
-                                             :value="old('sku', $product->sku)" required/>
+                                             :value="old('sku', $product->sku)"/>
                                     @if($errors->has('sku'))
                                         <span class="text-red-600 text-sm" role="alert">
                                             <strong>{{ $errors->first('sku') }}</strong>
