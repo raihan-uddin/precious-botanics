@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                    <img src="{{ asset('images/logos/logo.svg') }}" alt="logo" class=" fill-current text-gray-800 h-16" />
+                    <a href="{{ route('home') }}" target="_blank" title="Browse Home Page">
+                        <img src="{{ asset('images/logos/logo.svg') }}" alt="logo" class=" fill-current text-gray-800 h-16" />
                     </a>
                 </div>
 
