@@ -109,7 +109,6 @@ class ProductController extends Controller
             'categories' => 'required|array',
             'tags' => 'nullable|array',
             'vendor_id' => 'nullable|numeric',
-            'short_description' => 'nullable|string',
             'full_description' => 'nullable|string',
             'price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
@@ -145,7 +144,6 @@ class ProductController extends Controller
             $product->slug = $request->slug;
             $product->sku = $request->sku;
             $product->vendor_id = $request->vendor_id;
-            $product->short_description = $request->short_description;
             $product->full_description = $request->full_description;
             $product->price = $request->price;
             $product->discount_price = $request->discount_price;
@@ -283,7 +281,6 @@ class ProductController extends Controller
             'vendor_id' => 'nullable|numeric',
             'categories' => 'required|array',
             'tags' => 'nullable|array',
-            'short_description' => 'nullable|string',
             'full_description' => 'nullable|string',
             'price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
@@ -319,7 +316,6 @@ class ProductController extends Controller
             $product->slug = $request->slug;
             $product->sku = $request->sku;
             $product->vendor_id = $request->vendor_id;
-            $product->short_description = $request->short_description;
             $product->full_description = $request->full_description;
             $product->price = $request->price;
             $product->discount_price = $request->discount_price;

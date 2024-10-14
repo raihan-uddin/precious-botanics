@@ -932,9 +932,9 @@
         // change the product name .bb-quick-title a
         $(".bb-quick-title a").text(productData.name);
 
-        let plainTextShortDescription = $(productData.short_description).text();
+        let plainTextShortDescription = $(productData.full_description).text();
 
-        // change .bb-quickview-desc if productData.short_description is available else use productData.description
+        // change .bb-quickview-desc if productData.full_description is available else use productData.description
         $(".bb-quickview-desc").text(plainTextShortDescription);
 
 

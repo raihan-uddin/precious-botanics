@@ -97,7 +97,7 @@
                                         </span>
                                     </div>
                                     <p class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem]  ">
-                                        {{ Str::limit(html_entity_decode(strip_tags($product->short_description)), 240) }}
+                                        {{ Str::limit(html_entity_decode(strip_tags($product->full_description)), 240) }}
                                     </p>
                                     <div class="bb-single-price-wrap flex justify-between py-[10px]">
                                         <div class="bb-single-price py-[15px]">

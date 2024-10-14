@@ -139,21 +139,6 @@
                                 </div>
                             </div>
 
-                            <!-- Short Description (Quill WYSIWYG Editor) -->
-                            <div class="mb-4">
-                                <x-input-label for="short_description" :value="__('Short Description')"/>
-
-                                <div id="short_description_editor" class="block mt-1 w-full editor"
-                                     style="height: 300px">{{ old('short_description') }}</div>
-
-                                <input type="hidden" name="short_description" id="short_description"
-                                       value="{{ old('short_description') }}">
-                                @error('short_description')
-                                <span class="text-red-600 text-sm" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
 
 
                             <!-- Full Description (Quill WYSIWYG Editor) -->
@@ -693,19 +678,6 @@
             // ['clean']                                         // remove formatting button
         ];
         <!-- Initialize Quill editor with advance -->
-        
-        // Short Description Editor
-        var shortDescriptionEditor = new Quill('#short_description_editor', {
-            theme: 'snow',
-            modules: {
-                toolbar: toolbarOptions
-            }
-        });
-
-        shortDescriptionEditor.on('text-change', function () {
-            const shortDescription = shortDescriptionEditor.root.innerHTML;
-            document.getElementById('short_description').value = shortDescription;
-        });
 
         // Full Description Editor
         var fullDescriptionEditor = new Quill('#full_description_editor', {

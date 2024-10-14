@@ -20,7 +20,6 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
-        'short_description',
         'full_description',
         'sku',
         'price',
@@ -111,11 +110,6 @@ class Product extends Model
         return $this->featured_image ? asset('storage/'.$this->featured_image) : null;
     }
 
-    // accessor short_description_without_html
-    public function getShortDescriptionWithoutHtmlAttribute()
-    {
-        return strip_tags($this->short_description);
-    }
 
     public function getGalleryImagesAttribute()
     {

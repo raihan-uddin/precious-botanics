@@ -136,18 +136,9 @@
 
                     {{-- Descriptions --}}
                     <div class="space-y-4">
-                        <div>
-                            <div class="flex items-center">
-                                <hr class="flex-grow border-t border-gray-300">
-                                <h2 class="mx-4 text-2xl font-bold text-gray-800">Short Description</h2>
-                                <hr class="flex-grow border-t border-gray-300">
-                            </div>
-                            <p class="mt-1 text-gray-700">{!! $product->short_description !!}</p>
-                        </div>
-                        <div>
                         <div class="flex items-center">
                                 <hr class="flex-grow border-t border-gray-300">
-                                <h2 class="mx-4 text-2xl font-bold text-gray-800">Long Description</h2>
+                                <h2 class="mx-4 text-2xl font-bold text-gray-800">Description</h2>
                                 <hr class="flex-grow border-t border-gray-300">
                             </div>
                             <p class="mt-1 text-gray-700">{!! $product->full_description !!}</p>
