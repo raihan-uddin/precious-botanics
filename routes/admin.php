@@ -10,7 +10,7 @@ use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // group routes with admin middleware
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(function () {
     // Auth routes
     Route::get('/dashboard', function () {
         return view('dashboard');

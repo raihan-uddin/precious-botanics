@@ -172,14 +172,21 @@ class PageController extends Controller
             abort(404);
         }
 
+        //  get related products by category
         $relatedCategories = $product->categories;
-        // [{"id":20,"name":"Whipped Shea Butter","slug":"whipped-shea-butter","order_column":19,"is_active":1,"is_menu":0,"show_on_nav_menu":1,"show_on_home":0,"show_on_footer":0,"show_on_sidebar":0,"show_on_slider":0,"show_on_top":0,"show_on_bottom":0,"icon":null,"image":null,"keywords":null,"description":null,"bg_color":null,"text_color":null,"border_color":null,"created_by":1,"updated_by":1,"deleted_by":null,"deleted_at":null,"created_at":"2024-10-08T08:36:05.000000Z","updated_at":"2024-10-08T08:36:05.000000Z","pivot":{"product_id":742,"category_id":20}}] 
-        
+        $relatedProducts = Product::with(['variants', 'categories', 'images'])
+            ->whereHas('categories', function ($query) use ($relatedCategories) {
+                $query->whereIn('categories.id', $relatedCategories->pluck('id'));
+            })
+            ->where('id', '!=', $product->id)
+            ->published()
+            ->take(8)
+            ->get();
 
-        $tags = Tag::all();
+        info($relatedProducts);
         $pageTitle = $product->name;
 
-        return view('frontend.pages.product-detail', compact('product', 'relatedCategories', 'tags', 'pageTitle'));
+        return view('frontend.pages.product-detail', compact('product', 'relatedProducts', 'pageTitle'));
     }
 
     public function about()
