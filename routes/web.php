@@ -12,7 +12,7 @@ Route::get('/return-policy', [PageController::class, 'returnPolicy'])->name('ret
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/category/{slug}', [PageController::class, 'categoryProduct'])->name('category.product');
-Route::get('/product/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
+Route::get('/{category_slug}/product/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
 
 require __DIR__.'/admin.php';
 require __DIR__.'/auth.php';

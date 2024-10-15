@@ -92,7 +92,7 @@ class PageController extends Controller
         return view('frontend.pages.category-product', compact('category', 'products', 'tags'));
     }
 
-    public function productDetail($slug)
+    public function productDetail($category_slug, $slug)
     {
         $product = Product::with(['variants', 'categories', 'images'])->where('slug', $slug)->first();
       

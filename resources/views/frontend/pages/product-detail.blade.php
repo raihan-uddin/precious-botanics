@@ -23,6 +23,13 @@
                                 <li class="bb-breadcrumb-item font-Poppins text-[#686e7d] text-[14px] leading-[28px] font-normal tracking-[0.03rem] px-[5px] active">
                                     <a href="{{ route('category.product', $product->categories->first()->slug) }}" class="font-Poppins text-[14px] leading-[28px] tracking-[0.03rem] font-semibold text-[#686e7d]">{{ $product->categories->first()->name }}</a>
                                 </li>
+
+                                <li class="text-[14px] font-normal px-[5px]"><i
+                                        class="ri-arrow-right-double-fill text-[14px] font-semibold leading-[28px]"></i>
+                                </li>
+                                <li class="bb-breadcrumb-item font-Poppins text-[#686e7d] text-[14px] leading-[28px] font-normal tracking-[0.03rem] px-[5px] active">
+                                    <a href="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}" class="font-Poppins text-[14px] leading-[28px] tracking-[0.03rem] font-semibold text-[#686e7d]">{{ $product->name }}</a>
+                                </li>
                                 
                             </ul>
                         </div>
