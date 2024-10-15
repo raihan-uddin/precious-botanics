@@ -440,19 +440,23 @@ $(document).ready(function() {
             }
         });
 
+        let activeSku = "{{ $product->sku }}";
         // Set active classes for size options with the lowest prices
         $('.size-option').filter(function() {
             let sizeData = $(this).data('size');
-            return parseFloat(sizeData.price) ===
-            minSizePrice; // Check if price is equal to minSizePrice
+            activeSku = sizeData.sku;
+            return parseFloat(sizeData.price) === minSizePrice; // Check if price is equal to minSizePrice
         }).first().addClass('active-variation');
 
         // Set active classes for color options with the lowest prices
         $('.color-option').filter(function() {
             let colorData = $(this).data('color');
-            return parseFloat(colorData.price) ===
-            minColorPrice; // Check if price is equal to minColorPrice
+            activeSku = colorData.sku;
+            return parseFloat(colorData.price) === minColorPrice; // Check if price is equal to minColorPrice
         }).first().addClass('active-variation');
+        
+        // get the selected size and color sku
+        selectedSku = activeSku;
     }
 
     // Event listener for size selection
