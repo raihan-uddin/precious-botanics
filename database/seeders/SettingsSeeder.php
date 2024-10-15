@@ -82,6 +82,13 @@ class SettingsSeeder extends Seeder
             // show newslaetter
             ['key' => 'show_newsletter', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
 
+            // meta tags
+            ['key' => 'home_page_meta_description', 'value'=> 'Precious Botanics is your go-to source for natural and herbal beauty products. Embrace your wellness journey with our carefully curated selection.', 'type' => 'textarea', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'home_page_meta_keywords', 'value'=> 'Precious Botanics, natural beauty products, herbal beauty products, wellness products', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'home_page_meta_author', 'value'=> 'Precious Botanics', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'home_page_meta_title', 'value'=> 'Precious Botanics - Natural & Herbal Beauty Products', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'meta_twitter_handle', 'value'=> '@PreciousBotanic', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
+
         ]);
     }
 }

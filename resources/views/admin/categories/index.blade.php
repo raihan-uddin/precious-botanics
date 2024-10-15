@@ -116,6 +116,7 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('categories.edit', $category->id) }}" class="text-blue-600 hover:underline">Edit</a>
+                                        <span class="text-gray-400">|</span>
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline-block" onsubmit="return confirmDelete(event, '{{ $category->name }}');">
                                             @csrf
                                             @method('DELETE')

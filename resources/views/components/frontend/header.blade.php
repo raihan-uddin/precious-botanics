@@ -208,7 +208,11 @@
                                        href="{{ route('home') }}">Home</a>
                                 </li>
                                 @php($menuCategories = getMenuCategories())
-                                @foreach($menuCategories as $menu)
+                                @foreach($menuCategories as $key => $menu)
+                                <!-- break if $key > 6 -->
+                                @if($key > 8)
+                                    @break
+                                @endif
                                     @if($menu->submenus->count() > 0)
                                     <li class="nav-item bb-dropdown flex items-center relative mr-[45px]">
                                         <a class="nav-link bb-dropdown-item font-Poppins relative p-[0] leading-[28px] text-[15px] font-medium text-[#3d4750] block tracking-[0.03rem]"

@@ -1,3 +1,4 @@
+@php use App\Helpers\SettingsHelper; @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -9,6 +10,34 @@
 
     <!-- Fav icon -->
     <link rel="icon" href="{{ asset('images/logos/logo.svg') }}" type="image/x-icon"/>
+
+    <!-- Dynamic Meta Tags for SEO -->
+    @section('meta')
+        <meta name="description" content="{{ $metaDescription ?? SettingsHelper::get('home_page_meta_description', 'Developed By Raihan uddin. Phone: +8801680527922') }}">
+        <meta name="keywords" content="{{ $metaKeywords ?? SettingsHelper::get('home_page_meta_keywords') }}">
+        <meta name="author" content="{{ $metaAuthor ?? SettingsHelper::get('home_page_meta_author') }}">
+
+        <!-- Open Graph Meta Tags for Facebook -->
+        <meta property="og:title" content="@yield('title')" />
+        <meta property="og:description" content="{{ $metaDescription ?? SettingsHelper::get('home_page_meta_description', 'Developed By Raihan uddin. Phone: +8801680527922') }}" />
+        <meta property="og:image" content="{{ $metaImage ?? asset('assets/img/logo/logo.png') }}" />
+        <meta property="og:url" content="{{ request()->url() }}" />
+        <meta property="og:type" content="website" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="{{ SettingsHelper::get('meta_twitter_handle') }}">
+        <meta name="twitter:title" content="@yield('title')">
+        <meta name="twitter:description" content="{{ $metaDescription ?? SettingsHelper::get('home_page_meta_keywords') }}">
+        <meta name="twitter:image" content="{{ $metaImage ?? asset('assets/img/logo/logo.png') }}">
+
+        <!-- Additional Meta Tags -->
+        <meta property="article:published_time" content="{{ $metaPublishedTime ?? now()->toISOString() }}">
+        <meta property="article:modified_time" content="{{ $metaModifiedTime ?? now()->toISOString() }}">
+        <meta property="og:site_name" content="{{ config('app.name') }}">
+    @show
+
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

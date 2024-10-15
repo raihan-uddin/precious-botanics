@@ -96,11 +96,12 @@
                                             <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
                                             <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
                                             <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
-                                            <i class="ri-star-line float-left text-[15px] mr-[3px] text-[#777]"></i>
+                                            <i class="ri-star-fill float-left text-[15px] mr-[3px] text-[#fea99a]"></i>
+                                            <!-- <i class="ri-star-line float-left text-[15px] mr-[3px] text-[#777]"></i> -->
                                         </span>
                                         <span class="bb-read-review">
                                             |&nbsp;&nbsp;<a href="#bb-spt-nav-review"
-                                                            class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem] text-[#6c7fd8] hidden">992 Ratings</a>
+                                                            class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem] text-[#6c7fd8]">0 Ratings</a>
                                         </span>
                                     </div>
                                     <p class="font-Poppins text-[15px] font-light leading-[28px] tracking-[0.03rem]  ">
