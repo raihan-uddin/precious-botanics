@@ -101,7 +101,7 @@
                             <img src="{{ asset('assets/img/logo/logo.png') }}"
                                  class="bb-footer-logo max-w-[144px] mb-[30px] max-[767px]:max-w-[130px]"
                                  alt="footer logo">
-                            <img src="assets/img/logo/logo-dark.png"
+                            <img src="{{ asset('assets/img/logo/logo.png') }}"
                                  class="bb-footer-dark-logo max-w-[144px] mb-[30px] max-[767px]:max-w-[130px] hidden"
                                  alt="footer logo">
                             <p class="bb-footer-detail max-w-[400px] mb-[30px] p-[0] font-Poppins text-[14px] leading-[27px] font-normal text-[#686e7d] inline-block relative max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
