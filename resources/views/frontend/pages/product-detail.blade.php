@@ -141,33 +141,61 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="bb-single-pro-weight mb-[24px]">
-                                        <div class="pro-title mb-[12px]">
-                                            <h4 class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
-                                                Weight</h4>
-                                        </div>
-                                        <div class="bb-pro-variation-contant">
-                                            <ul class="flex flex-wrap m-[-2px]">
-                                                <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer active-variation">
-                                                    <span
-                                                        class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">250g</span>
-                                                </li>
-                                                <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer">
-                                                    <span
-                                                        class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">500g</span>
-                                                </li>
-                                                <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer">
-                                                    <span
-                                                        class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">1kg</span>
-                                                </li>
-                                                <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer">
-                                                    <span
-                                                        class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">2kg</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    @if($product->variants)
+                                        @php
+                                            // Group by unique sizes with price information
+                                            $sizeVariants = $product->variants->filter(function ($variant) {
+                                                return !empty($variant['size']);
+                                            })->unique('size');
+
+                                            // Group by unique colors with price information
+                                            $colorVariants = $product->variants->filter(function ($variant) {
+                                                return !empty($variant['color']);
+                                            })->unique('color');
+                                        @endphp
+                                        @if(count($sizeVariants) > 0)
+                                            <div class="bb-single-pro-weight size-variant mb-[24px]">
+                                                <div class="pro-title mb-[12px]">
+                                                    <h4 class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
+                                                        Size</h4>
+                                                </div>
+                                                <div class="bb-pro-variation-contant">
+                                                    <ul class="flex flex-wrap m-[-2px]">
+                                                        @foreach($sizeVariants as $key => $variant)
+                                                            @php
+                                                                $activeClass = $key == 0 ? 'active-variation' : '';
+                                                            @endphp
+                                                            <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer {{ $activeClass }} " data-size="{{$variant}}">
+                                                                <span
+                                                                    class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->size }}</span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if(count($colorVariants) > 0)
+                                            <div class="bb-single-pro-weight color-variant  mb-[24px]">
+                                                <div class="pro-title mb-[12px]">
+                                                    <h4 class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
+                                                        Color</h4>
+                                                </div>
+                                                <div class="bb-pro-variation-contant">
+                                                    <ul class="flex flex-wrap m-[-2px]">
+                                                        @foreach($colorVariants as $key => $variant)
+                                                            @php
+                                                                $activeClass = $key == 0 ? 'active-variation' : '';
+                                                            @endphp
+                                                            <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer {{ $activeClass }}" data-color="{{$variant}}">
+                                                                <span
+                                                                    class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->color }}</span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
                                     <div class="bb-single-qty flex flex-wrap m-[-2px]">
                                         <div
                                             class="qty-plus-minus m-[2px] w-[85px] h-[40px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
@@ -175,22 +203,25 @@
                                                 class="qty-input text-[#777] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[32px] outline-[0] font-normal leading-[35px] rounded-[10px]"
                                                 type="text" name="bb-qtybtn" value="1">
                                         </div>
-                                        <div class="buttons m-[2px]">
-                                            <a href="javascript:void(0)"
-                                               class="bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">View
-                                                Cart</a>
+                                        <!-- add to cart -->
+                                        <div class="bb-single-cart m-[2px]">
+                                            <button type="button"
+                                                    class="bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">
+                                                Add To Cart
+                                            </button>
+                                        </div>
+                                        <!-- view cart -->
+                                        <div class="bb-single-cart m-[2px]">
+                                            <button type="button"
+                                                    class="bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#3d4750] rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-transparent hover:border-[#6c7fd8] hover:text-[#6c7fd8]">
+                                                View Cart
+                                            </button>
                                         </div>
                                         <ul class="bb-pro-actions my-[2px] flex">
                                             <li class="bb-btn-group">
                                                 <a href="javascript:void(0)" title="heart"
                                                    class="transition-all duration-[0.3s] ease-in-out w-[40px] h-[40px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] hover:bg-[#6c7fd8] border-[1px] border-solid border-[#eee] rounded-[10px]">
                                                     <i class="ri-heart-line text-[16px] leading-[10px] text-[#777]"></i>
-                                                </a>
-                                            </li>
-                                            <li class="bb-btn-group">
-                                                <a href="javascript:void(0)" title="Quick View"
-                                                   class="bb-modal-toggle transition-all duration-[0.3s] ease-in-out w-[40px] h-[40px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] hover:bg-[#6c7fd8] border-[1px] border-solid border-[#eee] rounded-[10px]">
-                                                    <i class="ri-eye-line text-[16px] leading-[10px] text-[#777]"></i>
                                                 </a>
                                             </li>
                                         </ul>
