@@ -343,7 +343,7 @@
                                     class="ri-close-line"></i></a>
                             <a href="javascript:void(0)"
                                class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="assets/img/new-product/1.jpg" alt="product-img-1"
+                                <img src="{{ asset('assets/img/new-product/1.jpg') }}" alt="product-img-1"
                                      class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
                             </a>
                             <div
@@ -369,7 +369,7 @@
                                     class="ri-close-line"></i></a>
                             <a href="javascript:void(0)"
                                class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="assets/img/new-product/2.jpg" alt="product-img-2"
+                                <img src="{{ asset('assets/img/new-product/2.jpg') }}" alt="product-img-2"
                                      class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
                             </a>
                             <div
@@ -395,7 +395,7 @@
                                     class="ri-close-line"></i></a>
                             <a href="javascript:void(0)"
                                class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="assets/img/new-product/3.jpg" alt="product-img-3"
+                                <img src="{{ asset('assets/img/new-product/3.jpg') }}" alt="product-img-3"
                                      class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
                             </a>
                             <div
@@ -421,7 +421,7 @@
                                     class="ri-close-line"></i></a>
                             <a href="javascript:void(0)"
                                class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="assets/img/new-product/6.jpg" alt="product-img-3"
+                                <img src="{{ asset('assets/img/new-product/6.jpg') }}" alt="product-img-3"
                                      class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
                             </a>
                             <div
@@ -493,7 +493,7 @@
                             class="single-pro-img single-pro-img-no-sidebar h-full border-[1px] border-solid border-[#eee] overflow-hidden rounded-[20px]">
                             <div class="single-product-scroll h-full">
                                 <div class="single-slide zoom-image-hover h-full bg-[#fff] flex items-center">
-                                    <img class="img-responsive max-w-full block" src="assets/img/product/1.jpg" alt="product-img-1">
+                                    <img class="img-responsive max-w-full block" src="{{ asset('assets/img/product/1.jpg')}}" alt="product-img-1">
                                 </div>
                             </div>
                         </div>
@@ -716,7 +716,6 @@
     $(".bb-modal-toggle").on("click", function () {
          // Get the product data from the data attribute
         const productData = $(this).closest('.bb-pro-box').find('.bb-price').data('product');
-        console.log(productData);
 
         // change the product image
         $(".single-pro-img img").attr('src', `/storage/${productData.featured_image}`);
