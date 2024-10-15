@@ -242,7 +242,7 @@
     </div>
     <div class="bb-mobile-menu-overlay hidden w-full h-screen fixed top-[0] left-[0] bg-[#000000cc] z-[16]"></div>
     <div id="bb-mobile-menu"
-         class="bb-mobile-menu transition-all duration-[0.3s] ease-in-out w-[340px] h-full pt-[15px] px-[20px] pb-[20px] fixed top-[0] right-[auto] left-[0] bg-[#fff] translate-x-[-100%] flex flex-col z-[17] overflow-auto max-[480px]:w-[300px]">
+        class="bb-mobile-menu transition-all duration-[0.3s] ease-in-out w-[340px] h-full pt-[15px] px-[20px] pb-[20px] fixed top-[0] right-[auto] left-[0] bg-[#fff] translate-x-[-100%] flex flex-col z-[17] overflow-auto max-[480px]:w-[300px]">
         <div class="bb-menu-title w-full pb-[10px] flex flex-wrap justify-between">
             <span
                 class="menu_title font-Poppins flex items-center text-[16px] text-[#3d4750] font-semibold leading-[26px] tracking-[0.02rem]">My Menu</span>
@@ -258,6 +258,7 @@
                            class="transition-all duration-[0.3s] ease-in-out mb-[12px] p-[12px] block font-Poppins capitalize text-[#686e7d] border-[1px] border-solid border-[#eee] rounded-[10px] text-[15px] font-medium leading-[28px] tracking-[0.03rem]">Home</a>
                     </li>
                     @foreach($menuCategories as $menu)
+                    @if($menu->submenus->count() > 0)
                         <li class="relative">
                             <a href="javascript:void(0)"
                                class="transition-all duration-[0.3s] ease-in-out mb-[12px] p-[12px] block font-Poppins capitalize text-[#686e7d] border-[1px] border-solid border-[#eee] rounded-[10px] text-[15px] font-medium leading-[28px] tracking-[0.03rem]">{{ $menu->name }}</a>
@@ -270,6 +271,12 @@
                                 @endforeach
                             </ul>
                         </li>
+                        @else
+                            <li class="relative">
+                                <a href="{{ route('category.products', [$menu->slug]) }}"
+                                   class="transition-all duration-[0.3s] ease-in-out mb-[12px] p-[12px] block font-Poppins capitalize text-[#686e7d] border-[1px] border-solid border-[#eee] rounded-[10px] text-[15px] font-medium leading-[28px] tracking-[0.03rem]">{{ $menu->name }}</a>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
@@ -335,8 +342,8 @@
                                     </div>
                                     <div class="category-sub-contact">
                                         <h5 class="mb-[2px] text-[16px] font-quicksand text-[#3d4750] font-semibold tracking-[0.03rem] leading-[1.2]">
-                                            <a href="shop-left-sidebar-col-3.html"
-                                               class="font-Poppins text-[16px] font-medium leading-[1.2] tracking-[0.03rem] text-[#3d4750] capitalize">{{ $category->name }}</a>
+                                            <a href="{{ route('category.products', [$category->slug]) }}"
+                                                class="font-Poppins text-[16px] font-medium leading-[1.2] tracking-[0.03rem] text-[#3d4750] capitalize">{{ $category->name }}</a>
                                         </h5>
                                         <p class="font-Poppins text-[13px] text-[#686e7d] leading-[25px] font-light tracking-[0.03rem]">
                                             {{--  count category products & submenu relation products count   --}}

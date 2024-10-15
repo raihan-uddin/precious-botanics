@@ -160,14 +160,14 @@
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
                                         <a href="{{ route('privacy.policy') }}"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">
-                                           Site Map
+                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">
+                                            Site Map
                                         </a>
                                     </li>
 
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
                                         <a href="#"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Become
+                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Become
                                             a Distributor</a>
                                     </li>
                                 </ul>
@@ -183,22 +183,22 @@
                                 <ul class="align-items-center">
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
                                         <a href="{{ route('login') }}"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Sign
+                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Sign
                                             In</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
                                         <a href="#"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">View
+                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">View
                                             Cart</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
                                         <a href="#"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Affiliate
+                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Affiliate
                                             Program</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center">
                                         <a href="#"
-                                           class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Payments</a>
+                                            class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">Payments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -236,7 +236,7 @@
                                                     <i class="ri-mail-line leading-[0] text-[18px] text-[#6c7fd8]"></i>
                                                 </span>
                                             <a href="mailto:{{ SettingsHelper::get('site_email', 'raihanuddin2@yahoo.com') }}"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
+                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] inline-block relative break-all tracking-[0] font-normal max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
                                                 {{ SettingsHelper::get('site_email', 'raihanuddin2@yahoo.com') }}
                                             </a>
                                         </li>
@@ -251,28 +251,28 @@
                                         @if(SettingsHelper::get('site_facebook'))
                                             <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
                                                 <a href="{{ SettingsHelper::get('site_facebook') }}"
-                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                    class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
                                                         class="ri-facebook-fill text-[16px] text-[#fff]"></i></a>
                                             </li>
                                         @endif
                                         @if(SettingsHelper::get('twitter'))
                                             <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
                                                 <a href="{{ SettingsHelper::get('twitter') }}"
-                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                    class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
                                                         class="ri-twitter-fill text-[16px] text-[#fff]"></i></a>
                                             </li>
                                         @endif
                                         @if(SettingsHelper::get('linkedin'))
                                             <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
                                                 <a href="{{ SettingsHelper::get('linkedin') }}"
-                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                    class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
                                                         class="ri-linkedin-fill text-[16px] text-[#fff]"></i></a>
                                             </li>
                                         @endif
                                         @if(SettingsHelper::get('instagram'))
                                             <li class="bb-footer-link leading-[1.5] flex items-center pr-[5px]">
                                                 <a href="javascript:void(0)"
-                                                   class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
+                                                    class="transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] rounded-[5px] bg-[#3d4750] hover:bg-[#6c7fd8] capitalize flex items-center justify-center text-[15px] leading-[20px] text-[#686e7d] relative break-all font-normal"><i
                                                         class="ri-instagram-line text-[16px] text-[#fff]"></i></a>
                                             </li>
                                         @endif
@@ -300,7 +300,7 @@
                                         {{ date('Y') }}
                                     </span>
                                     <a class="site-name transition-all duration-[0.3s] ease-in-out font-medium text-[#6c7fd8] hover:text-[#3d4750] font-Poppins text-[15px] leading-[28px] tracking-[0.03rem]"
-                                       href="{{ route('home') }}">{{ env('APP_NAME') }}</a> all rights reserved.
+                                        href="{{ route('home') }}">{{ env('APP_NAME') }}</a> all rights reserved.
                                 </div>
                             </div>
                         </div>
@@ -308,7 +308,7 @@
                             <div class="footer-bottom-payment flex justify-center">
                                 <div class="payment-link">
                                     <img src="{{ asset('assets/img/payment/payment.png') }}" alt="payment"
-                                         class="max-[360px]:w-full">
+                                        class="max-[360px]:w-full">
                                 </div>
                             </div>
                         </div>
@@ -331,25 +331,26 @@
                         <h4 class="font-quicksand text-[18px] font-extrabold text-[#3d4750] tracking-[0.03rem] leading-[1.2]">
                             My cart</h4>
                         <a href="javascript:void(0)"
-                           class="bb-cart-close transition-all duration-[0.3s] ease-in-out w-[16px] h-[20px] absolute top-[-20px] right-[0] bg-[#e04e4eb3] rounded-[10px] cursor-pointer"
-                           title="Close Cart"></a>
+                            class="bb-cart-close transition-all duration-[0.3s] ease-in-out w-[16px] h-[20px] absolute top-[-20px] right-[0] bg-[#e04e4eb3] rounded-[10px] cursor-pointer"
+                            title="Close Cart"></a>
                     </div>
                 </div>
                 <div class="bb-cart-box item h-full flex flex-col max-[767px]:justify-start">
                     <ul class="bb-cart-items mb-[-24px]">
                         <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
                             <a href="javascript:void(0)"
-                               class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
-                                    class="ri-close-line"></i></a>
+                                class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
+                                class="ri-close-line"></i>
+                            </a>
                             <a href="javascript:void(0)"
-                               class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
+                                class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
                                 <img src="{{ asset('assets/img/new-product/1.jpg') }}" alt="product-img-1"
-                                     class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
+                                    class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
                             </a>
                             <div
                                 class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
                                 <a href="#"
-                                   class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Ground
+                                    class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Ground
                                     Nuts Oil Pack</a>
                                 <span
                                     class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
@@ -465,10 +466,10 @@
                     </div>
                     <div class="cart-btn flex justify-between mb-[20px]">
                         <a href="#"
-                           class="bb-btn-1 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]">View
+                            class="bb-btn-1 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]">View
                             Cart</a>
                         <a href="#"
-                           class="bb-btn-2 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">Checkout</a>
+                            class="bb-btn-2 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">Checkout</a>
                     </div>
                 </div>
             </div>
@@ -523,13 +524,13 @@
                                 <ul class="flex flex-wrap m-[-2px]">
                                     <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal active">
                                         <a href="javascript:void(0)"
-                                           class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
-                                           data-tooltip="Small">250g</a>
+                                            class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
+                                            data-tooltip="Small">250g</a>
                                     </li>
                                     <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal">
                                         <a href="javascript:void(0)"
-                                           class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
-                                           data-tooltip="Medium">500g</a>
+                                            class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
+                                            data-tooltip="Medium">500g</a>
                                     </li>
                                     <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal">
                                         <a href="javascript:void(0)"
@@ -568,7 +569,7 @@
 
 <!-- Newsletter Modal -->
 @if(SettingsHelper::get('show_newsletter', false))
-    <div class="bb-popnews-bg fixed left-[0] top-[0] w-full h-full bg-[#00000080] hidden z-[25] hidden"></div>
+    <div class="bb-popnews-bg fixed left-[0] top-[0] w-full h-full bg-[#00000080] hidden z-[25]"></div>
     <div
         class="bb-popnews-box w-full max-w-[600px] p-[24px] fixed left-[50%] top-[50%] bg-[#fff] hidden z-[25] text-center rounded-[15px] overflow-hidden max-[767px]:w-[90%]">
         <div
@@ -577,7 +578,7 @@
         <div class="flex flex-wrap mx-[-12px]">
             <div class="min-[768px]:w-[50%] w-full px-[12px]">
                 <img src="{{ asset('assets/img/newsletter/newsletter.jpg') }}" alt="newsletter"
-                     class="w-full rounded-[15px] max-[767px]:hidden">
+                    class="w-full rounded-[15px] max-[767px]:hidden">
             </div>
             <div class="min-[768px]:w-[50%] w-full px-[12px]">
                 <div class="bb-popnews-box-content h-full flex flex-col items-center justify-center">
@@ -587,8 +588,8 @@
                         Subscribe the {{ env('APP_NAME') }} to get in touch and get the future update.</p>
                     <form class="bb-popnews-form mt-[0]" action="#" method="post">
                         <input type="email" name="newsemail" placeholder="Email Address"
-                               class="mb-[20px] bg-transparent border-[1px] border-solid border-[#eee] text-[#3d4750] text-[14px] py-[10px] px-[15px] w-full outline-[0] rounded-[10px] font-normal"
-                               required>
+                            class="mb-[20px] bg-transparent border-[1px] border-solid border-[#eee] text-[#3d4750] text-[14px] py-[10px] px-[15px] w-full outline-[0] rounded-[10px] font-normal"
+                            required>
                         <button type="button"
                                 class="bb-btn-2 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[4px] px-[15px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]"
                                 name="subscribe">Subscribe
