@@ -1,5 +1,5 @@
 @extends('frontend.layouts.default')
-@section('title', $category->name)
+@section('title', $tag->name)
 
 @section('content')
 
@@ -16,7 +16,7 @@
                             <ul class="bb-breadcrumb-list mx-[-5px] flex justify-end max-[767px]:justify-center">
                                 <li class="bb-breadcrumb-item text-[14px] font-normal px-[5px]"><a href="index.html" class="font-Poppins text-[14px] leading-[28px] tracking-[0.03rem] font-semibold text-[#686e7d]">Home</a></li>
                                 <li class="text-[14px] font-normal px-[5px]"><i class="ri-arrow-right-double-fill text-[14px] font-semibold leading-[28px]"></i></li>
-                                <li class="bb-breadcrumb-item font-Poppins text-[#686e7d] text-[14px] leading-[28px] font-normal tracking-[0.03rem] px-[5px] active">{{ $category->name }}</li>
+                                <li class="bb-breadcrumb-item font-Poppins text-[#686e7d] text-[14px] leading-[28px] font-normal tracking-[0.03rem] px-[5px] active">{{ $tag->name }}</li>
                             </ul>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                                         </div>
                                         <div class="w-[50%] px-[12px] max-[420px]:w-full">
                                             <div class="bb-select-inner h-full py-[10px] flex items-center justify-end max-[420px]:justify-center">
-                                                <form method="GET" action="{{ route('category.products', $category->slug) }}" id="sortForm" class="flex">
+                                                <form method="GET" action="{{ route('tag.products', $tag->slug) }}" id="sortForm" class="flex">
                                                     <div class="custom-select w-[130px] mr-[30px] flex justify-end text-[#777]  items-center text-[14px] relative max-[420px]:w-[100px] max-[420px]:justify-left">
                                                         <select  name="sort_by">
                                                             <option disabled {{ request('sort_by') ? '' : 'selected' }}>Sort by</option>

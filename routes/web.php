@@ -14,5 +14,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/{slug}', [PageController::class, 'categoryProducts'])->name('category.products');
 Route::get('/{category_slug}/product/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
 
+Route::get('/tag/{slug}', [PageController::class, 'tagProducts'])->name('tag.products');
+
 require __DIR__.'/admin.php';
 require __DIR__.'/auth.php';

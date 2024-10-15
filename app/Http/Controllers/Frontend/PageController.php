@@ -17,9 +17,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('is_active', 1)->get();
-        $products = Product::where('status', 'published')->get();
-        $banners = Banner::where('is_active', 1)->orderBy('order_column', 'desc')->get();
+        $categories = Category::active()->get();
+        $products = Product::published()->get();
+        $banners = Banner::active()->orderBy('order_column', 'desc')->get();
 
         $sliders = $banners->where('section', 'slider');
         $featuredBanners = $banners->where('section', 'featured');
@@ -32,7 +32,7 @@ class PageController extends Controller
             'categories'
         ])
             ->whereHas('variants')
-            ->where('status', 'published')
+            ->published()
             ->where(function ($query) {
                 $query->where('stock_quantity', '>', 0)
                     ->orWhere('allow_out_of_stock_orders', 1);
@@ -47,7 +47,7 @@ class PageController extends Controller
             'categories'
         ])
 //            ->whereHas('variants')
-            ->where('status', 'published')
+            ->published()
             ->where(function ($query) {
                 $query->where('stock_quantity', '>', 0)
                     ->orWhere('allow_out_of_stock_orders', 1);
@@ -59,13 +59,13 @@ class PageController extends Controller
         // product has multiple categories so we need to get unique categorie
         $latestCategories = Category::with([
                 'products' => function ($query) {
-                    $query->where('status', 'published');
+                    $query->published();
                     $query->take(24);
                 }
             ])
-            ->where('show_on_home', 1)
+            ->showOnHome()
             ->whereHas('products', function ($query) {
-                $query->where('status', 'published');
+                $query->published();
             })
             ->take(6)
             ->get();
@@ -83,10 +83,10 @@ class PageController extends Controller
         // Get the sort_by parameter from the request
         $sortBy = $request->input('sort_by');
 
-        $allCategories = Category::withCount('products')->get();
+        $allCategories = Category::withCount('products')->active()->get();
         $products = $category->products();
 
-        $products = $products->where('status', 'published');
+        $products = $products->published();
         // if request sort_by then sort products (position, relevance, name_asc, name_desc, price_asc, price_desc, newest, oldest)
 
         switch ($sortBy) {
@@ -118,6 +118,50 @@ class PageController extends Controller
 
         return view('frontend.pages.category-product', compact('category', 'products', 'allCategories'));
     }
+
+    public function tagProducts($slug, Request $request)
+    {
+        $tag = Tag::where('slug', $slug)->first();
+        if (!$tag) {
+            abort(404);
+        }
+
+        // Get the sort_by parameter from the request
+        $sortBy = $request->input('sort_by');
+
+        $allCategories = Category::withCount('products')->active()->get();
+
+        $products = $tag->products()->published();
+        switch ($sortBy) {
+            case 'name_asc':
+                $products = $products->orderBy('name', 'asc');
+                break;
+            case 'name_desc':
+                $products = $products->orderBy('name', 'desc');
+                break;
+            case 'price_asc':
+                $products = $products->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $products = $products->orderBy('price', 'desc');
+                break;
+            case 'newest':
+                $products = $products->latest();
+                break;
+            case 'oldest':
+                $products = $products->oldest();
+                break;
+            default:
+                $products = $products->orderBy('id', 'desc');
+                break;
+        }
+        // Apply sorting based on the sort_by value
+        $products = $products->paginate(12);
+
+        return view('frontend.pages.tag-products', compact('tag', 'products', 'allCategories'));
+    }
+
+
 
     public function productDetail($category_slug, $slug)
     {

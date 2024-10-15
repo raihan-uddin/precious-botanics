@@ -21,4 +21,9 @@ class Banner extends Model
         'updated_by',
         'deleted_by',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('banners.is_active', true);
+    }
 }

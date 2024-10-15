@@ -76,7 +76,7 @@
                                         @php($tags = getAllTags())
                                             @foreach ($tags as $tag)
                                             <li>
-                                                <a href="#"
+                                                <a href="{{ route('tag.products', $tag->slug) }}"
                                                 class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">{{ $tag->name }}</a>
                                             </li>
                                         @endforeach
