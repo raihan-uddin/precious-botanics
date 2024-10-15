@@ -80,16 +80,17 @@ class PageController extends Controller
     }
 
 
-    public function categoryProduct($slug)
+    public function categoryProducts($slug)
     {
         $category = Category::where('slug', $slug)->first();
         if (!$category) {
             abort(404);
         }
-        $products = $category->products()->where('status', 'published')->get();
-        $tags = Tag::all();
+        $allCategories = Category::withCount('products')->get();
+        $products = $category->products()->where('status', 'published')->paginate(16);
+        // $tags = Tag::all();
 
-        return view('frontend.pages.category-product', compact('category', 'products', 'tags'));
+        return view('frontend.pages.category-product', compact('category', 'products', 'allCategories'));
     }
 
     public function productDetail($category_slug, $slug)

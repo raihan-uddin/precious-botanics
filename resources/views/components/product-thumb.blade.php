@@ -43,7 +43,7 @@
     </div>
     <div class="bb-pro-contact p-[20px]">
         <div class="bb-pro-subtitle mb-[8px] flex flex-wrap justify-between">
-            <a href="{{ route('category.product', $product->categories->first()->slug) }}"
+            <a href="{{ route('category.products', $product->categories->first()->slug) }}"
                 class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[13px] leading-[16px] text-[#777] font-light tracking-[0.03rem]">
                 {{ $product->categories->first()->name }}
             </a>

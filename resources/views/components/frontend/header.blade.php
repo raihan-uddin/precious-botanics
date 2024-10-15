@@ -216,7 +216,7 @@
                                         <ul class="bb-dropdown-menu min-w-[205px] p-[10px] transition-all duration-[0.3s] ease-in-out mt-[25px] absolute top-[40px] z-[16] text-left opacity-[0] invisible left-[0] right-[auto] bg-[#fff] border-[1px] border-solid border-[#eee] flex flex-col rounded-[10px]">
                                             @foreach($menu->submenus as $submenu)
                                                 <li class="m-[0] py-[5px] px-[15px] relative flex items-center">
-                                                    <a href="#"
+                                                    <a href="{{ route('category.products', [$submenu->slug]) }}"
                                                        class="font-Poppins transition-all duration-[0.3s] ease-in-out py-[5px] leading-[22px] text-[14px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize tracking-[0.03rem]">{{ $submenu->name }}</a>
                                                 </li>
                                             @endforeach
@@ -225,7 +225,7 @@
                                     @else
                                         <li class="nav-item flex items-center font-Poppins text-[15px] text-[#686e7d] font-light leading-[28px] tracking-[0.03rem] mr-[35px]">
                                             <a class="nav-link p-[0] font-Poppins leading-[28px] text-[15px] font-medium text-[#3d4750] tracking-[0.03rem] block"
-                                            href="#">{{ $menu->name }}</a>
+                                            href="{{ route('category.products', [$menu->slug]) }}">{{ $menu->name }}</a>
                                         </li>
                                     @endif
                                 @endforeach

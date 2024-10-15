@@ -11,7 +11,7 @@ Route::get('/terms-of-service', [PageController::class, 'termsOfService'])->name
 Route::get('/return-policy', [PageController::class, 'returnPolicy'])->name('return.policy');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
-Route::get('/category/{slug}', [PageController::class, 'categoryProduct'])->name('category.product');
+Route::get('/{slug}', [PageController::class, 'categoryProducts'])->name('category.products');
 Route::get('/{category_slug}/product/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
 
 require __DIR__.'/admin.php';
