@@ -55,7 +55,7 @@
 
 <!-- Footer -->
 <footer class="bb-footer mt-[50px] max-[1199px]:mt-[35px] bg-[#f8f8fb] text-[#fff]">
-    <div class="footer-directory py-[50px] max-[1199px]:py-[35px] border-[1px] border-solid border-solid">
+    <div class="footer-directory py-[50px] max-[1199px]:py-[35px] border-[1px] border-solid">
         <div
             class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
             <div class="flex flex-wrap w-full">
@@ -640,14 +640,14 @@
                 <div
                     class="mode-primary bb-dark-item mode light relative w-[125px] mb-[10px] text-center active-dark"
                     data-bb-mode-tool="light">
-                    <img src="assets/img/tools/light.png" alt="light"
+                    <img src="{{ asset('assets/img/tools/light.png') }}" alt="light"
                          class="w-full p-[5px] rounded-[10px] border-[1px] border-solid border-[#eee] hover:border-[#6c7fd8]">
                     <p class="m-[0] font-Poppins text-[14px] font-semibold capitalize leading-[28px] tracking-[0.03rem] text-[#686e7d]">
                         Light</p>
                 </div>
                 <div class="bb-dark-item mode dark relative w-[125px] mb-[10px] text-center"
                      data-bb-mode-tool="dark">
-                    <img src="assets/img/tools/dark.png" alt="dark"
+                    <img src="{{ asset('assets/img/tools/dark.png') }}" alt="dark"
                          class="w-full p-[5px] rounded-[10px] border-[1px] border-solid border-[#eee] hover:border-[#6c7fd8]">
                     <p class="m-[0] font-Poppins text-[14px] font-semibold capitalize leading-[28px] tracking-[0.03rem] text-[#686e7d]">
                         Dark</p>
@@ -660,13 +660,13 @@
             <div class="bb-tools-rtl flex flex-wrap flex-row justify-between">
                 <div class="bb-tools-item ltr relative w-[125px] mb-[10px] text-center active-rtl"
                      data-bb-mode-tool="ltr">
-                    <img src="assets/img/tools/ltr.png" alt="ltr"
+                    <img src="{{ asset('assets/img/tools/ltr.png') }}" alt="ltr"
                          class="w-full p-[5px] rounded-[10px] border-[1px] border-solid border-[#eee] hover:border-[#6c7fd8]">
                     <p class="m-[0] font-Poppins text-[14px] font-semibold capitalize leading-[28px] tracking-[0.03rem] text-[#686e7d]">
                         LTR</p>
                 </div>
                 <div class="bb-tools-item rtl relative w-[125px] mb-[10px] text-center" data-bb-mode-tool="rtl">
-                    <img src="assets/img/tools/rtl.png" alt="rtl"
+                    <img src="{{ asset('assets/img/tools/rtl.png') }}" alt="rtl"
                          class="w-full p-[5px] rounded-[10px] border-[1px] border-solid border-[#eee] hover:border-[#6c7fd8]">
                     <p class="m-[0] font-Poppins text-[14px] font-semibold capitalize leading-[28px] tracking-[0.03rem] text-[#686e7d]">
                         RTL</p>
@@ -679,13 +679,13 @@
             <div class="bb-tools-box flex flex-wrap flex-row justify-between">
                 <div class="bb-tools-item default relative w-[125px] mb-[10px] text-center active-box"
                      data-bb-mode-tool="default">
-                    <img src="assets/img/tools/box-0.png" alt="box-0"
+                    <img src="{{ asset('assets/img/tools/box-0.png') }}" alt="box-0"
                          class="w-full p-[5px] rounded-[10px] border-[1px] border-solid border-[#eee] hover:border-[#6c7fd8]">
                     <p class="m-[0] font-Poppins text-[14px] font-semibold capitalize leading-[28px] tracking-[0.03rem] text-[#686e7d]">
                         Default</p>
                 </div>
                 <div class="bb-tools-item box-1 relative w-[125px] mb-[10px] text-center" data-bb-mode-tool="box-1">
-                    <img src="assets/img/tools/box-1.png" alt="box-1"
+                    <img src="{{ asset('assets/img/tools/box-1.png') }}" alt="box-1"
                          class="w-full p-[5px] rounded-[10px] border-[1px] border-solid border-[#eee] hover:border-[#6c7fd8]">
                     <p class="m-[0] font-Poppins text-[14px] font-semibold capitalize leading-[28px] tracking-[0.03rem] text-[#686e7d]">
                         Box-1</p>
