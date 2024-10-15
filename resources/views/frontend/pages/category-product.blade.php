@@ -100,17 +100,20 @@
                                         </div>
                                         <div class="w-[50%] px-[12px] max-[420px]:w-full">
                                             <div class="bb-select-inner h-full py-[10px] flex items-center justify-end max-[420px]:justify-center">
-                                                <div class="custom-select w-[130px] mr-[30px] flex justify-end text-[#777]  items-center text-[14px] relative max-[420px]:w-[100px] max-[420px]:justify-left">
-                                                    <select>
-                                                        <option selected disabled>Sort by</option>
-                                                        <option value="1">Position</option>
-                                                        <option value="2">Relevance</option>
-                                                        <option value="3">Name, A to Z</option>
-                                                        <option value="4">Name, Z to A</option>
-                                                        <option value="5">Price, low to high</option>
-                                                        <option value="6">Price, high to low</option>
-                                                    </select>
-                                                </div>
+                                                <form method="GET" action="{{ route('category.products', $category->slug) }}" id="sortForm" class="flex">
+                                                    <div class="custom-select w-[130px] mr-[30px] flex justify-end text-[#777]  items-center text-[14px] relative max-[420px]:w-[100px] max-[420px]:justify-left">
+                                                        <select  name="sort_by">
+                                                            <option disabled {{ request('sort_by') ? '' : 'selected' }}>Sort by</option>
+                                                            <option value="position" {{ request('sort_by') == 'position' ? 'selected' : '' }}>Position</option>
+                                                            <option value="name_asc" {{ request('sort_by') == 'name_asc' ? 'selected' : '' }}>Name, A to Z</option>
+                                                            <option value="name_desc" {{ request('sort_by') == 'name_desc' ? 'selected' : '' }}>Name, Z to A</option>
+                                                            <option value="price_asc" {{ request('sort_by') == 'price_asc' ? 'selected' : '' }}>Price, low to high</option>
+                                                            <option value="price_desc" {{ request('sort_by') == 'price_desc' ? 'selected' : '' }}>Price, high to low</option>
+                                                            <option value="newest" {{ request('sort_by') == 'newest' ? 'selected' : '' }}>Newest</option>
+                                                            <option value="oldest" {{ request('sort_by') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -162,14 +165,25 @@
                                 </div>
                             </div>
 
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function () {
+       // on chege sort by form submit
+         $('#sortForm select').on('change', function () {
+                console.log('change');
+              $('#sortForm').submit();
+         });
+    });
+</script>
+
+
+
+</script>
+@endpush

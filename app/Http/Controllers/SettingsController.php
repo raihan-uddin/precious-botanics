@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\SettingsHelper;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; // Add this line to import SettingsHelper
+use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
 {

@@ -5,16 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
-
-// Add this line
 use App\Models\Product;
-
-// Add this line
 use App\Models\Tag;
 
-// Add this line
-
-// Add this line
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -80,15 +74,47 @@ class PageController extends Controller
     }
 
 
-    public function categoryProducts($slug)
+    public function categoryProducts($slug, Request $request)
     {
         $category = Category::where('slug', $slug)->first();
         if (!$category) {
             abort(404);
         }
+        // Get the sort_by parameter from the request
+        $sortBy = $request->input('sort_by');
+
         $allCategories = Category::withCount('products')->get();
-        $products = $category->products()->where('status', 'published')->paginate(16);
-        // $tags = Tag::all();
+        $products = $category->products();
+
+        $products = $products->where('status', 'published');
+        // if request sort_by then sort products (position, relevance, name_asc, name_desc, price_asc, price_desc, newest, oldest)
+
+        switch ($sortBy) {
+            case 'name_asc':
+                $products = $products->orderBy('name', 'asc');
+                break;
+            case 'name_desc':
+                $products = $products->orderBy('name', 'desc');
+                break;
+            case 'price_asc':
+                $products = $products->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $products = $products->orderBy('price', 'desc');
+                break;
+            case 'newest':
+                $products = $products->latest();
+                break;
+            case 'oldest':
+                $products = $products->oldest();
+                break;
+            default:
+                $products = $products->orderBy('id', 'desc');
+                break;
+        }
+        // Apply sorting based on the sort_by value
+        $products = $products->paginate(12);
+        
 
         return view('frontend.pages.category-product', compact('category', 'products', 'allCategories'));
     }
