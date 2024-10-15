@@ -62,234 +62,24 @@
                 <div class="w-full" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="directory-title mb-[24px] text-center">
                         <h4 class="font-quicksand leading-[1.2] text-[16px] font-bold text-[#3d4750] tracking-[0] uppercase">
-                            Catalog Directory</h4>
+                            Tags Directory</h4>
                     </div>
                     <div class="directory-contact mb-[-24px]">
                         <div class="flex flex-wrap w-full">
-                            <div class="min-[992px]:w-[50%] w-full px-[12px]">
+                            <div class=" w-full px-[12px]">
                                 <div class="inner-contact mb-[24px]">
                                     <ul class="flex flex-wrap">
                                         <li>
                                                 <span
-                                                    class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Jewellery :</span>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Necklace</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Earrings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Couple
-                                                Rings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Pendants</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">crystal</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Bangles</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Bracelets</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Nose
-                                                pin</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Chain</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Earrings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Couple
-                                                Rings</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="inner-contact mb-[24px]">
-                                    <ul class="flex flex-wrap">
-                                        <li>
-                                                <span
-                                                    class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Footwear :</span>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Sport</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Formal</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Boots</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Casual</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Cowboy
-                                                Shoes</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Safety
-                                                Shoes</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Party
-                                                Wear Shoes</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Branded</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">First
-                                                copy</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Long
-                                                Shoes</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="min-[992px]:w-[50%] w-full px-[12px]">
-                                <div class="inner-contact mb-[24px]">
-                                    <ul class="flex flex-wrap">
-                                        <li>
-                                                <span
-                                                    class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Fashion :</span>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">T-Shirt</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Short
-                                                & Jeans</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Jacket</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Dress
-                                                & Frock</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Inner
-                                                wear</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hosiery</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="inner-contact mb-[24px]">
-                                    <ul class="flex flex-wrap">
-                                        <li>
-                                                <span
-                                                    class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">Cosmetics :</span>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Shampoo</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Body
-                                                wash</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">face
-                                                wash</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Makeup
-                                                kit</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Liner</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Lipstick</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Perfume</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Body
-                                                Shop</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Scrub</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hair
-                                                Gel</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hair
-                                                colors</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Hair
-                                                Dye</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Sunscreen</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Skin
-                                                Lotion</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Liner</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">Lipstick</a>
-                                        </li>
+                                                    class="font-Poppins leading-[28px] tracking-[0.03rem] mr-[12px] text-[14px] font-semibold text-[#686e7d] capitalize">All Tags :</span>
+                                        </li> 
+                                        @php($tags = getAllTags())
+                                            @foreach ($tags as $tag)
+                                            <li>
+                                                <a href="#"
+                                                class="transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] text-[13px] font-normal text-[#686e7d] hover:text-[#6c7fd8] capitalize">{{ $tag->name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

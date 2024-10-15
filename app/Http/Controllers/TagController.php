@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
@@ -45,6 +46,10 @@ class TagController extends Controller
 
         Tag::create($request->all());
 
+        // Clear and refresh the cache after storing a new 
+        Cache::forget('tags');
+        getAllTags();
+
         return redirect()->route('tags.index')->with('success', 'Tag created successfully.');
     }
 
@@ -79,6 +84,10 @@ class TagController extends Controller
 
         $tag->update($request->all());
 
+        // Clear and refresh the cache after storing a new 
+        Cache::forget('tags');
+        getAllTags();
+
         return redirect()->route('tags.index')->with('success', 'Tag updated successfully.');
     }
 
@@ -89,6 +98,10 @@ class TagController extends Controller
     {
         $tag->delete();
 
+        // Clear and refresh the cache after storing a new 
+        Cache::forget('tags');
+        getAllTags();
+        
         return redirect()->route('tags.index')->with('success', 'Tag deleted successfully.');
     }
 }
