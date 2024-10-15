@@ -89,6 +89,28 @@ class SettingsSeeder extends Seeder
             ['key' => 'home_page_meta_title', 'value'=> 'Precious Botanics - Natural & Herbal Beauty Products', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'meta_twitter_handle', 'value'=> '@PreciousBotanic', 'type' => 'text', 'created_at' => now(), 'updated_at' => now()],
 
+            ['key' => 'show_tools_bar', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_search_bar', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_cart', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_wishlist', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_compare', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_currency', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_language', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_account', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_contact', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_social', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_newsletter', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_top_bar', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_header', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_navbar', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer_top', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer_bottom', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer_bottom_menu', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer_bottom_social', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer_bottom_payment', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'show_footer_bottom_copy', 'value' => 1, 'type' => 'boolean', 'created_at' => now(), 'updated_at' => now()],
+
         ]);
     }
 }

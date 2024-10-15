@@ -600,6 +600,7 @@
     </div>
 @endif
 
+@if(SettingsHelper::get('show_tools_bar', false))
 <!-- Tools Sidebar -->
 <div class="bb-tools-sidebar-overlay w-full h-screen fixed top-[0] left-[0] bg-[#00000080] z-[16] hidden"></div>
 <div
@@ -694,6 +695,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <!-- Back to top  -->
 <a href="#Top"
