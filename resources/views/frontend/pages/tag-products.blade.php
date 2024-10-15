@@ -119,51 +119,57 @@
                                     </div>
                                 </div>
                             </div>
-                            @foreach ($products as $product)
-                                <div class="min-[992px]:w-[25%] min-[768px]:w-[33.33%] w-[50%] max-[480px]:w-full px-[12px] mb-[24px] pro-bb-content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                                    <x-product-thumb :product="$product" />
+                            @if ($products->isEmpty())
+                                <div class="w-full text-center py-4 text-lg text-gray-600">
+                                    <p>No products found.</p>
                                 </div>
-                            @endforeach
-                            
-                            <div class="w-full px-[12px]">
-                                <div class="bb-pro-pagination mb-[24px] flex justify-between max-[575px]:flex-col max-[575px]:items-center">
-                                    <p class="font-Poppins text-[15px] text-[#686e7d] font-light leading-[28px] tracking-[0.03rem] max-[575px]:mb-[10px]">
-                                        Showing {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }} item(s)
-                                    </p>
-                                    <ul class="flex">
-                                        {{-- Previous Page Link --}}
-                                        @if (!$products->onFirstPage())
-                                            <li class="leading-[28px] mr-[6px]">
-                                                <a href="{{ $products->previousPageUrl() }}" class="transition-all duration-[0.3s] ease-in-out w-[auto] h-[32px] px-[13px] font-light text-[#fff] leading-[30px] bg-[#3d4750] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#eee]">
-                                                    <i class="ri-arrow-left-s-line transition-all duration-[0.3s] ease-in-out mr-[10px] text-[16px] w-[8px] text-[#fff]"></i> Prev
-                                                </a>
-                                            </li>
-                                        @endif
-
-                                        {{-- Pagination Links --}}
-                                        @foreach ($products->links()->elements[0] as $page => $url)
-                                            @if ($page == $products->currentPage())
-                                                <li class="leading-[28px] mr-[6px] active">
-                                                    <span class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#fff] leading-[32px] bg-[#3d4750] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#3d4750]">{{ $page }}</span>
-                                                </li>
-                                            @else
+                            @else
+                                @foreach ($products as $product)
+                                    <div class="min-[992px]:w-[25%] min-[768px]:w-[33.33%] w-[50%] max-[480px]:w-full px-[12px] mb-[24px] pro-bb-content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                                        <x-product-thumb :product="$product" />
+                                    </div>
+                                @endforeach
+                                
+                                <div class="w-full px-[12px]">
+                                    <div class="bb-pro-pagination mb-[24px] flex justify-between max-[575px]:flex-col max-[575px]:items-center">
+                                        <p class="font-Poppins text-[15px] text-[#686e7d] font-light leading-[28px] tracking-[0.03rem] max-[575px]:mb-[10px]">
+                                            Showing {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }} item(s)
+                                        </p>
+                                        <ul class="flex">
+                                            {{-- Previous Page Link --}}
+                                            @if (!$products->onFirstPage())
                                                 <li class="leading-[28px] mr-[6px]">
-                                                    <a href="{{ $url }}" class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777] leading-[32px] bg-[#f8f8fb] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#eee] hover:bg-[#3d4750] hover:text-[#fff]">{{ $page }}</a>
+                                                    <a href="{{ $products->previousPageUrl() }}" class="transition-all duration-[0.3s] ease-in-out w-[auto] h-[32px] px-[13px] font-light text-[#fff] leading-[30px] bg-[#3d4750] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#eee]">
+                                                        <i class="ri-arrow-left-s-line transition-all duration-[0.3s] ease-in-out mr-[10px] text-[16px] w-[8px] text-[#fff]"></i> Prev
+                                                    </a>
                                                 </li>
                                             @endif
-                                        @endforeach
 
-                                        {{-- Next Page Link --}}
-                                        @if ($products->hasMorePages())
-                                            <li class="leading-[28px]">
-                                                <a href="{{ $products->nextPageUrl() }}" class="next transition-all duration-[0.3s] ease-in-out w-[auto] h-[32px] px-[13px] font-light text-[#fff] leading-[30px] bg-[#3d4750] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#eee]">
-                                                    Next <i class="ri-arrow-right-s-line transition-all duration-[0.3s] ease-in-out ml-[10px] text-[16px] w-[8px] text-[#fff]"></i>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
+                                            {{-- Pagination Links --}}
+                                            @foreach ($products->links()->elements[0] as $page => $url)
+                                                @if ($page == $products->currentPage())
+                                                    <li class="leading-[28px] mr-[6px] active">
+                                                        <span class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#fff] leading-[32px] bg-[#3d4750] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#3d4750]">{{ $page }}</span>
+                                                    </li>
+                                                @else
+                                                    <li class="leading-[28px] mr-[6px]">
+                                                        <a href="{{ $url }}" class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777] leading-[32px] bg-[#f8f8fb] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#eee] hover:bg-[#3d4750] hover:text-[#fff]">{{ $page }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+
+                                            {{-- Next Page Link --}}
+                                            @if ($products->hasMorePages())
+                                                <li class="leading-[28px]">
+                                                    <a href="{{ $products->nextPageUrl() }}" class="next transition-all duration-[0.3s] ease-in-out w-[auto] h-[32px] px-[13px] font-light text-[#fff] leading-[30px] bg-[#3d4750] font-Poppins tracking-[0.03rem] text-[15px] flex text-center align-top justify-center items-center rounded-[10px] border-[1px] border-solid border-[#eee]">
+                                                        Next <i class="ri-arrow-right-s-line transition-all duration-[0.3s] ease-in-out ml-[10px] text-[16px] w-[8px] text-[#fff]"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                         </div>
                     </div>
