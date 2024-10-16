@@ -439,10 +439,11 @@
 
     /* Single Product Color and Size Click to Active  */
     $(document).ready(function () {
-        $(".bb-pro-variation ul li").on("click", function () {
+        $("body").on("click", ".bb-pro-variation ul li", function () {
             $(this).addClass("active").siblings().removeClass("active");
         });
     });
+    
 
     /* active-tags  */
     $(document).ready(function () {
