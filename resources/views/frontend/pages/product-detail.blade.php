@@ -478,5 +478,14 @@ $(document).ready(function() {
     // Initial call to set the active option
     setActiveOption();
 });
+
+$(document).ready(function() {
+    $(".qty-input").on("change", function() {
+        let value = $(this).val();
+        if (value < 1) {
+            $(this).val(1);
+        }
+    });
+});
 </script>
 @endpush
