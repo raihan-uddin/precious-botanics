@@ -3,8 +3,8 @@
         <div class="min-[768px]:w-[41.66%] min-[576px]:w-full px-[12px] mb-[24px]">
             <div class="single-pro-img single-pro-img-no-sidebar h-full border-[1px] border-solid border-[#eee] overflow-hidden rounded-[20px]">
                 <div class="single-product-scroll h-full">
-                    <div class="single-slide zoom-image-hover h-full bg-[#fff] flex items-center">
-                        <img class="img-responsive max-w-full block" src="{{ asset('storage/' . $product->featured_image) }}" alt="{{ $product->name }}">
+                    <div class="single-slide zoom-image-hover h-full bg-[#fff] flex items-center  aspect-square ">
+                        <img class="img-responsive max-w-full block object-contain" src="{{ asset('storage/' . $product->featured_image) }}" alt="{{ $product->name }}">
                     </div>
                 </div>
             </div>
