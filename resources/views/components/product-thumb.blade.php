@@ -71,6 +71,9 @@
                     ${{$product->price }}
                 </span>
                 @endif
+                @if(!$product->in_stock)
+                    <span class="item-left px-[3px] text-[14px] text-[#ff2020]">Out Of Stock</span>
+                @endif
             </div>
         </div>
     </div>
