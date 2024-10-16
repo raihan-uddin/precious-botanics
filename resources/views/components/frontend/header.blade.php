@@ -80,7 +80,7 @@
                                         placeholder="Search products..." type="text">
                                     <button
                                         class="submit absolute top-[0] left-[auto] right-[0] flex items-center justify-center w-[45px] h-full bg-transparent text-[#555] text-[16px] rounded-[0] outline-[0] border-[0] padding-[0]"
-                                        type="submit">
+                                        type="submit" title="Search">
                                         <i class="ri-search-line text-[18px] leading-[12px] text-[#555]"></i>
                                     </button>
                                 </form>
@@ -187,7 +187,7 @@
             <div class="flex flex-wrap w-full">
                 <div class="w-full px-[12px]">
                     <div class="bb-inner-menu-desk flex max-[1199px]:relative max-[991px]:justify-between">
-                        <a href="javascript:void(0)"
+                        <a href="javascript:void(0)" aria-label="Explore Categories"
                            class="bb-header-btn bb-sidebar-toggle bb-category-toggle transition-all duration-[0.3s] ease-in-out h-[45px] w-[45px] mr-[30px] p-[8px] flex items-center justify-center bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px] relative max-[767px]:m-[0] max-[575px]:hidden">
                             <svg class="svg-icon w-[25px] h-[25px]" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg">
