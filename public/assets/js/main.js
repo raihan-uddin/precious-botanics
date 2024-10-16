@@ -789,45 +789,71 @@
     $("body").on("click", ".add-to-cart", function () {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         let product = $(this).data("product");
-        let qty = $(this).closest(".qty-input").find(".qty").val();
-        let price = $(this).data("price");
-        let variant = product.variants;
+        console.log(product);
+        let qty = $(this).closest(".single-product-info").find(".qty-input").val();
+        console.log(qty);
+        let price = product.price;
+        let image = product.featured_image;
+        // get the app url from .env
+        // 
+        //  need the image with the base url currentlry only "products/african-shea-butter-creamy-soft-featured-1728376572.png"
+        // but  i need like "http://localhost:8000/storage/products/african-shea-butter-creamy-soft-featured-1728376572.png"
+        // let variant = product.variants;
         
-        if(variant){
-            console.log("variant");
-            // check if the product has size variant
-            let sizeVariantOptions = $(this).closest(".single-product-info").find(".size-variant");
-            if(sizeVariantOptions.length > 0){
-                // try to get the selected size variant
-                let selectedSizeVariant = $(this).closest(".single-product-info").find(".size-variant .final-variant-selection").data("size");
-                console.log(selectedSizeVariant);
+        // if(variant){
+        //     console.log("variant");
+        //     // check if the product has size variant
+        //     let sizeVariantOptions = $(this).closest(".single-product-info").find(".size-variant");
+        //     if(sizeVariantOptions.length > 0){
+        //         // try to get the selected size variant
+        //         let selectedSizeVariant = $(this).closest(".single-product-info").find(".size-variant .final-variant-selection").data("size");
+        //         console.log(selectedSizeVariant);
 
-                // if no size variant is selected, return & show error message
-                if(!selectedSizeVariant){
-                    alert("Please select a size variant");
-                    return;
-                }
-            } else {
-                console.log("no size variant available");
-            }
+        //         // if no size variant is selected, return & show error message
+        //         if(!selectedSizeVariant){
+        //             alert("Please select a size variant");
+        //             return;
+        //         }
+        //     } else {
+        //         console.log("no size variant available");
+        //     }
             
-            // check if the product has color variant
-            let colorVariantOptions = $(this).closest(".single-product-info").find(".color-variant");
-            if(colorVariantOptions.length > 0){
-                let selectedColorVariant = $(this).closest(".single-product-info").find(".color-variant .final-variant-selection").data("color");
-                console.log(selectedColorVariant);
+        //     // check if the product has color variant
+        //     let colorVariantOptions = $(this).closest(".single-product-info").find(".color-variant");
+        //     if(colorVariantOptions.length > 0){
+        //         let selectedColorVariant = $(this).closest(".single-product-info").find(".color-variant .final-variant-selection").data("color");
+        //         console.log(selectedColorVariant);
 
-                // if no color variant is selected, return & show error message
-                if(!selectedColorVariant){
-                    alert("Please select a color variant");
-                    return;
-                }
-            } else{
-                console.log("no color variant available");
-            }
+        //         // if no color variant is selected, return & show error message
+        //         if(!selectedColorVariant){
+        //             alert("Please select a color variant");
+        //             return;
+        //         }
+        //     } else{
+        //         console.log("no color variant available");
+        //     }
+        // }
+
+        let item = {
+            id: product.id,
+            title: product.name,
+            image: product.featured_image,
+            price: price,
+            qty: parseInt(qty),
+            // variant: variant
+        };
+        console.log(item);
+
+        let existingItem = cart.find((item) => item.id === product.id);
+        if (existingItem) {
+            existingItem.qty += parseInt(qty);
+        } else {
+            cart.push(item);
         }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
        
-        // localStorage.setItem("cart", JSON.stringify(cart));
+        console.log(cart);
         updateCartCount();
     });
 
