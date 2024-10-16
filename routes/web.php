@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
@@ -11,10 +12,14 @@ Route::get('/terms-of-service', [PageController::class, 'termsOfService'])->name
 Route::get('/return-policy', [PageController::class, 'returnPolicy'])->name('return.policy');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
 
-Route::get('/{slug}', [PageController::class, 'categoryProducts'])->name('category.products');
-Route::get('/{category_slug}/product/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
 
-Route::get('/tag/{slug}', [PageController::class, 'tagProducts'])->name('tag.products');
+// show product on modal
+Route::post('/quick-view', [ProductController::class, 'quickView'])->name('quick.view');
+
+Route::get('/{slug}', [ProductController::class, 'categoryProducts'])->name('category.products');
+Route::get('/{category_slug}/product/{slug}', [ProductController::class, 'productDetail'])->name('product.detail');
+
+Route::get('/tag/{slug}', [ProductController::class, 'tagProducts'])->name('tag.products');
 
 
 

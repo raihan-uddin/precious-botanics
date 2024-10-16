@@ -118,12 +118,11 @@
                                 <div class="bb-single-price-wrap flex justify-between py-[10px]">
                                     <div class="bb-single-price py-[15px]">
                                         <div class="price mb-[8px]">
-                                            <h5
-                                                class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[20px] font-extrabold text-[#3d4750]">
+                                            <h5 class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[20px] font-extrabold text-[#3d4750]">
                                                 ${{  $product->discount_price > 0 ? number_format($product->discount_price, 2) :number_format($product->price, 2)   }}
                                                 @if($product->discount_price > 0)
                                                 @php
-                                                $discount = 100 - (($product->discount_price / $product->price) * 100);
+                                                    $discount = 100 - (($product->discount_price / $product->price) * 100);
                                                 @endphp
                                                 <span class="text-[#3d4750] text-[20px]">
                                                     -{{ number_format($discount, 0) }}%
@@ -155,63 +154,63 @@
                                     </div>
                                 </div>
                                 @if($product->variants)
-                                @php
-                                // Group by unique sizes with price information
-                                $sizeVariants = $product->variants->filter(function ($variant) {
-                                return !empty($variant['size']);
-                                })->unique('size');
+                                    @php
+                                        // Group by unique sizes with price information
+                                        $sizeVariants = $product->variants->filter(function ($variant) {
+                                            return !empty($variant['size']);
+                                        })->unique('size');
 
-                                // Group by unique colors with price information
-                                $colorVariants = $product->variants->filter(function ($variant) {
-                                return !empty($variant['color']);
-                                })->unique('color');
-                                @endphp
-                                @if(count($sizeVariants) > 0)
-                                <div class="bb-single-pro-weight size-variant mb-[24px]">
-                                    <div class="pro-title mb-[12px]">
-                                        <h4
-                                            class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
-                                            Size</h4>
-                                    </div>
-                                    <div class="bb-pro-variation-contant">
-                                        <ul class="flex flex-wrap m-[-2px]">
-                                            @foreach($sizeVariants as $key => $variant)
-                                            @php
-                                            $activeClass = $key == 0 ? 'active-variation' : '';
-                                            @endphp
-                                            <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer size-option {{ $activeClass }} "
-                                                data-size="{{$variant}}">
-                                                <span
-                                                    class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->size }}</span>
-                                            </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                                @endif
-                                @if(count($colorVariants) > 0)
-                                <div class="bb-single-pro-weight color-variant  mb-[24px]">
-                                    <div class="pro-title mb-[12px]">
-                                        <h4
-                                            class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
-                                            Color</h4>
-                                    </div>
-                                    <div class="bb-pro-variation-contant">
-                                        <ul class="flex flex-wrap m-[-2px]">
-                                            @foreach($colorVariants as $key => $variant)
-                                            @php
-                                            $activeClass = $key == 0 ? 'active-variation' : '';
-                                            @endphp
-                                            <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer color-option {{ $activeClass }}"
-                                                data-color="{{$variant}}">
-                                                <span
-                                                    class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->color }}</span>
-                                            </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                                @endif
+                                        // Group by unique colors with price information
+                                        $colorVariants = $product->variants->filter(function ($variant) {
+                                            return !empty($variant['color']);
+                                        })->unique('color');
+                                    @endphp
+                                    @if(count($sizeVariants) > 0)
+                                        <div class="bb-single-pro-weight size-variant mb-[24px]">
+                                            <div class="pro-title mb-[12px]">
+                                                <h4
+                                                    class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
+                                                    Size</h4>
+                                            </div>
+                                            <div class="bb-pro-variation-contant">
+                                                <ul class="flex flex-wrap m-[-2px]">
+                                                    @foreach($sizeVariants as $key => $variant)
+                                                        @php
+                                                            $activeClass = $key == 0 ? 'active-variation' : '';
+                                                        @endphp
+                                                        <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer size-option {{ $activeClass }} "
+                                                            data-size="{{$variant}}">
+                                                            <span
+                                                                class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->size }}</span>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if(count($colorVariants) > 0)
+                                        <div class="bb-single-pro-weight color-variant  mb-[24px]">
+                                            <div class="pro-title mb-[12px]">
+                                                <h4
+                                                    class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[16px] font-bold uppercase text-[#3d4750]">
+                                                    Color</h4>
+                                            </div>
+                                            <div class="bb-pro-variation-contant">
+                                                <ul class="flex flex-wrap m-[-2px]">
+                                                    @foreach($colorVariants as $key => $variant)
+                                                    @php
+                                                    $activeClass = $key == 0 ? 'active-variation' : '';
+                                                    @endphp
+                                                    <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer color-option {{ $activeClass }}"
+                                                        data-color="{{$variant}}">
+                                                        <span
+                                                            class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->color }}</span>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endif
                                 <div class="bb-single-qty flex flex-wrap m-[-2px]">
                                     <div

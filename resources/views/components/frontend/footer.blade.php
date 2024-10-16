@@ -487,81 +487,8 @@
             <button type="button"
                     class="bb-close-modal transition-all duration-[0.3s] ease-in-out w-[16px] h-[20px] absolute top-[-5px] right-[27px] bg-[#e04e4eb3] rounded-[10px] cursor-pointer hover:bg-[#e04e4e]"
                     title="Close"></button>
-            <div class="modal-body mx-[-12px] max-[767px]:mx-[0]">
-                <div class="flex flex-wrap mx-[-12px] mb-[-24px]">
-                    <div class="min-[768px]:w-[41.66%] min-[576px]:w-full px-[12px] mb-[24px]">
-                        <div
-                            class="single-pro-img single-pro-img-no-sidebar h-full border-[1px] border-solid border-[#eee] overflow-hidden rounded-[20px]">
-                            <div class="single-product-scroll h-full">
-                                <div class="single-slide zoom-image-hover h-full bg-[#fff] flex items-center">
-                                    <img class="img-responsive max-w-full block" src="{{ asset('assets/img/product/1.jpg')}}" alt="product-img-1">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="min-[768px]:w-[58.33%] min-[576px]:w-full px-[12px] mb-[24px]">
-                        <div class="quickview-pro-content">
-                            <h5 class="bb-quick-title">
-                                <a href="#" class="font-Poppins tracking-[0.03rem] mb-[10px] block text-[#3d4750] text-[20px] leading-[30px] font-medium">
-                                </a>
-                            </h5>
-                            <div class="bb-pro-rating flex mb-[10px]">
-                                <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                <i class="ri-star-fill float-left text-[15px] mr-[3px] leading-[18px] text-[#fea99a]"></i>
-                                <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
-                            </div>
-                            <div class="bb-quickview-desc mb-[10px] text-[15px] leading-[24px] text-[#777] font-light line-clamp-3">
-                            </div>
-                            <div class="bb-quickview-price pt-[5px] pb-[10px] flex items-center justify-left">
-                                <span class="new-price px-[3px] text-[16px] text-[#686e7d] font-bold"></span>
-                                <span class="old-price px-[3px] text-[14px] text-[#686e7d] line-through"></span>
-                            </div>
-                            <div class="bb-pro-variation mt-[15px] mb-[25px]">
-                                <h5 class="font-Poppins text-[16px] text-[#3d4750] mb-[10px] leading-[24px] font-medium">Select Size</h5>
-
-                                <ul class="flex flex-wrap m-[-2px]">
-                                    <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal active">
-                                        <a href="javascript:void(0)"
-                                            class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
-                                            data-tooltip="Small">250g</a>
-                                    </li>
-                                    <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal">
-                                        <a href="javascript:void(0)"
-                                            class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
-                                            data-tooltip="Medium">500g</a>
-                                    </li>
-                                    <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal">
-                                        <a href="javascript:void(0)"
-                                           class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
-                                           data-tooltip="Large">1kg</a>
-                                    </li>
-                                    <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal">
-                                        <a href="javascript:void(0)"
-                                           class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]"
-                                           data-tooltip="Extra Large">2kg</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="bb-quickview-qty flex max-[360px]:justify-center">
-                                <div
-                                    class="qty-plus-minus w-[85px] h-[40px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px] max-[360px]:m-[auto]">
-                                    <input
-                                        class="qty-input text-[#777] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[32px] outline-[0] font-normal leading-[35px] rounded-[10px]"
-                                        type="text" name="bb-qtybtn" value="1">
-                                </div>
-                                <div
-                                    class="bb-quickview-cart ml-[4px] max-[360px]:mt-[15px] max-[360px]:ml-[0] max-[360px]:flex max-[360px]:justify-center">
-                                    <button type="button"
-                                            class="bb-btn-1 transition-all duration-[0.3s] ease-in-out font-Poppins h-[40px] leading-[28px] tracking-[0.03rem] py-[3px] px-[20px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]">
-                                        <i class="ri-shopping-bag-line pr-[8px]"></i>Add To Cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-body product-modal-body mx-[-12px] max-[767px]:mx-[0]">
+                
             </div>
         </div>
     </div>
@@ -717,27 +644,21 @@
     $(".bb-modal-toggle").on("click", function () {
          // Get the product data from the data attribute
         const productData = $(this).closest('.bb-pro-box').find('.bb-price').data('product');
-
-        // change the product image
-        $(".single-pro-img img").attr('src', `/storage/${productData.featured_image}`);
-
-        // change the product name .bb-quick-title a
-        $(".bb-quick-title a").text(productData.name);
-
-        let plainTextShortDescription = $(productData.full_description).text();
-
-        // change .bb-quickview-desc if productData.full_description is available else use productData.description
-        $(".bb-quickview-desc").text(plainTextShortDescription);
-
-
-        // change .bb-quickview-price .new-price if productData.discount_price is available else use productData.price
-        if (productData.discount_price) {
-            $(".bb-quickview-price .new-price").text(`$${productData.discount_price}`);
-            $(".bb-quickview-price .old-price").text(`$${productData.price}`);
-        } else {
-            $(".bb-quickview-price .new-price").text(`$${productData.price}`);
-            $(".bb-quickview-price .old-price").text('');
-        }
+        //  ajax call to get the product data from the server route name: quick.view with parameter id with csrf token post method
+        $.ajax({
+            url: "{{ route('quick.view') }}",
+            type: "POST",
+            data: {
+                id: productData.id,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                //  set the product data to the modal
+                $(".product-modal-body").html(response);
+            }
+        });
+       
+        
 
         $(".bb-modal-overlay").fadeIn();
         $(".bb-modal").fadeIn();

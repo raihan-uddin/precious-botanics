@@ -7,10 +7,10 @@
                     class="inner-img relative block overflow-hidden pointer-events-none rounded-t-[20px] aspect-square ">
                     <img class="main-img transition-all duration-[0.3s] ease-in-out w-full  h-full object-contain"
                         src="{{ asset('storage/' . $product->featured_image) }}"
-                        alt="product-1">
+                        alt="{{ $product->name }}">
                     <img class="hover-img transition-all duration-[0.3s] ease-in-out absolute z-[2] top-[0] left-[0] opacity-[0] w-full h-full object-contain"
                         src="{{ asset('storage/' . $product->featured_image) }}"
-                        alt="product-1">
+                        alt="{{ $product->name }}">
                 </div>
             </a>
             <ul
@@ -73,6 +73,31 @@
                 @endif
                 @if(!$product->in_stock)
                     <span class="item-left px-[3px] text-[14px] text-[#ff2020]">Out Of Stock</span>
+                @endif
+                @if($product->variants)
+                    @php
+                        // Group by unique sizes with price information
+                        $sizeVariants = $product->variants->filter(function ($variant) {
+                            return !empty($variant['size']);
+                        })->unique('size')->values(); // Ensure the collection is indexed from 0
+
+                        // Convert the collection to a JSON-encoded array of objects
+                        $sizeVariantsJson = $sizeVariants->toJson();
+
+                        // Group by unique colors with price information
+                        $colorVariants = $product->variants->filter(function ($variant) {
+                            return !empty($variant['color']);
+                        })->unique('color')->values(); // Ensure the collection is indexed from 0
+
+                        // Convert the collection to a JSON-encoded array of objects
+                        $colorVariantsJson = $colorVariants->toJson();
+                    @endphp
+                    @if(count($sizeVariants) > 0)
+                        <span class="hidden thumb-size-variants" data-size="{{$sizeVariantsJson}}">{{ $sizeVariantsJson }}</span>
+                    @endif
+                    @if(count($colorVariants) > 0)
+                        <span class="hidden thumb-color-variants" data-color="{{$colorVariantsJson}}">{{ $colorVariantsJson }}</span>
+                    @endif
                 @endif
             </div>
         </div>
