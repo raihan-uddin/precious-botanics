@@ -52,7 +52,7 @@
                 <div class="flex flex-wrap w-full">
                     <div class="w-full px-[12px]">
                         <div
-                            class="section-title bb-deal mb-[20px] pb-[20px] z-[5] relative flex justify-between max-[991px]:pb-[0] max-[991px]:flex-col max-[991px]:justify-center max-[991px]:text-center"
+                            class="section-title bb-deal mb-[20px] pb-[20px] relative flex justify-between max-[991px]:pb-[0] max-[991px]:flex-col max-[991px]:justify-center max-[991px]:text-center"
                             data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                             <div class="section-detail max-[991px]:mb-[12px]">
                                 <h2
