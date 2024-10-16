@@ -833,10 +833,10 @@
         // $(".bb-pro-variation ul").empty();
 
         // get all the unique sizes from the variants dont need null or empty value
-        let uniqueSizes = variants.filter((variant) => variant.size).map((variant) => variant.size);
+        // let uniqueSizes = variants.filter((variant) => variant.size).map((variant) => variant.size);
         
         // get all the unique colors from the variants dont need null or empty value
-        let uniqueColors = variants.filter((variant) => variant.color).map((variant) => variant.color);
+        // let uniqueColors = variants.filter((variant) => variant.color).map((variant) => variant.color);
 
         // add the size to the .bb-pro-variation ul with a title of Select Size and toolip of price. after title must be a break
         // if (uniqueSizes.length > 0) {

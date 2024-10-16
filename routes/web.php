@@ -16,5 +16,8 @@ Route::get('/{category_slug}/product/{slug}', [PageController::class, 'productDe
 
 Route::get('/tag/{slug}', [PageController::class, 'tagProducts'])->name('tag.products');
 
+
+
 require __DIR__.'/admin.php';
 require __DIR__.'/auth.php';
+require __DIR__.'/seo.php';
