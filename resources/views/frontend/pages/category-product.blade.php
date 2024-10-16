@@ -37,12 +37,12 @@
                 <div class="w-full px-[12px]">
                     <div class="bb-category-6-colum owl-carousel">
                         @foreach ($allCategories as $singleCategory )
-                        <div class="bb-category-box p-[30px] rounded-[20px] flex flex-col items-center text-center max-[1399px]:p-[20px] category-items-1 bg-[#fef1f1]" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="bb-category-box p-[30px] rounded-[20px] flex flex-col items-center text-center max-[1399px]:p-[20px] category-items-1 bg-[#fef1f1]"  title="{{ $singleCategory->name }}" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
                             <div class="category-image mb-[12px]">
                                 <img src="{{ $singleCategory->image ? asset('storage/'.$singleCategory->image) : asset('images/icons/natural-product.png') }}" alt="{{$singleCategory->name}}" class="w-[50px] h-[50px] max-[1399px]:h-[65px] max-[1399px]:w-[65px] max-[1199px]:h-[50px] max-[1199px]:w-[50px]">
                             </div>
                             <div class="category-sub-contact">
-                                <h5 class="mb-[2px] text-[16px] font-quicksand text-[#3d4750] font-semibold tracking-[0.03rem] leading-[1.2]"><a href="{{ route('category.products', $singleCategory->slug) }}" class="font-Poppins text-[16px] font-medium leading-[1.2] tracking-[0.03rem] text-[#3d4750] capitalize">{{ $singleCategory->name }}</a></h5>
+                                <h5 class="mb-[2px] text-[16px] font-quicksand text-[#3d4750] font-semibold tracking-[0.03rem] leading-[1.2] line-clamp-1"><a href="{{ route('category.products', $singleCategory->slug) }}" class="font-Poppins text-[16px] font-medium leading-[1.2] tracking-[0.03rem] text-[#3d4750] capitalize">{{ $singleCategory->name }}</a></h5>
                                 <p class="font-Poppins text-[13px] text-[#686e7d] leading-[25px] font-light tracking-[0.03rem]">{{ $singleCategory->products_count }} items</p>
                             </div>
                         </div>
