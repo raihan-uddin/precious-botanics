@@ -50,7 +50,7 @@
         class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
         <div class="flex flex-wrap w-full">
             <div class="w-full px-[12px]">
-                <div class="bb-single-pro mb-[24px]">
+                <div class="bb-single-pro mb-[24px] single-product-info">
                     <div class="flex flex-wrap mx-[-12px]">
                         <div class="min-[992px]:w-[41.66%] w-full px-[12px] mb-[24px]">
                             <div
@@ -176,9 +176,11 @@
                                                 <ul class="flex flex-wrap m-[-2px]">
                                                     @foreach($sizeVariants as $key => $variant)
                                                         @php
-                                                            $activeClass = $key == 0 ? 'active-variation' : '';
+                                                            $activeClass = $key == 0 ? 'active-variation final-variant-selection' : '';
                                                         @endphp
                                                         <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer size-option {{ $activeClass }} "
+                                                            data-tooltip="{{ $variant->size }}"
+                                                            title="{{ $variant->size }}"
                                                             data-size="{{$variant}}">
                                                             <span
                                                                 class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->size }}</span>
@@ -199,9 +201,11 @@
                                                 <ul class="flex flex-wrap m-[-2px]">
                                                     @foreach($colorVariants as $key => $variant)
                                                     @php
-                                                    $activeClass = $key == 0 ? 'active-variation' : '';
+                                                    $activeClass = $key == 0 ? 'active-variation final-variant-selection' : '';
                                                     @endphp
                                                     <li class="my-[10px] mx-[2px] py-[2px] px-[15px] border-[1px] border-solid border-[#eee] rounded-[10px] cursor-pointer color-option {{ $activeClass }}"
+                                                        data-tooltip="{{ $variant->color }}"
+                                                        title="{{ $variant->color }}"
                                                         data-color="{{$variant}}">
                                                         <span
                                                             class="font-Poppins text-[#686e7d] font-light text-[14px] leading-[28px] tracking-[0.03rem]">{{ $variant->color }}</span>
@@ -222,7 +226,8 @@
                                     <!-- add to cart -->
                                     <div class="bb-single-cart m-[2px]">
                                         <button type="button"
-                                            class="bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">
+                                            data-product="{{ $product }}"
+                                            class="add-to-cart bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">
                                             Add To Cart
                                         </button>
                                     </div>
@@ -277,12 +282,7 @@
                         <div class="tab-pro-pane" id="information">
                             <div class="bb-inner-tabs border-[1px] border-solid border-[#eee] p-[15px] rounded-[20px]">
                                 <div class="information">
-                                    <ul class="list-disc pl-[20px]">
-                                        <li
-                                            class="font-Poppins text-[15px] font-light tracking-[0.03rem] leading-[28px] text-[#686e7d] py-[5px]">
-                                            <span class="inline-flex min-w-[130px] font-medium">Weight</span> 500 g
-                                        </li>
-                                    </ul>
+                                    {!! $product->full_description !!}
                                 </div>
                             </div>
                         </div>
@@ -411,7 +411,7 @@ $(document).ready(function() {
     // Function to set the active option
     function setActiveOption() {
         // Reset all active classes
-        $('.size-option, .color-option').removeClass('active-variation');
+        $('.size-option, .color-option').removeClass('active-variation final-variant-selection');
 
         // Find the minimum price option and set it as active
         let minSizePrice = Infinity;
@@ -445,14 +445,14 @@ $(document).ready(function() {
             let sizeData = $(this).data('size');
             activeSku = sizeData.sku;
             return parseFloat(sizeData.price) === minSizePrice; // Check if price is equal to minSizePrice
-        }).first().addClass('active-variation');
+        }).first().addClass('active-variation final-variant-selection');
 
         // Set active classes for color options with the lowest prices
         $('.color-option').filter(function() {
             let colorData = $(this).data('color');
             activeSku = colorData.sku;
             return parseFloat(colorData.price) === minColorPrice; // Check if price is equal to minColorPrice
-        }).first().addClass('active-variation');
+        }).first().addClass('active-variation final-variant-selection');
         
         // get the selected size and color sku
         selectedSku = activeSku;
