@@ -96,3 +96,12 @@
         </div>
     </div>
 </div>
+<script>
+    $("body .zoom-image-hover").zoom();
+    $(".qty-input").on("change", function() {
+        var qty = $(this).val();
+        if (isNaN(qty) || qty <= 0) {
+            $(this).val(1);
+        }
+    });
+</script>

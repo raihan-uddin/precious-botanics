@@ -447,7 +447,7 @@
 
     /* active-tags  */
     $(document).ready(function () {
-        $("ul.bb-shop-tags li").on("click", function () {
+        $("body").on("click", "ul.bb-shop-tags li", function () {
             $(this).addClass("active-tags").siblings().removeClass("active-tags");
         });
     });
