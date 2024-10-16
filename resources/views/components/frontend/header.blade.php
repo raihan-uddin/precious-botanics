@@ -216,7 +216,7 @@
                                     @if($menu->submenus->count() > 0)
                                     <li class="nav-item bb-dropdown flex items-center relative mr-[45px]">
                                         <a class="nav-link bb-dropdown-item font-Poppins relative p-[0] leading-[28px] text-[15px] font-medium text-[#3d4750] block tracking-[0.03rem]"
-                                           href="javascript:void(0)">{{ $menu->name }}</a>
+                                           href="{{ route('category.products', [$menu->slug]) }}">{{ $menu->name }}</a>
                                         <ul class="bb-dropdown-menu min-w-[205px] p-[10px] transition-all duration-[0.3s] ease-in-out mt-[25px] absolute top-[40px] z-[16] text-left opacity-[0] invisible left-[0] right-[auto] bg-[#fff] border-[1px] border-solid border-[#eee] flex flex-col rounded-[10px]">
                                             @foreach($menu->submenus as $submenu)
                                                 <li class="m-[0] py-[5px] px-[15px] relative flex items-center">
