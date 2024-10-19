@@ -561,8 +561,8 @@
                         <span
                             class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
                                 <span
-                                    class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">${item.price}</span>
-                                x ${item.qty}
+                                    class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">${(item.price).toFixed(2)}</span>
+                                x ${item.qty} = <span class="total-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">${(item.price * item.qty).toFixed(2)}</span>
                         </span>
                     </div>
                 </li>
