@@ -42,9 +42,9 @@
                             <!-- Header Logo Start -->
                             <div class="header-logo flex items-center max-[575px]:justify-center">
                                 <a href="{{ route('home') }}">
-                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo"
+                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="{{ config('app.name') }}"
                                          class="light w-[125px] max-[991px]:w-[115px] block">
-                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo"
+                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="{{ config('app.name') }}"
                                          class="dark w-[125px] max-[991px]:w-[115px] hidden">
                                 </a>
                             </div>

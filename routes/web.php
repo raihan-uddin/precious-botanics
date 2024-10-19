@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,8 @@ Route::get('/terms-of-service', [PageController::class, 'termsOfService'])->name
 Route::get('/return-policy', [PageController::class, 'returnPolicy'])->name('return.policy');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
 
+// cart
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 
 // show product on modal
 Route::post('/quick-view', [ProductController::class, 'quickView'])->name('quick.view');
@@ -20,6 +23,7 @@ Route::get('/{slug}', [ProductController::class, 'categoryProducts'])->name('cat
 Route::get('/{category_slug}/product/{slug}', [ProductController::class, 'productDetail'])->name('product.detail');
 
 Route::get('/tag/{slug}', [ProductController::class, 'tagProducts'])->name('tag.products');
+
 
 
 

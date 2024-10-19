@@ -187,7 +187,7 @@
                                             In</a>
                                     </li>
                                     <li class="bb-footer-link leading-[1.5] flex items-center mb-[16px] max-[991px]:mb-[15px]">
-                                        <a href="#"
+                                        <a href="{{ route('cart') }}"
                                             class="transition-all duration-[0.3s] ease-in-out font-Poppins text-[14px] leading-[20px] text-[#686e7d] hover:text-[#6c7fd8] mb-[0] inline-block break-all tracking-[0] font-normal">View
                                             Cart</a>
                                     </li>
