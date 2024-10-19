@@ -534,20 +534,9 @@
         var cart = JSON.parse(localStorage.getItem("cart")) || [];
         var cartItems = "";
         if (cart.length) {
+            // reverse the cart items so that the latest item is shown first
+            cart = cart.reverse();
             cartItems = cart.map(item => {
-                // return `<li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
-                //             <a href="javascript:void(0)" class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i class="ri-close-line"></i></a>
-                //             <a href="javascript:void(0)" class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                //                 <img src="/storage/${item.image}" alt="product-img-1" class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
-                //             </a>
-                //             <div class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                //                 <a href="#" class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">${item.title}</a>
-                //                 <span class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]"> <span class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">$${item.price}</span> x ${item.qty}</span>
-                //                 <div class="qty-plus-minus h-[28px] w-[85px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
-                //                     <input class="qty-input text-center" type="text" name="bb-qtybtn" value="${item.qty}">
-                //                 </div>
-                //             </div>
-                //         </li>`;
                 return `
                 <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
                     <a href="javascript:void(0)"
@@ -848,18 +837,12 @@
         );
     });
 
-    // on add to cart click save item to local storage with quantity and price and variant and image and title and id and update cart count in header also change the qty
 
     $("body").on("click", ".add-to-cart", function () {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        // clear the cart 
-        localStorage.removeItem("cart");
         let product = $(this).data("product");
         let url = $(this).data("url");
         let qty = $(this).closest(".single-product-info").find(".qty-input").val();
         let price = product.price;
-        let image = product.featured_image;
-        let variant = null;
         let sizeVariant = null;
         let colorVariant = null;
         // check if size-varient is present
@@ -878,6 +861,23 @@
                 return;
             }
         }
+        addItemToCart(product, qty, price, url, sizeVariant, colorVariant);
+        // trigger click event on .bb-cart-toggle
+        $(".bb-cart-toggle").trigger("click");
+
+        updateCartCount();
+    });
+
+    // on add-to-cart-thumb  click
+    $("body").on("click", ".add-to-cart-thumb", function () {
+        
+        //  get the product data .bb-deal-card 
+
+    });
+
+    function addItemToCart(product, qty, price, url, sizeVariant, colorVariant) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let variant = null;
         if (sizeVariant && colorVariant) {
             variant = {
                 size: sizeVariant.size,
@@ -911,29 +911,21 @@
             existingItem = cart.find(item => item.id === product.id && item.variant && item.variant.size === variant.size && item.variant.color === variant.color);
         }
         if (existingItem) {
-            if (existingItem.variant && item.variant) {
-                console.log(existingItem.variant, item.variant);
-                
+            if (existingItem.variant && item.variant) {                
                 if (existingItem.variant.size === item.variant.size && existingItem.variant.color === item.variant.color) {
                     existingItem.qty += item.qty;
                 } else {
                     cart.push(item);
                 }
-                
             } else {
-                cart.push(item);
+                existingItem.qty += item.qty;
             }
         } else {
             cart.push(item);
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-
-        // trigger click event on .bb-cart-toggle
-        $(".bb-cart-toggle").trigger("click");
-
-        updateCartCount();
-    });
+    }
 
     function updateCartCount() {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];

@@ -1,4 +1,4 @@
-<div class="bb-pro-box bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[20px]">
+<div class="bb-pro-box single-product-info bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[20px]">
     <div
         class="bb-pro-img overflow-hidden relative border-b-[1px] border-solid border-[#eee] z-[4]">
 
@@ -32,8 +32,8 @@
                     </a>
                 </li>
                 <li
-                    class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
-                    <a href="javascript:void(0)" title="Add To Cart"
+                    class="bb-btn-group add-to-cart-thumb transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
+                    <a href="javascript:void(0)" title="Add To Cart" data-product="{{ $product }}"
                         class="w-[35px] h-[35px] flex items-center justify-center">
                         <i
                             class="ri-shopping-bag-4-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
@@ -55,7 +55,7 @@
                 <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
             </span>
         </div>
-        <h4 class="bb-pro-title mb-[8px] text-[16px] leading-[18px]"
+        <h4 class="bb-pro-title mb-[8px] text-[16px] leading-[18px]"  data-product="{{ $product }}"
             title="{{ $product->name }}">
             <a href="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}"
                 class="transition-all duration-[0.3s] ease-in-out font-quicksand w-full block whitespace-nowrap overflow-hidden text-ellipsis text-[15px] leading-[18px] text-[#3d4750] font-semibold tracking-[0.03rem]">{{
