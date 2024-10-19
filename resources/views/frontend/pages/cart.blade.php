@@ -96,6 +96,28 @@
                     <div class="bb-sb-title mb-[20px]">
                         <h3 class="font-quicksand tracking-[0.03rem] leading-[1.2] text-[20px] font-bold text-[#3d4750]">Summary</h3>
                     </div>
+                    <div class="bb-sb-note mb-[20px]"  x-data="{
+                            note: '',
+                            loadNote() {
+                                this.note = localStorage.getItem('orderNote') || '';
+                            },
+                            saveNote() {
+                                localStorage.setItem('orderNote', this.note);
+                            }
+                        }" 
+                        x-init="loadNote()" 
+                        x-effect="saveNote()"
+                    >
+                        <textarea 
+                        class="w-full h-[150px] p-[10px] text-[14px] font-normal text-[#777] border-[1px] border-solid border-[#eee] outline-[0] rounded-[10px]" 
+                        placeholder="Add a note to your order"
+                        x-model="note"
+                        maxlength="300"
+                        ></textarea>
+                        <div class="text-right mt-1 text-[12px] text-[#686e7d]">
+                            <span x-text="`${note.length}/300`"></span>  <!-- Character counter -->
+                        </div>
+                    </div>
                     <div class="bb-sb-blok-contact">
                         <div class="bb-cart-summary">
                             <div class="inner-summary">
