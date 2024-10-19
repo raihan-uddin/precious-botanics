@@ -895,6 +895,37 @@
         $(".bb-cart-toggle").trigger("click");
     });
 
+    // on add-to-cart-modal click
+    $("body").on("click", ".add-to-cart-modal", function () {
+        let product = $(this).data("product");
+        let url = $(this).data("url");
+        let qty = $(this).closest(".product-modal-body").find(".qty-input").val();
+        let price = product.price;
+        let sizeVariant = null;
+        let colorVariant = null;
+        // check if size-varient is present
+        if ($(this).closest(".product-modal-body").find(".size-variant").length) {
+            sizeVariant = $(this).closest(".product-modal-body").find(".size-variant .final-variant-selection").data('size');
+            if (!sizeVariant) {
+                alert("Please select size!");
+                return;
+            }
+        }
+        // check if variant is present
+        if ($(this).closest(".product-modal-body").find(".color-variant").length) {
+            colorVariant = $(this).closest(".product-modal-body").find(".color-variant .final-variant-selection").data('color');
+            if (!colorVariant) {
+                alert("Please select color!");
+                return;
+            }
+        }
+        addItemToCart(product, qty, price, url, sizeVariant, colorVariant);
+        // close the modal $(".bb-close-modal, .bb-modal-overlay")
+        $(".bb-close-modal").trigger("click");
+        // trigger click event on .bb-cart-toggle
+        $(".bb-cart-toggle").trigger("click");
+    });
+
     function addItemToCart(product, qty, price, url, sizeVariant, colorVariant) {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         let variant = null;

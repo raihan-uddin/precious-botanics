@@ -53,7 +53,7 @@
                                 <ul class="flex flex-wrap m-[-2px]">
                                     @foreach($sizeVariants as $key => $variant)
                                         @php
-                                            $activeClass = $key == 0 ? 'active' : '';
+                                            $activeClass = $key == 0 ? ' active final-variant-selection ' : '';
                                         @endphp
                                         <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal {{ $activeClass }} "
                                             data-tooltip="{{ $variant->size }}"
@@ -79,7 +79,7 @@
                                 <ul class="flex flex-wrap m-[-2px]">
                                     @foreach($colorVariants as $key => $variant)
                                         @php
-                                            $activeClass = $key == 0 ? 'active' : '';
+                                            $activeClass = $key == 0 ? ' active final-variant-selection ' : '';
                                         @endphp
                                         <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal {{ $activeClass }} "
                                         data-tooltip="{{ $variant->color }}"
