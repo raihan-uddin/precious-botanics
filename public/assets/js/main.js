@@ -862,17 +862,36 @@
             }
         }
         addItemToCart(product, qty, price, url, sizeVariant, colorVariant);
+        
         // trigger click event on .bb-cart-toggle
         $(".bb-cart-toggle").trigger("click");
-
-        updateCartCount();
     });
 
     // on add-to-cart-thumb  click
     $("body").on("click", ".add-to-cart-thumb", function () {
         
         //  get the product data .bb-deal-card 
+        let product = $(this).data("product");
+        console.log(product);
+        let url = $(this).data("url");
+        console.log(url);
+        let variants = product.variants;
+        if (!product) {
+            return;
+        }
+        if (!url) {
+            return;
+        }
+        if(variants && variants.length > 0){
+            // click the .bb-modal-toggle to open the modal & show the product details & dont add to cart
+            $(this).closest(".bb-deal-card").find(".bb-modal-toggle").trigger("click");
+        }
+        let qty = 1;
+        let price = product.price;
+        addItemToCart(product, qty, price, url, null, null);
 
+        // trigger click event on .bb-cart-toggle
+        $(".bb-cart-toggle").trigger("click");
     });
 
     function addItemToCart(product, qty, price, url, sizeVariant, colorVariant) {
@@ -925,6 +944,8 @@
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
+
+        updateCartCount();
     }
 
     function updateCartCount() {
