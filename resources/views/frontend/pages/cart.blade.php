@@ -51,6 +51,15 @@
                                             <div class="Product-cart flex items-center">
                                                 <img :src="`/storage/${item.image}`"  :alt="item.title" class="w-[70px] border-[1px] border-solid border-[#eee] rounded-[10px]">
                                                 <span class="ml-[10px] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.03rem] text-[#686e7d]" x-text="item.title"></span>
+                                                <!-- Optional Size -->
+                                                <span x-show="item.variant && item.variant.size" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">
+                                                    Size: <span x-text="item.variant?.size"></span><br>
+                                                </span>
+
+                                                <!-- Optional Color -->
+                                                <span x-show="item.variant && item.variant.color" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">
+                                                    Color: <span x-text="item.variant?.color"></span><br>
+                                                </span>
                                             </div>
                                         </a>
                                     </td>
