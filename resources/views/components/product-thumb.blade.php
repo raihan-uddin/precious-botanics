@@ -15,14 +15,14 @@
             </a>
             <ul
                 class="bb-pro-actions transition-all duration-[0.3s] ease-in-out my-[0] mx-[auto] absolute z-[9] left-[0] right-[0] bottom-[0] flex flex-row items-center justify-center opacity-[0]">
-                {{--<li
+                {{-- <li
                     class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
                     <a href="javascript:void(0)" title="Wishlist"
                         class="w-[35px] h-[35px] flex items-center justify-center">
                         <i
                             class="ri-heart-line transition-all duration-[0.3s] ease-in-out text-[18px] text-[#777] leading-[10px]"></i>
                     </a>
-                </li>--}}
+                </li> --}}
                 <li
                     class="bb-btn-group transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]">
                     <a href="javascript:void(0)" title="Quick View"
@@ -34,7 +34,7 @@
                 <li
                     class="bb-btn-group add-to-cart-thumb transition-all duration-[0.3s] ease-in-out w-[35px] h-[35px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[10px]"  
                     data-product="{{ $product }}"
-                    data-url="{{ route('category.products', $product->categories->first()->slug) }}">
+                    data-url="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}">
                     <a href="javascript:void(0)" title="Add To Cart"
                         class="w-[35px] h-[35px] flex items-center justify-center">
                         <i
@@ -57,7 +57,7 @@
                 <i class="ri-star-line float-left text-[15px] mr-[3px] leading-[18px] text-[#777]"></i>
             </span>
         </div>
-        <h4 class="bb-pro-title mb-[8px] text-[16px] leading-[18px]"  data-product="{{ $product }}"
+        <h4 class="bb-pro-title mb-[8px] text-[16px] leading-[18px]"
             title="{{ $product->name }}">
             <a href="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}"
                 class="transition-all duration-[0.3s] ease-in-out font-quicksand w-full block whitespace-nowrap overflow-hidden text-ellipsis text-[15px] leading-[18px] text-[#3d4750] font-semibold tracking-[0.03rem]">{{
@@ -95,10 +95,10 @@
                         $colorVariantsJson = $colorVariants->toJson();
                     @endphp
                     @if(count($sizeVariants) > 0)
-                        <span class="hidden thumb-size-variants" data-size="{{$sizeVariantsJson}}">{{ $sizeVariantsJson }}</span>
+                        <span class="hidden thumb-size-variants" data-size="{{$sizeVariantsJson}}"></span>
                     @endif
                     @if(count($colorVariants) > 0)
-                        <span class="hidden thumb-color-variants" data-color="{{$colorVariantsJson}}">{{ $colorVariantsJson }}</span>
+                        <span class="hidden thumb-color-variants" data-color="{{$colorVariantsJson}}"></span>
                     @endif
                 @endif
             </div>

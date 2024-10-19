@@ -542,7 +542,7 @@
                     <a href="javascript:void(0)"
                         class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
                             class="ri-close-line"></i></a>
-                    <a href="javascript:void(0)"
+                    <a href="${item.url}"
                         class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
                         <img src="/storage/${item.image}" alt="product-img-3"
                                 class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
@@ -874,17 +874,18 @@
         let product = $(this).data("product");
         console.log(product);
         let url = $(this).data("url");
-        console.log(url);
-        let variants = product.variants;
         if (!product) {
             return;
         }
         if (!url) {
             return;
         }
-        if(variants && variants.length > 0){
-            // click the .bb-modal-toggle to open the modal & show the product details & dont add to cart
-            $(this).closest(".bb-deal-card").find(".bb-modal-toggle").trigger("click");
+        //  get the close .thumb-size-variants data-size
+        let sizeVariant = $(this).closest(".single-product-info").find(".thumb-size-variants").data('size');
+        let colorVariant = $(this).closest(".single-product-info").find(".thumb-color-variants").data('color');
+        if(sizeVariant || colorVariant){
+            $(this).closest(".single-product-info").find(".bb-modal-toggle").trigger("click");
+            return;
         }
         let qty = 1;
         let price = product.price;
