@@ -929,6 +929,9 @@
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
+        // trigger click event on .bb-cart-toggle
+        $(".bb-cart-toggle").trigger("click");
+
         updateCartCount();
     });
 

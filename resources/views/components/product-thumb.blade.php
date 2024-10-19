@@ -2,7 +2,7 @@
     <div
         class="bb-pro-img overflow-hidden relative border-b-[1px] border-solid border-[#eee] z-[4]">
 
-            <a href="javascript:void(0)">
+            <a href="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}">
                 <div
                     class="inner-img relative block overflow-hidden pointer-events-none rounded-t-[20px] aspect-square ">
                     <img class="main-img transition-all duration-[0.3s] ease-in-out w-full  h-full object-contain"
