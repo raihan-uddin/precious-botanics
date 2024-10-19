@@ -440,7 +440,7 @@
     /* Single Product Color and Size Click to Active  */
     $(document).ready(function () {
         $("body").on("click", ".bb-pro-variation ul li", function () {
-            $(this).addClass("active").siblings().removeClass("active");
+            $(this).addClass("active final-variant-selection").siblings().removeClass("active final-variant-selection");
         });
     });
 
@@ -959,5 +959,33 @@
     }
 
     updateCartCount();
+
+
+    
+
+    let selectedModalSizePrice = 0;
+    let selectedModalColorPrice = 0;
+
+    function updateModalPrice(){
+        let totalPrice = Math.max(selectedModalSizePrice, selectedModalColorPrice); // Choose the higher price
+         // Update the price
+         $('.single-product-info .new-price').text('$' + totalPrice.toFixed(2));
+    }
+
+    // Event listener for size selection  in modal
+    $("body").on("click", ".product-modal-body .size-variant ul li", function () {
+        let sizeData = $(this).data('size');
+        selectedModalSizePrice = parseFloat(sizeData.price); // Get the price
+        updateModalPrice();
+    });
+
+    // Event listener for color selection in modal
+
+    $("body").on("click", ".product-modal-body .color-variant ul li", function () {
+        let colorData = $(this).data('color');
+        selectedModalColorPrice = parseFloat(colorData.price); // Get the price
+        updateModalPrice();
+    });
+
 
 })(jQuery);

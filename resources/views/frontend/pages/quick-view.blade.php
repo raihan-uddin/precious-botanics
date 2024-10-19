@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="min-[768px]:w-[58.33%] min-[576px]:w-full px-[12px] mb-[24px]">
+        <div class="min-[768px]:w-[58.33%] min-[576px]:w-full px-[12px] mb-[24px] single-product-info">
             <div class="quickview-pro-content">
                 <h5 class="bb-quick-title">
                     <a href="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}" class="font-Poppins tracking-[0.03rem] mb-[10px] block text-[#3d4750] text-[20px] leading-[30px] font-medium">{{ $product->name }}</a>
@@ -43,51 +43,66 @@
                         })->unique('color');
                     @endphp
                     @if(count($sizeVariants) > 0)
-                        <div class="pro-title mb-[12px]">
-                            <h4
-                                class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[14px] font-bold uppercase text-[#3d4750]">
-                                Size</h4>
-                        </div>
-                        <div class="bb-pro-variation mt-[15px] mb-[25px]">
-                            <ul class="flex flex-wrap m-[-2px]">
-                                @foreach($sizeVariants as $key => $variant)
-                                    @php
-                                        $activeClass = $key == 0 ? 'active' : '';
-                                    @endphp
-                                    <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal {{ $activeClass }} ">
-                                        <a href="javascript:void(0)" class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]" data-tooltip="{{ $variant->size }}">{{ $variant->size }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                        <div class="size-variant">
+                            <div class="pro-title mb-[12px]">
+                                <h4
+                                    class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[14px] font-bold uppercase text-[#3d4750]">
+                                    Size</h4>
+                            </div>
+                            <div class="bb-pro-variation mt-[15px] mb-[25px]">
+                                <ul class="flex flex-wrap m-[-2px]">
+                                    @foreach($sizeVariants as $key => $variant)
+                                        @php
+                                            $activeClass = $key == 0 ? 'active' : '';
+                                        @endphp
+                                        <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal {{ $activeClass }} "
+                                            data-tooltip="{{ $variant->size }}"
+                                            title="{{ $variant->size }}"
+                                            data-size="{{$variant}}"
+                                        >
+                                            <a href="javascript:void(0)" class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]" data-tooltip="{{ $variant->size }}">{{ $variant->size }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     @endif
 
                     @if (count($colorVariants)> 0)
-                        <div class="pro-title mb-[12px]">
-                            <h4
-                                class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[14px] font-bold uppercase text-[#3d4750]">
-                                Color</h4>
-                        </div>
-                        <div class="bb-pro-variation mt-[15px] mb-[25px]">
-                            <ul class="flex flex-wrap m-[-2px]">
-                                @foreach($colorVariants as $key => $variant)
-                                    @php
-                                        $activeClass = $key == 0 ? 'active' : '';
-                                    @endphp
-                                    <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal {{ $activeClass }}">
-                                        <a href="javascript:void(0)" class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]" data-tooltip="{{ $variant->color }}">{{ $variant->color }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                        <div class="color-variant">
+                            <div class="pro-title mb-[12px]">
+                                <h4
+                                    class="font-quicksand leading-[1.2] tracking-[0.03rem] text-[14px] font-bold uppercase text-[#3d4750]">
+                                    Color</h4>
+                            </div>
+                            <div class="bb-pro-variation mt-[15px] mb-[25px]">
+                                <ul class="flex flex-wrap m-[-2px]">
+                                    @foreach($colorVariants as $key => $variant)
+                                        @php
+                                            $activeClass = $key == 0 ? 'active' : '';
+                                        @endphp
+                                        <li class="h-[22px] m-[2px] py-[2px] px-[8px] cursor-pointer border-[1px] border-solid border-[#eee] text-[#777] flex items-center justify-center text-[12px] leading-[22px] rounded-[20px] font-normal {{ $activeClass }} "
+                                        data-tooltip="{{ $variant->color }}"
+                                        title="{{ $variant->color }}"
+                                        data-color="{{$variant}}"
+                                        >
+                                            <a href="javascript:void(0)" class="bb-opt-sz font-Poppins text-[12px] leading-[22px] font-normal text-[#777] tracking-[0.03rem]" data-tooltip="{{ $variant->color }}">{{ $variant->color }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     @endif
                 @endif
                 <div class="bb-quickview-qty flex max-[360px]:justify-center">
                     <div class="qty-plus-minus w-[85px] h-[40px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px] max-[360px]:m-[auto]">
-                        <input class="qty-input text-[#777] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[32px] outline-[0] font-normal leading-[35px] rounded-[10px]" type="text" name="bb-qtybtn" value="1">
+                        <input class="qty-input text-[#777] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[32px] outline-[0] font-normal leading-[35px] rounded-[10px]" type="number" name="bb-qtybtn" value="1">
                     </div>
                     <div class="bb-quickview-cart ml-[4px] max-[360px]:mt-[15px] max-[360px]:ml-[0] max-[360px]:flex max-[360px]:justify-center">
-                        <button type="button" class="bb-btn-1 transition-all duration-[0.3s] ease-in-out font-Poppins h-[40px] leading-[28px] tracking-[0.03rem] py-[3px] px-[20px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]">
+                        <button type="button" class="bb-btn-1 add-to-cart-modal transition-all duration-[0.3s] ease-in-out font-Poppins h-[40px] leading-[28px] tracking-[0.03rem] py-[3px] px-[20px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]"
+                        data-product="{{ $product }}"
+                        data-url="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}"
+                        >
                             <i class="ri-shopping-bag-line pr-[8px]"></i>Add To Cart
                         </button>
                     </div>
