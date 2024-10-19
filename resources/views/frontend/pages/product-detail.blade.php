@@ -227,6 +227,7 @@
                                     <div class="bb-single-cart m-[2px]">
                                         <button type="button"
                                             data-product="{{ $product }}"
+                                            data-url="{{ route('product.detail', [$product->categories->first()->slug, $product->slug]) }}"
                                             class="add-to-cart bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#6c7fd8] rounded-[10px] border-[1px] border-solid border-[#6c7fd8] hover:bg-transparent hover:border-[#3d4750] hover:text-[#3d4750]">
                                             Add To Cart
                                         </button>

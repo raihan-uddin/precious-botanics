@@ -108,7 +108,7 @@
         });
     });
 
-    
+
     /* Hero Shape */
     var shape = "M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45 c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z; M51,171.3c-6.1-17.7-15.3-17.2-20.7-32c-8-21.9,0.7-54.6,20.7-67.1c19.5-12.3,32.8,5.5,67.7-3.4C145.2,62,145,49.9,173,43.4 c12-2.8,41.4-9.6,60.2,6.6c19,16.4,16.7,47.5,16,57.7c-1.7,22.8-10.3,25.5-9.4,46.4c1,22.5,11.2,25.8,9.1,42.6 c-2.2,17.6-16.3,37.5-33.5,40.8c-22,4.1-29.4-22.4-54.9-22.6c-31-0.2-40.8,39-68.3,35.7c-17.3-2-32.2-19.8-37.3-34.8 C48.9,198.6,57.8,191,51,171.3z; M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45 c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z";
     $(window).on("load", function () {
@@ -141,7 +141,7 @@
     /* Hero scroll Page */
     $('.bb-scroll-Page').on('click', function (event) {
         event.preventDefault();
-        $('html, body').animate({scrollTop: 1000}, duration);
+        $('html, body').animate({ scrollTop: 1000 }, duration);
         return false;
     })
 
@@ -443,7 +443,7 @@
             $(this).addClass("active").siblings().removeClass("active");
         });
     });
-    
+
 
     /* active-tags  */
     $(document).ready(function () {
@@ -462,7 +462,7 @@
     /* active-variation */
     $(document).ready(function () {
         $("body").on("click", ".bb-pro-variation-contant ul li", function () {
-            $(this).addClass("active-variation final-variant-selection").siblings().removeClass("active-variation");
+            $(this).addClass("active-variation final-variant-selection").siblings().removeClass("active-variation final-variant-selection");
         });
     });
 
@@ -529,6 +529,63 @@
         e.preventDefault();
         $(".bb-side-cart-overlay").fadeIn();
         $(".bb-side-cart").addClass("bb-open-cart");
+
+        // get the cart items from local storage and show them in the cart
+        var cart = JSON.parse(localStorage.getItem("cart")) || [];
+        var cartItems = "";
+        if (cart.length) {
+            cartItems = cart.map(item => {
+                // return `<li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
+                //             <a href="javascript:void(0)" class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i class="ri-close-line"></i></a>
+                //             <a href="javascript:void(0)" class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
+                //                 <img src="/storage/${item.image}" alt="product-img-1" class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
+                //             </a>
+                //             <div class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
+                //                 <a href="#" class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">${item.title}</a>
+                //                 <span class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]"> <span class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">$${item.price}</span> x ${item.qty}</span>
+                //                 <div class="qty-plus-minus h-[28px] w-[85px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
+                //                     <input class="qty-input text-center" type="text" name="bb-qtybtn" value="${item.qty}">
+                //                 </div>
+                //             </div>
+                //         </li>`;
+                return `
+                <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
+                    <a href="javascript:void(0)"
+                        class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
+                            class="ri-close-line"></i></a>
+                    <a href="javascript:void(0)"
+                        class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
+                        <img src="/storage/${item.image}" alt="product-img-3"
+                                class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
+                    </a>
+                    <div
+                        class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
+                        <a href="${item.url}"
+                            class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">${item.title}</a>
+                        ${item.variant ? `
+                        <span
+                            class="cart-variant mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
+                            ${item.variant.size ? `Size: <span class="variant-size px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">${item.variant.size}</span>` : ''}
+                            ${item.variant.color ? `${item.variant.size ? ' | ' : ''}Color: <span class="variant-color px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">${item.variant.color}</span>` : ''}
+                        </span>
+                        ` : ''}
+                        <span
+                            class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
+                                <span
+                                    class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">${item.price}</span>
+                                x ${item.qty}
+                        </span>
+                    </div>
+                </li>
+                `
+            }).join("");
+            // calculate the total price
+            updateCartCount();
+        } else {
+            cartItems = `<li class="bb-wishlist-msg">Your Cart is empty!</li>`;
+            $('cart-sub-total price').html('$0.00');
+        }
+        $('.bb-cart-items').html(cartItems);
     });
 
     $(".bb-side-cart-overlay, .bb-cart-close").on("click", function (e) {
@@ -537,12 +594,19 @@
         $(".bb-side-cart").removeClass("bb-open-cart");
     });
 
-    $(".cart-remove-item").on("click", function (e) {
+    $("body").on("click", ".cart-remove-item", function () {
+        // remove the item from the local storage
+        var cart = JSON.parse(localStorage.getItem("cart")) || [];
+        var index = $(this).parents(".cart-sidebar-list").index();
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        // remove the item from the cart
         $(this).parents(".cart-sidebar-list").remove();
         var wish_product_count = $(".cart-sidebar-list").length;
         if (wish_product_count == 0) {
             $('.bb-cart-items').html('<p class="bb-wishlist-msg">Your Cart is empty!</p>');
         }
+        updateCartCount();
     });
 
     /* Category sidebar JS */
@@ -597,7 +661,7 @@
 
     jQuery('.back-to-top-wrap').on('click', function (event) {
         event.preventDefault();
-        jQuery('html, body').animate({scrollTop: 0}, duration);
+        jQuery('html, body').animate({ scrollTop: 0 }, duration);
         return false;
     })
 
@@ -788,79 +852,93 @@
 
     $("body").on("click", ".add-to-cart", function () {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        // clear the cart 
+        localStorage.removeItem("cart");
         let product = $(this).data("product");
-        console.log(product);
+        let url = $(this).data("url");
         let qty = $(this).closest(".single-product-info").find(".qty-input").val();
-        console.log(qty);
         let price = product.price;
         let image = product.featured_image;
-        // get the app url from .env
-        // 
-        //  need the image with the base url currentlry only "products/african-shea-butter-creamy-soft-featured-1728376572.png"
-        // but  i need like "http://localhost:8000/storage/products/african-shea-butter-creamy-soft-featured-1728376572.png"
-        // let variant = product.variants;
-        
-        // if(variant){
-        //     console.log("variant");
-        //     // check if the product has size variant
-        //     let sizeVariantOptions = $(this).closest(".single-product-info").find(".size-variant");
-        //     if(sizeVariantOptions.length > 0){
-        //         // try to get the selected size variant
-        //         let selectedSizeVariant = $(this).closest(".single-product-info").find(".size-variant .final-variant-selection").data("size");
-        //         console.log(selectedSizeVariant);
-
-        //         // if no size variant is selected, return & show error message
-        //         if(!selectedSizeVariant){
-        //             alert("Please select a size variant");
-        //             return;
-        //         }
-        //     } else {
-        //         console.log("no size variant available");
-        //     }
-            
-        //     // check if the product has color variant
-        //     let colorVariantOptions = $(this).closest(".single-product-info").find(".color-variant");
-        //     if(colorVariantOptions.length > 0){
-        //         let selectedColorVariant = $(this).closest(".single-product-info").find(".color-variant .final-variant-selection").data("color");
-        //         console.log(selectedColorVariant);
-
-        //         // if no color variant is selected, return & show error message
-        //         if(!selectedColorVariant){
-        //             alert("Please select a color variant");
-        //             return;
-        //         }
-        //     } else{
-        //         console.log("no color variant available");
-        //     }
-        // }
+        let variant = null;
+        let sizeVariant = null;
+        let colorVariant = null;
+        // check if size-varient is present
+        if ($(this).closest(".single-product-info").find(".size-variant").length) {
+            sizeVariant = $(this).closest(".single-product-info").find(".size-variant .final-variant-selection").data('size');
+            if (!sizeVariant) {
+                alert("Please select size!");
+                return;
+            }
+        }
+        // check if variant is present
+        if ($(this).closest(".single-product-info").find(".color-variant").length) {
+            colorVariant = $(this).closest(".single-product-info").find(".color-variant .final-variant-selection").data('color');
+            if (!colorVariant) {
+                alert("Please select color!");
+                return;
+            }
+        }
+        if (sizeVariant && colorVariant) {
+            variant = {
+                size: sizeVariant.size,
+                color: colorVariant.color,
+                price: Math.max(sizeVariant.price, colorVariant.price),
+            }
+        } else if (sizeVariant) {
+            variant = {
+                size: sizeVariant.size,
+                price: sizeVariant.price,
+            }
+        } else if (colorVariant) {
+            variant = {
+                color: colorVariant.color,
+                price: colorVariant.price,
+            }
+        }
 
         let item = {
             id: product.id,
             title: product.name,
             image: product.featured_image,
-            price: price,
+            price: parseFloat(price),
             qty: parseInt(qty),
-            // variant: variant
+            variant: variant,
+            url: url,
         };
-        console.log(item);
 
-        let existingItem = cart.find((item) => item.id === product.id);
+        let existingItem = cart.find(item => item.id === product.id);
+        if(variant){
+            existingItem = cart.find(item => item.id === product.id && item.variant && item.variant.size === variant.size && item.variant.color === variant.color);
+        }
         if (existingItem) {
-            existingItem.qty += parseInt(qty);
+            if (existingItem.variant && item.variant) {
+                console.log(existingItem.variant, item.variant);
+                
+                if (existingItem.variant.size === item.variant.size && existingItem.variant.color === item.variant.color) {
+                    existingItem.qty += item.qty;
+                } else {
+                    cart.push(item);
+                }
+                
+            } else {
+                cart.push(item);
+            }
         } else {
             cart.push(item);
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-       
-        console.log(cart);
+
         updateCartCount();
     });
 
     function updateCartCount() {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        let count = cart.reduce((acc, item) => acc + item.qty, 0);
+        // product lenght count
+        let count = cart.length;
         $(".bb-cart-count").text(count);
+        var totalPrice = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+        $('body .cart-sub-total .cart-table .price').html(`$${totalPrice.toFixed(2)}`);
     }
 
     updateCartCount();

@@ -337,111 +337,6 @@
                 </div>
                 <div class="bb-cart-box item h-full flex flex-col max-[767px]:justify-start">
                     <ul class="bb-cart-items mb-[-24px]">
-                        <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
-                            <a href="javascript:void(0)"
-                                class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
-                                class="ri-close-line"></i>
-                            </a>
-                            <a href="javascript:void(0)"
-                                class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="{{ asset('assets/img/new-product/1.jpg') }}" alt="product-img-1"
-                                    class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
-                            </a>
-                            <div
-                                class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="#"
-                                    class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Ground
-                                    Nuts Oil Pack</a>
-                                <span
-                                    class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
-                                        <span
-                                            class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">$15</span>
-                                        x 500 g
-                                    </span>
-                                <div
-                                    class="qty-plus-minus h-[28px] w-[85px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
-                                    <input class="qty-input text-center" type="text" name="bb-qtybtn" value="1">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
-                            <a href="javascript:void(0)"
-                               class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
-                                    class="ri-close-line"></i></a>
-                            <a href="javascript:void(0)"
-                               class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="{{ asset('assets/img/new-product/2.jpg') }}" alt="product-img-2"
-                                     class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
-                            </a>
-                            <div
-                                class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="#"
-                                   class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Organic
-                                    Litchi Juice Pack</a>
-                                <span
-                                    class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
-                                        <span
-                                            class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">$25</span>
-                                        x 500 ml
-                                    </span>
-                                <div
-                                    class="qty-plus-minus h-[28px] w-[85px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
-                                    <input class="qty-input text-center" type="text" name="bb-qtybtn" value="1">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
-                            <a href="javascript:void(0)"
-                               class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
-                                    class="ri-close-line"></i></a>
-                            <a href="javascript:void(0)"
-                               class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="{{ asset('assets/img/new-product/3.jpg') }}" alt="product-img-3"
-                                     class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
-                            </a>
-                            <div
-                                class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="#"
-                                   class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Crunchy
-                                    Banana Chips</a>
-                                <span
-                                    class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
-                                        <span
-                                            class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">$1</span>
-                                        x 500 g
-                                    </span>
-                                <div
-                                    class="qty-plus-minus h-[28px] w-[85px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
-                                    <input class="qty-input text-center" type="text" name="bb-qtybtn" value="1">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cart-sidebar-list mb-[24px] p-[20px] flex bg-[#f8f8fb] rounded-[20px] border-[1px] border-solid border-[#eee] relative max-[575px]:p-[10px]">
-                            <a href="javascript:void(0)"
-                               class="cart-remove-item transition-all duration-[0.3s] ease-in-out bg-[#3d4750] w-[20px] h-[20px] text-[#fff] absolute top-[-3px] right-[-3px] rounded-[50%] flex items-center justify-center opacity-[0.5] text-[15px]"><i
-                                    class="ri-close-line"></i></a>
-                            <a href="javascript:void(0)"
-                               class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
-                                <img src="{{ asset('assets/img/new-product/6.jpg') }}" alt="product-img-3"
-                                     class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
-                            </a>
-                            <div
-                                class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
-                                <a href="#"
-                                   class="bb-cart-sub-title w-full mb-[8px] font-Poppins tracking-[0.03rem] text-[#3d4750] whitespace-nowrap overflow-hidden text-ellipsis block text-[14px] leading-[18px] font-medium">Small
-                                    Cardamom Spice Pack</a>
-                                <span
-                                    class="cart-price mb-[8px] text-[14px] leading-[18px] block font-Poppins text-[#686e7d] font-light tracking-[0.03rem]">
-                                        <span
-                                            class="new-price px-[3px] text-[15px] leading-[18px] text-[#686e7d] font-bold">$4</span>
-                                        x 500 g
-                                    </span>
-                                <div
-                                    class="qty-plus-minus h-[28px] w-[85px] py-[7px] border-[1px] border-solid border-[#eee] overflow-hidden relative flex items-center justify-between bg-[#fff] rounded-[10px]">
-                                    <input class="qty-input text-center" type="text" name="bb-qtybtn" value="1">
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
                 <div class="bb-bottom-cart">
@@ -449,17 +344,17 @@
                         class="cart-sub-total mt-[20px] pb-[8px] flex flex-wrap justify-between border-t-[1px] border-solid border-[#eee]">
                         <table class="table cart-table mt-[10px] w-full align-top">
                             <tbody>
-                            <tr>
+                            {{-- <tr>
                                 <td class="title font-medium text-[#777] p-[.5rem]">Sub-Total :</td>
-                                <td class="price text-[#777] text-right p-[.5rem]">$300.00</td>
-                            </tr>
-                            <tr>
+                                <td class="price text-[#777] text-right p-[.5rem]">$0.00</td>
+                            </tr> --}}
+                            {{-- <tr>
                                 <td class="title font-medium text-[#777] p-[.5rem]">VAT (20%) :</td>
                                 <td class="price text-[#777] text-right p-[.5rem]">$60.00</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td class="title font-medium text-[#777] p-[.5rem]">Total :</td>
-                                <td class="price text-[#777] text-right p-[.5rem]">$360.00</td>
+                                <td class="price text-[#777] text-right p-[.5rem]">$0.00</td>
                             </tr>
                             </tbody>
                         </table>
