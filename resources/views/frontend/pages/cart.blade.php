@@ -72,6 +72,11 @@
                                     </td>
                                 </tr>
                             </template>
+                            <tr x-show="cart.length == 0">
+                                <td colspan="5" class="text-center p-[12px] font-Poppins text-[15px] font-normal leading-[26px] tracking-[0.02rem] text-[#686e7d]">
+                                    <span>No items in cart <i class="ri-sad-line text-[20px] text-[#686e7d]"></i></span>    
+                                </td> 
+                            </tr>
                         </tbody>
                     </table>
                 </div>                    

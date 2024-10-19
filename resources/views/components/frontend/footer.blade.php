@@ -360,7 +360,7 @@
                         </table>
                     </div>
                     <div class="cart-btn flex justify-between mb-[20px]">
-                        <a href="#"
+                        <a href="{{ route('cart') }}"
                             class="bb-btn-1 transition-all duration-[0.3s] ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[5px] px-[15px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-[#fff]">View
                             Cart</a>
                         <a href="#"
