@@ -30,14 +30,12 @@ class PageController extends Controller
         $mostLovedProducts = Product::with([
             'variants:id,product_id,size,color,price,sku,stock',
             'categories'
-        ])
-            ->whereHas('variants')
-            ->published()
+        ])->published()
             ->where(function ($query) {
                 $query->where('stock_quantity', '>', 0)
                     ->orWhere('allow_out_of_stock_orders', 1);
             })
-            // ->inRandomOrder()
+            ->inRandomOrder()
             ->take(4)
             ->get();
 
@@ -46,7 +44,6 @@ class PageController extends Controller
             'variants:id,product_id,size,color,price,sku,stock',
             'categories'
         ])
-//            ->whereHas('variants')
             ->published()
             ->where(function ($query) {
                 $query->where('stock_quantity', '>', 0)
