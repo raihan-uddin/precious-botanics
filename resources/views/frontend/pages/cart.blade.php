@@ -33,61 +33,63 @@
 
             <div class="min-[992px]:w-[66.66%] w-full px-[12px] mb-[24px]">
                 <div class="bb-cart-table border-[1px] border-solid border-[#eee] rounded-[20px] overflow-hidden max-[1399px]:overflow-y-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                    <table class="w-full max-[1399px]:w-[780px]">
-                        <thead>
-                            <tr class="border-b-[1px] border-solid border-[#eee]">
-                                <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Product</th>
-                                <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Price</th>
-                                <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Quantity</th>
-                                <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Total</th>
-                                <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template x-for="(item, index) in cart" :key="index">
+                    <div class="overflow-x-auto">
+                        <table class="w-full max-[1399px]:w-[780px]">
+                            <thead>
                                 <tr class="border-b-[1px] border-solid border-[#eee]">
-                                    <td class="p-[12px]">
-                                        <a :href="item.url">
-                                            <div class="Product-cart flex items-center">
-                                                <img :src="`/storage/${item.image}`"  :alt="item.title" class="w-[70px] h-[70px] object-contain border-[1px] border-solid border-[#eee] rounded-[10px]">
-                                                <span class="ml-[10px] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.03rem] text-[#686e7d]" x-text="item.title"></span>
-                                                <!-- Optional Size -->
-                                                <span x-show="item.variant && item.variant.size" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">
-                                                    Size: <span x-text="item.variant?.size"></span><br>
-                                                </span>
-
-                                                <!-- Optional Color -->
-                                                <span x-show="item.variant && item.variant.color" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">
-                                                    Color: <span x-text="item.variant?.color"></span><br>
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="p-[12px]">
-                                        <span class="price font-Poppins text-[15px] font-medium leading-[26px] tracking-[0.02rem] text-[#686e7d]" x-text="`$${item.price.toFixed(2)}`"></span>
-                                    </td>
-                                    <td class="p-[12px]">
-                                        <input class="qty-input text-[#777] float-left text-[14px] h-[auto] m-[0] p-[0] text-center w-[60px] outline-[0] font-normal leading-[35px] rounded-[10px]" type="number" name="bb-qtybtn"  min="1" x-model.number="item.qty" @change="updateCart()" @input="updateCart()">
-                                    </td>
-                                    <td class="p-[12px]">
-                                        <span class="price font-Poppins text-[15px] font-medium leading-[26px] tracking-[0.02rem] text-[#686e7d]" x-text="`$${(item.price * item.qty).toFixed(2)}`"></span>
-                                    </td>
-                                    <td class="p-[12px]">
-                                        <div class="pro-remove">
-                                            <a href="javascript:void(0)" @click="removeItem(index)">
-                                                <i class="ri-delete-bin-line transition-all duration-[0.3s] ease-in-out text-[20px] text-[#686e7d] hover:text-[#ff0000]"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Product</th>
+                                    <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Price</th>
+                                    <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Quantity</th>
+                                    <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize">Total</th>
+                                    <th class="font-Poppins p-[12px] text-left text-[16px] font-medium text-[#3d4750] leading-[26px] tracking-[0.02rem] capitalize"></th>
                                 </tr>
-                            </template>
-                            <tr x-show="cart.length == 0">
-                                <td colspan="5" class="text-center p-[12px] font-Poppins text-[15px] font-normal leading-[26px] tracking-[0.02rem] text-[#686e7d]">
-                                    <span>No items in cart <i class="ri-sad-line text-[20px] text-[#686e7d]"></i></span>    
-                                </td> 
-                            </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <template x-for="(item, index) in cart" :key="index">
+                                    <tr class="border-b-[1px] border-solid border-[#eee]">
+                                        <td class="p-[12px]">
+                                            <a :href="item.url">
+                                                <div class="Product-cart flex items-center">
+                                                    <img :src="`/storage/${item.image}`"  :alt="item.title" class="w-[70px] h-[70px] object-contain border-[1px] border-solid border-[#eee] rounded-[10px]">
+                                                    <span class="ml-[10px] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.03rem] text-[#686e7d]" x-text="item.title"></span>
+                                                    <!-- Optional Size -->
+                                                    <span x-show="item.variant && item.variant.size" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">
+                                                        Size: <span x-text="item.variant?.size"></span><br>
+                                                    </span>
+
+                                                    <!-- Optional Color -->
+                                                    <span x-show="item.variant && item.variant.color" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">
+                                                        Color: <span x-text="item.variant?.color"></span><br>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td class="p-[12px]">
+                                            <span class="price font-Poppins text-[15px] font-medium leading-[26px] tracking-[0.02rem] text-[#686e7d]" x-text="`$${item.price.toFixed(2)}`"></span>
+                                        </td>
+                                        <td class="p-[12px]">
+                                            <input class="qty-input text-[#777] float-left text-[14px] h-[auto] m-[0] p-[0] text-center w-[60px] outline-[0] font-normal leading-[35px] rounded-[10px]" type="number" name="bb-qtybtn"  min="1" x-model.number="item.qty" @change="updateCart()" @input="updateCart()">
+                                        </td>
+                                        <td class="p-[12px]">
+                                            <span class="price font-Poppins text-[15px] font-medium leading-[26px] tracking-[0.02rem] text-[#686e7d]" x-text="`$${(item.price * item.qty).toFixed(2)}`"></span>
+                                        </td>
+                                        <td class="p-[12px]">
+                                            <div class="pro-remove">
+                                                <a href="javascript:void(0)" @click="removeItem(index)">
+                                                    <i class="ri-delete-bin-line transition-all duration-[0.3s] ease-in-out text-[20px] text-[#686e7d] hover:text-[#ff0000]"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                                <tr x-show="cart.length == 0">
+                                    <td colspan="5" class="text-center p-[8px] font-Poppins text-[15px] font-normal leading-[26px] tracking-[0.02rem] text-[#686e7d]">
+                                        <span>No items in cart <i class="ri-sad-line text-[20px] text-[#686e7d]"></i></span>    
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>                    
             </div>
             <div class="min-[992px]:w-[33.33%] w-full px-[12px] mb-[24px]">
@@ -187,9 +189,16 @@
             removeItem(index) {
                 this.cart.splice(index, 1);
                 this.updateCart();
+                this.calculateProductCount();
+                // call the updateCartCount() method from the parent component
             },
             calculateTotal() {
                 this.subtotal = this.cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            },
+            calculateProductCount() {
+                // change .bb-cart-count text
+                let productCount =  this.cart.reduce((acc, item) => acc + item.qty, 0);
+                document.querySelector('.bb-cart-count').innerText = productCount;
             }
         }
     }
