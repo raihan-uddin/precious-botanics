@@ -239,14 +239,14 @@
                                             View Cart
                                         </a>
                                     </div>
-                                    <ul class="bb-pro-actions my-[2px] flex">
+                                    {{-- <ul class="bb-pro-actions my-[2px] flex">
                                         <li class="bb-btn-group">
                                             <a href="javascript:void(0)" title="heart"
                                                 class="transition-all duration-[0.3s] ease-in-out w-[40px] h-[40px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] hover:bg-[#6c7fd8] border-[1px] border-solid border-[#eee] rounded-[10px]">
                                                 <i class="ri-heart-line text-[16px] leading-[10px] text-[#777]"></i>
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
                             </div>
                         </div>
