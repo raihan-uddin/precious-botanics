@@ -42,10 +42,12 @@
                             <!-- Header Logo Start -->
                             <div class="header-logo flex items-center max-[575px]:justify-center">
                                 <a href="{{ route('home') }}">
-                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="{{ config('app.name') }}"
-                                         class="light w-[125px] max-[991px]:w-[115px] block">
-                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="{{ config('app.name') }}"
-                                         class="dark w-[125px] max-[991px]:w-[115px] hidden">
+                                    <span class="block text-3xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-green-400 to-green-700 bg-clip-text text-transparent transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-300">
+                                        Precious
+                                    </span>
+                                    <span class="block text-sm font-medium leading-snug tracking-widest uppercase bg-gradient-to-r from-green-300 to-green-500 bg-clip-text text-transparent transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-md group-hover:shadow-green-200">
+                                        Botanic
+                                    </span>
                                 </a>
                             </div>
                             <!-- Header Logo End -->
