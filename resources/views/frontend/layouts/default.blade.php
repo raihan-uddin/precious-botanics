@@ -20,7 +20,7 @@
         <!-- Open Graph Meta Tags for Facebook -->
         <meta property="og:title" content="@yield('title')" />
         <meta property="og:description" content="{{ $metaDescription ?? SettingsHelper::get('home_page_meta_description', 'Developed By Raihan uddin. Phone: +8801680527922') }}" />
-        <meta property="og:image" content="{{ $metaImage ?? asset('assets/img/logo/logo.png') }}" />
+        <meta property="og:image" content="{{ $metaImage ?? asset('images/logos/logo.png') }}" />
         <meta property="og:url" content="{{ request()->url() }}" />
         <meta property="og:type" content="website" />
 
@@ -29,7 +29,7 @@
         <meta name="twitter:site" content="{{ SettingsHelper::get('meta_twitter_handle') }}">
         <meta name="twitter:title" content="@yield('title')">
         <meta name="twitter:description" content="{{ $metaDescription ?? SettingsHelper::get('home_page_meta_keywords') }}">
-        <meta name="twitter:image" content="{{ $metaImage ?? asset('assets/img/logo/logo.png') }}">
+        <meta name="twitter:image" content="{{ $metaImage ?? asset('images/logos/logo.png') }}">
 
         <!-- Additional Meta Tags -->
         <meta property="article:published_time" content="{{ $metaPublishedTime ?? now()->toISOString() }}">
