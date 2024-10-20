@@ -19,6 +19,10 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 // show product on modal
 Route::post('/quick-view', [ProductController::class, 'quickView'])->name('quick.view');
 
+Route::get('/products/search', [ProductController::class, 'searchView'])->name('search.results');
+Route::post('/products/search', [ProductController::class, 'search'])->name('api.products.search');
+
+
 Route::get('/{slug}', [ProductController::class, 'categoryProducts'])->name('category.products');
 Route::get('/{category_slug}/product/{slug}', [ProductController::class, 'productDetail'])->name('product.detail');
 

@@ -141,4 +141,32 @@ class ProductController extends Controller
 
         return view('frontend.pages.quick-view', compact('product'));
     }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search' => 'required|string|min:2'
+        ]);
+        $query = $request->input('search');
+
+        $products = Product::with('categories')
+            ->where('name', 'LIKE', "%{$query}%")
+            ->select('id', 'name', 'slug', 'price', 'discount_price', 'featured_image', 'full_description')
+            ->published()
+            ->take(20)
+            ->orderBy('name')
+            ->get();
+
+        return response()->json($products);
+    }
+
+    public function searchView(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'LIKE', "%{$query}%")->get();
+
+        // return view('search-results', compact('products', 'query')); // Adjust as necessary for your view
+        // redirect to home page
+        return redirect()->route('home');
+    }
 }

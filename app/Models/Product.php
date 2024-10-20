@@ -7,10 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+// use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
     use HasFactory, SoftDeletes;
+    // use Searchable;
+
+    // public function toSearchableArray()
+    // {
+    //     return [
+    //         'id' => $this->id,
+    //         'name' => $this->name,
+    //         'slug' => $this->slug,
+    //         'price' => $this->price,
+    //         'discount_price' => $this->discount_price,
+    //         'featured_image' => $this->featured_image,
+    //         'is_featured' => $this->is_featured,
+    //         'is_visible' => $this->is_visible,
+    //         'full_description' => $this->full_description,
+    //         'vendor' => $this->vendor ? $this->vendor->name : null,
+    //         'categories' => $this->categories->pluck('name')->toArray(),
+    //         'tags' => $this->tags->pluck('name')->toArray(),
+    //         'created_at' => $this->created_at,
+    //     ];
+    // }
 
     /**
      * The attributes that are mass assignable.
@@ -71,6 +92,8 @@ class Product extends Model
         'allow_out_of_stock_orders' => 'boolean',
         'allow_reviews' => 'boolean',
         'is_on_promotion' => 'boolean',
+        'price' => 'decimal:2',
+
     ];
 
     public function categories(): BelongsToMany

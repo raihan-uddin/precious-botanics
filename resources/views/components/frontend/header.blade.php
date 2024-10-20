@@ -66,32 +66,51 @@
                             </a>
                         </div>
                         <div class="cols flex justify-center">
-                            <div
-                                class="header-search w-[600px] max-[1399px]:w-[500px] max-[1199px]:w-[400px] max-[991px]:w-full max-[991px]:min-w-[300px] max-[767px]:py-[15px] max-[480px]:min-w-[auto]">
-                                <form class="bb-btn-group-form flex relative max-[991px]:ml-[20px] max-[767px]:m-[0]"
-                                      action="#">
-                                    {{--<div
-                                        class="inner-select border-r-[1px] border-solid border-[#eee] h-full px-[20px] flex items-center absolute top-[0] left-[0] max-[991px]:hidden">
-                                        <div
-                                            class="custom-select w-[100px] capitalize text-[#777] flex items-center justify-between transition-all duration-[0.2s] ease-in text-[14px] relative">
-                                            <select>
-                                                <option value="option1">vegetables</option>
-                                                <option value="option2">Cold Drinks</option>
-                                                <option value="option3">Fruits</option>
-                                                <option value="option4">Bakery</option>
-                                            </select>
-                                        </div>
-                                    </div>--}}
+                            <div x-data="searchComponent()" 
+                                class="header-search w-[600px] max-[1399px]:w-[500px] max-[1199px]:w-[400px] max-[991px]:w-full max-[991px]:min-w-[300px] max-[767px]:py-[15px] max-[480px]:min-w-[auto] relative">
+                                
+                                <form class="bb-btn-group-form flex relative max-[991px]:ml-[20px] max-[767px]:m-[0]" @submit.prevent="handleSubmit" @keydown.enter="handleEnter">
                                     <input
                                         class="form-control bb-search-bar bg-[#fff] block w-full min-h-[45px] h-[48px] py-[10px] pr-[10px] pl-[20px] max-[991px]:min-h-[40px] max-[991px]:h-[40px] max-[991px]:p-[10px] text-[14px] font-normal leading-[1] text-[#777] rounded-[10px] border-[1px] border-solid border-[#eee] tracking-[0.5px]"
-                                        placeholder="Search products..." type="text">
+                                        placeholder="Search products..." 
+                                        type="text" 
+                                        x-model="query" 
+                                        @input="search"
+                                    >
                                     <button
                                         class="submit absolute top-[0] left-[auto] right-[0] flex items-center justify-center w-[45px] h-full bg-transparent text-[#555] text-[16px] rounded-[0] outline-[0] border-[0] padding-[0]"
-                                        type="submit" title="Search">
+                                        type="submit" 
+                                        title="Search">
                                         <i class="ri-search-line text-[18px] leading-[12px] text-[#555]"></i>
                                     </button>
                                 </form>
+
+                                <!-- Hint for minimum character requirement -->
+                                <p class="text-red-500 text-[12px] mt-1 hidden search-error">
+                                    Please type at least 2 characters.
+                                </p>
+
+                                <!-- Results Dropdown -->
+                                <ul
+                                    class="absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden search-results"
+                                    style="max-height: 400px; overflow-y: auto;"
+                                >
+                                    <template x-for="(item, index) in results" :key="index">
+                                        <li class="flex items-center p-3 hover:bg-gray-100 cursor-pointer border-b-2" @click="selectItem(item)">
+                                            <img x-show="item.featured_image" 
+                                                :src="`/storage/${item.featured_image}`" alt="Product Image" class="w-[50px] h-[50px] object-cover rounded-md mr-3">
+                                            <div class="flex-1">
+                                                <div class="flex justify-between">
+                                                    <span x-text="item.name" class="font-medium text-[#333] text-[14px]"></span>
+                                                    <span  x-show="item.price"  x-text="`$${Number(item.price).toFixed(2)}`"  class="font-medium text-[#333] text-[14px]"></span>
+                                                </div>
+                                                <span x-text="item.category" class="text-[#777] text-[12px]"></span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
                             </div>
+
                         </div>
 
                         <div class="cols bb-icons flex justify-center">
@@ -367,3 +386,82 @@
         </div>
     </div>
 </div>
+
+<script>
+    const searchResultsUrl = "{{ route('search.results') }}"; // Named route for search results
+    const searchApiUrl = "{{ route('api.products.search') }}"; // Named route for API search
+
+    function searchComponent() {
+    return {
+        query: '',
+        results: [],
+        isMinimumLength: false, // Track if minimum length condition is met
+        timeout: null, // Store the timeout reference for debounce
+        debounceDelay: 300, // Delay in milliseconds
+
+        search() {
+            // Check if query length is less than 2
+            if (this.query.length < 2) {
+                this.isMinimumLength = false; // Update the hint visibility
+                this.results = []; // Clear results
+                document.querySelector('.search-results').classList.add('hidden'); // Hide the results
+                document.querySelector('.search-error').classList.remove('hidden'); // Show the error hint
+                return; // Exit the function
+            } else {
+                this.isMinimumLength = true; // Set the minimum length flag
+                document.querySelector('.search-error').classList.add('hidden'); // Hide the error hint
+            }
+
+            clearTimeout(this.timeout); // Clear previous timeout
+
+            this.timeout = setTimeout(() => {
+                // Make a POST request to your Laravel API using named route
+                fetch(searchApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                    body: JSON.stringify({ search: this.query })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // change the hidden class to show the results
+                    document.querySelector('.search-results').classList.remove('hidden');
+                    if (data.length === 0) {
+                        this.results = [{ 
+                            name: 'No results found!'
+                        }]; // Show no results message
+                    } else {
+                        this.results = data; // Assuming your API returns an array of products
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error);
+                    this.results = []; // Clear results on error
+                });
+            }, this.debounceDelay);
+        },
+
+        handleEnter() {
+            if (this.query.length >= 2) { // Only proceed if query meets length requirement
+                window.location.href = `${searchResultsUrl}?query=${encodeURIComponent(this.query)}`;
+            }
+        },
+
+        handleSubmit() {
+            this.search(); // Trigger the search
+        },
+
+        selectItem(item) {
+            let allCategory = item.categories;
+            let firstCategory = allCategory[0].slug;
+            
+            this.query = item.name; // Update input with selected item name
+            this.results = []; // Clear results
+            window.location.href = `/${firstCategory}/product/${item.slug}`;
+        }
+    };
+}
+
+</script>
