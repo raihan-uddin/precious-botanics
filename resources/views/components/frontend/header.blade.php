@@ -83,6 +83,14 @@
                                         title="Search">
                                         <i class="ri-search-line text-[18px] leading-[12px] text-[#555]"></i>
                                     </button>
+                                    <button
+                                    type="button" 
+                                    class="clear absolute right-[55px] top-[0] flex items-center justify-center w-[45px] h-full bg-transparent text-[#d9534f] text-[16px] rounded-[0] outline-[0] border-[0] padding-[0]"
+                                    title="Clear"
+                                    @click="clearSearch"  
+                                >
+                                    <i class="ri-close-line text-[18px] leading-[12px] text-[#d9534f]"></i>
+                                </button>
                                 </form>
 
                                 <!-- Hint for minimum character requirement -->
@@ -460,7 +468,14 @@
             this.query = item.name; // Update input with selected item name
             this.results = []; // Clear results
             window.location.href = `/${firstCategory}/product/${item.slug}`;
+        },
+        clearSearch() {
+            this.query = ''; // Clear the input
+            this.results = []; // Clear the results
+            document.querySelector('.search-results').classList.add('hidden'); // Hide the results
+            document.querySelector('.search-error').classList.add('hidden'); // Hide the error hint
         }
+
     };
 }
 
