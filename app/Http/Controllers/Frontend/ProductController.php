@@ -153,7 +153,7 @@ class ProductController extends Controller
             ->where('name', 'LIKE', "%{$query}%")
             ->select('id', 'name', 'slug', 'price', 'discount_price', 'featured_image', 'full_description')
             ->published()
-            ->take(20)
+            ->take(30)
             ->orderBy('name')
             ->get();
 
