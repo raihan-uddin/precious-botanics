@@ -11,10 +11,9 @@
         "laravel/framework": "^11.9",
         "laravel/scout": "^10.11",
         "laravel/tinker": "^2.9",
-        "meilisearch/meilisearch-php": "^1.10",
         "phpoffice/phpspreadsheet": "^3.3",
         "rap2hpoutre/fast-excel": "^5.5",
-        "typesense/typesense-php": "^4.9"
+        "teamtnt/laravel-scout-tntsearch-driver": "^14.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
