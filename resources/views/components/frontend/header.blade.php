@@ -41,12 +41,17 @@
                         <div class="cols bb-logo-detail flex max-[767px]:justify-between">
                             <!-- Header Logo Start -->
                             <div class="header-logo flex items-center max-[575px]:justify-center">
-                                <a href="{{ route('home') }}">
-                                    <span class="block text-3xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-green-400 to-green-700 bg-clip-text text-transparent transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-300">
-                                        Precious
-                                    </span>
-                                    <span class="block text-sm font-medium leading-snug tracking-widest uppercase bg-gradient-to-r from-green-300 to-green-500 bg-clip-text text-transparent transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-md group-hover:shadow-green-200">
-                                        Botanic
+                                <a href="{{ route('home') }}" class="flex gap-2 items-center">
+                                    <img src="{{ asset('images/logos/logo.png') }}" alt="{{ config('app.name') }}"
+                                         class="light w-[48px] h-[48px] block object-contain">
+
+                                    <span class="h-full">
+                                        <span class="block text-lg text-[#7f1d1d] font-semibold leading-tight tracking-tight transition-all duration-300">
+                                            Precious
+                                        </span>
+                                        <span class="block text-xs text-[#7f1d1d] font-medium leading-snug tracking-widest transition-all duration-300">
+                                            Botanic
+                                        </span>
                                     </span>
                                 </a>
                             </div>
