@@ -80,7 +80,7 @@
 
                     <!-- Pagination Controls -->
                     <div class="mt-4">
-                        <!-- Add pagination controls here if needed -->
+                        {{ $banners->links() }}
                     </div>
                 </div>
             </div>
