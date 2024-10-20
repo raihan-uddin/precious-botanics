@@ -49,7 +49,7 @@
                                     <td class="p-[12px]">
                                         <a :href="item.url">
                                             <div class="Product-cart flex items-center">
-                                                <img :src="`/storage/${item.image}`"  :alt="item.title" class="w-[70px] border-[1px] border-solid border-[#eee] rounded-[10px]">
+                                                <img :src="`/storage/${item.image}`"  :alt="item.title" class="w-[70px] h-[70px] object-contain border-[1px] border-solid border-[#eee] rounded-[10px]">
                                                 <span class="ml-[10px] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.03rem] text-[#686e7d]" x-text="item.title"></span>
                                                 <!-- Optional Size -->
                                                 <span x-show="item.variant && item.variant.size" class="font-Poppins text-[12px] font-normal leading-[20px] tracking-[0.03rem] text-[#686e7d]">

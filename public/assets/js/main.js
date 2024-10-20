@@ -545,7 +545,7 @@
                     <a href="${item.url}"
                         class="bb-cart-pro-img flex grow-[1] shrink-[0] basis-[25%] items-center max-[575px]:flex-[initial]">
                         <img src="/storage/${item.image}" alt="product-img-3"
-                                class="w-[85px] rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
+                                class="w-[85px] h-[85px] object-contain rounded-[10px] border-[1px] border-solid border-[#eee] max-[575px]:w-[50px]">
                     </a>
                     <div
                         class="bb-cart-contact pl-[15px] relative grow-[1] shrink-[0] basis-[70%] overflow-hidden">
