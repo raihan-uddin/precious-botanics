@@ -234,10 +234,10 @@
                                     </div>
                                     <!-- view cart -->
                                     <div class="bb-single-cart m-[2px]">
-                                        <button type="button"
+                                        <a href="{{ route('cart') }}"
                                             class="bb-btn-2 transition-all duration-[0.3s] ease-in-out h-[40px] flex font-Poppins leading-[28px] tracking-[0.03rem] py-[6px] px-[25px] text-[14px] font-normal text-[#fff] bg-[#3d4750] rounded-[10px] border-[1px] border-solid border-[#3d4750] hover:bg-transparent hover:border-[#6c7fd8] hover:text-[#6c7fd8]">
                                             View Cart
-                                        </button>
+                                        </a>
                                     </div>
                                     <ul class="bb-pro-actions my-[2px] flex">
                                         <li class="bb-btn-group">
