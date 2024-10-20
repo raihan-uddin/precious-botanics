@@ -272,7 +272,7 @@
                             <ul class="sub-menu w-full min-w-[auto] p-[0] mb-[10px] static hidden visible opacity-[1]">
                                 @foreach($menu->submenus as $submenu)
                                     <li class="relative">
-                                        <a href="#"
+                                        <a href="{{ route('category.products', [$submenu->slug]) }}"
                                            class="font-Poppins leading-[28px] tracking-[0.03rem] transition-all duration-[0.3s] ease-in-out font-normal pl-[12px] text-[14px] text-[#777] mb-[0] capitalize block py-[12px]">{{ $submenu->name }}</a>
                                     </li>
                                 @endforeach
