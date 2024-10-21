@@ -42,7 +42,7 @@
                             <!-- Header Logo Start -->
                             <div class="header-logo flex items-center max-[575px]:justify-center">
                                 <a href="{{ route('home') }}" class="flex gap-2 items-center">
-                                    <img src="{{ asset('images/logos/logo.png') }}" alt="{{ config('app.name') }}"
+                                    <img src="{{ asset('images/logos/logo.svg') }}" alt="{{ config('app.name') }}"
                                          class="light w-[48px] h-[48px] block object-contain">
 
                                     <span class="h-full">

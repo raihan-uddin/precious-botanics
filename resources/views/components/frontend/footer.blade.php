@@ -98,10 +98,10 @@
                     <div
                         class="min-[992px]:w-[25%] max-[991px]:w-full w-full px-[12px] bb-footer-toggle bb-footer-cat">
                         <div class="bb-footer-widget bb-footer-company flex flex-col max-[991px]:mb-[24px]">
-                            <img src="{{ asset('images/logos/logo.png') }}"
+                            <img src="{{ asset('images/logos/logo.svg') }}"
                                  class="bb-footer-logo max-w-[144px] mb-[30px] max-[767px]:max-w-[130px]"
                                  alt="footer logo">
-                            <img src="{{ asset('images/logos/logo.png') }}"
+                            <img src="{{ asset('images/logos/logo.svg') }}"
                                  class="bb-footer-dark-logo max-w-[144px] mb-[30px] max-[767px]:max-w-[130px] hidden"
                                  alt="footer logo">
                             <p class="bb-footer-detail max-w-[400px] mb-[30px] p-[0] font-Poppins text-[14px] leading-[27px] font-normal text-[#686e7d] inline-block relative max-[1399px]:text-[15px] max-[1199px]:text-[14px]">
