@@ -87,6 +87,7 @@
                                     type="button" 
                                     class="clear absolute right-[55px] top-[0] flex items-center justify-center w-[45px] h-full bg-transparent text-[#d9534f] text-[16px] rounded-[0] outline-[0] border-[0] padding-[0]"
                                     title="Clear"
+                                    x-show="query"
                                     @click="clearSearch"  
                                 >
                                     <i class="ri-close-line text-[18px] leading-[12px] text-[#d9534f]"></i>
